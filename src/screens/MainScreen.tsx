@@ -1,41 +1,59 @@
 import React from 'react';
-import { View, StatusBar, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, StatusBar, StyleSheet, TouchableOpacity, Text, SafeAreaView } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import ButtonCard from '../components/ButtonCard';
+import pill from '../assets/pill.jpg';
+import clipboard from '../assets/clipboard.jpg'
+import pain from '../assets/pain.jpg'
+import check from '../assets/check.jpg'
+import alert from '../assets/alert.jpg'
+import assist from '../assets/assist.jpg'
 
 const HomeScreen = ({ navigation }) => {
-
-
   return (
-    <View style={styles.container}>
-      <View style={styles.topLeft}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('FirstPath')}>
-          <Text style={styles.buttonText}>Button 1</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.topRight}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SecondPath')}>
-          <Text style={styles.buttonText}>Button 2</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.bottomLeft}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ThirdPath')}>
-          <Text style={styles.buttonText}>Button 3</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.bottomRight}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('FourthPath')}>
-          <Text style={styles.buttonText}>Button 4</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.buttonRow}>
+          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('FirstPath')}>
+            <ButtonCard title="Advanced Medical Directives" image={pill} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Med_and_Personal')}>
+            <ButtonCard title="Medical and Personal Information" image={clipboard} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.buttonRow}>
+          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('ThirdPath')}>
+            <ButtonCard title="Pain" image={pain} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('SeventhPath')}>
+            <ButtonCard title="What's Wrong" image={check} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.buttonRow}>
+          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
+            <ButtonCard title="Alert & Oriented Assessment" image={alert} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('SixthPath')}>
+            <ButtonCard title="Do NOT assist or hospitalize me" image={assist} />
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: -50,
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 5, 
   },
   button: {
     width: 150,
@@ -45,30 +63,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
   },
+  buttonContainer: {
+    marginRight: 15, 
+    marginLeft: 15
+  },
   buttonText: {
     color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  topLeft: {
-    position: 'absolute',
-    top: 100,
-    left: 50,
-  },
-  topRight: {
-    position: 'absolute',
-    top: 100,
-    right: 50,
-  },
-  bottomLeft: {
-    position: 'absolute',
-    bottom: 100,
-    left: 50,
-  },
-  bottomRight: {
-    position: 'absolute',
-    bottom: 100,
-    right: 50,
   },
 });
 

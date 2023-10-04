@@ -1,47 +1,55 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import {
-    StyleSheet, Button, Text, View,
-    TextInput, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView
+    StyleSheet, Text, View, TextInput, TouchableWithoutFeedback,
+    Keyboard, KeyboardAvoidingView, Button
 } from "react-native";
 
-const TypeAnything = ({ navigation }) => {
+global.savedtext = '';
 
-    const [text, onChangeText] = React.useState('')
+const TypeAnything = ({ navigation }) => {
+    const [text, onChangeText] = useState(''); 
+    const textInputRef = useRef(null); 
+
+    const changeSaved = () => {
+        global.savedtext = text; 
+    };
+
+    const handlePress = () => {
+        navigation.goBack()
+        changeSaved()
+    }
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
-
                     {/* Text entry field */}
                     <View style={styles.textEntry}>
                         <TextInput
                             multiline
                             editable
                             style={{ padding: 15, fontSize: 30 }}
-                            ref={input => { this.textInput = input }}
+                            ref={textInputRef}
                             placeholder="Type here..."
-                            value={text}
-                            onChangeText={onChangeText}
+                            defaultValue={global.savedtext}
+                            onChangeText={(txt) => onChangeText(txt)} 
                         />
                     </View>
 
                     {/* "Go back" button */}
                     <View style={styles.goBack}>
-                        <Button title="GO BACK" onPress={() => navigation.goBack()} />
+                        <Button title="GO BACK" onPress={handlePress} />
                     </View>
 
                     {/* "Clear all" button */}
                     <View style={styles.clearAll}>
-                        <Button title="CLEAR ALL" onPress={() => this.textInput.clear()}/>
+                        <Button title="CLEAR ALL" onPress={() => textInputRef.current.clear()} />
                     </View>
-        
                 </View>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
-
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
