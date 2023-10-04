@@ -1,0 +1,92 @@
+import React from 'react';
+import { 
+  View, 
+  StatusBar, 
+  StyleSheet, 
+  TouchableOpacity, 
+  Text, 
+  SafeAreaView, 
+  Button, 
+  TextInput 
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import ButtonCard from '../../components/ButtonCard';
+
+const Feel = ({ navigation }) => {
+  return (
+    <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.goBackButton}>
+            <Button title="Go Back" onPress={() => navigation.goBack()} />
+        </View>
+        <View style={styles.buttonRow}>
+          <TouchableOpacity style={styles.button} onPress={() => {}}>
+            <Text style={styles.buttonText}>Mild</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button} onPress={() => {}}>
+            <Text style={styles.buttonText}>Moderate</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button} onPress={() => {}}>
+            <Text style={styles.buttonText}>Severe</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.textInputContainer}>
+          <TextInput 
+            placeholder="Enter Text Here" 
+            style={styles.textInput}
+          />
+        </View>
+      </SafeAreaView>
+    </LinearGradient>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -50,
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  button: {
+    width: 100, // Adjusted width to accommodate all three buttons in one row
+    height: 50,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    marginHorizontal: 10,  // Added some margin to separate buttons
+  },
+  buttonText: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  textInputContainer: {
+    marginTop: 20,
+    width: '80%',
+  },
+  textInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
+    backgroundColor: 'white',
+    color: 'black',
+  },
+  goBackButton: {
+    marginBottom: 100,  
+  },
+});
+
+export default Feel;
