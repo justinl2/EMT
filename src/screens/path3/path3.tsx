@@ -1,10 +1,13 @@
-import { Text } from "react-native";
+import { Text, SafeAreaView } from "react-native";
 
 
 const Screen3 = () => {
 
     return(
-        <Text>Screen 3</Text>
+        <SafeAreaView>
+            <Text>Screen 3</Text>
+        </SafeAreaView>
+        
     );
 }
 

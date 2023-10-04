@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import AppNavigator from './src/nav';
+import TabNavigation from './src/nav/TabNavigator';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function App() {
   return (
 
-      <AppNavigator />
-
+      <TabNavigation />
 
   );
 }
