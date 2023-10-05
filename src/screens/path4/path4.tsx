@@ -14,9 +14,14 @@ const TypeAnything = ({ navigation }) => {
         global.savedtext = text; 
     };
 
-    const handlePress = () => {
+    const handleBack = () => {
         navigation.goBack()
         changeSaved()
+    }
+
+    const handleClear = () => {
+        textInputRef.current.clear()
+        global.savedtext = '';
     }
 
     return (
@@ -38,12 +43,12 @@ const TypeAnything = ({ navigation }) => {
 
                     {/* "Go back" button */}
                     <View style={styles.goBack}>
-                        <Button title="GO BACK" onPress={handlePress} />
+                        <Button title="GO BACK" onPress={handleBack} />
                     </View>
 
                     {/* "Clear all" button */}
                     <View style={styles.clearAll}>
-                        <Button title="CLEAR ALL" onPress={() => textInputRef.current.clear()} />
+                        <Button title="CLEAR ALL" onPress={handleClear} />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
