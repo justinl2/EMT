@@ -5,7 +5,7 @@ import ButtonCard from "../../components/ButtonCard";
 import mental from '../../../src/assets/mental.png';
 import injury from '../../../src/assets/injury.jpg';
 
-const Screen7 = ({ navigation }) => {
+const WhatsWrong = ({ navigation }) => {
 
 
     return (
@@ -15,7 +15,7 @@ const Screen7 = ({ navigation }) => {
             <Text style={styles.title}>What's Wrong?</Text>
 
                 <View style={styles.buttonRow}>
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Personal_Information_Screen')}>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Illness_Injury_Screen')}>
                         <ButtonCard title="Illness/Injury" image={injury}/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Mental_Health_Screen')}>
@@ -27,7 +27,7 @@ const Screen7 = ({ navigation }) => {
     );
 }
 
-export default Screen7;
+export default WhatsWrong;
 
 const styles = StyleSheet.create({
     container: {

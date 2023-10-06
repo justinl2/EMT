@@ -22,10 +22,10 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('ThirdPath')}>
+          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Pain_Screen')}>
             <ButtonCard title="Pain" image={pain} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('SeventhPath')}>
+          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Whats_Wrong_Screen')}>
             <ButtonCard title="What's Wrong" image={check} />
           </TouchableOpacity>
         </View>
