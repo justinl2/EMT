@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Entypo } from '@expo/vector-icons'; 
+import { Entypo } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 
 import MainScreen from '../screens/MainScreen';
@@ -23,6 +23,8 @@ import HowBad from '../screens/path3/how_bad';
 import Feel from '../screens/path3/feel_like';
 import Vomit from '../screens/path7/vomit';
 import SignsSymptoms from '../screens/path7/signs_symptoms';
+import NitroAssessment from '../screens/path7/nitro_assessment';
+import Bathroom from '../screens/path7/bathroom';
 
 
 const MainStack = createNativeStackNavigator();
@@ -49,67 +51,69 @@ const MainStackNavigator = () => {
             <MainStack.Screen name="Intake_Output_Screen" component={IntakeOutput} />
             <MainStack.Screen name="How_Bad_Screen" component={HowBad} />
             <MainStack.Screen name="Feel_Screen" component={Feel} />
-            <MainStack.Screen name="Vomit_screen" component={Vomit} />
+            <MainStack.Screen name="Vomit_Screen" component={Vomit} />
             <MainStack.Screen name="Signs_Symptoms_Screen" component={SignsSymptoms} />
+            <MainStack.Screen name="Nitro_Assessment_Screen" component={NitroAssessment} />
+            <MainStack.Screen name="Bathroom_Screen" component={Bathroom} />
 
         </MainStack.Navigator>
     );
 };
 
-function BottomTabs(){
-    return(
+function BottomTabs() {
+    return (
         <Tab.Navigator
             screenOptions={{
-                tabBarStyle:{
-                    backgroundColor:"rgba(0,0,0,0.5)",
-                    position:"absolute",
-                    bottom:0,
-                    left:0,
-                    right:0,
-                    shadowOpacity:0,
-                    shadowRadius:4,
-                    elevation:4,
-                    shadowOffset:{
-                        width:0,
-                        height:-4
+                tabBarStyle: {
+                    backgroundColor: "rgba(0,0,0,0.5)",
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    shadowOpacity: 0,
+                    shadowRadius: 4,
+                    elevation: 4,
+                    shadowOffset: {
+                        width: 0,
+                        height: -4
                     },
-                    borderTopWidth:0
+                    borderTopWidth: 0
                 }
             }}
         >
-            <Tab.Screen name="HomeStack" 
-                        component={MainStackNavigator} 
-                        options={{
-                            headerShown: false,
-                            tabBarLabel: "Home", 
-                            tabBarLabelStyle: {color:"white"}, 
-                            tabBarIcon: ({focused}) =>
-                            focused ? (
-                                <Entypo name="home" size={24} color="white" />
-                            ) : (
-                                <Entypo name="home" size={24} color="white" />
-                            )
-                        }}
+            <Tab.Screen name="HomeStack"
+                component={MainStackNavigator}
+                options={{
+                    headerShown: false,
+                    tabBarLabel: "Home",
+                    tabBarLabelStyle: { color: "white" },
+                    tabBarIcon: ({ focused }) =>
+                        focused ? (
+                            <Entypo name="home" size={24} color="white" />
+                        ) : (
+                            <Entypo name="home" size={24} color="white" />
+                        )
+                }}
             />
-            <Tab.Screen name="Type" 
-                        component={TypeAnything}
-                        options={{
-                            headerShown: false,
-                            tabBarLabel: "Text", 
-                            tabBarLabelStyle: {color:"white"}, 
-                            tabBarIcon: ({focused}) =>
-                            focused ? (
-                                <Entypo name="text" size={24} color="white" />
-                            ) : (
-                                <Entypo name="text" size={24} color="white" />
-                            )
-                        }}
+            <Tab.Screen name="Type"
+                component={TypeAnything}
+                options={{
+                    headerShown: false,
+                    tabBarLabel: "Text",
+                    tabBarLabelStyle: { color: "white" },
+                    tabBarIcon: ({ focused }) =>
+                        focused ? (
+                            <Entypo name="text" size={24} color="white" />
+                        ) : (
+                            <Entypo name="text" size={24} color="white" />
+                        )
+                }}
             />
         </Tab.Navigator>
     )
 }
 
-function TabNavigation(){
+function TabNavigation() {
     return (
         <NavigationContainer>
             <RootStack.Navigator screenOptions={{ headerShown: false }} >

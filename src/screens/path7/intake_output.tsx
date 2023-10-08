@@ -25,13 +25,22 @@ const IntakeOutput = ({ navigation }) => {
         <View style={styles.buttonRow}>
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={() => navigation.navigate("Main")}
+            onPress={() => navigation.navigate("Vomit_Screen")}
           >
             <ButtonCard title="Have you vomited?" image={alert} />
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.title}>WHEN did you last eat/drink?</Text>
+        <View style={styles.buttonRow}>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => navigation.navigate("Bathroom_Screen")}
+          >
+            <ButtonCard title="When did you last use the bathroom?" image={alert} />
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.title}>When did you last eat/drink?</Text>
 
         <TextInput
           style={styles.inputField}
@@ -41,17 +50,7 @@ const IntakeOutput = ({ navigation }) => {
           onChangeText={setInputText}
         />
 
-        <Text style={styles.title}>WHAT did you last eat/drink?</Text>
-
-        <TextInput
-          style={styles.inputField}
-          placeholder="Type your message here..."
-          placeholderTextColor="#888"
-          value={inputText}
-          onChangeText={setInputText}
-        />
-
-        <Text style={styles.title}>When did you last use the bathroom?</Text>
+        <Text style={styles.title}>What did you last eat/drink?</Text>
 
         <TextInput
           style={styles.inputField}

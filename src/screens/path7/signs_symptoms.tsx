@@ -31,7 +31,7 @@ const SignsSymptoms = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={() => navigation.navigate("Main")}
+            onPress={() => navigation.navigate("Nitro_Assessment_Screen")}
           >
             <ButtonCard
               title="Trouble breathing, chest tightness"
@@ -43,7 +43,7 @@ const SignsSymptoms = ({ navigation }) => {
         <View style={styles.buttonRow}>
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={() => navigation.navigate("Main")}
+            onPress={() => navigation.navigate("Intake_Output_Screen")}
           >
             <ButtonCard title="Stomach/gastrointestinall issues" image={alert} />
           </TouchableOpacity>
