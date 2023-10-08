@@ -17,6 +17,7 @@ const Pain = ({ navigation }) => {
 
     const [when, setWhen] = useState("");
     const [better, setBetter] = useState("");
+    const [where, setWhere] = useState("");
 
     return (
         <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
@@ -24,8 +25,6 @@ const Pain = ({ navigation }) => {
             <SafeAreaView >
                 <Button title="Go Back" onPress={() => navigation.goBack()} />
                 <Text style={styles.title}>Pain</Text>
-
-
 
                 <View style={styles.buttonRow}>
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Feel_Screen')}>
@@ -35,7 +34,6 @@ const Pain = ({ navigation }) => {
                     <ButtonCard title="How Bad?" image={clipboard} />
                 </TouchableOpacity>
                 </View>
-
 
                 <Text style={styles.text}>When did it start?</Text>
 
@@ -55,10 +53,14 @@ const Pain = ({ navigation }) => {
                     placeholder="What makes the pain better or worse?"
                 />
 
+                <Text style={styles.text}>Does the pain move to other parts of your body?</Text>
 
-
-
-
+                <TextInput
+                    style={styles.input}
+                    onChangeText={setWhere}
+                    value={where}
+                    placeholder="Does the pain move to other parts of your body?"
+                />
 
             </SafeAreaView>
         </LinearGradient>

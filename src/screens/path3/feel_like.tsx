@@ -19,6 +19,9 @@ const Feel = ({ navigation }) => {
         <View style={styles.goBackButton}>
             <Button title="Go Back" onPress={() => navigation.goBack()} />
         </View>
+
+        <Text style={styles.title}>What Does it Feel Like?</Text>
+
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.button} onPress={() => {}}>
             <Text style={styles.buttonText}>Mild</Text>
@@ -86,6 +89,14 @@ const styles = StyleSheet.create({
   },
   goBackButton: {
     marginBottom: 100,  
+  },
+  title: {
+    fontSize: 24,              
+    fontWeight: 'bold',         
+    color: '#FFFFFF',           
+    textAlign: 'center',       
+    marginBottom: 15,           
+    letterSpacing: 1,           
   },
 });
 

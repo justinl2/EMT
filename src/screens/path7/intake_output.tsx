@@ -29,9 +29,6 @@ const IntakeOutput = ({ navigation }) => {
           >
             <ButtonCard title="Have you vomited?" image={alert} />
           </TouchableOpacity>
-        </View>
-
-        <View style={styles.buttonRow}>
           <TouchableOpacity
             style={styles.buttonContainer}
             onPress={() => navigation.navigate("Bathroom_Screen")}

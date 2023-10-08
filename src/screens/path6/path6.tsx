@@ -7,8 +7,6 @@ import alert from '../../../src/assets/alert.jpg';
 const Screen6 = ({ navigation }) => {
     const [inputText, setInputText] = useState('');
 
-
-
     return (
         <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
             <SafeAreaView>
