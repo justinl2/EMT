@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LinearGradient } from "expo-linear-gradient";
-import { Text, SafeAreaView, View, TouchableOpacity, StyleSheet, TextInput, Button } from "react-native";
+import { Text, SafeAreaView, View, TouchableOpacity, StyleSheet, TextInput, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
 import ButtonCard from "../../components/ButtonCard";
 import alert from '../../../src/assets/alert.jpg';
 
@@ -8,41 +8,43 @@ const Screen6 = ({ navigation }) => {
     const [inputText, setInputText] = useState('');
 
     return (
-        <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-            <SafeAreaView>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+                <SafeAreaView>
 
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <Button title="Go Back" onPress={() => navigation.goBack()} />
 
-                <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
-                    <ButtonCard title="Alert & Oriented Assessment" image={alert} />
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
+                        <ButtonCard title="Alert & Oriented Assessment" image={alert} />
+                    </TouchableOpacity>
                 
-                <View style={styles.spacing}>
-                    <Text style={styles.title}>For the EMT: communicate your concern to your patient</Text>
+                    <View style={styles.spacing}>
+                        <Text style={styles.title}>For the EMT: communicate your concern to your patient</Text>
 
-                    <TextInput 
-                        style={styles.inputField}
-                        placeholder="Type your message here..."
-                        placeholderTextColor="#888"
-                        value={inputText}
-                        onChangeText={setInputText}
-                    />
+                        <TextInput 
+                            style={styles.inputField}
+                            placeholder="Type your message here..."
+                            placeholderTextColor="#888"
+                            value={inputText}
+                            onChangeText={setInputText}
+                        />
 
-                    <View style={styles.buttonRow}>
-                        <TouchableOpacity style={styles.choiceButton} onPress={() => {  }}>
-                            <Text style={styles.buttonText}>I understand, but do NOT help me or take me to the hospital.</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.choiceButton} onPress={() => {  }}>
-                            <Text style={styles.buttonText}>Please help me, but do NOT take me to the hospital</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.choiceButton} onPress={() => {  }}>
-                            <Text style={styles.buttonText}>Please help me and take me to the hospital</Text>
-                        </TouchableOpacity>
+                        <View style={styles.buttonRow}>
+                            <TouchableOpacity style={styles.choiceButton} onPress={() => {  }}>
+                                <Text style={styles.buttonText}>I understand, but do NOT help me or take me to the hospital.</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.choiceButton} onPress={() => {  }}>
+                                <Text style={styles.buttonText}>Please help me, but do NOT take me to the hospital</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.choiceButton} onPress={() => {  }}>
+                                <Text style={styles.buttonText}>Please help me and take me to the hospital</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
 
-            </SafeAreaView>
-        </LinearGradient>
+                </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 }
 

@@ -6,6 +6,8 @@ import {
   View,
   Button,
   TextInput,
+  Keyboard,
+  TouchableWithoutFeedback
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
@@ -15,33 +17,35 @@ import alert from "../../../src/assets/alert.jpg";
 const Vomit = ({ navigation }) => {
   const [inputText, setInputText] = useState("");
 
-  return (
-    <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-      <SafeAreaView style={styles.container}>
-        <Button title="Go Back" onPress={() => navigation.goBack()} />
-        <Text style={styles.title}>Have You Vomited?</Text>
+    return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+              <SafeAreaView style={styles.container}>
+                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                <Text style={styles.title}>Have You Vomited?</Text>
 
-        <View style={styles.buttonRow}>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => navigation.navigate("Main")}
-          >
-            <ButtonCard title="Did you vomit bood?" image={alert} />
-          </TouchableOpacity>
-        </View>
+                <View style={styles.buttonRow}>
+                  <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={() => navigation.navigate("Main")}
+                  >
+                  <ButtonCard title="Did you vomit blood?" image={alert} />
+                  </TouchableOpacity>
+                </View>
 
-        <Text style={styles.title}>When did you Vomit?</Text>
+                <Text style={styles.title}>When did you Vomit?</Text>
 
-        <TextInput
-          style={styles.inputField}
-          placeholder="Type your message here..."
-          placeholderTextColor="#888"
-          value={inputText}
-          onChangeText={setInputText}
-        />
-      </SafeAreaView>
-    </LinearGradient>
-  );
+                <TextInput
+                  style={styles.inputField}
+                  placeholder="Type your message here..."
+                  placeholderTextColor="#888"
+                  value={inputText}
+                  onChangeText={setInputText}
+                />
+              </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
+     );
 };
 
 export default Vomit;
@@ -49,8 +53,7 @@ export default Vomit;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    alignItems: "center",
+    padding: 20
   },
   input: {
     height: 40,
@@ -79,7 +82,6 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   buttonRow: {
-    flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 10,

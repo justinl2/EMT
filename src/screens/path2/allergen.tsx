@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, TextInput, StyleSheet, Button } from "react-native";
+import { Text, SafeAreaView, TextInput, StyleSheet, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 
@@ -11,49 +11,51 @@ const Allergen = ({ navigation }) => {
     const [other, setOther] = useState("");
  
     return (
-        <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
-            <SafeAreaView style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
+                <SafeAreaView style={styles.container}>
 
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <Button title="Go Back" onPress={() => navigation.goBack()} />
 
-                <Text style={styles.title}>Allergies</Text>
+                    <Text style={styles.title}>Allergies</Text>
 
-                <Text style={styles.text}>Foods</Text>
+                    <Text style={styles.text}>Foods</Text>
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setFood}
-                    value={food}
-                    placeholder="Foods"
-                />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setFood}
+                        value={food}
+                        placeholder="Foods"
+                    />
 
-                <Text style={styles.text}>Medications</Text>
+                    <Text style={styles.text}>Medications</Text>
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setMedication}
-                    value={medication}
-                    placeholder="Medications"
-                />
-                <Text style={styles.text}>Environmental</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setMedication}
+                        value={medication}
+                        placeholder="Medications"
+                    />
+                    <Text style={styles.text}>Environmental</Text>
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setEnvironmental}
-                    value={environmental}
-                    placeholder="Environmental"
-                />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setEnvironmental}
+                        value={environmental}
+                        placeholder="Environmental"
+                    />
                 
-                <Text style={styles.text}>Other</Text>
+                    <Text style={styles.text}>Other</Text>
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setOther}
-                    value={other}
-                    placeholder="Other"
-                />
-            </SafeAreaView>
-        </LinearGradient>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setOther}
+                        value={other}
+                        placeholder="Other"
+                    />
+                </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 }
 

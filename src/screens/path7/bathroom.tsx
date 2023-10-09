@@ -6,6 +6,9 @@ import {
     View,
     Button,
     TextInput,
+    Keyboard,
+    TouchableWithoutFeedback,
+    KeyboardAvoidingView
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
@@ -17,54 +20,59 @@ import alert from "../../../src/assets/alert.jpg";
 const Bathroom = ({ navigation }) => {
     const [inputText, setInputText] = useState("");
     return (
-        <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-            <SafeAreaView style={styles.container}>
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
-                <Text style={styles.title}>When Did You Last Use the Bathroom?</Text>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+                <SafeAreaView style={styles.container}>
+                    <Button title="Go Back" onPress={() => navigation.goBack()} />
 
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => navigation.navigate("Main")}
-                    >
-                        <ButtonCard title="Was there blood?" image={alert} />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => navigation.navigate("Main")}
-                    >
-                        <ButtonCard title="Constipation?" image={alert} />
-                    </TouchableOpacity>
-                </View>
+                    <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
+                        <Text style={styles.title}>When Did You Last Use the Bathroom?</Text>
 
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => navigation.navigate("Main")}
-                    >
-                        <ButtonCard title="Diarrhea?" image={alert} />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => navigation.navigate("Pain_Screen")}
-                    >
-                        <ButtonCard title="Was it painful?" image={alert} />
-                    </TouchableOpacity>
-                </View>
+                        <View style={styles.buttonRow}>
+                            <TouchableOpacity
+                                style={styles.buttonContainer}
+                                onPress={() => navigation.navigate("Main")}
+                            >
+                                <ButtonCard title="Was there blood?" image={alert} />
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.buttonContainer}
+                                onPress={() => navigation.navigate("Main")}
+                            >
+                                <ButtonCard title="Constipation?" image={alert} />
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.buttonRow}>
+                            <TouchableOpacity
+                                style={styles.buttonContainer}
+                                onPress={() => navigation.navigate("Main")}
+                            >
+                                <ButtonCard title="Diarrhea?" image={alert} />
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.buttonContainer}
+                                onPress={() => navigation.navigate("Pain_Screen")}
+                            >
+                                <ButtonCard title="Was it painful?" image={alert} />
+                            </TouchableOpacity>
+                        </View>
 
 
 
-                <Text style={styles.title}>When did you last use the bathroom?</Text>
+                        <Text style={styles.title}>When did you last use the bathroom?</Text>
 
-                <TextInput
-                    style={styles.inputField}
-                    placeholder="Type your message here..."
-                    placeholderTextColor="#888"
-                    value={inputText}
-                    onChangeText={setInputText}
-                />
-            </SafeAreaView>
-        </LinearGradient>
+                        <TextInput
+                            style={styles.inputField}
+                            placeholder="Type your message here..."
+                            placeholderTextColor="#888"
+                            value={inputText}
+                            onChangeText={setInputText}
+                        />
+                    </KeyboardAvoidingView>
+                </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 };
 
@@ -73,8 +81,7 @@ export default Bathroom;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
-        alignItems: "center",
+        padding: 20
     },
     input: {
         height: 40,

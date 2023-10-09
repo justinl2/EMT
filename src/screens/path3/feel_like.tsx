@@ -7,44 +7,48 @@ import {
   Text, 
   SafeAreaView, 
   Button, 
-  TextInput 
+  TextInput, 
+  Keyboard,
+  TouchableWithoutFeedback
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import ButtonCard from '../../components/ButtonCard';
 
 const Feel = ({ navigation }) => {
-  return (
-    <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.goBackButton}>
-            <Button title="Go Back" onPress={() => navigation.goBack()} />
-        </View>
+    return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
+              <SafeAreaView style={styles.container}>
+                <View style={styles.goBackButton}>
+                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                </View>
 
-        <Text style={styles.title}>What Does it Feel Like?</Text>
+                <Text style={styles.title}>What Does it Feel Like?</Text>
 
-        <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.button} onPress={() => {}}>
-            <Text style={styles.buttonText}>Mild</Text>
-          </TouchableOpacity>
+                <View style={styles.buttonRow}>
+                  <TouchableOpacity style={styles.button} onPress={() => {}}>
+                    <Text style={styles.buttonText}>Mild</Text>
+                  </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} onPress={() => {}}>
-            <Text style={styles.buttonText}>Moderate</Text>
-          </TouchableOpacity>
+                  <TouchableOpacity style={styles.button} onPress={() => {}}>
+                    <Text style={styles.buttonText}>Moderate</Text>
+                  </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} onPress={() => {}}>
-            <Text style={styles.buttonText}>Severe</Text>
-          </TouchableOpacity>
-        </View>
+                  <TouchableOpacity style={styles.button} onPress={() => {}}>
+                    <Text style={styles.buttonText}>Severe</Text>
+                  </TouchableOpacity>
+                </View>
 
-        <View style={styles.textInputContainer}>
-          <TextInput 
-            placeholder="Enter Text Here" 
-            style={styles.textInput}
-          />
-        </View>
-      </SafeAreaView>
-    </LinearGradient>
-  );
+                <View style={styles.textInputContainer}>
+                  <TextInput 
+                    placeholder="Enter Text Here" 
+                    style={styles.textInput}
+                  />
+                </View>
+              </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
+    );
 };
 
 const styles = StyleSheet.create({
