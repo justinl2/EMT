@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Entypo } from '@expo/vector-icons';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import MainScreen from '../screens/MainScreen';
