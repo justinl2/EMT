@@ -5,7 +5,9 @@ import {
   TouchableOpacity,
   View,
   Button,
-  TextInput
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
@@ -15,51 +17,55 @@ import injury from "../../../src/assets/injury.jpg";
 import alert from "../../../src/assets/alert.jpg";
 
 const IllnessInjury = ({ navigation }) => {
-    const [inputText, setInputText] = useState("");
-  return (
-    <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-      <SafeAreaView style={styles.container}>
-        <Button title="Go Back" onPress={() => navigation.goBack()} />
-        <Text style={styles.title}>Illness/Injury</Text>
+    const [whatHappened, setWhatHappened] = useState("");
+    const [other, setOther] = useState("");
 
-        <View style={styles.buttonRow}>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => navigation.navigate("Intake_Output_Screen")}
-          >
-            <ButtonCard title="Last intake / output" image={alert} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => navigation.navigate("Signs_Symptoms_Screen")}
-          >
-            <ButtonCard title="Signs and symptoms" image={alert} />
-          </TouchableOpacity>
-        </View>
+    return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+              <SafeAreaView style={styles.container}>
+                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                <Text style={styles.title}>Illness/Injury</Text>
 
-        <Text style={styles.title}>What happened?</Text>
+                <View style={styles.buttonRow}>
+                  <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={() => navigation.navigate("Intake_Output_Screen")}
+                  >
+                    <ButtonCard title="Last intake / output" image={alert} />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={() => navigation.navigate("Signs_Symptoms_Screen")}
+                  >
+                    <ButtonCard title="Signs and symptoms" image={alert} />
+                  </TouchableOpacity>
+                </View>
 
-        <TextInput
-          style={styles.inputField}
-          placeholder="Type your message here..."
-          placeholderTextColor="#888"
-          value={inputText}
-          onChangeText={setInputText}
-        />
+                <Text style={styles.title}>What happened?</Text>
 
-        <Text style={styles.title}>Other:</Text>
+                <TextInput
+                  style={styles.inputField}
+                  placeholder="Type your message here..."
+                  placeholderTextColor="#888"
+                  value={whatHappened}
+                  onChangeText={setWhatHappened}
+                />
 
-        <TextInput
-          style={styles.inputField}
-          placeholder="Type your message here..."
-          placeholderTextColor="#888"
-          value={inputText}
-          onChangeText={setInputText}
-        />
+                <Text style={styles.title}>Other:</Text>
 
-      </SafeAreaView>
-    </LinearGradient>
-  );
+                <TextInput
+                  style={styles.inputField}
+                  placeholder="Type your message here..."
+                  placeholderTextColor="#888"
+                  value={other}
+                  onChangeText={setOther}
+                />
+
+              </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
+    );
 };
 
 export default IllnessInjury;
@@ -67,8 +73,7 @@ export default IllnessInjury;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    alignItems: "center",
+    padding: 20
   },
   input: {
     height: 40,
