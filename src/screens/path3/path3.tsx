@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, Button, TextInput } from "react-native";
+import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, Button, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 
@@ -20,50 +20,52 @@ const Pain = ({ navigation }) => {
     const [where, setWhere] = useState("");
 
     return (
-        <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
             
-            <SafeAreaView >
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
-                <Text style={styles.title}>Pain</Text>
+                <SafeAreaView >
+                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <Text style={styles.title}>Pain</Text>
 
-                <View style={styles.buttonRow}>
-                <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Feel_Screen')}>
-                    <ButtonCard title="What does it feel like?" image={pill} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('How_Bad_Screen')}>
-                    <ButtonCard title="How Bad?" image={clipboard} />
-                </TouchableOpacity>
-                </View>
+                    <View style={styles.buttonRow}>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Feel_Screen')}>
+                        <ButtonCard title="What does it feel like?" image={pill} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('How_Bad_Screen')}>
+                        <ButtonCard title="How Bad?" image={clipboard} />
+                    </TouchableOpacity>
+                    </View>
 
-                <Text style={styles.text}>When did it start?</Text>
+                    <Text style={styles.text}>When did it start?</Text>
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setWhen}
-                    value={when}
-                    placeholder="When did it start?"
-                />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setWhen}
+                        value={when}
+                        placeholder="When did it start?"
+                    />
 
-                <Text style={styles.text}>What makes the pain better or worse?</Text>
+                    <Text style={styles.text}>What makes the pain better or worse?</Text>
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setBetter}
-                    value={better}
-                    placeholder="What makes the pain better or worse?"
-                />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setBetter}
+                        value={better}
+                        placeholder="What makes the pain better or worse?"
+                    />
 
-                <Text style={styles.text}>Does the pain move to other parts of your body?</Text>
+                    <Text style={styles.text}>Does the pain move to other parts of your body?</Text>
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setWhere}
-                    value={where}
-                    placeholder="Does the pain move to other parts of your body?"
-                />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setWhere}
+                        value={where}
+                        placeholder="Does the pain move to other parts of your body?"
+                    />
 
-            </SafeAreaView>
-        </LinearGradient>
+                </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 }
 
