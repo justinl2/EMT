@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import MainScreen from '../screens/MainScreen';
 import TypeAnything from '../screens/path4/path4';
+import GenerateScreen from '../screens/generate';
 import Screen1 from '../screens/path1/path1';
 import Screen2 from '../screens/path2/path2';
 import Screen4 from '../screens/path4/path4';
@@ -101,6 +102,20 @@ function BottomTabs() {
                 options={{
                     headerShown: false,
                     tabBarLabel: "Text",
+                    tabBarLabelStyle: { color: "white" },
+                    tabBarIcon: ({ focused }) =>
+                        focused ? (
+                            <Entypo name="text" size={24} color="white" />
+                        ) : (
+                            <Entypo name="text" size={24} color="white" />
+                        )
+                }}
+            />
+            <Tab.Screen name="Generate"
+                component={GenerateScreen}
+                options={{
+                    headerShown: false,
+                    tabBarLabel: "Generate",
                     tabBarLabelStyle: { color: "white" },
                     tabBarIcon: ({ focused }) =>
                         focused ? (
