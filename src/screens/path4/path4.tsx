@@ -4,28 +4,32 @@ import {
     Keyboard, KeyboardAvoidingView, Button
 } from "react-native";
 
-global.savedtext = '';
+import { useSelector, useDispatch } from 'react-redux';
+import { setText, clearText } from '../../features/text/textSlice';
+import type { RootState } from '../../redux/store';
 
 const TypeAnything = ({ navigation }) => {
-    const [text, onChangeText] = useState(''); 
+    const dispatch = useDispatch();
+    
+    // Use Redux state instead of local state
+    const textFromRedux = useSelector((state: RootState) => state.textEntry);
     const textInputRef = useRef(null); 
 
-    const changeSaved = () => {
-        global.savedtext = text; 
-    };
-
     const handleBack = () => {
-        navigation.goBack()
-        changeSaved()
+        navigation.goBack();
     }
 
+    const handleChangeText = (txt: string) => {
+        dispatch(setText(txt));
+    };
+
     const handleClear = () => {
-        textInputRef.current.clear()
-        global.savedtext = '';
+        dispatch(clearText());
+        textInputRef.current.clear();
     }
 
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+        <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     {/* Text entry field */}
@@ -36,8 +40,8 @@ const TypeAnything = ({ navigation }) => {
                             style={{ padding: 15, fontSize: 30 }}
                             ref={textInputRef}
                             placeholder="Type here..."
-                            defaultValue={global.savedtext}
-                            onChangeText={(txt) => onChangeText(txt)} 
+                            defaultValue={textFromRedux}
+                            onChangeText={handleChangeText} 
                         />
                     </View>
 
@@ -55,6 +59,7 @@ const TypeAnything = ({ navigation }) => {
         </KeyboardAvoidingView>
     );
 };
+
 
 const styles = StyleSheet.create({
     container: {

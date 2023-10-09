@@ -1,13 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import TabNavigation from './src/nav/TabNavigator';
-import { LinearGradient } from 'expo-linear-gradient';
+import { store } from './src/redux/store';
+import { Provider } from 'react-redux';
 
 export default function App() {
   return (
-
+    <Provider store={store}>
       <TabNavigation />
-
+    </Provider>
   );
 }
 
@@ -30,3 +31,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+

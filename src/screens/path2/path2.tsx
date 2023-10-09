@@ -1,4 +1,5 @@
 import { Text, SafeAreaView, TouchableOpacity, StyleSheet, View, Button } from "react-native";
+import React from "react";
 import { LinearGradient } from 'expo-linear-gradient';
 import ButtonCard from "../../components/ButtonCard";
 import personal from '../../../src/assets/personal.jpg'

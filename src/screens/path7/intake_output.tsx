@@ -6,6 +6,8 @@ import {
   View,
   Button,
   TextInput,
+  Keyboard,
+  TouchableWithoutFeedback
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
@@ -15,54 +17,54 @@ import injury from "../../../src/assets/injury.jpg";
 import alert from "../../../src/assets/alert.jpg";
 
 const IntakeOutput = ({ navigation }) => {
-  const [inputText, setInputText] = useState("");
-  return (
-    <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-      <SafeAreaView style={styles.container}>
-        <Button title="Go Back" onPress={() => navigation.goBack()} />
-        <Text style={styles.title}>Last Intake/Output</Text>
+    const [whenEatDrink, setWhenEatDrink] = useState("");
+    const [whatEatDrink, setWhatEatDrink] = useState("");
 
-        <View style={styles.buttonRow}>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => navigation.navigate("Main")}
-          >
-            <ButtonCard title="Have you vomited?" image={alert} />
-          </TouchableOpacity>
-        </View>
+    return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+              <SafeAreaView style={styles.container}>
+                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                <Text style={styles.title}>Last Intake/Output</Text>
 
-        <Text style={styles.title}>WHEN did you last eat/drink?</Text>
+                <View style={styles.buttonRow}>
+                  <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={() => navigation.navigate("Vomit_Screen")}
+                  >
+                    <ButtonCard title="Have you vomited?" image={alert} />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={() => navigation.navigate("Bathroom_Screen")}
+                  >
+                    <ButtonCard title="When did you last use the bathroom?" image={alert} />
+                  </TouchableOpacity>
+                </View>
 
-        <TextInput
-          style={styles.inputField}
-          placeholder="Type your message here..."
-          placeholderTextColor="#888"
-          value={inputText}
-          onChangeText={setInputText}
-        />
+                <Text style={styles.title}>When did you last eat/drink?</Text>
 
-        <Text style={styles.title}>WHAT did you last eat/drink?</Text>
+                <TextInput
+                  style={styles.inputField}
+                  placeholder="Type your message here..."
+                  placeholderTextColor="#888"
+                  value={whenEatDrink}
+                  onChangeText={setWhenEatDrink}
+                />
 
-        <TextInput
-          style={styles.inputField}
-          placeholder="Type your message here..."
-          placeholderTextColor="#888"
-          value={inputText}
-          onChangeText={setInputText}
-        />
+                <Text style={styles.title}>What did you last eat/drink?</Text>
 
-        <Text style={styles.title}>When did you last use the bathroom?</Text>
-
-        <TextInput
-          style={styles.inputField}
-          placeholder="Type your message here..."
-          placeholderTextColor="#888"
-          value={inputText}
-          onChangeText={setInputText}
-        />
-      </SafeAreaView>
-    </LinearGradient>
-  );
+                <TextInput
+                  style={styles.inputField}
+                  placeholder="Type your message here..."
+                  placeholderTextColor="#888"
+                  value={whatEatDrink}
+                  onChangeText={setWhatEatDrink}
+                />
+              </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
+    );
 };
 
 export default IntakeOutput;
@@ -71,7 +73,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    alignItems: "center",
   },
   input: {
     height: 40,

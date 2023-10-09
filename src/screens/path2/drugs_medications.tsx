@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LinearGradient } from "expo-linear-gradient";
-import { Text, SafeAreaView, TextInput, StyleSheet, Button } from "react-native";
+import { Text, SafeAreaView, TextInput, StyleSheet, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
 
 const DrugsMedications = ({ navigation }) => {
     const [inhaler, setInhaler] = useState('');
@@ -8,52 +8,54 @@ const DrugsMedications = ({ navigation }) => {
     const [sexualEnhancement, setSexualEnhancement] = useState('');
     const [narcotics, setNarcotics] = useState('');
 
-    return(
-        <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
-            <SafeAreaView style={styles.container}>
+    return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
+                <SafeAreaView style={styles.container}>
 
 
-            <Button title="Go Back" onPress={() => navigation.goBack()} />
+                <Button title="Go Back" onPress={() => navigation.goBack()} />
 
-            <Text style={styles.title}> Drugs & Medications </Text>
+                <Text style={styles.title}> Drugs & Medications </Text>
                 
-                <Text style={styles.text}>Inhaler</Text>
-                <TextInput 
-                    style={styles.input}
-                    placeholder="Inhaler?"
-                    placeholderTextColor="#888"
-                    value={inhaler}
-                    onChangeText={setInhaler}
-                />
+                    <Text style={styles.text}>Inhaler</Text>
+                    <TextInput 
+                        style={styles.input}
+                        placeholder="Inhaler?"
+                        placeholderTextColor="#888"
+                        value={inhaler}
+                        onChangeText={setInhaler}
+                    />
 
-                <Text style={styles.text}>Blood thinners (Aspirin, warfarin, etc)?</Text>
-                <TextInput 
-                    style={styles.input}
-                    placeholder="Blood thinners (Aspirin, warfarin, etc)?"
-                    placeholderTextColor="#888"
-                    value={bloodThinners}
-                    onChangeText={setBloodThinners}
-                />
+                    <Text style={styles.text}>Blood thinners (Aspirin, warfarin, etc)?</Text>
+                    <TextInput 
+                        style={styles.input}
+                        placeholder="Blood thinners (Aspirin, warfarin, etc)?"
+                        placeholderTextColor="#888"
+                        value={bloodThinners}
+                        onChangeText={setBloodThinners}
+                    />
 
-                <Text style={styles.text}>Sexual enhancement drugs in the last 24 hours?</Text>
-                <TextInput 
-                    style={styles.input}
-                    placeholder="Sexual enhancement drugs in the last 24 hours?"
-                    placeholderTextColor="#888"
-                    value={sexualEnhancement}
-                    onChangeText={setSexualEnhancement}
-                />
+                    <Text style={styles.text}>Sexual enhancement drugs in the last 24 hours?</Text>
+                    <TextInput 
+                        style={styles.input}
+                        placeholder="Sexual enhancement drugs in the last 24 hours?"
+                        placeholderTextColor="#888"
+                        value={sexualEnhancement}
+                        onChangeText={setSexualEnhancement}
+                    />
 
-                <Text style={styles.text}>Narcotics? (opioids, heroin, morphine, oxycontin etc)</Text>
-                <TextInput 
-                    style={styles.input}
-                    placeholder="Narcotics? (opioids, heroin, morphine, oxycontin etc)"
-                    placeholderTextColor="#888"
-                    value={narcotics}
-                    onChangeText={setNarcotics}
-                />
-            </SafeAreaView>
-        </LinearGradient>
+                    <Text style={styles.text}>Narcotics? (opioids, heroin, morphine, oxycontin etc)</Text>
+                    <TextInput 
+                        style={styles.input}
+                        placeholder="Narcotics? (opioids, heroin, morphine, oxycontin etc)"
+                        placeholderTextColor="#888"
+                        value={narcotics}
+                        onChangeText={setNarcotics}
+                    />
+                </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 }
 

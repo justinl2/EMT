@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View, Button, TextInput } from "react-native";
+import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View, Button, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 import ButtonCard from "../../components/ButtonCard";
@@ -11,30 +11,32 @@ const MentalHealth = ({ navigation }) => {
     const [inputText, setInputText] = useState('');
 
     return (
-        <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-            <SafeAreaView style={styles.container}>
-            <Button title="Go Back" onPress={() => navigation.goBack()} />
-            <Text style={styles.title}>Mental Health</Text>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+                <SafeAreaView style={styles.container}>
+                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                <Text style={styles.title}>Mental Health</Text>
 
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
-                        <ButtonCard title="Alert & Oriented Assessment" image={alert}/>
-                    </TouchableOpacity>
-                </View>
+                    <View style={styles.buttonRow}>
+                        <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
+                            <ButtonCard title="Alert & Oriented Assessment" image={alert}/>
+                        </TouchableOpacity>
+                    </View>
 
 
 
-                <Text style={styles.title}>What's Wrong?</Text>
+                    <Text style={styles.title}>What's Wrong?</Text>
 
-                <TextInput 
-                    style={styles.inputField}
-                    placeholder="Type your message here..."
-                    placeholderTextColor="#888"
-                    value={inputText}
-                    onChangeText={setInputText}
-                />
-            </SafeAreaView>
-        </LinearGradient>
+                    <TextInput 
+                        style={styles.inputField}
+                        placeholder="Type your message here..."
+                        placeholderTextColor="#888"
+                        value={inputText}
+                        onChangeText={setInputText}
+                    />
+                </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -43,8 +45,7 @@ export default MentalHealth;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
-        alignItems: 'center', 
+        padding: 20
     },
     input: {
         height: 40,
@@ -73,7 +74,6 @@ const styles = StyleSheet.create({
         letterSpacing: 1,           
     },
     buttonRow: {
-        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 10, 

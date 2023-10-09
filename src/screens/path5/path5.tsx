@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, TextInput, StyleSheet, Button } from "react-native";
+import { Text, SafeAreaView, TextInput, StyleSheet, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 const Screen5 = ({ navigation }) => {
@@ -8,40 +8,42 @@ const Screen5 = ({ navigation }) => {
     const [dayAwareness, setDayAwareness] = useState("");
 
     return (
-        <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
-            <SafeAreaView style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
+                <SafeAreaView style={styles.container}>
 
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <Button title="Go Back" onPress={() => navigation.goBack()} />
 
-                <Text style={styles.title}>Alert and Oriented Assessment</Text>
+                    <Text style={styles.title}>Alert and Oriented Assessment</Text>
 
-                <Text style={styles.text}>What is your name?</Text>
+                    <Text style={styles.text}>What is your name?</Text>
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setName}
-                    value={name}
-                    placeholder="What is your name?"
-                />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setName}
+                        value={name}
+                        placeholder="What is your name?"
+                    />
 
-                <Text style={styles.text}>Do you know where you are?</Text>
+                    <Text style={styles.text}>Do you know where you are?</Text>
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setLocationAwareness}
-                    value={locationAwareness}
-                    placeholder="Do you know where you are?"
-                />
-                <Text style={styles.text}>What day of the week is it today?</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setLocationAwareness}
+                        value={locationAwareness}
+                        placeholder="Do you know where you are?"
+                    />
+                    <Text style={styles.text}>What day of the week is it today?</Text>
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setDayAwareness}
-                    value={dayAwareness}
-                    placeholder="What day of the week is it today?"
-                />
-            </SafeAreaView>
-        </LinearGradient>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={setDayAwareness}
+                        value={dayAwareness}
+                        placeholder="What day of the week is it today?"
+                    />
+                </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 }
 
