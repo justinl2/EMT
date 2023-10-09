@@ -1,13 +1,14 @@
 import {
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  Button,
-  TextInput,
-  Keyboard,
-  TouchableWithoutFeedback
+    Text,
+    SafeAreaView,
+    StyleSheet,
+    TouchableOpacity,
+    View,
+    Button,
+    TextInput,
+    Keyboard,
+    TouchableWithoutFeedback,
+    KeyboardAvoidingView
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
@@ -21,56 +22,59 @@ const SignsSymptoms = ({ navigation }) => {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-              <SafeAreaView style={styles.container}>
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
-                <Text style={styles.title}>Signs and Symptoms</Text>
+                <SafeAreaView style={styles.container}>
+                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
 
-                <View style={styles.buttonRow}>
-                  <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Pain_Screen")}
-                  >
-                    <ButtonCard title="Pain" image={alert} />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Nitro_Assessment_Screen")}
-                  >
-                    <ButtonCard
-                      title="Trouble breathing, chest tightness"
-                      image={alert}
-                    />
-                  </TouchableOpacity>
-                </View>
+                        <Text style={styles.title}>Signs and Symptoms</Text>
 
-                <View style={styles.buttonRow}>
-                  <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Intake_Output_Screen")}
-                  >
-                    <ButtonCard title="Stomach/gastrointestinal issues" image={alert} />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Main")}
-                  >
-                    <ButtonCard
-                      title="Light-headedness, dizziness, nausea"
-                      image={alert}
-                    />
-                  </TouchableOpacity>
-                </View>
+                        <View style={styles.buttonRow}>
+                          <TouchableOpacity
+                            style={styles.buttonContainer}
+                            onPress={() => navigation.navigate("Pain_Screen")}
+                          >
+                            <ButtonCard title="Pain" image={alert} />
+                          </TouchableOpacity>
+                          <TouchableOpacity
+                            style={styles.buttonContainer}
+                            onPress={() => navigation.navigate("Nitro_Assessment_Screen")}
+                          >
+                            <ButtonCard
+                              title="Trouble breathing, chest tightness"
+                              image={alert}
+                            />
+                          </TouchableOpacity>
+                        </View>
 
-                <Text style={styles.title}>Other:</Text>
+                        <View style={styles.buttonRow}>
+                          <TouchableOpacity
+                            style={styles.buttonContainer}
+                            onPress={() => navigation.navigate("Intake_Output_Screen")}
+                          >
+                            <ButtonCard title="Stomach/gastrointestinal issues" image={alert} />
+                          </TouchableOpacity>
+                          <TouchableOpacity
+                            style={styles.buttonContainer}
+                            onPress={() => navigation.navigate("Main")}
+                          >
+                            <ButtonCard
+                              title="Light-headedness, dizziness, nausea"
+                              image={alert}
+                            />
+                          </TouchableOpacity>
+                        </View>
 
-                <TextInput
-                  style={styles.inputField}
-                  placeholder="Type your message here..."
-                  placeholderTextColor="#888"
-                  value={inputText}
-                  onChangeText={setInputText}
-                />
-              </SafeAreaView>
+                        <Text style={styles.title}>Other:</Text>
+
+                        <TextInput
+                          style={styles.inputField}
+                          placeholder="Type your message here..."
+                          placeholderTextColor="#888"
+                          value={inputText}
+                          onChangeText={setInputText}
+                        />
+                    </KeyboardAvoidingView>
+                 </SafeAreaView>
             </LinearGradient>
         </TouchableWithoutFeedback>
     );

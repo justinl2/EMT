@@ -1,4 +1,7 @@
-import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, Button, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
+import {
+    Text, SafeAreaView, StyleSheet, View, TouchableOpacity, Button, TextInput,
+    Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 
@@ -25,43 +28,46 @@ const Pain = ({ navigation }) => {
             
                 <SafeAreaView >
                     <Button title="Go Back" onPress={() => navigation.goBack()} />
-                    <Text style={styles.title}>Pain</Text>
 
-                    <View style={styles.buttonRow}>
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Feel_Screen')}>
-                        <ButtonCard title="What does it feel like?" image={pill} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('How_Bad_Screen')}>
-                        <ButtonCard title="How Bad?" image={clipboard} />
-                    </TouchableOpacity>
-                    </View>
+                    <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
+                        <Text style={styles.title}>Pain</Text>
 
-                    <Text style={styles.text}>When did it start?</Text>
+                        <View style={styles.buttonRow}>
+                        <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Feel_Screen')}>
+                            <ButtonCard title="What does it feel like?" image={pill} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('How_Bad_Screen')}>
+                            <ButtonCard title="How Bad?" image={clipboard} />
+                        </TouchableOpacity>
+                        </View>
 
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setWhen}
-                        value={when}
-                        placeholder="When did it start?"
-                    />
+                        <Text style={styles.text}>When did it start?</Text>
 
-                    <Text style={styles.text}>What makes the pain better or worse?</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={setWhen}
+                            value={when}
+                            placeholder="When did it start?"
+                        />
 
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setBetter}
-                        value={better}
-                        placeholder="What makes the pain better or worse?"
-                    />
+                        <Text style={styles.text}>What makes the pain better or worse?</Text>
 
-                    <Text style={styles.text}>Does the pain move to other parts of your body?</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={setBetter}
+                            value={better}
+                            placeholder="What makes the pain better or worse?"
+                        />
 
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setWhere}
-                        value={where}
-                        placeholder="Does the pain move to other parts of your body?"
-                    />
+                        <Text style={styles.text}>Does the pain move to other parts of your body?</Text>
+
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={setWhere}
+                            value={where}
+                            placeholder="Does the pain move to other parts of your body?"
+                        />
+                    </KeyboardAvoidingView>
 
                 </SafeAreaView>
             </LinearGradient>

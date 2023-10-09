@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   View, 
   StatusBar, 
@@ -9,48 +9,56 @@ import {
   Button, 
   TextInput,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const HowBad = ({ navigation }) => {
+    const [other, setOther] = useState("");
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
-              <SafeAreaView style={styles.container}>
-                <View style={styles.goBackButton}>
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
-                </View>
+                <SafeAreaView style={styles.container}>
 
-                <Text style={styles.title}>How Bad Does it Hurt?</Text>
+                    <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
+                    <View style={styles.goBackButton}>
+                        <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    </View>
+
+                    <Text style={styles.title}>How Bad Does it Hurt?</Text>
         
-                <View style={styles.buttonRow}>
-                  <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonText}>Sharp</Text>
-                  </TouchableOpacity>
+                    <View style={styles.buttonRow}>
+                      <TouchableOpacity style={styles.button} onPress={() => {}}>
+                        <Text style={styles.buttonText}>Sharp</Text>
+                      </TouchableOpacity>
 
-                  <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonText}>Dull</Text>
-                  </TouchableOpacity>
-                </View>
+                      <TouchableOpacity style={styles.button} onPress={() => {}}>
+                        <Text style={styles.buttonText}>Dull</Text>
+                      </TouchableOpacity>
+                    </View>
 
-                <View style={styles.buttonRow}>
-                  <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonText}>Throbbing</Text>
-                  </TouchableOpacity>
+                    <View style={styles.buttonRow}>
+                      <TouchableOpacity style={styles.button} onPress={() => {}}>
+                        <Text style={styles.buttonText}>Throbbing</Text>
+                      </TouchableOpacity>
 
-                  <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonText}>Hot</Text>
-                  </TouchableOpacity>
-                </View>
+                      <TouchableOpacity style={styles.button} onPress={() => {}}>
+                        <Text style={styles.buttonText}>Hot</Text>
+                      </TouchableOpacity>
+                    </View>
 
-                <View style={styles.textInputContainer}>
-                  <Text style={styles.otherLabel}>Other:</Text>
-                  <TextInput 
-                    placeholder="Enter Description Here" 
-                    style={styles.textInput}
-                  />
-                </View>
+                    <View style={styles.textInputContainer}>
+                        <Text style={styles.otherLabel}>Other:</Text>
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={setOther}
+                                value={other}
+                                placeholder="Enter Description Here"
+                            />
+                        </View>
+                    </KeyboardAvoidingView>
               </SafeAreaView>
             </LinearGradient>
         </TouchableWithoutFeedback>
@@ -86,14 +94,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   textInputContainer: {
-    marginTop: 20,
-    width: '80%',
-    alignItems: 'center'
+    marginTop: 20
   },
   otherLabel: {
     color: 'white',
     fontSize: 18,
-    marginBottom: 10
+    marginBottom: 10,
+    textAlign: 'center'
   },
   textInput: {
     width: '100%',
@@ -104,6 +111,16 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'white',
     color: 'black',
+    },
+  input: {
+    height: 40,
+    backgroundColor: '#FFFFFF',  
+    borderColor: '#CCCCCC',     
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    color: '#333333',          
+    marginBottom: 10,
   },
   goBackButton: {
     marginBottom: 100,  
