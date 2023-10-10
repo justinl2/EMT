@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
+// import { useState } from 'react';
 import { LinearGradient } from "expo-linear-gradient";
 import { Text, SafeAreaView, View, TouchableOpacity, StyleSheet, TextInput, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
 import ButtonCard from "../../components/ButtonCard";
 import alert from '../../../src/assets/alert.jpg';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setInput6 } from '../../features/text/input6Slice';
+
 const Screen6 = ({ navigation }) => {
-    const [inputText, setInputText] = useState('');
+    // const [inputText, setInputText] = useState('');
+
+    const dispatch = useDispatch();
+    const input6Text = useSelector((state) => state.input6);
+    const handleChangeInput6 = (newText) => {
+        dispatch(setInput6(newText));
+    };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -21,12 +31,16 @@ const Screen6 = ({ navigation }) => {
                     <View style={styles.spacing}>
                         <Text style={styles.title}>For the EMT: communicate your concern to your patient</Text>
 
-                        <TextInput 
+                        <TextInput
                             style={styles.inputField}
                             placeholder="Type your message here..."
                             placeholderTextColor="#888"
+                            value={input6Text}
+                            onChangeText={handleChangeInput6}
+                            /*
                             value={inputText}
                             onChangeText={setInputText}
+                            */
                         />
 
                         <View style={styles.buttonRow}>

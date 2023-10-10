@@ -2,8 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\screens"
+    "\\src\\features",
+    "\\src\\features\\medicalDirectives",
+    "\\src\\features\\text",
+    "\\src\\redux",
+    "\\src\\screens",
+    "\\src\\screens\\path4",
+    "\\src\\screens\\path6",
+    "\\src\\screens\\path7"
   ],
-  "SelectedNode": "\\src\\screens\\MainScreen.tsx",
+  "SelectedNode": "\\src\\nav\\TabNavigator.tsx",
   "PreviewInSolutionExplorer": false
 }

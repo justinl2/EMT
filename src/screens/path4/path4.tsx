@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import {
     StyleSheet, Text, View, TextInput, TouchableWithoutFeedback,
     Keyboard, KeyboardAvoidingView, Button
