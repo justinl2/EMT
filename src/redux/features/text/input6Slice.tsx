@@ -4,7 +4,7 @@ const input6Slice = createSlice({
     name: 'input6',
     initialState: '',
     reducers: {
-        setInput6: (state, action) => {
+        setInput6: (_, action) => {
             console.log('setInput6 action called with payload:', action.payload);
             return action.payload;
         }

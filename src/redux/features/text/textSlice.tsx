@@ -4,11 +4,11 @@ const textSlice = createSlice({
     name: 'text',
     initialState: '',
     reducers: {
-        setText: (state, action) => {
+        setText: (_, action) => {
             console.log('setText action called with payload:', action.payload);
             return action.payload;
         },
-        clearText: (state) => {
+        clearText: (_) => {
             console.log('clearText action called');
             return '';
         }

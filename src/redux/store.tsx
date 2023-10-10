@@ -1,6 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import textEntryReducer from '../features/text/textSlice'
-import input6Reducer from '../features/text/input6Slice';
+import textEntryReducer from './features/text/textSlice'
+import input6Reducer from './features/text/input6Slice';
 
 const rootReducer = combineReducers({
     textEntry: textEntryReducer,
@@ -15,6 +15,9 @@ export const store = configureStore({
     },
     */
 })
+
+console.log(store.getState());
+
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

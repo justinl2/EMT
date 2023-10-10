@@ -37,6 +37,7 @@ const HomeScreen = ({ navigation }) => {
             <ButtonCard title="Do NOT assist or hospitalize me" image={assist} />
           </TouchableOpacity>
         </View>
+        
       </SafeAreaView>
     </LinearGradient>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, SafeAreaView, TextInput, StyleSheet, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import RNPickerSelect from 'react-native-picker-select';
 
 const Screen5 = ({ navigation }) => {
     const [name, setName] = useState("");
@@ -35,11 +36,19 @@ const Screen5 = ({ navigation }) => {
                     />
                     <Text style={styles.text}>What day of the week is it today?</Text>
 
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setDayAwareness}
-                        value={dayAwareness}
-                        placeholder="What day of the week is it today?"
+                    <RNPickerSelect
+                        onValueChange={(value) => setDayAwareness(value)}
+                        items={[
+                            { label: 'Monday', value: '01' },
+                            { label: 'Tuesday', value: '02' },
+                            { label: 'Wednesday', value: '03' },
+                            { label: 'Thursday', value: '04' },
+                            { label: 'Friday', value: '05' },
+                            { label: 'Saturday', value: '06' },
+                            { label: 'Sunday', value: '07' },
+                        ]}
+                        style={pickerSelectStyles}
+                        placeholder={{ label: 'Day', value: null }}
                     />
                 </SafeAreaView>
             </LinearGradient>
@@ -78,6 +87,33 @@ const styles = StyleSheet.create({
         letterSpacing: 1,           
     },
 
+});
+
+const pickerSelectStyles = StyleSheet.create({
+    inputIOS: {
+        fontSize: 16,
+        paddingVertical: 12,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: '#CCCCCC',
+        borderRadius: 4,
+        color: 'black',
+        paddingRight: 30,
+        backgroundColor: '#FFFFFF',
+        marginBottom: 10,
+    },
+    inputAndroid: {
+        fontSize: 16,
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+        borderWidth: 1,
+        borderColor: '#CCCCCC',
+        borderRadius: 8,
+        color: 'black',
+        paddingRight: 30,
+        backgroundColor: '#FFFFFF',
+        marginBottom: 10,
+    },
 });
 
 export default Screen5;

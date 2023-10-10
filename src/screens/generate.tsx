@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import DisplayStateComponent from './test';
 
 const GenerateScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hello World</Text>
+      <DisplayStateComponent/>
     </View>
   );
 }

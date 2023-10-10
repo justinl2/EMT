@@ -5,7 +5,7 @@ import {
 } from "react-native";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setText, clearText } from '../../features/text/textSlice';
+import { setText, clearText } from '../../redux/features/text/textSlice';
 import type { RootState } from '../../redux/store';
 
 const TypeAnything = ({ navigation }) => {

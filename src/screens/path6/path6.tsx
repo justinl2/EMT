@@ -6,7 +6,7 @@ import ButtonCard from "../../components/ButtonCard";
 import alert from '../../../src/assets/alert.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setInput6 } from '../../features/text/input6Slice';
+import { setInput6 } from '../../redux/features/text/input6Slice';
 
 const Screen6 = ({ navigation }) => {
     // const [inputText, setInputText] = useState('');
