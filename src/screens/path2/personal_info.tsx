@@ -5,12 +5,18 @@ import { LinearGradient } from 'expo-linear-gradient';
 import ButtonCard from "../../components/ButtonCard";
 import personal from '../../../src/assets/personal.jpg'
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setName, setDOB, setInsurance } from '../../redux/features/text/personalSlice';
+
 const PersonalInformation = ({ navigation }) => {
-    const [name, setName] = useState('');
-    const [insuranceProvider, setInsuranceProvider] = useState('');
-    const [month, setMonth] = useState('');
-    const [day, setDay] = useState('');
-    const [year, setYear] = useState('');
+
+    const dispatch = useDispatch();
+
+    const [localName, setLocalName] = useState('');
+    const [localInsuranceProvider, setLocalInsuranceProvider] = useState('');
+    const [localMonth, setLocalMonth] = useState('');
+    const [localDay, setLocalDay] = useState('');
+    const [localYear, setLocalYear] = useState('');
 
     const yearArray = Array.from({ length: 64 }, (_, i) => 1960 + i);
     const yearItems = yearArray.map(year => ({
@@ -32,27 +38,33 @@ const PersonalInformation = ({ navigation }) => {
                         style={styles.input}
                         placeholder="Name"
                         placeholderTextColor="#888"
-                        value={name}
-                        onChangeText={setName}
+                        value={localName}
+                        onChangeText={(text) => {
+                            setLocalName(text);
+                            dispatch(setName(text)); 
+                        }}
                     />
 
                     <Text style={styles.text}> Date of Birth</Text>
 
                     <RNPickerSelect
-                        onValueChange={(value) => setMonth(value)}
+                        onValueChange={(value) => {
+                            setLocalMonth(value)
+                            dispatch(setDOB({ month: value, day: localDay, year: localYear }));
+                        }}
                         items={[
-                            { label: 'January', value: '01' },
-                            { label: 'February', value: '02' },
-                            { label: 'March', value: '03' },
-                            { label: 'April', value: '04' },
-                            { label: 'May', value: '05' },
-                            { label: 'June', value: '06' },
-                            { label: 'July', value: '07' },
-                            { label: 'August', value: '08' },
-                            { label: 'September', value: '09' },
-                            { label: 'October', value: '10' },
-                            { label: 'November', value: '11' },
-                            { label: 'December', value: '12' },
+                            { label: 'January', value: 'January' },
+                            { label: 'February', value: 'February' },
+                            { label: 'March', value: 'March' },
+                            { label: 'April', value: 'April' },
+                            { label: 'May', value: 'May' },
+                            { label: 'June', value: 'June' },
+                            { label: 'July', value: 'July' },
+                            { label: 'August', value: 'August' },
+                            { label: 'September', value: 'September' },
+                            { label: 'October', value: 'October' },
+                            { label: 'November', value: 'November' },
+                            { label: 'December', value: 'December' },
                         
                         ]}
                         style={pickerSelectStyles}
@@ -60,7 +72,10 @@ const PersonalInformation = ({ navigation }) => {
                     />
 
                     <RNPickerSelect
-                        onValueChange={(value) => setDay(value)}
+                        onValueChange={(value) => {
+                            setLocalDay(value)
+                            dispatch(setDOB({ month: value, day: localDay, year: localYear }));
+                        }}
                         items={[
                             { label: '1', value: '01' },
                             { label: '2', value: '02' },
@@ -99,7 +114,10 @@ const PersonalInformation = ({ navigation }) => {
                     />
 
                     <RNPickerSelect
-                        onValueChange={(value) => setYear(value)}
+                        onValueChange={(value) => {
+                            setLocalYear(value)
+                            dispatch(setDOB({ month: value, day: localDay, year: localYear }));
+                        }}
                         items={yearItems}
                         style={pickerSelectStyles}
                         placeholder={{ label: 'Year', value: null }}
@@ -112,8 +130,11 @@ const PersonalInformation = ({ navigation }) => {
                         style={styles.input}
                         placeholder="Insurance Provider"
                         placeholderTextColor="#888"
-                        value={insuranceProvider}
-                        onChangeText={setInsuranceProvider}
+                        value={localInsuranceProvider}
+                        onChangeText={(text) => {
+                            setLocalInsuranceProvider(text);
+                            dispatch(setInsurance(text)); 
+                        }}
                     />
 
                 </SafeAreaView>
