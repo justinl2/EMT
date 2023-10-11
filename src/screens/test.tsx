@@ -13,6 +13,8 @@ const DisplayStateComponent: React.FC = () => {
     const personalState = useSelector((state: RootState) => state.personalSlice);
     const allergiesState = useSelector((state: RootState) => state.allergiesSlice);
     const drugState = useSelector((state: RootState) => state.drugSlice);
+    const conditionState = useSelector((state: RootState) => state.conditionSlice);
+    const mentalState = useSelector((state: RootState) => state.mentalSlice);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -38,6 +40,13 @@ const DisplayStateComponent: React.FC = () => {
 
                 <Text style={styles.subtitle}>Drug State</Text>
                 <Text style={styles.content}>{JSON.stringify(drugState, null, 2)}</Text>
+
+                <Text style={styles.subtitle}>Condition State</Text>
+                <Text style={styles.content}>{JSON.stringify(conditionState, null, 2)}</Text>
+
+                <Text style={styles.subtitle}>Mental State</Text>
+                <Text style={styles.content}>{JSON.stringify(mentalState, null, 2)}</Text>
+                
             </ScrollView>
         </SafeAreaView>
     );
@@ -60,7 +69,6 @@ const styles = StyleSheet.create({
     },
     content: {
         fontSize: 14,
-        backgroundColor: '#f0f0f0',
         padding: 5,
         borderRadius: 5,
     }

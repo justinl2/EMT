@@ -6,6 +6,8 @@ import assessmentSliceReducer from './features/text/assessmentSlice';
 import personalSliceReducer from './features/text/personalSlice';
 import allergiesSliceReducer from './features/text/allergiesSlice';
 import drugSliceReducer from './features/text/drugSlice';
+import conditionSliceReducer from './features/text/conditionSlice';
+import mentalSliceReducer from './features/text/mentalSlice';
 
 const rootReducer = combineReducers({
     textEntry: textEntryReducer,
@@ -15,6 +17,9 @@ const rootReducer = combineReducers({
     personalSlice: personalSliceReducer,
     allergiesSlice: allergiesSliceReducer,
     drugSlice: drugSliceReducer,
+    conditionSlice: conditionSliceReducer,
+    mentalSlice: mentalSliceReducer,
+    
 });
 
 export const store = configureStore({
