@@ -1,6 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Entypo } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -27,6 +29,7 @@ import Vomit from '../screens/path7/vomit';
 import SignsSymptoms from '../screens/path7/signs_symptoms';
 import NitroAssessment from '../screens/path7/nitro_assessment';
 import Bathroom from '../screens/path7/bathroom';
+import SignInScreen from '../screens/SignInScreen';
 
 
 const MainStack = createNativeStackNavigator();
@@ -119,9 +122,23 @@ function BottomTabs() {
                     tabBarLabelStyle: { color: "white" },
                     tabBarIcon: ({ focused }) =>
                         focused ? (
-                            <Entypo name="text" size={24} color="white" />
+                            <AntDesign name="dribbble" size={24} color="white" />
                         ) : (
-                            <Entypo name="text" size={24} color="white" />
+                            <AntDesign name="dribbble" size={24} color="white" />
+                        )
+                }}
+            />
+            <Tab.Screen name="Profile"
+                component={SignInScreen}
+                options={{
+                    headerShown: false,
+                    tabBarLabel: "Profile",
+                    tabBarLabelStyle: { color: "white" },
+                    tabBarIcon: ({ focused }) =>
+                        focused ? (
+                            <Ionicons name="person" size={24} color="white" />
+                        ) : (
+                            <Ionicons name="person-outline" size={24} color="white" />
                         )
                 }}
             />
