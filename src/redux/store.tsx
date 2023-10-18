@@ -24,11 +24,6 @@ const rootReducer = combineReducers({
 
 export const store = configureStore({
     reducer: rootReducer
-    /*
-    reducer: {
-        textEntry: textEntryReducer,
-    },
-    */
 })
 
 console.log(store.getState());

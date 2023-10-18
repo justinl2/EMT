@@ -28,28 +28,89 @@ const DisplayStateComponent: React.FC = () => {
                         <Text style={styles.content}>{JSON.stringify(textEntryState, null, 2)}</Text>
 
                         <Text style={styles.subtitle}>Personal Information:</Text>
-                        <Text style={styles.content}>{JSON.stringify(personalState, null, 2)}</Text> 
+                        <Text style={styles.content}>
+                            <Text style={styles.label}>Name: </Text>
+                            {JSON.stringify(personalState.name, null, 2)}{"\n"}
+                            <Text style={styles.label}>Month of Birth: </Text>
+                            {JSON.stringify(personalState.DOB.month, null, 2)}{"\n"}
+                            <Text style={styles.label}>Date of Birth: </Text>
+                            {JSON.stringify(personalState.DOB.day, null, 2)}{"\n"}
+                            <Text style={styles.label}>Year of Birth: </Text>
+                            {JSON.stringify(personalState.DOB.year, null, 2)}{"\n"}
+                            <Text style={styles.label}>Insurance Provider: </Text>
+                            {JSON.stringify(personalState.insurance, null, 2)}
+                        </Text>
 
                         <Text style={styles.subtitle}>Allergies:</Text>
-                        <Text style={styles.content}>{JSON.stringify(allergiesState, null, 2)}</Text>
-
-                        <Text style={styles.subtitle}>Medical Condition:</Text>
-                        <Text style={styles.content}>{JSON.stringify(conditionState, null, 2)}</Text>
+                        <Text style={styles.content}>
+                            <Text style={styles.label}>Foods: </Text>
+                            {JSON.stringify(allergiesState.foods, null, 2)}{"\n"}
+                            <Text style={styles.label}>Medications: </Text>
+                            {JSON.stringify(allergiesState.medications, null, 2)}{"\n"}
+                            <Text style={styles.label}>Environmental: </Text>
+                            {JSON.stringify(allergiesState.environmental, null, 2)}{"\n"}
+                            <Text style={styles.label}>Other: </Text>
+                            {JSON.stringify(allergiesState.other, null, 2)}
+                        </Text>
 
                         <Text style={styles.subtitle}>Drugs & Medications</Text>
-                        <Text style={styles.content}>{JSON.stringify(drugState, null, 2)}</Text>
+                        <Text style={styles.content}>
+                            <Text style={styles.label}>Inhaler: </Text>
+                            {JSON.stringify(drugState.inhaler, null, 2)}{"\n"}
+                            <Text style={styles.label}>Blood Thinners: </Text>
+                            {JSON.stringify(drugState.thinner, null, 2)}{"\n"}
+                            <Text style={styles.label}>Sexual Enhancement: </Text>
+                            {JSON.stringify(drugState.sexual, null, 2)}{"\n"}
+                            <Text style={styles.label}>Narcotics: </Text>
+                            {JSON.stringify(drugState.narcotics, null, 2)}
+                        </Text>
+
+                        <Text style={styles.subtitle}>Medical Condition:</Text>
+                        <Text style={styles.content}>
+                            <Text style={styles.label}>Diabetes: </Text>
+                            {JSON.stringify(conditionState.diabetes, null, 2)}{"\n"}
+                            <Text style={styles.label}>Breathing Conditions: </Text>
+                            {JSON.stringify(conditionState.breathing, null, 2)}{"\n"}
+                            <Text style={styles.label}>Sexually Active: </Text>
+                            {JSON.stringify(conditionState.sexual, null, 2)}{"\n"}
+                            <Text style={styles.label}>Pregnant: </Text>
+                            {JSON.stringify(conditionState.pregnant, null, 2)}{"\n"}
+                            <Text style={styles.label}>Other: </Text>
+                            {JSON.stringify(conditionState.other, null, 2)}
+                        </Text>
 
                         <Text style={styles.subtitle}>Pain:</Text>
-                        <Text style={styles.content}>{JSON.stringify(painState, null, 2)}</Text> 
+                        <Text style={styles.content}>
+                            <Text style={styles.label}>When did it start?: </Text>
+                            {JSON.stringify(painState.when, null, 2)}{"\n"}
+                            <Text style={styles.label}>What makes it better/worse?: </Text>
+                            {JSON.stringify(painState.better, null, 2)}{"\n"}
+                            <Text style={styles.label}>Does it move?: </Text>
+                            {JSON.stringify(painState.where, null, 2)}
+                        </Text> 
 
                         <Text style={styles.subtitle}>Mental Health:</Text>
-                        <Text style={styles.content}>{JSON.stringify(mentalState, null, 2)}</Text>
+                        <Text style={styles.content}>
+                            <Text style={styles.label}>What's wrong?: </Text>
+                            {JSON.stringify(mentalState.mental, null, 2)}
+                        </Text>
 
                         <Text style={styles.subtitle}>Alert & Oriented Assessment:</Text>
-                        <Text style={styles.content}>{JSON.stringify(assessmentState, null, 2)}</Text> 
+                        <Text style={styles.content}>
+                            <Text style={styles.label}>What's your name?: </Text>
+                            {JSON.stringify(assessmentState.name, null, 2)}{"\n"}
+                            <Text style={styles.label}>Where are you?: </Text>
+                            {JSON.stringify(assessmentState.where, null, 2)}{"\n"}
+                            <Text style={styles.label}>What's the day of the week?: </Text>
+                            {JSON.stringify(assessmentState.weekday, null, 2)}
+                        </Text> 
                 
                         <Text style={styles.subtitle}>Do Not Assist:</Text>
-                        <Text style={styles.content}>{JSON.stringify(input6State, null, 2)}</Text>
+                        <Text style={styles.content}>
+                            <Text style={styles.label}>EMT's Concern to Patient: </Text>
+                            {JSON.stringify(input6State, null, 2)}
+                        </Text>
+
                     </View>
                 </ScrollView>
             </SafeAreaView>
@@ -73,8 +134,12 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 18,
         fontWeight: '600',
+        textDecorationLine: 'underline',
         marginTop: 10,
         textAlign: 'center',
+    },
+    label: {
+        fontWeight: 'bold',
     },
     content: {
         color: 'white',
