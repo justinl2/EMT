@@ -29,7 +29,8 @@ import Vomit from '../screens/path7/vomit';
 import SignsSymptoms from '../screens/path7/signs_symptoms';
 import NitroAssessment from '../screens/path7/nitro_assessment';
 import Bathroom from '../screens/path7/bathroom';
-import SignInScreen from '../screens/SignInScreen';
+import SignInScreen from '../screens/Profile/SignInScreen';
+import SignUpScreen from '../screens/Profile/SignUpScreen';
 
 
 const MainStack = createNativeStackNavigator();
@@ -60,6 +61,8 @@ const MainStackNavigator = () => {
             <MainStack.Screen name="Signs_Symptoms_Screen" component={SignsSymptoms} />
             <MainStack.Screen name="Nitro_Assessment_Screen" component={NitroAssessment} />
             <MainStack.Screen name="Bathroom_Screen" component={Bathroom} />
+            <MainStack.Screen name="Sign_Up_Screen" component={SignUpScreen} />
+            <MainStack.Screen name="Sign_In_Screen" component={SignInScreen} />
 
         </MainStack.Navigator>
     );
