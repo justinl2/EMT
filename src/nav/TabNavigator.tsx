@@ -31,6 +31,9 @@ import NitroAssessment from '../screens/path7/nitro_assessment';
 import Bathroom from '../screens/path7/bathroom';
 import SignInScreen from '../screens/Profile/SignInScreen';
 import SignUpScreen from '../screens/Profile/SignUpScreen';
+import ConfirmEmailScreen from '../screens/Profile/ConfirmEmail';
+import ForgotPasswordScreen from '../screens/Profile/ForgotPassword';
+import ResetPasswordScreen from '../screens/Profile/ResetPassword';
 
 
 const MainStack = createNativeStackNavigator();
@@ -63,6 +66,9 @@ const MainStackNavigator = () => {
             <MainStack.Screen name="Bathroom_Screen" component={Bathroom} />
             <MainStack.Screen name="Sign_Up_Screen" component={SignUpScreen} />
             <MainStack.Screen name="Sign_In_Screen" component={SignInScreen} />
+            <MainStack.Screen name="Confirm_Email_Screen" component={ConfirmEmailScreen} />
+            <MainStack.Screen name="Forgot_Password_Screen" component={ForgotPasswordScreen} />
+            <MainStack.Screen name="Reset_Password_Screen" component={ResetPasswordScreen} />
 
         </MainStack.Navigator>
     );
