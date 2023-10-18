@@ -74,7 +74,7 @@ const PersonalInformation = ({ navigation }) => {
                     <RNPickerSelect
                         onValueChange={(value) => {
                             setLocalDay(value)
-                            dispatch(setDOB({ month: value, day: localDay, year: localYear }));
+                            dispatch(setDOB({ month: localMonth, day: value, year: localYear }));
                         }}
                         items={[
                             { label: '1', value: '01' },
@@ -116,7 +116,7 @@ const PersonalInformation = ({ navigation }) => {
                     <RNPickerSelect
                         onValueChange={(value) => {
                             setLocalYear(value)
-                            dispatch(setDOB({ month: value, day: localDay, year: localYear }));
+                            dispatch(setDOB({ month: localMonth, day: localDay, year: value }));
                         }}
                         items={yearItems}
                         style={pickerSelectStyles}
