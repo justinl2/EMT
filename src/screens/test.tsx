@@ -15,6 +15,8 @@ const DisplayStateComponent: React.FC = () => {
     const drugState = useSelector((state: RootState) => state.drugSlice);
     const conditionState = useSelector((state: RootState) => state.conditionSlice);
     const mentalState = useSelector((state: RootState) => state.mentalSlice);
+    const painFeelState = useSelector((state: RootState) => state.painFeelSlice);
+    const painBadState = useSelector((state: RootState) => state.painBadSlice);
 
     return (
         <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
@@ -22,6 +24,7 @@ const DisplayStateComponent: React.FC = () => {
             <SafeAreaView style={styles.container}>
                 <ScrollView>
                     <View style={{ padding: 60 }}>
+                        
                         <Text style={styles.title}>Summary</Text>
 
                         <Text style={styles.subtitle}>
@@ -167,7 +170,9 @@ const DisplayStateComponent: React.FC = () => {
                         <Text style={styles.subtitle}>
                             {(JSON.stringify(painState.when, null, 2) !== '""' ||
                                 JSON.stringify(painState.better, null, 2) !== '""' ||
-                                JSON.stringify(painState.where, null, 2) !== '""')
+                                JSON.stringify(painState.where, null, 2) !== '""' ||
+                                JSON.stringify(painFeelState, null, 2) !== '""' ||
+                                JSON.stringify(painBadState, null, 2) !== '""')
                                 && "Pain:"}
                         </Text>
                         <Text style={styles.content}>
@@ -186,6 +191,16 @@ const DisplayStateComponent: React.FC = () => {
                                 {JSON.stringify(painState.where, null, 2) !== '""' && "\nDoes it move?: "}
                             </Text>
                             {JSON.stringify(painState.where, null, 2).replaceAll('"', '')}
+
+                            <Text style={styles.label}>
+                                {JSON.stringify(painFeelState, null, 2) !== '""' && "\nWhat does it feel like?: "}
+                            </Text>
+                            {JSON.stringify(painFeelState, null, 2).replaceAll('"', '')}
+
+                            <Text style={styles.label}>
+                                {JSON.stringify(painBadState, null, 2) !== '""' && "\nHow bad does it hurt?: "}
+                            </Text>
+                            {JSON.stringify(painBadState, null, 2).replaceAll('"', '')}
 
                         </Text> 
 
