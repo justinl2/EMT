@@ -24,12 +24,8 @@ const DisplayStateComponent: React.FC = () => {
             <SafeAreaView style={styles.container}>
                 <ScrollView>
                     <View style={{ padding: 60 }}>
-<<<<<<< HEAD
-
-                        <Text style={styles.title}>Summary of the Information:</Text>
-=======
+                        
                         <Text style={styles.title}>Summary</Text>
->>>>>>> 3e2f834f58f74b0f7ccd60b78bf8cd9c34b87371
 
                         <Text style={styles.subtitle}>
                             {JSON.stringify(textEntryState, null, 2) !== '""' && "Text Tab:"}
