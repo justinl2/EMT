@@ -18,7 +18,7 @@ const PersonalInformation = ({ navigation }) => {
     const [localDay, setLocalDay] = useState('');
     const [localYear, setLocalYear] = useState('');
 
-    const yearArray = Array.from({ length: 64 }, (_, i) => 1960 + i);
+    const yearArray = Array.from({ length: 124 }, (_, i) => 2023 - i);
     const yearItems = yearArray.map(year => ({
         label: `${year}`,
         value: `${year}`
