@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   View, 
   StatusBar, 
@@ -14,8 +14,16 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setPainBad } from '../../redux/features/text/painBadSlice';
+
 const HowBad = ({ navigation }) => {
-    const [other, setOther] = useState("");
+
+    const dispatch = useDispatch();
+    const painBadText = useSelector((state) => state.painbad);
+    const handleChangePainBad = (newText) => {
+        dispatch(setPainBad(newText));
+    };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -52,10 +60,10 @@ const HowBad = ({ navigation }) => {
                     <View style={styles.textInputContainer}>
                         <Text style={styles.otherLabel}>Other:</Text>
                             <TextInput
-                                style={styles.input}
-                                onChangeText={setOther}
-                                value={other}
+                                style={styles.textInput}
                                 placeholder="Enter Description Here"
+                                value={painBadText}
+                                onChangeText={handleChangePainBad}
                             />
                         </View>
                     </KeyboardAvoidingView>

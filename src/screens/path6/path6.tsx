@@ -37,10 +37,6 @@ const Screen6 = ({ navigation }) => {
                             placeholderTextColor="#888"
                             value={input6Text}
                             onChangeText={handleChangeInput6}
-                            /*
-                            value={inputText}
-                            onChangeText={setInputText}
-                            */
                         />
 
                         <View style={styles.buttonRow}>

@@ -8,6 +8,8 @@ import allergiesSliceReducer from './features/text/allergiesSlice';
 import drugSliceReducer from './features/text/drugSlice';
 import conditionSliceReducer from './features/text/conditionSlice';
 import mentalSliceReducer from './features/text/mentalSlice';
+import painFeelSliceReducer from './features/text/painFeelSlice';
+import painBadSliceReducer from './features/text/painBadSlice';
 
 const rootReducer = combineReducers({
     textEntry: textEntryReducer,
@@ -19,7 +21,8 @@ const rootReducer = combineReducers({
     drugSlice: drugSliceReducer,
     conditionSlice: conditionSliceReducer,
     mentalSlice: mentalSliceReducer,
-    
+    painFeelSlice: painFeelSliceReducer,
+    painBadSlice: painBadSliceReducer,
 });
 
 export const store = configureStore({
