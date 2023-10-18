@@ -18,7 +18,7 @@ const PersonalInformation = ({ navigation }) => {
     const [localDay, setLocalDay] = useState('');
     const [localYear, setLocalYear] = useState('');
 
-    const yearArray = Array.from({ length: 64 }, (_, i) => 1960 + i);
+    const yearArray = Array.from({ length: 124 }, (_, i) => 2023 - i);
     const yearItems = yearArray.map(year => ({
         label: `${year}`,
         value: `${year}`
@@ -74,7 +74,7 @@ const PersonalInformation = ({ navigation }) => {
                     <RNPickerSelect
                         onValueChange={(value) => {
                             setLocalDay(value)
-                            dispatch(setDOB({ month: value, day: localDay, year: localYear }));
+                            dispatch(setDOB({ month: localMonth, day: value, year: localYear }));
                         }}
                         items={[
                             { label: '1', value: '01' },
@@ -116,7 +116,7 @@ const PersonalInformation = ({ navigation }) => {
                     <RNPickerSelect
                         onValueChange={(value) => {
                             setLocalYear(value)
-                            dispatch(setDOB({ month: value, day: localDay, year: localYear }));
+                            dispatch(setDOB({ month: localMonth, day: localDay, year: value }));
                         }}
                         items={yearItems}
                         style={pickerSelectStyles}
