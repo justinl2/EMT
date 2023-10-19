@@ -1,22 +1,27 @@
 import React, {useState}from 'react';
-import { View, Text, StyleSheet, Image, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, ScrollView } from 'react-native';
 import CareTalk from '../../assets/caretalk-logo.jpg';
 import CustomInput from '../../components/CustomInput';
 import SignInButton from '../../components/SignInButton';
 import SocialButtons from '../../components/SocialSignIn';
+import { useForm, Controller } from 'react-hook-form';
+
 
 const SignInScreen = ({navigation}) => {
 
+  const {
+    control, 
+    handleSubmit, 
+    formState: {errors}
+  } = useForm()
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-
-  const onSignInPressed = () => {
+  const onSignInPressed = data => {
+    console.log(data)
     console.warn("signed in")
   }
   
-  const onForgotPrasswordPressed = () => {
-    console.warn("forgot password")
+  const onForgotPasswordPressed = () => {
+    navigation.navigate("Forgot_Password_Screen")
   }
 
   const onSignUpPressed = () => {
@@ -26,13 +31,45 @@ const SignInScreen = ({navigation}) => {
   return (
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.root}>
-            <Image source={CareTalk} style={styles.logo} resizeMode='contain'/>
-            <CustomInput placeholder="Username" value={username} setValue={setUsername} secureTextEntry={false}/>
-            <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true}/>
-            <SignInButton text="Sign In" onPress={onSignInPressed} type="PRIMARY"/>
-            <SignInButton text="Forgot password?" onPress={onForgotPrasswordPressed} type="TERTIARY"/>
+            <Image source={CareTalk} style={styles.logo} resizeMode='contain'/>            
+            <CustomInput 
+              name="username"
+              placeholder="Username" 
+              control={control} 
+              secureTextEntry={false}
+              rules={{
+                required: 'Username is required'
+              }}
+            />
+            <CustomInput 
+              name="password"
+              placeholder="Password" 
+              control={control} 
+              secureTextEntry={true}
+              rules={{
+                required: 'Password is required', 
+                minLength: {
+                  value: 3, 
+                  message:'Password should be at least 3 characters long' 
+                }
+              }}
+            />
+            <SignInButton 
+              text="Sign In" 
+              onPress={handleSubmit(onSignInPressed)} 
+              type="PRIMARY"
+            />
+            <SignInButton 
+              text="Forgot password?" 
+              onPress={onForgotPasswordPressed} 
+              type="TERTIARY"
+            />
             <SocialButtons/>
-            <SignInButton text="Don't have an account? Create one" onPress={onSignUpPressed} type="TERTIARY"/>
+            <SignInButton 
+              text="Don't have an account? Create one" 
+              onPress={onSignUpPressed} 
+              type="TERTIARY"
+            />
         </View>
       </ScrollView>
   );
