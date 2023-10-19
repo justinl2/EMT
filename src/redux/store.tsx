@@ -1,6 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import textEntryReducer from './features/text/textSlice'
-import input6Reducer from './features/text/input6Slice';
+import assistSliceReducer from './features/text/assistSlice';
 import painSliceReducer from './features/text/painSlice';
 import assessmentSliceReducer from './features/text/assessmentSlice';
 import personalSliceReducer from './features/text/personalSlice';
@@ -10,10 +10,16 @@ import conditionSliceReducer from './features/text/conditionSlice';
 import mentalSliceReducer from './features/text/mentalSlice';
 import painFeelSliceReducer from './features/text/painFeelSlice';
 import painBadSliceReducer from './features/text/painBadSlice';
+import illnessSliceReducer from './features/text/illnessSlice';
+import intakeSliceReducer from './features/text/intakeSlice';
+import vomitSliceReducer from './features/text/vomitSlice';
+import bathroomSliceReducer from './features/text/bathroomSlice';
+import signsSliceReducer from './features/text/signsSlice';
+
 
 const rootReducer = combineReducers({
     textEntry: textEntryReducer,
-    input6: input6Reducer,
+    assistSlice: assistSliceReducer,
     painSlice: painSliceReducer,
     assessmentSlice: assessmentSliceReducer,
     personalSlice: personalSliceReducer,
@@ -23,6 +29,11 @@ const rootReducer = combineReducers({
     mentalSlice: mentalSliceReducer,
     painFeelSlice: painFeelSliceReducer,
     painBadSlice: painBadSliceReducer,
+    illnessSlice: illnessSliceReducer,
+    intakeSlice: intakeSliceReducer,
+    vomitSlice: vomitSliceReducer,
+    bathroomSlice: bathroomSliceReducer,
+    signsSlice: signsSliceReducer,
 });
 
 export const store = configureStore({

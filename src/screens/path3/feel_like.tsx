@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   View, 
   StatusBar, 
@@ -15,14 +15,15 @@ import { LinearGradient } from 'expo-linear-gradient';
 import ButtonCard from '../../components/ButtonCard';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setPainFeel } from '../../redux/features/text/painFeelSlice';
+import { setFeel } from '../../redux/features/text/painFeelSlice';
 
 const Feel = ({ navigation }) => {
 
     const dispatch = useDispatch();
-    const painFeelText = useSelector((state) => state.painfeel);
-    const handleChangePainFeel = (newText) => {
-        dispatch(setPainFeel(newText));
+    const [localFeel, setLocalFeel] = useState("");
+    const handleSetFeel = (value) => {
+        dispatch(setFeel(value));
+        setLocalFeel(value);
     };
 
     return (
@@ -53,8 +54,8 @@ const Feel = ({ navigation }) => {
                         <TextInput
                             style={styles.textInput}
                             placeholder="Enter Text Here"
-                            value={painFeelText}
-                            onChangeText={handleChangePainFeel}
+                            value={localFeel}
+                            onChangeText={handleSetFeel}
                         />
                 </View>
               </SafeAreaView>

@@ -12,14 +12,9 @@ import { setMental } from "../../redux/features/text/mentalSlice";
 const MentalHealth = ({ navigation }) => {
 
     const dispatch = useDispatch();
-
     const [localMental, setLocalMental] = useState('');
-
     const handleInputChange = (value) => {
-
         setLocalMental(value);
-        
-
         dispatch(setMental(value));
     };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   View, 
   StatusBar, 
@@ -15,14 +15,15 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setPainBad } from '../../redux/features/text/painBadSlice';
+import { setHow } from '../../redux/features/text/painBadSlice';
 
 const HowBad = ({ navigation }) => {
 
     const dispatch = useDispatch();
-    const painBadText = useSelector((state) => state.painbad);
-    const handleChangePainBad = (newText) => {
-        dispatch(setPainBad(newText));
+    const [localHow, setLocalHow] = useState("");
+    const handleSetHow = (value) => {
+        dispatch(setHow(value));
+        setLocalHow(value);
     };
 
     return (
@@ -62,8 +63,8 @@ const HowBad = ({ navigation }) => {
                             <TextInput
                                 style={styles.textInput}
                                 placeholder="Enter Description Here"
-                                value={painBadText}
-                                onChangeText={handleChangePainBad}
+                                value={localHow}
+                                onChangeText={handleSetHow}
                             />
                         </View>
                     </KeyboardAvoidingView>

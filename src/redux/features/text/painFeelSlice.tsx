@@ -1,15 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+    feel: "",
+};
+
 const painFeelSlice = createSlice({
     name: 'painfeel',
-    initialState: '',
+    initialState,
     reducers: {
-        setPainFeel: (_, action) => {
-            console.log('setPainFeel action called with payload:', action.payload);
-            return action.payload;
+        setFeel: (state, action) => {
+            console.log('setFeel action called with payload:', action.payload);
+            state.feel = action.payload;
         }
     }
 });
 
-export const { setPainFeel } = painFeelSlice.actions;
+export const { setFeel } = painFeelSlice.actions;
 export default painFeelSlice.reducer;

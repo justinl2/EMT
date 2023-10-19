@@ -16,9 +16,24 @@ import mental from "../../../src/assets/mental.png";
 import injury from "../../../src/assets/injury.jpg";
 import alert from "../../../src/assets/alert.jpg";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setWhen, setWhat } from '../../redux/features/text/intakeSlice';
+
 const IntakeOutput = ({ navigation }) => {
-    const [whenEatDrink, setWhenEatDrink] = useState("");
-    const [whatEatDrink, setWhatEatDrink] = useState("");
+
+    const dispatch = useDispatch();
+    const [localWhen, setLocalWhen] = useState('');
+    const [localWhat, setLocalWhat] = useState('');
+
+    const handleSetWhen = (value) => {
+        dispatch(setWhen(value));
+        setLocalWhen(value);
+    };
+
+    const handleSetWhat = (value) => {
+        dispatch(setWhat(value));
+        setLocalWhat(value);
+    };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -48,8 +63,8 @@ const IntakeOutput = ({ navigation }) => {
                   style={styles.inputField}
                   placeholder="Type your message here..."
                   placeholderTextColor="#888"
-                  value={whenEatDrink}
-                  onChangeText={setWhenEatDrink}
+                  value={localWhen}
+                  onChangeText={handleSetWhen}
                 />
 
                 <Text style={styles.title}>What did you last eat/drink?</Text>
@@ -58,8 +73,8 @@ const IntakeOutput = ({ navigation }) => {
                   style={styles.inputField}
                   placeholder="Type your message here..."
                   placeholderTextColor="#888"
-                  value={whatEatDrink}
-                  onChangeText={setWhatEatDrink}
+                  value={localWhat}
+                  onChangeText={handleSetWhat}
                 />
               </SafeAreaView>
             </LinearGradient>

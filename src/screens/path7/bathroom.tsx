@@ -17,8 +17,18 @@ import mental from "../../../src/assets/mental.png";
 import injury from "../../../src/assets/injury.jpg";
 import alert from "../../../src/assets/alert.jpg";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setWhen } from '../../redux/features/text/bathroomSlice';
+
 const Bathroom = ({ navigation }) => {
-    const [inputText, setInputText] = useState("");
+
+    const dispatch = useDispatch();
+    const [localWhen, setLocalWhen] = useState("");
+    const handleSetWhen = (value) => {
+        dispatch(setWhen(value));
+        setLocalWhen(value);
+    };
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
@@ -66,8 +76,8 @@ const Bathroom = ({ navigation }) => {
                             style={styles.inputField}
                             placeholder="Type your message here..."
                             placeholderTextColor="#888"
-                            value={inputText}
-                            onChangeText={setInputText}
+                            value={localWhen}
+                            onChangeText={handleSetWhen}
                         />
                     </KeyboardAvoidingView>
                 </SafeAreaView>

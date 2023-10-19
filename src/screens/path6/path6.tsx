@@ -1,20 +1,19 @@
-import React from 'react';
-// import { useState } from 'react';
+import React, { useState } from 'react';
 import { LinearGradient } from "expo-linear-gradient";
 import { Text, SafeAreaView, View, TouchableOpacity, StyleSheet, TextInput, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
 import ButtonCard from "../../components/ButtonCard";
 import alert from '../../../src/assets/alert.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setInput6 } from '../../redux/features/text/input6Slice';
+import { setConcern } from '../../redux/features/text/assistSlice';
 
 const Screen6 = ({ navigation }) => {
-    // const [inputText, setInputText] = useState('');
 
     const dispatch = useDispatch();
-    const input6Text = useSelector((state) => state.input6);
-    const handleChangeInput6 = (newText) => {
-        dispatch(setInput6(newText));
+    const [localConcern, setLocalConcern] = useState("");
+    const handleSetConcern = (value) => {
+        dispatch(setConcern(value));
+        setLocalConcern(value);
     };
 
     return (
@@ -35,8 +34,8 @@ const Screen6 = ({ navigation }) => {
                             style={styles.inputField}
                             placeholder="Type your message here..."
                             placeholderTextColor="#888"
-                            value={input6Text}
-                            onChangeText={handleChangeInput6}
+                            value={localConcern}
+                            onChangeText={handleSetConcern}
                         />
 
                         <View style={styles.buttonRow}>

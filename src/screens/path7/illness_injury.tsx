@@ -16,9 +16,25 @@ import mental from "../../../src/assets/mental.png";
 import injury from "../../../src/assets/injury.jpg";
 import alert from "../../../src/assets/alert.jpg";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setWhatHappened, setOther } from '../../redux/features/text/illnessSlice';
+
 const IllnessInjury = ({ navigation }) => {
-    const [whatHappened, setWhatHappened] = useState("");
-    const [other, setOther] = useState("");
+
+    const dispatch = useDispatch();
+    const [localWhatHappened, setLocalWhatHappened] = useState('');
+    const [localOther, setLocalOther] = useState('');
+
+    const handleSetWhatHappened = (value) => {
+        dispatch(setWhatHappened(value));
+        setLocalWhatHappened(value);
+    };
+
+    const handleSetOther = (value) => {
+        dispatch(setOther(value));
+        setLocalOther(value);
+    };
+
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -48,8 +64,8 @@ const IllnessInjury = ({ navigation }) => {
                   style={styles.inputField}
                   placeholder="Type your message here..."
                   placeholderTextColor="#888"
-                  value={whatHappened}
-                  onChangeText={setWhatHappened}
+                  value={localWhatHappened}
+                  onChangeText={handleSetWhatHappened}
                 />
 
                 <Text style={styles.title}>Other:</Text>
@@ -58,8 +74,8 @@ const IllnessInjury = ({ navigation }) => {
                   style={styles.inputField}
                   placeholder="Type your message here..."
                   placeholderTextColor="#888"
-                  value={other}
-                  onChangeText={setOther}
+                  value={localOther}
+                  onChangeText={handleSetOther}
                 />
 
               </SafeAreaView>
