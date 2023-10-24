@@ -7,6 +7,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 const DisplayStateComponent: React.FC = () => {
     // Pulling individual states from the store using the RootState type
     const textEntryState = useSelector((state: RootState) => state.textEntry);
+    const directivesState = useSelector((state: RootState) => state.directivesSlice);
     const assistState = useSelector((state: RootState) => state.assistSlice);
     const painState = useSelector((state: RootState) => state.painSlice); 
     const assessmentState = useSelector((state: RootState) => state.assessmentSlice);
@@ -36,7 +37,19 @@ const DisplayStateComponent: React.FC = () => {
                             {JSON.stringify(textEntryState, null, 2) !== '""' && "Text Tab:"}
                         </Text>
                         <Text style={styles.content}>{JSON.stringify(textEntryState, null, 2).replaceAll('"','')}</Text>
-                     
+
+                        <Text style={styles.subtitle}>
+                            {(JSON.stringify(directivesState.resuscitate, null, 2) !== 'false' ||
+                                JSON.stringify(directivesState.intubate, null, 2) !== 'false')
+                                && "Advanced Medical Directives:"}
+                        </Text>
+                        <Text style={styles.content}>
+                            <Text style={styles.redlabel}>
+                                {JSON.stringify(directivesState.resuscitate, null, 2) !== 'false' && "DO NOT RESUSCITATE\n"}
+                                {JSON.stringify(directivesState.intubate, null, 2) !== 'false' && "DO NOT INTUBATE"}
+                            </Text>
+                        </Text>
+
                         <Text style={styles.subtitle}>
                             {(JSON.stringify(personalState.name, null, 2) !== '""' ||
                                 JSON.stringify(personalState.DOB.month, null, 2) !== '""' ||
@@ -349,6 +362,10 @@ const styles = StyleSheet.create({
     },
     label: {
         fontWeight: 'bold',
+    },
+    redlabel: {
+        fontWeight: 'bold',
+        color: 'red',
     },
     content: {
         color: 'white',

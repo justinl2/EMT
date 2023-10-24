@@ -2,10 +2,15 @@ import { Text, SafeAreaView, StyleSheet, Switch, Button } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setResuscitate, setIntubate } from '../../redux/features/text/directivesSlice';
+
 const Screen1 = ({ navigation }) => {
 
-    const [name, setName] = useState(false);
-    const [locationAwareness, setLocationAwareness] = useState(false);
+    const dispatch = useDispatch();
+
+    const [localResuscitate, setLocalResuscitate] = useState(false);
+    const [localIntubate, setLocalIntubate] = useState(false);
 
     return (
         <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
@@ -18,19 +23,25 @@ const Screen1 = ({ navigation }) => {
                 <Text style={styles.text}>Do you have a POLST: Physician's Orders for Life-Sustaining Treatment</Text>
                 <Switch
                     trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={name ? "#f5dd4b" : "#f4f3f4"}
+                    thumbColor={localResuscitate ? "#f5dd4b" : "#f4f3f4"}
                     ios_backgroundColor="#3e3e3e"
-                    onValueChange={() => setName(previousState => !previousState)}
-                    value={name}
+                    onValueChange={(text) => {
+                        setLocalResuscitate(text);
+                        dispatch(setResuscitate(text));
+                    }}
+                    value={localResuscitate}
                 />
 
                 <Text style={styles.text}>Do Not Resuscitate / Intubate</Text>
                 <Switch
                     trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={locationAwareness ? "#f5dd4b" : "#f4f3f4"}
+                    thumbColor={localIntubate ? "#f5dd4b" : "#f4f3f4"}
                     ios_backgroundColor="#3e3e3e"
-                    onValueChange={() => setLocationAwareness(previousState => !previousState)}
-                    value={locationAwareness}
+                    onValueChange={(text) => {
+                        setLocalIntubate(text);
+                        dispatch(setIntubate(text));
+                    }}
+                    value={localIntubate}
                 />
 
             </SafeAreaView>

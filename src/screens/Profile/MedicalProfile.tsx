@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     setName, setDOB, setSex, setInsurance, setInsuranceNumber,
     setAllergies, setConditions, setMedication,
+    setResuscitate, setIntubate,
     setHospital, setPhysician
 } from '../../redux/features/text/medicalProfileSlice';
 
@@ -233,7 +234,10 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     trackColor={{ false: "#767577", true: "#81b0ff" }}
                                     thumbColor={localResuscitate ? "#f5dd4b" : "#f4f3f4"}
                                     ios_backgroundColor="#3e3e3e"
-                                    onValueChange={() => setLocalResuscitate(previousState => !previousState)}
+                                    onValueChange={(text) => {
+                                        setLocalResuscitate(text);
+                                        dispatch(setResuscitate(text));
+                                    }}
                                     value={localResuscitate}
                                     style={styles.switch}
                                 />
@@ -243,7 +247,10 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     trackColor={{ false: "#767577", true: "#81b0ff" }}
                                     thumbColor={localIntubate ? "#f5dd4b" : "#f4f3f4"}
                                     ios_backgroundColor="#3e3e3e"
-                                    onValueChange={() => setLocalIntubate(previousState => !previousState)}
+                                    onValueChange={(text) => {
+                                        setLocalIntubate(text);
+                                        dispatch(setIntubate(text));
+                                    }}
                                     value={localIntubate}
                                 />
                             </View>

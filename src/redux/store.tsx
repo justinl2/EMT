@@ -16,7 +16,7 @@ import vomitSliceReducer from './features/text/vomitSlice';
 import bathroomSliceReducer from './features/text/bathroomSlice';
 import signsSliceReducer from './features/text/signsSlice';
 import medicalProfileSliceReducer from './features/text/medicalProfileSlice';
-
+import directivesSliceReducer from './features/text/directivesSlice';
 
 const rootReducer = combineReducers({
     textEntry: textEntryReducer,
@@ -36,6 +36,7 @@ const rootReducer = combineReducers({
     bathroomSlice: bathroomSliceReducer,
     signsSlice: signsSliceReducer,
     medicalProfileSlice: medicalProfileSliceReducer,
+    directivesSlice: directivesSliceReducer,
 });
 
 export const store = configureStore({
