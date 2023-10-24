@@ -34,7 +34,7 @@ import SignUpScreen from '../screens/Profile/SignUpScreen';
 import ConfirmEmailScreen from '../screens/Profile/ConfirmEmail';
 import ForgotPasswordScreen from '../screens/Profile/ForgotPassword';
 import ResetPasswordScreen from '../screens/Profile/ResetPassword';
-
+import MedicalProfileScreen from '../screens/Profile/MedicalProfile';
 
 const MainStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -69,6 +69,7 @@ const MainStackNavigator = () => {
             <MainStack.Screen name="Confirm_Email_Screen" component={ConfirmEmailScreen} />
             <MainStack.Screen name="Forgot_Password_Screen" component={ForgotPasswordScreen} />
             <MainStack.Screen name="Reset_Password_Screen" component={ResetPasswordScreen} />
+            <MainStack.Screen name="Medical_Profile_Screen" component={MedicalProfileScreen} />
 
         </MainStack.Navigator>
     );
@@ -148,6 +149,20 @@ function BottomTabs() {
                             <Ionicons name="person" size={24} color="white" />
                         ) : (
                             <Ionicons name="person-outline" size={24} color="white" />
+                        )
+                }}
+            />
+            <Tab.Screen name="MedicalProfile"
+                component={MedicalProfileScreen}
+                options={{
+                    headerShown: false,
+                    tabBarLabel: "Medical Profile",
+                    tabBarLabelStyle: { color: "white" },
+                    tabBarIcon: ({ focused }) =>
+                        focused ? (
+                            <Ionicons name="finger-print" size={24} color="white" />
+                        ) : (
+                            <Ionicons name="finger-print" size={24} color="white" />
                         )
                 }}
             />

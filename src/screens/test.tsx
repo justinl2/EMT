@@ -68,7 +68,7 @@ const DisplayStateComponent: React.FC = () => {
                             {JSON.stringify(personalState.DOB.year, null, 2).replaceAll('"', '')}
 
                             <Text style={styles.label}>
-                                {JSON.stringify(personalState.insurance, null, 2) !== '""' && "\Insurance Provider: "}
+                                {JSON.stringify(personalState.insurance, null, 2) !== '""' && "\nInsurance Provider: "}
                             </Text>
                             {JSON.stringify(personalState.insurance, null, 2).replaceAll('"', '')}
 
