@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   View, 
   StatusBar, 
@@ -14,7 +14,18 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import ButtonCard from '../../components/ButtonCard';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setFeel } from '../../redux/features/text/painFeelSlice';
+
 const Feel = ({ navigation }) => {
+
+    const dispatch = useDispatch();
+    const [localFeel, setLocalFeel] = useState("");
+    const handleSetFeel = (value) => {
+        dispatch(setFeel(value));
+        setLocalFeel(value);
+    };
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
@@ -39,11 +50,13 @@ const Feel = ({ navigation }) => {
                   </TouchableOpacity>
                 </View>
 
-                <View style={styles.textInputContainer}>
-                  <TextInput 
-                    placeholder="Enter Text Here" 
-                    style={styles.textInput}
-                  />
+                    <View style={styles.textInputContainer}>
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Enter Text Here"
+                            value={localFeel}
+                            onChangeText={handleSetFeel}
+                        />
                 </View>
               </SafeAreaView>
             </LinearGradient>

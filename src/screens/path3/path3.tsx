@@ -15,12 +15,32 @@ import check from '../../../src/assets/check.jpg'
 import alert from '../../../src/assets/alert.jpg';
 import assist from '../../../src/assets/assist.jpg'
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setWhen, setBetter, setWhere } from '../../redux/features/text/painSlice';
+
 
 const Pain = ({ navigation }) => {
 
-    const [when, setWhen] = useState("");
-    const [better, setBetter] = useState("");
-    const [where, setWhere] = useState("");
+    const dispatch = useDispatch();
+
+    const [localWhen, setLocalWhen] = useState("");
+    const [localBetter, setLocalBetter] = useState("");
+    const [localWhere, setLocalWhere] = useState("");
+
+    const handleSetWhen = (value) => {
+        dispatch(setWhen(value));
+        setLocalWhen(value);
+    };
+
+    const handleSetBetter = (value) => {
+        dispatch(setBetter(value));
+        setLocalBetter(value);
+    };
+
+    const handleSetWhere = (value) => {
+        dispatch(setWhere(value));
+        setLocalWhere(value);
+    };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -45,8 +65,8 @@ const Pain = ({ navigation }) => {
 
                         <TextInput
                             style={styles.input}
-                            onChangeText={setWhen}
-                            value={when}
+                            onChangeText={handleSetWhen}
+                            value={localWhen}
                             placeholder="When did it start?"
                         />
 
@@ -54,8 +74,8 @@ const Pain = ({ navigation }) => {
 
                         <TextInput
                             style={styles.input}
-                            onChangeText={setBetter}
-                            value={better}
+                            onChangeText={handleSetBetter}
+                            value={localBetter}
                             placeholder="What makes the pain better or worse?"
                         />
 
@@ -63,8 +83,8 @@ const Pain = ({ navigation }) => {
 
                         <TextInput
                             style={styles.input}
-                            onChangeText={setWhere}
-                            value={where}
+                            onChangeText={handleSetWhere}
+                            value={localWhere}
                             placeholder="Does the pain move to other parts of your body?"
                         />
                     </KeyboardAvoidingView>

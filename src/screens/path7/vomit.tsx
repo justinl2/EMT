@@ -14,8 +14,17 @@ import React, { useState } from "react";
 import ButtonCard from "../../components/ButtonCard";
 import alert from "../../../src/assets/alert.jpg";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setWhen } from '../../redux/features/text/vomitSlice';
+
 const Vomit = ({ navigation }) => {
-  const [inputText, setInputText] = useState("");
+
+    const dispatch = useDispatch();
+    const [localWhen, setLocalWhen] = useState("");
+    const handleSetWhen = (value) => {
+        dispatch(setWhen(value));
+        setLocalWhen(value);
+    };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -39,8 +48,8 @@ const Vomit = ({ navigation }) => {
                   style={styles.inputField}
                   placeholder="Type your message here..."
                   placeholderTextColor="#888"
-                  value={inputText}
-                  onChangeText={setInputText}
+                  value={localWhen}
+                  onChangeText={handleSetWhen}
                 />
               </SafeAreaView>
             </LinearGradient>

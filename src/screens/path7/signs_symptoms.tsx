@@ -17,8 +17,18 @@ import mental from "../../../src/assets/mental.png";
 import injury from "../../../src/assets/injury.jpg";
 import alert from "../../../src/assets/alert.jpg";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setOther } from '../../redux/features/text/signsSlice';
+
 const SignsSymptoms = ({ navigation }) => {
-  const [inputText, setInputText] = useState("");
+
+    const dispatch = useDispatch();
+    const [localOther, setLocalOther] = useState("");
+    const handleSetOther = (value) => {
+        dispatch(setOther(value));
+        setLocalOther(value);
+    };
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
@@ -70,8 +80,8 @@ const SignsSymptoms = ({ navigation }) => {
                           style={styles.inputField}
                           placeholder="Type your message here..."
                           placeholderTextColor="#888"
-                          value={inputText}
-                          onChangeText={setInputText}
+                          value={localOther}
+                          onChangeText={handleSetOther}
                         />
                     </KeyboardAvoidingView>
                  </SafeAreaView>

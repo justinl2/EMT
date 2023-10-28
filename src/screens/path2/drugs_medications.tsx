@@ -2,11 +2,37 @@ import React, { useState } from 'react';
 import { LinearGradient } from "expo-linear-gradient";
 import { Text, SafeAreaView, TextInput, StyleSheet, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setInhaler,setThinner, setSexual, setNarcotics } from '../../redux/features/text/drugSlice';
+
 const DrugsMedications = ({ navigation }) => {
-    const [inhaler, setInhaler] = useState('');
-    const [bloodThinners, setBloodThinners] = useState('');
-    const [sexualEnhancement, setSexualEnhancement] = useState('');
-    const [narcotics, setNarcotics] = useState('');
+
+    const dispatch = useDispatch();
+
+    const [localInhaler, setLocalInhaler] = useState('');
+    const [localBloodThinners, setLocalBloodThinners] = useState('');
+    const [localSexualEnhancement, setLocalSexualEnhancement] = useState('');
+    const [localNarcotics, setLocalNarcotics] = useState('');
+
+    const handleSetInhaler = (value) => {
+        dispatch(setInhaler(value));
+        setLocalInhaler(value);
+    };
+
+    const handleSetBloodThinners = (value) => {
+        dispatch(setThinner(value));
+        setLocalBloodThinners(value);
+    };
+
+    const handleSetSexualEnhancement = (value) => {
+        dispatch(setSexual(value));
+        setLocalSexualEnhancement(value);
+    };
+
+    const handleSetNarcotics = (value) => {
+        dispatch(setNarcotics(value));
+        setLocalNarcotics(value);
+    };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -19,39 +45,39 @@ const DrugsMedications = ({ navigation }) => {
                 <Text style={styles.title}> Drugs & Medications </Text>
                 
                     <Text style={styles.text}>Inhaler</Text>
-                    <TextInput 
+                    <TextInput
                         style={styles.input}
                         placeholder="Inhaler?"
                         placeholderTextColor="#888"
-                        value={inhaler}
-                        onChangeText={setInhaler}
+                        value={localInhaler}
+                        onChangeText={handleSetInhaler}
                     />
 
                     <Text style={styles.text}>Blood thinners (Aspirin, warfarin, etc)?</Text>
-                    <TextInput 
+                    <TextInput
                         style={styles.input}
                         placeholder="Blood thinners (Aspirin, warfarin, etc)?"
                         placeholderTextColor="#888"
-                        value={bloodThinners}
-                        onChangeText={setBloodThinners}
+                        value={localBloodThinners}
+                        onChangeText={handleSetBloodThinners}
                     />
 
                     <Text style={styles.text}>Sexual enhancement drugs in the last 24 hours?</Text>
-                    <TextInput 
+                    <TextInput
                         style={styles.input}
                         placeholder="Sexual enhancement drugs in the last 24 hours?"
                         placeholderTextColor="#888"
-                        value={sexualEnhancement}
-                        onChangeText={setSexualEnhancement}
+                        value={localSexualEnhancement}
+                        onChangeText={handleSetSexualEnhancement}
                     />
 
                     <Text style={styles.text}>Narcotics? (opioids, heroin, morphine, oxycontin etc)</Text>
-                    <TextInput 
+                    <TextInput
                         style={styles.input}
                         placeholder="Narcotics? (opioids, heroin, morphine, oxycontin etc)"
                         placeholderTextColor="#888"
-                        value={narcotics}
-                        onChangeText={setNarcotics}
+                        value={localNarcotics}
+                        onChangeText={handleSetNarcotics}
                     />
                 </SafeAreaView>
             </LinearGradient>

@@ -5,12 +5,43 @@ import {
     Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView
 } from "react-native";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setDiabetes, setBreathing, setSexual, setPregnant, setOther } from '../../redux/features/text/conditionSlice';
+
 const MedicalConditions = ({ navigation }) => {
-    const [otherCondition, setOtherCondition] = useState('');
-    const [diabetes, setDiabetes] = useState('');
-    const [breathingCondition, setBreathingCondition] = useState('');
-    const [sexuallyActive, setSexuallyActive] = useState('');
-    const [pregnant, setPregnant] = useState('');
+
+    const dispatch = useDispatch();
+
+    const [localDiabetes, setLocalDiabetes] = useState('');
+    const [localBreathing, setLocalBreathing] = useState('');
+    const [localSexual, setLocalSexual] = useState('');
+    const [localPregnant, setLocalPregnant] = useState('');
+    const [localOther, setLocalOther] = useState('');
+
+    const handleSetDiabetes = (value) => {
+        dispatch(setDiabetes(value));
+        setLocalDiabetes(value);
+    };
+
+    const handleSetBreathing = (value) => {
+        dispatch(setBreathing(value));
+        setLocalBreathing(value);
+    };
+
+    const handleSetSexual = (value) => {
+        dispatch(setSexual(value));
+        setLocalSexual(value);
+    };
+
+    const handleSetPregnant = (value) => {
+        dispatch(setPregnant(value));
+        setLocalPregnant(value);
+    };
+
+    const handleSetOther = (value) => {
+        dispatch(setOther(value));
+        setLocalOther(value);
+    };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -28,8 +59,8 @@ const MedicalConditions = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Diabetes?"
                             placeholderTextColor="#888"
-                            value={diabetes}
-                            onChangeText={setDiabetes}
+                            value={localDiabetes}
+                            onChangeText={handleSetDiabetes}
                         />
 
                         <Text style={styles.text}>Breathing conditions (asthma, COPD, etc)</Text>
@@ -37,8 +68,8 @@ const MedicalConditions = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Breathing conditions?"
                             placeholderTextColor="#888"
-                            value={breathingCondition}
-                            onChangeText={setBreathingCondition}
+                            value={localBreathing}
+                            onChangeText={handleSetBreathing}
                         />
 
                         <Text style={styles.text}>Sexually Active</Text>
@@ -46,8 +77,8 @@ const MedicalConditions = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Sexually Active?"
                             placeholderTextColor="#888"
-                            value={sexuallyActive}
-                            onChangeText={setSexuallyActive}
+                            value={localSexual}
+                            onChangeText={handleSetSexual}
                         />
 
                         <Text style={styles.text}>Pregnant</Text>
@@ -55,8 +86,8 @@ const MedicalConditions = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Pregnant?"
                             placeholderTextColor="#888"
-                            value={pregnant}
-                            onChangeText={setPregnant}
+                            value={localPregnant}
+                            onChangeText={handleSetPregnant}
                         />
 
                         <Text style={styles.text}>Other:</Text>
@@ -64,8 +95,8 @@ const MedicalConditions = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Other condition?"
                             placeholderTextColor="#888"
-                            value={otherCondition}
-                            onChangeText={setOtherCondition}
+                            value={localOther}
+                            onChangeText={handleSetOther}
                         />
                     </KeyboardAvoidingView>
                 </SafeAreaView>

@@ -4,11 +4,19 @@ import React, { useState } from 'react';
 import ButtonCard from "../../components/ButtonCard";
 import alert from '../../../src/assets/alert.jpg';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setMental } from "../../redux/features/text/mentalSlice";
+
 
 
 const MentalHealth = ({ navigation }) => {
 
-    const [inputText, setInputText] = useState('');
+    const dispatch = useDispatch();
+    const [localMental, setLocalMental] = useState('');
+    const handleInputChange = (value) => {
+        setLocalMental(value);
+        dispatch(setMental(value));
+    };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -31,8 +39,8 @@ const MentalHealth = ({ navigation }) => {
                         style={styles.inputField}
                         placeholder="Type your message here..."
                         placeholderTextColor="#888"
-                        value={inputText}
-                        onChangeText={setInputText}
+                        value={localMental}
+                        onChangeText={handleInputChange}
                     />
                 </SafeAreaView>
             </LinearGradient>

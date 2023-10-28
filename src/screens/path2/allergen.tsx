@@ -2,13 +2,38 @@ import React, { useState } from 'react';
 import { Text, SafeAreaView, TextInput, StyleSheet, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setFood, setMedication, setEnvironment, setOther } from '../../redux/features/text/allergiesSlice';
+
 
 const Allergen = ({ navigation }) => {
 
-    const [food, setFood] = useState("");
-    const [medication, setMedication] = useState("");
-    const [environmental, setEnvironmental] = useState("");
-    const [other, setOther] = useState("");
+    const dispatch = useDispatch();
+
+    const [food, setLocalFood] = useState("");
+    const [medication, setLocalMedication] = useState("");
+    const [environmental, setLocalEnvironmental] = useState("");
+    const [other, setLocalOther] = useState("");
+
+    const handleSetFood = (value) => {
+        dispatch(setFood(value));
+        setLocalFood(value);
+    };
+
+    const handleSetMedication = (value) => {
+        dispatch(setMedication(value));
+        setLocalMedication(value);
+    };
+
+    const handleSetEnvironmental = (value) => {
+        dispatch(setEnvironment(value));
+        setLocalEnvironmental(value);
+    };
+
+    const handleSetOther = (value) => {
+        dispatch(setOther(value));
+        setLocalOther(value);
+    };
  
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -23,7 +48,7 @@ const Allergen = ({ navigation }) => {
 
                     <TextInput
                         style={styles.input}
-                        onChangeText={setFood}
+                        onChangeText={handleSetFood}
                         value={food}
                         placeholder="Foods"
                     />
@@ -32,7 +57,7 @@ const Allergen = ({ navigation }) => {
 
                     <TextInput
                         style={styles.input}
-                        onChangeText={setMedication}
+                        onChangeText={handleSetMedication}
                         value={medication}
                         placeholder="Medications"
                     />
@@ -40,7 +65,7 @@ const Allergen = ({ navigation }) => {
 
                     <TextInput
                         style={styles.input}
-                        onChangeText={setEnvironmental}
+                        onChangeText={handleSetEnvironmental}
                         value={environmental}
                         placeholder="Environmental"
                     />
@@ -49,7 +74,7 @@ const Allergen = ({ navigation }) => {
 
                     <TextInput
                         style={styles.input}
-                        onChangeText={setOther}
+                        onChangeText={handleSetOther}
                         value={other}
                         placeholder="Other"
                     />

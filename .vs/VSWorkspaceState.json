@@ -2,8 +2,16 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\screens"
+    "\\src\\redux",
+    "\\src\\redux\\features",
+    "\\src\\screens",
+    "\\src\\screens\\path1",
+    "\\src\\screens\\path2",
+    "\\src\\screens\\path5",
+    "\\src\\screens\\path6",
+    "\\src\\screens\\path7",
+    "\\src\\screens\\Profile"
   ],
-  "SelectedNode": "\\src\\screens\\MainScreen.tsx",
+  "SelectedNode": "\\src\\screens\\path1\\path1.tsx",
   "PreviewInSolutionExplorer": false
 }
