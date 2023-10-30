@@ -35,6 +35,7 @@ import ConfirmEmailScreen from '../screens/Profile/ConfirmEmail';
 import ForgotPasswordScreen from '../screens/Profile/ForgotPassword';
 import ResetPasswordScreen from '../screens/Profile/ResetPassword';
 import MedicalProfileScreen from '../screens/Profile/MedicalProfile';
+import MedicalProfileEMTScreen from '../screens/Profile/MedicalProfile_emt';
 
 const MainStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -70,6 +71,7 @@ const MainStackNavigator = () => {
             <MainStack.Screen name="Forgot_Password_Screen" component={ForgotPasswordScreen} />
             <MainStack.Screen name="Reset_Password_Screen" component={ResetPasswordScreen} />
             <MainStack.Screen name="Medical_Profile_Screen" component={MedicalProfileScreen} />
+            <MainStack.Screen name="Medical_Profile_EMT_Screen" component={MedicalProfileEMTScreen} />
 
         </MainStack.Navigator>
     );

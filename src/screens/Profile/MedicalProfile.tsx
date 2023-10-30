@@ -281,6 +281,13 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 }}
                             />
 
+                            <TouchableOpacity
+                                style={styles.buttonContainer}
+                                onPress={() => navigation.navigate("Medical_Profile_EMT_Screen")}
+                            >
+                                <ButtonCard title="EMT View of Medical Profile" image={alert} />
+                            </TouchableOpacity>
+
                         </SafeAreaView>
                     </ScrollView>
                 </KeyboardAvoidingView>
@@ -341,7 +348,7 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
     },
     switch: {
-        alignItems: 'center', 
+        alignItems: 'center',
     }
 
 });

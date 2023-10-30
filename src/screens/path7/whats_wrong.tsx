@@ -11,15 +11,17 @@ const WhatsWrong = ({ navigation }) => {
     return (
         <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
-            <Button title="Go Back" onPress={() => navigation.goBack()} />
-            <Text style={styles.title}>What's Wrong?</Text>
+                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                <Text style={styles.title}>What's Wrong?</Text>
 
                 <View style={styles.buttonRow}>
                     <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Illness_Injury_Screen')}>
-                        <ButtonCard title="Illness/Injury" image={injury}/>
+                        <ButtonCard title="Illness/Injury" image={injury} />
                     </TouchableOpacity>
+                </View>
+                <View style={styles.buttonRow}>
                     <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Mental_Health_Screen')}>
-                        <ButtonCard title="Mental Health" image={mental}/>
+                        <ButtonCard title="Mental Health" image={mental} />
                     </TouchableOpacity>
                 </View>
             </SafeAreaView>
@@ -33,16 +35,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        alignItems: 'center', 
+        alignItems: 'center',
     },
     input: {
         height: 40,
-        backgroundColor: '#FFFFFF',  
-        borderColor: '#CCCCCC',     
+        backgroundColor: '#FFFFFF',
+        borderColor: '#CCCCCC',
         borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
-        color: '#333333',          
+        color: '#333333',
         marginBottom: 10,
     },
     text: {
@@ -51,35 +53,35 @@ const styles = StyleSheet.create({
         color: "white",
         marginTop: 15,
         marginBottom: 15,
-        textAlign: 'center', 
+        textAlign: 'center',
     },
     title: {
-        fontSize: 24,              
-        fontWeight: 'bold',         
-        color: '#FFFFFF',           
-        textAlign: 'center',       
-        marginBottom: 15,           
-        letterSpacing: 1,           
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        textAlign: 'center',
+        marginBottom: 15,
+        letterSpacing: 1,
     },
     buttonRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 10, 
-      },
-      button: {
+        marginBottom: 10,
+    },
+    button: {
         width: 150,
         height: 150,
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
-      },
-      buttonContainer: {
-        marginRight: 15, 
+    },
+    buttonContainer: {
+        marginRight: 15,
         marginLeft: 15
-      },
-      buttonText: {
+    },
+    buttonText: {
         color: 'black',
         fontSize: 16,
         fontWeight: 'bold',

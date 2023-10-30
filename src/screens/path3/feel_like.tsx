@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { 
-  View, 
-  StatusBar, 
-  StyleSheet, 
-  TouchableOpacity, 
-  Text, 
-  SafeAreaView, 
-  Button, 
-  TextInput, 
+import {
+  View,
+  StatusBar,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  SafeAreaView,
+  Button,
+  TextInput,
   Keyboard,
   TouchableWithoutFeedback
 } from 'react-native';
@@ -15,53 +15,58 @@ import { LinearGradient } from 'expo-linear-gradient';
 import ButtonCard from '../../components/ButtonCard';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setFeel } from '../../redux/features/text/painFeelSlice';
+import { setFeel, setFeelBtn } from '../../redux/features/text/painFeelSlice';
 
 const Feel = ({ navigation }) => {
 
-    const dispatch = useDispatch();
-    const [localFeel, setLocalFeel] = useState("");
-    const handleSetFeel = (value) => {
-        dispatch(setFeel(value));
-        setLocalFeel(value);
-    };
+  const dispatch = useDispatch();
+  const [localFeel, setLocalFeel] = useState("");
+  const [localFeelbtn, setLocalFeelBtn] = useState("");
+  const handleSetFeel = (value) => {
+    dispatch(setFeel(value));
+    setLocalFeel(value);
+  };
+  const handleSetFeelBtn = (value) => {
+    dispatch(setFeelBtn(value));
+    setLocalFeelBtn(value);
+  };
 
-    return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
-              <SafeAreaView style={styles.container}>
-                <View style={styles.goBackButton}>
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
-                </View>
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
+          <View style={styles.goBackButton}>
+            <Button title="Go Back" onPress={() => navigation.goBack()} />
+          </View>
 
-                <Text style={styles.title}>What Does it Feel Like?</Text>
+          <Text style={styles.title}>What Does it Feel Like?</Text>
 
-                <View style={styles.buttonRow}>
-                  <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonText}>Mild</Text>
-                  </TouchableOpacity>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity style={styles.button} onPress={() => dispatch(setFeelBtn("Mild"))}>
+              <Text style={styles.buttonText}>Mild</Text>
+            </TouchableOpacity>
 
-                  <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonText}>Moderate</Text>
-                  </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => dispatch(setFeelBtn("Moderate"))}>
+              <Text style={styles.buttonText}>Moderate</Text>
+            </TouchableOpacity>
 
-                  <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonText}>Severe</Text>
-                  </TouchableOpacity>
-                </View>
+            <TouchableOpacity style={styles.button} onPress={() => dispatch(setFeelBtn("Severe"))}>
+              <Text style={styles.buttonText}>Severe</Text>
+            </TouchableOpacity>
+          </View>
 
-                    <View style={styles.textInputContainer}>
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder="Enter Text Here"
-                            value={localFeel}
-                            onChangeText={handleSetFeel}
-                        />
-                </View>
-              </SafeAreaView>
-            </LinearGradient>
-        </TouchableWithoutFeedback>
-    );
+          <View style={styles.textInputContainer}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Enter Text Here"
+              value={localFeel}
+              onChangeText={handleSetFeel}
+            />
+          </View>
+        </SafeAreaView>
+      </LinearGradient>
+    </TouchableWithoutFeedback>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -105,15 +110,15 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   goBackButton: {
-    marginBottom: 100,  
+    marginBottom: 100,
   },
   title: {
-    fontSize: 24,              
-    fontWeight: 'bold',         
-    color: '#FFFFFF',           
-    textAlign: 'center',       
-    marginBottom: 15,           
-    letterSpacing: 1,           
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginBottom: 15,
+    letterSpacing: 1,
   },
 });
 
