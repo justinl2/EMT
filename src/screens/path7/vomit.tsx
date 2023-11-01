@@ -16,8 +16,11 @@ import alert from "../../../src/assets/alert.jpg";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen } from '../../redux/features/text/vomitSlice';
+import { RootState } from '../../redux/store';
 
 const Vomit = ({ navigation }) => {
+
+    const vomitState = useSelector((state: RootState) => state.vomitSlice);
 
     const dispatch = useDispatch();
     const [localWhen, setLocalWhen] = useState("");
@@ -48,7 +51,7 @@ const Vomit = ({ navigation }) => {
                   style={styles.inputField}
                   placeholder="Type your message here..."
                   placeholderTextColor="#888"
-                  value={localWhen}
+                  defaultValue={JSON.stringify(vomitState.when, null, 2).replaceAll('"', '')}
                   onChangeText={handleSetWhen}
                 />
               </SafeAreaView>

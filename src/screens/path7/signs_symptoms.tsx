@@ -19,8 +19,11 @@ import alert from "../../../src/assets/alert.jpg";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setOther } from '../../redux/features/text/signsSlice';
+import { RootState } from '../../redux/store';
 
 const SignsSymptoms = ({ navigation }) => {
+
+    const signsState = useSelector((state: RootState) => state.signsSlice);
 
     const dispatch = useDispatch();
     const [localOther, setLocalOther] = useState("");
@@ -80,7 +83,7 @@ const SignsSymptoms = ({ navigation }) => {
                           style={styles.inputField}
                           placeholder="Type your message here..."
                           placeholderTextColor="#888"
-                          value={localOther}
+                          defaultValue={JSON.stringify(signsState.other, null, 2).replaceAll('"', '')}
                           onChangeText={handleSetOther}
                         />
                     </KeyboardAvoidingView>

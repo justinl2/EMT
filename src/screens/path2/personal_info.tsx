@@ -7,8 +7,11 @@ import personal from '../../../src/assets/personal.jpg'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setName, setDOB, setInsurance } from '../../redux/features/text/personalSlice';
+import { RootState } from '../../redux/store';
 
 const PersonalInformation = ({ navigation }) => {
+
+    const personalState = useSelector((state: RootState) => state.personalSlice);
 
     const dispatch = useDispatch();
 
@@ -17,6 +20,7 @@ const PersonalInformation = ({ navigation }) => {
     const [localMonth, setLocalMonth] = useState('');
     const [localDay, setLocalDay] = useState('');
     const [localYear, setLocalYear] = useState('');
+
 
     const yearArray = Array.from({ length: 124 }, (_, i) => 2023 - i);
     const yearItems = yearArray.map(year => ({
@@ -38,10 +42,10 @@ const PersonalInformation = ({ navigation }) => {
                         style={styles.input}
                         placeholder="Name"
                         placeholderTextColor="#888"
-                        value={localName}
+                        defaultValue={JSON.stringify(personalState.name, null, 2).replaceAll('"', '')}
                         onChangeText={(text) => {
                             setLocalName(text);
-                            dispatch(setName(text)); 
+                            dispatch(setName(text));
                         }}
                     />
 
@@ -130,7 +134,7 @@ const PersonalInformation = ({ navigation }) => {
                         style={styles.input}
                         placeholder="Insurance Provider"
                         placeholderTextColor="#888"
-                        value={localInsuranceProvider}
+                        defaultValue={JSON.stringify(personalState.insurance, null, 2).replaceAll('"', '')}
                         onChangeText={(text) => {
                             setLocalInsuranceProvider(text);
                             dispatch(setInsurance(text)); 

@@ -6,10 +6,11 @@ import alert from '../../../src/assets/alert.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setMental } from "../../redux/features/text/mentalSlice";
-
-
+import { RootState } from '../../redux/store';
 
 const MentalHealth = ({ navigation }) => {
+
+    const mentalState = useSelector((state: RootState) => state.mentalSlice);
 
     const dispatch = useDispatch();
     const [localMental, setLocalMental] = useState('');
@@ -31,15 +32,13 @@ const MentalHealth = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
 
-
-
                     <Text style={styles.title}>What's Wrong?</Text>
 
                     <TextInput 
                         style={styles.inputField}
                         placeholder="Type your message here..."
                         placeholderTextColor="#888"
-                        value={localMental}
+                        defaultValue={JSON.stringify(mentalState.mental, null, 2).replaceAll('"', '')}
                         onChangeText={handleInputChange}
                     />
                 </SafeAreaView>

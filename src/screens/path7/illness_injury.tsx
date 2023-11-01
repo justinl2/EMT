@@ -18,8 +18,11 @@ import alert from "../../../src/assets/alert.jpg";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhatHappened, setOther } from '../../redux/features/text/illnessSlice';
+import { RootState } from '../../redux/store';
 
 const IllnessInjury = ({ navigation }) => {
+
+    const illnessState = useSelector((state: RootState) => state.illnessSlice);
 
     const dispatch = useDispatch();
     const [localWhatHappened, setLocalWhatHappened] = useState('');
@@ -64,7 +67,7 @@ const IllnessInjury = ({ navigation }) => {
                   style={styles.inputField}
                   placeholder="Type your message here..."
                   placeholderTextColor="#888"
-                  value={localWhatHappened}
+                  defaultValue={JSON.stringify(illnessState.whathappened, null, 2).replaceAll('"', '')}
                   onChangeText={handleSetWhatHappened}
                 />
 
@@ -74,7 +77,7 @@ const IllnessInjury = ({ navigation }) => {
                   style={styles.inputField}
                   placeholder="Type your message here..."
                   placeholderTextColor="#888"
-                  value={localOther}
+                  defaultValue={JSON.stringify(illnessState.other, null, 2).replaceAll('"', '')}
                   onChangeText={handleSetOther}
                 />
 

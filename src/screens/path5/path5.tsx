@@ -5,8 +5,11 @@ import RNPickerSelect from 'react-native-picker-select';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setName, setWhere, setWeekday } from '../../redux/features/text/assessmentSlice';
+import { RootState } from '../../redux/store';
 
 const Screen5 = ({ navigation }) => {
+
+    const assessmentState = useSelector((state: RootState) => state.assessmentSlice);
 
     const dispatch = useDispatch();
     
@@ -31,7 +34,7 @@ const Screen5 = ({ navigation }) => {
                             setLocalName(text);
                             dispatch(setName(text));
                         }}
-                        value={localName}
+                        defaultValue={JSON.stringify(assessmentState.name, null, 2).replaceAll('"', '')}
                         placeholder="What is your name?"
                     />
 
@@ -43,7 +46,7 @@ const Screen5 = ({ navigation }) => {
                             setLocalLocationAwareness(text);
                             dispatch(setWhere(text));
                         }}
-                        value={localLocationAwareness}
+                        defaultValue={JSON.stringify(assessmentState.where, null, 2).replaceAll('"', '')}
                         placeholder="Do you know where you are?"
                     />
                     <Text style={styles.text}>What day of the week is it today?</Text>

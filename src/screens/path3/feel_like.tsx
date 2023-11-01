@@ -16,8 +16,11 @@ import ButtonCard from '../../components/ButtonCard';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setFeel } from '../../redux/features/text/painFeelSlice';
+import { RootState } from '../../redux/store';
 
 const Feel = ({ navigation }) => {
+
+    const painFeelState = useSelector((state: RootState) => state.painFeelSlice);
 
     const dispatch = useDispatch();
     const [localFeel, setLocalFeel] = useState("");
@@ -54,7 +57,7 @@ const Feel = ({ navigation }) => {
                         <TextInput
                             style={styles.textInput}
                             placeholder="Enter Text Here"
-                            value={localFeel}
+                            defaultValue={JSON.stringify(painFeelState.feel, null, 2).replaceAll('"', '')}
                             onChangeText={handleSetFeel}
                         />
                 </View>

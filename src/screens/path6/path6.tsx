@@ -6,8 +6,11 @@ import alert from '../../../src/assets/alert.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setConcern } from '../../redux/features/text/assistSlice';
+import { RootState } from '../../redux/store';
 
 const Screen6 = ({ navigation }) => {
+
+    const assistState = useSelector((state: RootState) => state.assistSlice);
 
     const dispatch = useDispatch();
     const [localConcern, setLocalConcern] = useState("");
@@ -34,7 +37,7 @@ const Screen6 = ({ navigation }) => {
                             style={styles.inputField}
                             placeholder="Type your message here..."
                             placeholderTextColor="#888"
-                            value={localConcern}
+                            defaultValue={JSON.stringify(assistState.concern, null, 2).replaceAll('"', '')}
                             onChangeText={handleSetConcern}
                         />
 

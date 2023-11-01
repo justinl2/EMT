@@ -17,9 +17,11 @@ import assist from '../../../src/assets/assist.jpg'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen, setBetter, setWhere } from '../../redux/features/text/painSlice';
-
+import { RootState } from '../../redux/store';
 
 const Pain = ({ navigation }) => {
+
+    const painState = useSelector((state: RootState) => state.painSlice); 
 
     const dispatch = useDispatch();
 
@@ -66,7 +68,7 @@ const Pain = ({ navigation }) => {
                         <TextInput
                             style={styles.input}
                             onChangeText={handleSetWhen}
-                            value={localWhen}
+                            defaultValue={JSON.stringify(painState.when, null, 2).replaceAll('"', '')}
                             placeholder="When did it start?"
                         />
 
@@ -75,7 +77,7 @@ const Pain = ({ navigation }) => {
                         <TextInput
                             style={styles.input}
                             onChangeText={handleSetBetter}
-                            value={localBetter}
+                            defaultValue={JSON.stringify(painState.better, null, 2).replaceAll('"', '')}
                             placeholder="What makes the pain better or worse?"
                         />
 
@@ -84,7 +86,7 @@ const Pain = ({ navigation }) => {
                         <TextInput
                             style={styles.input}
                             onChangeText={handleSetWhere}
-                            value={localWhere}
+                            defaultValue={JSON.stringify(painState.where, null, 2).replaceAll('"', '')}
                             placeholder="Does the pain move to other parts of your body?"
                         />
                     </KeyboardAvoidingView>

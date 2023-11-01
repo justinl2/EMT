@@ -18,8 +18,11 @@ import alert from "../../../src/assets/alert.jpg";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen, setWhat } from '../../redux/features/text/intakeSlice';
+import { RootState } from '../../redux/store';
 
 const IntakeOutput = ({ navigation }) => {
+
+    const intakeState = useSelector((state: RootState) => state.intakeSlice);
 
     const dispatch = useDispatch();
     const [localWhen, setLocalWhen] = useState('');
@@ -63,7 +66,7 @@ const IntakeOutput = ({ navigation }) => {
                   style={styles.inputField}
                   placeholder="Type your message here..."
                   placeholderTextColor="#888"
-                  value={localWhen}
+                  defaultValue={JSON.stringify(intakeState.when, null, 2).replaceAll('"', '')}
                   onChangeText={handleSetWhen}
                 />
 
@@ -73,7 +76,7 @@ const IntakeOutput = ({ navigation }) => {
                   style={styles.inputField}
                   placeholder="Type your message here..."
                   placeholderTextColor="#888"
-                  value={localWhat}
+                  defaultValue={JSON.stringify(intakeState.what, null, 2).replaceAll('"', '')}
                   onChangeText={handleSetWhat}
                 />
               </SafeAreaView>

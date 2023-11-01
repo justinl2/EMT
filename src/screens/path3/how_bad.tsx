@@ -16,8 +16,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setHow } from '../../redux/features/text/painBadSlice';
+import { RootState } from '../../redux/store';
 
 const HowBad = ({ navigation }) => {
+
+    const painBadState = useSelector((state: RootState) => state.painBadSlice);
 
     const dispatch = useDispatch();
     const [localHow, setLocalHow] = useState("");
@@ -63,7 +66,7 @@ const HowBad = ({ navigation }) => {
                             <TextInput
                                 style={styles.textInput}
                                 placeholder="Enter Description Here"
-                                value={localHow}
+                                defaultValue={JSON.stringify(painBadState.how, null, 2).replaceAll('"', '')}
                                 onChangeText={handleSetHow}
                             />
                         </View>

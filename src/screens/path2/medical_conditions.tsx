@@ -7,8 +7,11 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setDiabetes, setBreathing, setSexual, setPregnant, setOther } from '../../redux/features/text/conditionSlice';
+import { RootState } from '../../redux/store';
 
 const MedicalConditions = ({ navigation }) => {
+
+    const conditionState = useSelector((state: RootState) => state.conditionSlice);
 
     const dispatch = useDispatch();
 
@@ -59,7 +62,7 @@ const MedicalConditions = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Diabetes?"
                             placeholderTextColor="#888"
-                            value={localDiabetes}
+                            defaultValue={JSON.stringify(conditionState.diabetes, null, 2).replaceAll('"', '')}
                             onChangeText={handleSetDiabetes}
                         />
 
@@ -68,7 +71,7 @@ const MedicalConditions = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Breathing conditions?"
                             placeholderTextColor="#888"
-                            value={localBreathing}
+                            defaultValue={JSON.stringify(conditionState.breathing, null, 2).replaceAll('"', '')}
                             onChangeText={handleSetBreathing}
                         />
 
@@ -77,7 +80,7 @@ const MedicalConditions = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Sexually Active?"
                             placeholderTextColor="#888"
-                            value={localSexual}
+                            defaultValue={JSON.stringify(conditionState.sexual, null, 2).replaceAll('"', '')}
                             onChangeText={handleSetSexual}
                         />
 
@@ -86,7 +89,7 @@ const MedicalConditions = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Pregnant?"
                             placeholderTextColor="#888"
-                            value={localPregnant}
+                            defaultValue={JSON.stringify(conditionState.pregnant, null, 2).replaceAll('"', '')}
                             onChangeText={handleSetPregnant}
                         />
 
@@ -95,7 +98,7 @@ const MedicalConditions = ({ navigation }) => {
                             style={styles.input}
                             placeholder="Other condition?"
                             placeholderTextColor="#888"
-                            value={localOther}
+                            defaultValue={JSON.stringify(conditionState.other, null, 2).replaceAll('"', '')}
                             onChangeText={handleSetOther}
                         />
                     </KeyboardAvoidingView>

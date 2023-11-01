@@ -19,8 +19,11 @@ import alert from "../../../src/assets/alert.jpg";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen } from '../../redux/features/text/bathroomSlice';
+import { RootState } from '../../redux/store';
 
 const Bathroom = ({ navigation }) => {
+
+    const bathroomState = useSelector((state: RootState) => state.bathroomSlice);
 
     const dispatch = useDispatch();
     const [localWhen, setLocalWhen] = useState("");
@@ -68,15 +71,13 @@ const Bathroom = ({ navigation }) => {
                             </TouchableOpacity>
                         </View>
 
-
-
                         <Text style={styles.title}>When did you last use the bathroom?</Text>
 
                         <TextInput
                             style={styles.inputField}
                             placeholder="Type your message here..."
                             placeholderTextColor="#888"
-                            value={localWhen}
+                            defaultValue={JSON.stringify(bathroomState.when, null, 2).replaceAll('"', '')}
                             onChangeText={handleSetWhen}
                         />
                     </KeyboardAvoidingView>
