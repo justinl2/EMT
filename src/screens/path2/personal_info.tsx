@@ -21,7 +21,6 @@ const PersonalInformation = ({ navigation }) => {
     const [localDay, setLocalDay] = useState('');
     const [localYear, setLocalYear] = useState('');
 
-
     const yearArray = Array.from({ length: 124 }, (_, i) => 2023 - i);
     const yearItems = yearArray.map(year => ({
         label: `${year}`,
@@ -71,6 +70,7 @@ const PersonalInformation = ({ navigation }) => {
                             { label: 'December', value: 'December' },
                         
                         ]}
+                        value={JSON.stringify(personalState.DOB.month, null, 2).replaceAll('"', '')}
                         style={pickerSelectStyles}
                         placeholder={{ label: 'Month', value: null }}
                     />
@@ -112,7 +112,8 @@ const PersonalInformation = ({ navigation }) => {
                             { label: '29', value: '29' },
                             { label: '30', value: '30' },
                             { label: '31', value: '31' }
-                        ]}                    
+                        ]}
+                        value={JSON.stringify(personalState.DOB.day, null, 2).replaceAll('"', '')}
                         style={pickerSelectStyles}
                         placeholder={{ label: 'Day', value: null }}
                     />
@@ -123,6 +124,7 @@ const PersonalInformation = ({ navigation }) => {
                             dispatch(setDOB({ month: localMonth, day: localDay, year: value }));
                         }}
                         items={yearItems}
+                        value={JSON.stringify(personalState.DOB.year, null, 2).replaceAll('"', '')}
                         style={pickerSelectStyles}
                         placeholder={{ label: 'Year', value: null }}
                     />

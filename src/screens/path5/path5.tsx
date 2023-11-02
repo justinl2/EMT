@@ -66,6 +66,7 @@ const Screen5 = ({ navigation }) => {
                             { label: 'Sunday', value: 'Sunday' },
                         ]}
                         style={pickerSelectStyles}
+                        value={JSON.stringify(assessmentState.weekday, null, 2).replaceAll('"', '')}
                         placeholder={{ label: 'Day', value: null }}
                     />
                 </SafeAreaView>

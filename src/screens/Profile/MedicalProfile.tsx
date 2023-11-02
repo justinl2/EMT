@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     setName, setDOB, setSex, setInsurance, setInsuranceNumber,
     setAllergies, setConditions, setMedication,
-    setResuscitate, setIntubate,
+    setPolst, setResuscitate,
     setHospital, setPhysician
 } from '../../redux/features/text/medicalProfileSlice';
 import { RootState } from '../../redux/store';
@@ -35,8 +35,8 @@ const MedicalProfileScreen = ({ navigation }) => {
     const [localConditions, setLocalConditions] = useState('');
     const [localMedication, setLocalMedication] = useState('');
 
+    const [localPolst, setLocalPolst] = useState(false);
     const [localResuscitate, setLocalResuscitate] = useState(false);
-    const [localIntubate, setLocalIntubate] = useState(false);
 
     const [localHospital, setLocalHospital] = useState('')
     const [localPhysician, setLocalPhysician] = useState('')
@@ -53,6 +53,7 @@ const MedicalProfileScreen = ({ navigation }) => {
             <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
                 <KeyboardAvoidingView behavior="padding">
                     <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
+            
                         <SafeAreaView style={styles.container}>
 
                             <Text style={styles.title}> Medical Information Profile </Text>
@@ -93,6 +94,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     { label: 'December', value: 'December' },
 
                                 ]}
+                                value={JSON.stringify(profileState.DOB.month, null, 2).replaceAll('"', '')}
                                 style={pickerSelectStyles}
                                 placeholder={{ label: 'Month', value: null }}
                             />
@@ -136,6 +138,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     { label: '30', value: '30' },
                                     { label: '31', value: '31' }
                                 ]}
+                                value={JSON.stringify(profileState.DOB.day, null, 2).replaceAll('"', '')}
                                 style={pickerSelectStyles}
                                 placeholder={{ label: 'Day', value: null }}
                             />
@@ -147,6 +150,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     dispatch(setDOB({ month: localMonth, day: localDay, year: value }));
                                 }}
                                 items={yearItems}
+                                value={JSON.stringify(profileState.DOB.year, null, 2).replaceAll('"', '')}
                                 style={pickerSelectStyles}
                                 placeholder={{ label: 'Year', value: null }}
                             />
@@ -162,6 +166,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     { label: 'Female', value: 'Female' },
                                     { label: 'Other', value: 'Other' }
                                 ]}
+                                value={JSON.stringify(profileState.sex, null, 2).replaceAll('"', '')}
                                 style={pickerSelectStyles}
                                 placeholder={{ label: 'Sex', value: null }}
                             />
@@ -232,7 +237,19 @@ const MedicalProfileScreen = ({ navigation }) => {
                             <Text style={styles.section}> Advanced Medical Directives </Text>
 
                             <View style={styles.switch}>
-                                <Text style={styles.text}> Do Not Resuscitate </Text>
+                                <Text style={styles.text}> POLST? </Text>
+                                <Switch
+                                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                                    thumbColor={localPolst ? "#f5dd4b" : "#f4f3f4"}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={(text) => {
+                                        setLocalPolst(text);
+                                        dispatch(setPolst(text));
+                                    }}
+                                    value={JSON.stringify(profileState.polst, null, 2) === 'true'}
+                                />
+
+                                <Text style={styles.text}> Do Not Resuscitate / Intubate </Text>
                                 <Switch
                                     trackColor={{ false: "#767577", true: "#81b0ff" }}
                                     thumbColor={localResuscitate ? "#f5dd4b" : "#f4f3f4"}
@@ -241,20 +258,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                         setLocalResuscitate(text);
                                         dispatch(setResuscitate(text));
                                     }}
-                                    value={localResuscitate}
-                                    style={styles.switch}
-                                />
-
-                                <Text style={styles.text}> Do Not Intubate </Text>
-                                <Switch
-                                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                                    thumbColor={localIntubate ? "#f5dd4b" : "#f4f3f4"}
-                                    ios_backgroundColor="#3e3e3e"
-                                    onValueChange={(text) => {
-                                        setLocalIntubate(text);
-                                        dispatch(setIntubate(text));
-                                    }}
-                                    value={localIntubate}
+                                    value={JSON.stringify(profileState.resuscitate, null, 2) === 'true'}
                                 />
                             </View>
 

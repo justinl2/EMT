@@ -3,14 +3,17 @@ import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setResuscitate, setIntubate } from '../../redux/features/text/directivesSlice';
+import { setPolst, setResuscitate } from '../../redux/features/text/directivesSlice';
+import { RootState } from '../../redux/store';
 
 const Screen1 = ({ navigation }) => {
 
+    const directivesState = useSelector((state: RootState) => state.directivesSlice);
+
     const dispatch = useDispatch();
 
+    const [localPolst, setLocalPolst] = useState(false);
     const [localResuscitate, setLocalResuscitate] = useState(false);
-    const [localIntubate, setLocalIntubate] = useState(false);
 
     return (
         <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
@@ -23,25 +26,25 @@ const Screen1 = ({ navigation }) => {
                 <Text style={styles.text}>Do you have a POLST: Physician's Orders for Life-Sustaining Treatment</Text>
                 <Switch
                     trackColor={{ false: "#767577", true: "#81b0ff" }}
+                    thumbColor={localPolst ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={(text) => {
+                        setLocalPolst(text);
+                        dispatch(setPolst(text));
+                    }}
+                    value={JSON.stringify(directivesState.polst, null, 2) === 'true'}
+                />
+
+                <Text style={styles.text}>Do Not Resuscitate / Intubate</Text>
+                <Switch
+                    trackColor={{ false: "#767577", true: "#81b0ff" }}
                     thumbColor={localResuscitate ? "#f5dd4b" : "#f4f3f4"}
                     ios_backgroundColor="#3e3e3e"
                     onValueChange={(text) => {
                         setLocalResuscitate(text);
                         dispatch(setResuscitate(text));
                     }}
-                    value={localResuscitate}
-                />
-
-                <Text style={styles.text}>Do Not Resuscitate / Intubate</Text>
-                <Switch
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={localIntubate ? "#f5dd4b" : "#f4f3f4"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={(text) => {
-                        setLocalIntubate(text);
-                        dispatch(setIntubate(text));
-                    }}
-                    value={localIntubate}
+                    value={JSON.stringify(directivesState.resuscitate, null, 2) === 'true'}
                 />
 
             </SafeAreaView>
