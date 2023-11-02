@@ -14,9 +14,12 @@ import {
     setResuscitate, setIntubate,
     setHospital, setPhysician
 } from '../../redux/features/text/medicalProfileSlice';
+import { RootState } from '../../redux/store';
 
 
 const MedicalProfileScreen = ({ navigation }) => {
+
+    const profileState = useSelector((state: RootState) => state.medicalProfileSlice); 
 
     const dispatch = useDispatch();
 
@@ -62,7 +65,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Name"
                                 placeholderTextColor="#888"
-                                value={localName}
+                                defaultValue={JSON.stringify(profileState.name, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalName(text);
                                     dispatch(setName(text));
@@ -169,7 +172,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Insurance Provider"
                                 placeholderTextColor="#888"
-                                value={localInsuranceProvider}
+                                defaultValue={JSON.stringify(profileState.insurance, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalInsuranceProvider(text);
                                     dispatch(setInsurance(text));
@@ -181,7 +184,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Insurance Number"
                                 placeholderTextColor="#888"
-                                value={localInsuranceNumber}
+                                defaultValue={JSON.stringify(profileState.insurancenumber, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalInsuranceNumber(text);
                                     dispatch(setInsuranceNumber(text));
@@ -195,7 +198,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Allergies"
                                 placeholderTextColor="#888"
-                                value={localAllergies}
+                                defaultValue={JSON.stringify(profileState.allergies, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalAllergies(text);
                                     dispatch(setAllergies(text));
@@ -207,7 +210,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Allergies"
                                 placeholderTextColor="#888"
-                                value={localConditions}
+                                defaultValue={JSON.stringify(profileState.conditions, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalConditions(text);
                                     dispatch(setConditions(text));
@@ -219,7 +222,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Medication"
                                 placeholderTextColor="#888"
-                                value={localMedication}
+                                defaultValue={JSON.stringify(profileState.medication, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalMedication(text);
                                     dispatch(setMedication(text));
@@ -262,7 +265,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Preferred Hospital"
                                 placeholderTextColor="#888"
-                                value={localHospital}
+                                defaultValue={JSON.stringify(profileState.hospital, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalHospital(text);
                                     dispatch(setAllergies(text));
@@ -274,7 +277,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Physician's Name"
                                 placeholderTextColor="#888"
-                                value={localPhysician}
+                                defaultValue={JSON.stringify(profileState.physician, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalPhysician(text);
                                     dispatch(setPhysician(text));
