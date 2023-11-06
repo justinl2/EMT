@@ -15,73 +15,76 @@ import ButtonCard from "../../components/ButtonCard";
 import mental from "../../../src/assets/mental.png";
 import injury from "../../../src/assets/injury.jpg";
 import alert from "../../../src/assets/alert.jpg";
+import SignsSymptoms from "../../../src/assets/signsSymptoms.jpg";
+import intakeOutput from "../../../src/assets/intakeOutput.jpg";
+
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhatHappened, setOther } from '../../redux/features/text/illnessSlice';
 
 const IllnessInjury = ({ navigation }) => {
 
-    const dispatch = useDispatch();
-    const [localWhatHappened, setLocalWhatHappened] = useState('');
-    const [localOther, setLocalOther] = useState('');
+  const dispatch = useDispatch();
+  const [localWhatHappened, setLocalWhatHappened] = useState('');
+  const [localOther, setLocalOther] = useState('');
 
-    const handleSetWhatHappened = (value) => {
-        dispatch(setWhatHappened(value));
-        setLocalWhatHappened(value);
-    };
+  const handleSetWhatHappened = (value) => {
+    dispatch(setWhatHappened(value));
+    setLocalWhatHappened(value);
+  };
 
-    const handleSetOther = (value) => {
-        dispatch(setOther(value));
-        setLocalOther(value);
-    };
+  const handleSetOther = (value) => {
+    dispatch(setOther(value));
+    setLocalOther(value);
+  };
 
 
-    return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-              <SafeAreaView style={styles.container}>
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
-                <Text style={styles.title}>Illness/Injury</Text>
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
+          <Button title="Go Back" onPress={() => navigation.goBack()} />
+          <Text style={styles.title}>Illness/Injury</Text>
 
-                <View style={styles.buttonRow}>
-                  <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Intake_Output_Screen")}
-                  >
-                    <ButtonCard title="Last intake / output" image={alert} />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Signs_Symptoms_Screen")}
-                  >
-                    <ButtonCard title="Signs and symptoms" image={alert} />
-                  </TouchableOpacity>
-                </View>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => navigation.navigate("Intake_Output_Screen")}
+            >
+              <ButtonCard title="Last intake / output" image={intakeOutput} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => navigation.navigate("Signs_Symptoms_Screen")}
+            >
+              <ButtonCard title="Signs and symptoms" image={SignsSymptoms} />
+            </TouchableOpacity>
+          </View>
 
-                <Text style={styles.title}>What happened?</Text>
+          <Text style={styles.title}>What happened?</Text>
 
-                <TextInput
-                  style={styles.inputField}
-                  placeholder="Type your message here..."
-                  placeholderTextColor="#888"
-                  value={localWhatHappened}
-                  onChangeText={handleSetWhatHappened}
-                />
+          <TextInput
+            style={styles.inputField}
+            placeholder="Type your message here..."
+            placeholderTextColor="#888"
+            value={localWhatHappened}
+            onChangeText={handleSetWhatHappened}
+          />
 
-                <Text style={styles.title}>Other:</Text>
+          <Text style={styles.title}>Other:</Text>
 
-                <TextInput
-                  style={styles.inputField}
-                  placeholder="Type your message here..."
-                  placeholderTextColor="#888"
-                  value={localOther}
-                  onChangeText={handleSetOther}
-                />
+          <TextInput
+            style={styles.inputField}
+            placeholder="Type your message here..."
+            placeholderTextColor="#888"
+            value={localOther}
+            onChangeText={handleSetOther}
+          />
 
-              </SafeAreaView>
-            </LinearGradient>
-        </TouchableWithoutFeedback>
-    );
+        </SafeAreaView>
+      </LinearGradient>
+    </TouchableWithoutFeedback>
+  );
 };
 
 export default IllnessInjury;

@@ -13,8 +13,8 @@ const ButtonCard = ({ title, image }) => {
 const styles = StyleSheet.create({
   touchableContainer: {
     margin: 10,
-    alignItems: 'center', 
-    width: 130, 
+    alignItems: 'center',
+    width: 130,
   },
   image: {
     width: 130,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "white",
     marginTop: 10,
-    textAlign: 'center', 
+    textAlign: 'center',
   },
 });
 
