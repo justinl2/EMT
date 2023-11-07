@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, TouchableOpacity, StyleSheet, TextInput, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { Text, SafeAreaView, TouchableOpacity, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
 import RNPickerSelect from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
 import ButtonCard from "../../components/ButtonCard";
@@ -8,6 +8,8 @@ import personal from '../../../src/assets/personal.jpg'
 import { useDispatch, useSelector } from 'react-redux';
 import { setName, setDOB, setInsurance } from '../../redux/features/text/personalSlice';
 import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const PersonalInformation = ({ navigation }) => {
 
@@ -29,10 +31,10 @@ const PersonalInformation = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
+            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
                 <SafeAreaView style={styles.container}>
 
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <GoBack navigation={navigation} />
 
                     <Text style={styles.title}> Personal Information </Text>
 
@@ -164,6 +166,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',          
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15,
@@ -196,6 +200,8 @@ const pickerSelectStyles = StyleSheet.create({
         paddingRight: 30,
         backgroundColor: '#FFFFFF',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     inputAndroid: {
         fontSize: 16,
@@ -208,5 +214,7 @@ const pickerSelectStyles = StyleSheet.create({
         paddingRight: 30,
         backgroundColor: '#FFFFFF',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
 });

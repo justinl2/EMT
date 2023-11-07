@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
 import {
     StyleSheet, Text, View, TextInput, TouchableWithoutFeedback,
-    Keyboard, KeyboardAvoidingView, Button
+    Keyboard, KeyboardAvoidingView, Button, TouchableOpacity
 } from "react-native";
+
+import { Ionicons } from '@expo/vector-icons'; 
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setText, clearText } from '../../redux/features/text/textSlice';
@@ -11,13 +13,8 @@ import type { RootState } from '../../redux/store';
 const TypeAnything = ({ navigation }) => {
     const dispatch = useDispatch();
     
-    // Use Redux state instead of local state
     const textFromRedux = useSelector((state: RootState) => state.textEntry);
     const textInputRef = useRef(null); 
-
-    const handleBack = () => {
-        navigation.goBack();
-    }
 
     const handleChangeText = (txt: string) => {
         dispatch(setText(txt));
@@ -28,11 +25,27 @@ const TypeAnything = ({ navigation }) => {
         textInputRef.current.clear();
     }
 
+    const GoBack = ({ navigation }) => {
+        return (
+            <TouchableOpacity style={styles.goBackButton} onPress={() => navigation.goBack()}>
+                <Ionicons name="arrow-back-sharp" style={styles.button} size={40} />
+            </TouchableOpacity>
+        );
+    };
+
+    const ClearAll = () => {
+        return (
+            <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClear()}>
+                <Ionicons name="trash-outline" style={styles.button} size={40} />
+            </TouchableOpacity>
+        );
+    };
+
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
-                    {/* Text entry field */}
+
                     <View style={styles.textEntry}>
                         <TextInput
                             multiline
@@ -45,15 +58,10 @@ const TypeAnything = ({ navigation }) => {
                         />
                     </View>
 
-                    {/* "Go back" button */}
-                    <View style={styles.goBack}>
-                        <Button title="GO BACK" onPress={handleBack} />
-                    </View>
+                    <GoBack navigation={navigation} />
 
-                    {/* "Clear all" button */}
-                    <View style={styles.clearAll}>
-                        <Button title="CLEAR ALL" onPress={handleClear} />
-                    </View>
+                    <ClearAll/>
+
                 </View>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
@@ -70,20 +78,24 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    goBack: {
+    button: {
+        alignSelf: 'center',
+        color: 'black',
+    },
+    goBackButton: {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         position: 'absolute',
         top: 50,
         left: 15
     },
-    clearAll: {
+    clearAllButton: {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         position: 'absolute',
         top: 50,
         right: 15
-    }
+    },
 });
 
 export default TypeAnything;

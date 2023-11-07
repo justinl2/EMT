@@ -4,7 +4,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Button,
   TextInput,
   Keyboard,
   TouchableWithoutFeedback
@@ -19,6 +18,8 @@ import alert from "../../../src/assets/alert.jpg";
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhatHappened, setOther } from '../../redux/features/text/illnessSlice';
 import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const IllnessInjury = ({ navigation }) => {
 
@@ -41,47 +42,47 @@ const IllnessInjury = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-              <SafeAreaView style={styles.container}>
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
+            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
+                <SafeAreaView style={styles.container}>
+                    <GoBack navigation={navigation} />
                 <Text style={styles.title}>Illness/Injury</Text>
 
                 <View style={styles.buttonRow}>
-                  <TouchableOpacity
+                    <TouchableOpacity
                     style={styles.buttonContainer}
                     onPress={() => navigation.navigate("Intake_Output_Screen")}
-                  >
+                    >
                     <ButtonCard title="Last intake / output" image={alert} />
-                  </TouchableOpacity>
-                  <TouchableOpacity
+                    </TouchableOpacity>
+                    <TouchableOpacity
                     style={styles.buttonContainer}
                     onPress={() => navigation.navigate("Signs_Symptoms_Screen")}
-                  >
+                    >
                     <ButtonCard title="Signs and symptoms" image={alert} />
-                  </TouchableOpacity>
+                    </TouchableOpacity>
                 </View>
 
                 <Text style={styles.title}>What happened?</Text>
 
                 <TextInput
-                  style={styles.inputField}
-                  placeholder="Type your message here..."
-                  placeholderTextColor="#888"
-                  defaultValue={JSON.stringify(illnessState.whathappened, null, 2).replaceAll('"', '')}
-                  onChangeText={handleSetWhatHappened}
+                    style={styles.inputField}
+                    placeholder="Type your message here..."
+                    placeholderTextColor="#888"
+                    defaultValue={JSON.stringify(illnessState.whathappened, null, 2).replaceAll('"', '')}
+                    onChangeText={handleSetWhatHappened}
                 />
 
                 <Text style={styles.title}>Other:</Text>
 
                 <TextInput
-                  style={styles.inputField}
-                  placeholder="Type your message here..."
-                  placeholderTextColor="#888"
-                  defaultValue={JSON.stringify(illnessState.other, null, 2).replaceAll('"', '')}
-                  onChangeText={handleSetOther}
+                    style={styles.inputField}
+                    placeholder="Type your message here..."
+                    placeholderTextColor="#888"
+                    defaultValue={JSON.stringify(illnessState.other, null, 2).replaceAll('"', '')}
+                    onChangeText={handleSetOther}
                 />
 
-              </SafeAreaView>
+                </SafeAreaView>
             </LinearGradient>
         </TouchableWithoutFeedback>
     );
@@ -151,6 +152,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     color: "black",
-    marginBottom: 10,
+      marginBottom: 10,
+      width: "80%",
+     alignSelf: 'center'
   },
 });

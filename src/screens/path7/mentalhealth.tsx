@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View, Button, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 import ButtonCard from "../../components/ButtonCard";
@@ -7,6 +7,8 @@ import alert from '../../../src/assets/alert.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMental } from "../../redux/features/text/mentalSlice";
 import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const MentalHealth = ({ navigation }) => {
 
@@ -21,9 +23,9 @@ const MentalHealth = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
                 <SafeAreaView style={styles.container}>
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                <GoBack navigation={navigation} />
                 <Text style={styles.title}>Mental Health</Text>
 
                     <View style={styles.buttonRow}>
@@ -111,6 +113,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: 'black', 
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
 });
 

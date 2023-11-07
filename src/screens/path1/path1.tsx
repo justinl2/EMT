@@ -1,10 +1,12 @@
-import { Text, SafeAreaView, StyleSheet, Switch, Button } from "react-native";
+import { Text, SafeAreaView, StyleSheet, Switch} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setPolst, setResuscitate } from '../../redux/features/text/directivesSlice';
 import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const Screen1 = ({ navigation }) => {
 
@@ -16,10 +18,10 @@ const Screen1 = ({ navigation }) => {
     const [localResuscitate, setLocalResuscitate] = useState(false);
 
     return (
-        <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+        <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
 
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                <GoBack navigation={navigation}/>
 
                 <Text style={styles.title}>Advanced Medical Directives</Text>
 
@@ -85,9 +87,5 @@ const styles = StyleSheet.create({
         textAlign: 'center',       
         marginBottom: 15,           
         letterSpacing: 1,           
-    },
-    buttonText: {
-        color: '#FFF', 
-        fontSize: 16,
     },
 });

@@ -5,18 +5,18 @@ import {
   StyleSheet, 
   TouchableOpacity, 
   Text, 
-  SafeAreaView, 
-  Button, 
+  SafeAreaView,
   TextInput, 
   Keyboard,
   TouchableWithoutFeedback
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import ButtonCard from '../../components/ButtonCard';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setFeel } from '../../redux/features/text/painFeelSlice';
 import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const Feel = ({ navigation }) => {
 
@@ -31,26 +31,25 @@ const Feel = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
-              <SafeAreaView style={styles.container}>
-                <View style={styles.goBackButton}>
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
-                </View>
+            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
+                <SafeAreaView style={styles.container}>
+
+                <GoBack navigation={navigation} />
 
                 <Text style={styles.title}>What Does it Feel Like?</Text>
 
                 <View style={styles.buttonRow}>
-                  <TouchableOpacity style={styles.button} onPress={() => {}}>
+                    <TouchableOpacity style={styles.button} onPress={() => {}}>
                     <Text style={styles.buttonText}>Mild</Text>
-                  </TouchableOpacity>
+                    </TouchableOpacity>
 
-                  <TouchableOpacity style={styles.button} onPress={() => {}}>
+                    <TouchableOpacity style={styles.button} onPress={() => {}}>
                     <Text style={styles.buttonText}>Moderate</Text>
-                  </TouchableOpacity>
+                    </TouchableOpacity>
 
-                  <TouchableOpacity style={styles.button} onPress={() => {}}>
+                    <TouchableOpacity style={styles.button} onPress={() => {}}>
                     <Text style={styles.buttonText}>Severe</Text>
-                  </TouchableOpacity>
+                    </TouchableOpacity>
                 </View>
 
                     <View style={styles.textInputContainer}>
@@ -61,7 +60,7 @@ const Feel = ({ navigation }) => {
                             onChangeText={handleSetFeel}
                         />
                 </View>
-              </SafeAreaView>
+                </SafeAreaView>
             </LinearGradient>
         </TouchableWithoutFeedback>
     );

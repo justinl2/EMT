@@ -4,7 +4,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Button,
   TextInput,
   Keyboard,
   TouchableWithoutFeedback
@@ -17,6 +16,8 @@ import alert from "../../../src/assets/alert.jpg";
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen } from '../../redux/features/text/vomitSlice';
 import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const Vomit = ({ navigation }) => {
 
@@ -31,30 +32,30 @@ const Vomit = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-              <SafeAreaView style={styles.container}>
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
+            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
+                <SafeAreaView style={styles.container}>
+                    <GoBack navigation={navigation} />
                 <Text style={styles.title}>Have You Vomited?</Text>
 
                 <View style={styles.buttonRow}>
-                  <TouchableOpacity
+                    <TouchableOpacity
                     style={styles.buttonContainer}
                     onPress={() => navigation.navigate("Main")}
-                  >
-                  <ButtonCard title="Did you vomit blood?" image={alert} />
-                  </TouchableOpacity>
+                    >
+                    <ButtonCard title="Did you vomit blood?" image={alert} />
+                    </TouchableOpacity>
                 </View>
 
                 <Text style={styles.title}>When did you Vomit?</Text>
 
                 <TextInput
-                  style={styles.inputField}
-                  placeholder="Type your message here..."
-                  placeholderTextColor="#888"
-                  defaultValue={JSON.stringify(vomitState.when, null, 2).replaceAll('"', '')}
-                  onChangeText={handleSetWhen}
+                    style={styles.inputField}
+                    placeholder="Type your message here..."
+                    placeholderTextColor="#888"
+                    defaultValue={JSON.stringify(vomitState.when, null, 2).replaceAll('"', '')}
+                    onChangeText={handleSetWhen}
                 />
-              </SafeAreaView>
+                </SafeAreaView>
             </LinearGradient>
         </TouchableWithoutFeedback>
      );
@@ -123,6 +124,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     color: "black",
-    marginBottom: 10,
+      marginBottom: 10,
+      width: "80%",
+      alignSelf: 'center'
   },
 });

@@ -1,5 +1,5 @@
 import {
-    Text, SafeAreaView, StyleSheet, View, TouchableOpacity, Button, TextInput,
+    Text, SafeAreaView, StyleSheet, View, TouchableOpacity, TextInput,
     Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -9,15 +9,17 @@ import ButtonCard from "../../components/ButtonCard";
 
 
 import pill from '../../../src/assets/pill.jpg';
-import clipboard from '../../../src/assets/clipboard.jpg'
-import pain from '../../../src/assets/pain.jpg'
-import check from '../../../src/assets/check.jpg'
+import clipboard from '../../../src/assets/clipboard.jpg';
+import pain from '../../../src/assets/pain.jpg';
+import check from '../../../src/assets/check.jpg';
 import alert from '../../../src/assets/alert.jpg';
-import assist from '../../../src/assets/assist.jpg'
+import assist from '../../../src/assets/assist.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen, setBetter, setWhere } from '../../redux/features/text/painSlice';
 import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const Pain = ({ navigation }) => {
 
@@ -46,10 +48,10 @@ const Pain = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
             
                 <SafeAreaView >
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <GoBack navigation={navigation} />
 
                     <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
                         <Text style={styles.title}>Pain</Text>
@@ -145,6 +147,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',          
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15,

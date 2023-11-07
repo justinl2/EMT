@@ -5,7 +5,7 @@ import {
 } from "react-native";
 import RNPickerSelect from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
-import ButtonCard from "../../components/ButtonCard";
+import StatusBarBackground from "../../components/StatusBar";
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -49,13 +49,13 @@ const MedicalProfileScreen = ({ navigation }) => {
 
     return (
 
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-                <KeyboardAvoidingView behavior="padding">
-                    <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
-            
+        <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>    
+            <StatusBarBackground />
+            <KeyboardAvoidingView behavior="padding">
+                <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <SafeAreaView style={styles.container}>
-
+                            
                             <Text style={styles.title}> Medical Information Profile </Text>
                             <Text style={styles.subtitle}> Please fill out the following form... </Text>
 
@@ -213,7 +213,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                             <Text style={styles.text}> Medical Conditions </Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Allergies"
+                                placeholder="Medical Conditions"
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.conditions, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
@@ -289,10 +289,11 @@ const MedicalProfileScreen = ({ navigation }) => {
                             />
 
                         </SafeAreaView>
-                    </ScrollView>
-                </KeyboardAvoidingView>
-            </LinearGradient>
-        </TouchableWithoutFeedback>
+                    </TouchableWithoutFeedback>
+                </ScrollView>
+            </KeyboardAvoidingView>
+        </LinearGradient>
+        
 
     );
 }
@@ -301,9 +302,7 @@ export default MedicalProfileScreen;
 
 const styles = StyleSheet.create({
     container: {
-        padding: 20,
-        marginBottom: 50,
-
+        marginBottom: 100,
     },
     input: {
         height: 40,
@@ -314,12 +313,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15,
         fontWeight: "500",
         color: "white",
         textAlign: 'left',
+        paddingLeft: 35,
     },
     section: {
         fontSize: 20,
@@ -365,6 +367,8 @@ const pickerSelectStyles = StyleSheet.create({
         paddingRight: 30,
         backgroundColor: '#FFFFFF',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     inputAndroid: {
         fontSize: 15,
@@ -377,5 +381,7 @@ const pickerSelectStyles = StyleSheet.create({
         paddingRight: 30,
         backgroundColor: '#FFFFFF',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
 });

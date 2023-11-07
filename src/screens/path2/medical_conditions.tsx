@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { LinearGradient } from "expo-linear-gradient";
 import {
-    Text, SafeAreaView, TextInput, StyleSheet, Button,
+    Text, SafeAreaView, TextInput, StyleSheet,
     Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView
 } from "react-native";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setDiabetes, setBreathing, setSexual, setPregnant, setOther } from '../../redux/features/text/conditionSlice';
 import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const MedicalConditions = ({ navigation }) => {
 
@@ -48,10 +50,10 @@ const MedicalConditions = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
                 <SafeAreaView style={styles.container}>
       
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <GoBack navigation={navigation} />
 
                     <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
 
@@ -122,6 +124,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',          
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15,
