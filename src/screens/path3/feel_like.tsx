@@ -6,53 +6,47 @@ import {
   TouchableOpacity,
   Text,
   SafeAreaView,
-  Button,
   TextInput,
   Keyboard,
   TouchableWithoutFeedback
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import ButtonCard from '../../components/ButtonCard';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setFeel, setFeelBtn } from '../../redux/features/text/painFeelSlice';
+import { setFeel } from '../../redux/features/text/painFeelSlice';
+import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const Feel = ({ navigation }) => {
 
+  const painFeelState = useSelector((state: RootState) => state.painFeelSlice);
+
   const dispatch = useDispatch();
   const [localFeel, setLocalFeel] = useState("");
-  const [localFeelbtn, setLocalFeelBtn] = useState("");
   const handleSetFeel = (value) => {
     dispatch(setFeel(value));
     setLocalFeel(value);
-  };
-  const handleSetFeelBtn = (value) => {
-    dispatch(setFeelBtn(value));
-    setLocalFeelBtn(value);
   };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-
-
         <SafeAreaView style={styles.container}>
-          <View style={styles.goBackButton}>
-            <Button title="Go Back" onPress={() => navigation.goBack()} />
-          </View>
 
-          <Text style={styles.title}>What Does it Feel Like?</Text>
+          <GoBack navigation={navigation} />
+
 
           <View style={styles.buttonRow}>
-            <TouchableOpacity style={styles.button} onPress={() => dispatch(setFeelBtn("Mild"))}>
+            <TouchableOpacity style={styles.button} onPress={() => { }}>
               <Text style={styles.buttonText}>Mild</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} onPress={() => dispatch(setFeelBtn("Moderate"))}>
+            <TouchableOpacity style={styles.button} onPress={() => { }}>
               <Text style={styles.buttonText}>Moderate</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} onPress={() => dispatch(setFeelBtn("Severe"))}>
+            <TouchableOpacity style={styles.button} onPress={() => { }}>
               <Text style={styles.buttonText}>Severe</Text>
             </TouchableOpacity>
           </View>
@@ -61,7 +55,7 @@ const Feel = ({ navigation }) => {
             <TextInput
               style={styles.textInput}
               placeholder="Enter Text Here"
-              value={localFeel}
+              defaultValue={JSON.stringify(painFeelState.feel, null, 2).replaceAll('"', '')}
               onChangeText={handleSetFeel}
             />
           </View>

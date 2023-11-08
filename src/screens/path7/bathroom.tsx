@@ -15,8 +15,13 @@ import SmallButton from '../../components/SmallButton';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen } from '../../redux/features/text/bathroomSlice';
+import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const Bathroom = ({ navigation }) => {
+
+    const bathroomState = useSelector((state: RootState) => state.bathroomSlice);
 
     const dispatch = useDispatch();
     const [localWhen, setLocalWhen] = useState("");
@@ -28,85 +33,82 @@ const Bathroom = ({ navigation }) => {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+                <SafeAreaView style={styles.container}>
+                    <GoBack navigation={navigation} />
 
 
-                <KeyboardAvoidingView behavior="padding">
-                    <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
+                    <KeyboardAvoidingView behavior="padding">
+                        <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
 
-                        <SafeAreaView style={styles.container}>
                             <Button title="Go Back" onPress={() => navigation.goBack()} />
 
-                            <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
-                                <Text style={styles.title}>When Did You Last Use the Bathroom?</Text>
+                            <Text style={styles.title}>When Did You Last Use the Bathroom?</Text>
 
-                                <View style={styles.containerRow}>
-                                    <View style={styles.buttonContainer}>
-                                        <Text style={styles.imageTitle}>Was there blood?</Text>
-                                        <Image style={styles.imageBox} source={(alert)} />
-                                        <View style={styles.buttonRow}>
-                                            <TouchableOpacity onPress={() => navigation.navigate('')}>
-                                                <SmallButton title="Yes" image={blackCheck} ></SmallButton>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity onPress={() => navigation.navigate('')}>
-                                                <SmallButton title="No" image={xmark} ></SmallButton>
-                                            </TouchableOpacity>
-                                        </View>
-
-                                    </View>
-
-                                    <View style={styles.buttonContainer}>
-                                        <Text style={styles.imageTitle}>Constipation</Text>
-                                        <Image style={styles.imageBox} source={(alert)} />
-                                        <View style={styles.buttonRow}>
-                                            <TouchableOpacity onPress={() => navigation.navigate('')}>
-                                                <SmallButton title="Yes" image={blackCheck} ></SmallButton>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity onPress={() => navigation.navigate('')}>
-                                                <SmallButton title="No" image={xmark} ></SmallButton>
-                                            </TouchableOpacity>
-                                        </View>
-
+                            <View style={styles.containerRow}>
+                                <View style={styles.buttonContainer}>
+                                    <Text style={styles.imageTitle}>Was there blood?</Text>
+                                    <Image style={styles.imageBox} source={(alert)} />
+                                    <View style={styles.buttonRow}>
+                                        <TouchableOpacity onPress={() => navigation.navigate('')}>
+                                            <SmallButton title="Yes" image={blackCheck} ></SmallButton>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={() => navigation.navigate('')}>
+                                            <SmallButton title="No" image={xmark} ></SmallButton>
+                                        </TouchableOpacity>
                                     </View>
 
                                 </View>
 
-                                <View style={styles.containerRow}>
-                                    <View style={styles.buttonContainer}>
-                                        <Text style={styles.imageTitle}>Diarrhea?</Text>
-                                        <Image style={styles.imageBox} source={(alert)} />
-                                        <View style={styles.buttonRow}>
-                                            <TouchableOpacity onPress={() => navigation.navigate('')}>
-                                                <SmallButton title="Yes" image={blackCheck} ></SmallButton>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity onPress={() => navigation.navigate('')}>
-                                                <SmallButton title="No" image={xmark} ></SmallButton>
-                                            </TouchableOpacity>
-                                        </View>
-
+                                <View style={styles.buttonContainer}>
+                                    <Text style={styles.imageTitle}>Constipation</Text>
+                                    <Image style={styles.imageBox} source={(alert)} />
+                                    <View style={styles.buttonRow}>
+                                        <TouchableOpacity onPress={() => navigation.navigate('')}>
+                                            <SmallButton title="Yes" image={blackCheck} ></SmallButton>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={() => navigation.navigate('')}>
+                                            <SmallButton title="No" image={xmark} ></SmallButton>
+                                        </TouchableOpacity>
                                     </View>
-                                    <TouchableOpacity
-                                        style={styles.buttonContainer}
-                                        onPress={() => navigation.navigate("Pain_Screen")}
-                                    >
-                                        <ButtonCard title="Was it painful?" image={alert} />
-                                    </TouchableOpacity>
+
                                 </View>
 
+                            </View>
 
+                            <View style={styles.containerRow}>
+                                <View style={styles.buttonContainer}>
+                                    <Text style={styles.imageTitle}>Diarrhea?</Text>
+                                    <Image style={styles.imageBox} source={(alert)} />
+                                    <View style={styles.buttonRow}>
+                                        <TouchableOpacity onPress={() => navigation.navigate('')}>
+                                            <SmallButton title="Yes" image={blackCheck} ></SmallButton>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={() => navigation.navigate('')}>
+                                            <SmallButton title="No" image={xmark} ></SmallButton>
+                                        </TouchableOpacity>
+                                    </View>
 
-                                <Text style={styles.title}>When did you last use the bathroom?</Text>
+                                </View>
+                                <TouchableOpacity
+                                    style={styles.buttonContainer}
+                                    onPress={() => navigation.navigate("Pain_Screen")}
+                                >
+                                    <ButtonCard title="Was it painful?" image={alert} />
+                                </TouchableOpacity>
+                            </View>
 
-                                <TextInput
-                                    style={styles.inputField}
-                                    placeholder="Type your message here..."
-                                    placeholderTextColor="#888"
-                                    value={localWhen}
-                                    onChangeText={handleSetWhen}
-                                />
-                            </KeyboardAvoidingView>
-                        </SafeAreaView>
-                    </ScrollView>
-                </KeyboardAvoidingView>
+                            <Text style={styles.title}>When did you last use the bathroom?</Text>
+
+                            <TextInput
+                                style={styles.inputField}
+                                placeholder="Type your message here..."
+                                placeholderTextColor="#888"
+                                defaultValue={JSON.stringify(bathroomState.when, null, 2).replaceAll('"', '')}
+                                onChangeText={handleSetWhen}
+                            />
+                        </ScrollView>
+                    </KeyboardAvoidingView>
+                </SafeAreaView>
             </LinearGradient>
         </TouchableWithoutFeedback>
     );
@@ -201,5 +203,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: "black",
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
 });

@@ -4,7 +4,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Button,
   TextInput,
   Keyboard,
   TouchableWithoutFeedback
@@ -18,8 +17,13 @@ import alert from "../../../src/assets/alert.jpg";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen, setWhat } from '../../redux/features/text/intakeSlice';
+import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const IntakeOutput = ({ navigation }) => {
+
+  const intakeState = useSelector((state: RootState) => state.intakeSlice);
 
   const dispatch = useDispatch();
   const [localWhen, setLocalWhen] = useState('');
@@ -39,9 +43,8 @@ const IntakeOutput = ({ navigation }) => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
 
-
         <SafeAreaView style={styles.container}>
-          <Button title="Go Back" onPress={() => navigation.goBack()} />
+          <GoBack navigation={navigation} />
           <Text style={styles.title}>Last Intake/Output</Text>
 
           <View style={styles.buttonRow}>
@@ -65,7 +68,7 @@ const IntakeOutput = ({ navigation }) => {
             style={styles.inputField}
             placeholder="Type your message here..."
             placeholderTextColor="#888"
-            value={localWhen}
+            defaultValue={JSON.stringify(intakeState.when, null, 2).replaceAll('"', '')}
             onChangeText={handleSetWhen}
           />
 
@@ -75,7 +78,7 @@ const IntakeOutput = ({ navigation }) => {
             style={styles.inputField}
             placeholder="Type your message here..."
             placeholderTextColor="#888"
-            value={localWhat}
+            defaultValue={JSON.stringify(intakeState.what, null, 2).replaceAll('"', '')}
             onChangeText={handleSetWhat}
           />
         </SafeAreaView>
@@ -149,5 +152,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     color: "black",
     marginBottom: 10,
+    width: "80%",
+    alignSelf: 'center'
   },
 });

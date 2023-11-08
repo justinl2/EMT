@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, TextInput, StyleSheet, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { Text, SafeAreaView, TextInput, StyleSheet, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setFood, setMedication, setEnvironment, setOther } from '../../redux/features/text/allergiesSlice';
+import { RootState } from '../../redux/store';
 
+import GoBack from "../../components/GoBack";
 
 const Allergen = ({ navigation }) => {
+
+    const allergiesState = useSelector((state: RootState) => state.allergiesSlice);
 
     const dispatch = useDispatch();
 
@@ -42,7 +46,7 @@ const Allergen = ({ navigation }) => {
 
                 <SafeAreaView style={styles.container}>
 
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <GoBack navigation={navigation} />
 
                     <Text style={styles.title}>Allergies</Text>
 
@@ -51,7 +55,7 @@ const Allergen = ({ navigation }) => {
                     <TextInput
                         style={styles.input}
                         onChangeText={handleSetFood}
-                        value={food}
+                        defaultValue={JSON.stringify(allergiesState.foods, null, 2).replaceAll('"', '')}
                         placeholder="Foods"
                     />
 
@@ -60,7 +64,7 @@ const Allergen = ({ navigation }) => {
                     <TextInput
                         style={styles.input}
                         onChangeText={handleSetMedication}
-                        value={medication}
+                        defaultValue={JSON.stringify(allergiesState.medications, null, 2).replaceAll('"', '')}
                         placeholder="Medications"
                     />
                     <Text style={styles.text}>Environmental</Text>
@@ -68,7 +72,7 @@ const Allergen = ({ navigation }) => {
                     <TextInput
                         style={styles.input}
                         onChangeText={handleSetEnvironmental}
-                        value={environmental}
+                        defaultValue={JSON.stringify(allergiesState.environmental, null, 2).replaceAll('"', '')}
                         placeholder="Environmental"
                     />
 
@@ -77,7 +81,7 @@ const Allergen = ({ navigation }) => {
                     <TextInput
                         style={styles.input}
                         onChangeText={handleSetOther}
-                        value={other}
+                        defaultValue={JSON.stringify(allergiesState.other, null, 2).replaceAll('"', '')}
                         placeholder="Other"
                     />
                 </SafeAreaView>
@@ -102,6 +106,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15,

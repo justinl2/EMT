@@ -41,14 +41,14 @@ const DisplayStateComponent: React.FC = () => {
                         <Text style={styles.content}>{JSON.stringify(textEntryState, null, 2).replaceAll('"', '')}</Text>
 
                         <Text style={styles.subtitle}>
-                            {(JSON.stringify(directivesState.resuscitate, null, 2) !== 'false' ||
-                                JSON.stringify(directivesState.intubate, null, 2) !== 'false')
+                            {(JSON.stringify(directivesState.polst, null, 2) !== 'false' ||
+                                JSON.stringify(directivesState.resuscitate, null, 2) !== 'false')
                                 && "Advanced Medical Directives:"}
                         </Text>
                         <Text style={styles.content}>
                             <Text style={styles.redlabel}>
-                                {JSON.stringify(directivesState.resuscitate, null, 2) !== 'false' && "DO NOT RESUSCITATE\n"}
-                                {JSON.stringify(directivesState.intubate, null, 2) !== 'false' && "DO NOT INTUBATE"}
+                                {JSON.stringify(directivesState.polst, null, 2) !== 'false' && "PATIENT HAS A POLST\n"}
+                                {JSON.stringify(directivesState.resuscitate, null, 2) !== 'false' && "DO NOT RESUSCITATE / INTUBATE"}
                             </Text>
                         </Text>
 

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { LinearGradient } from "expo-linear-gradient";
-import { Text, SafeAreaView, TextInput, StyleSheet, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { Text, SafeAreaView, TextInput, StyleSheet, Keyboard, TouchableWithoutFeedback } from "react-native";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setInhaler, setThinner, setSexual, setNarcotics } from '../../redux/features/text/drugSlice';
+import { RootState } from '../../redux/store';
+import GoBack from "../../components/GoBack";
 
 const DrugsMedications = ({ navigation }) => {
+
+    const drugState = useSelector((state: RootState) => state.drugSlice);
 
     const dispatch = useDispatch();
 
@@ -42,7 +46,7 @@ const DrugsMedications = ({ navigation }) => {
                 <SafeAreaView style={styles.container}>
 
 
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <GoBack navigation={navigation} />
 
                     <Text style={styles.title}> Drugs & Medications </Text>
 
@@ -51,7 +55,7 @@ const DrugsMedications = ({ navigation }) => {
                         style={styles.input}
                         placeholder="Inhaler?"
                         placeholderTextColor="#888"
-                        value={localInhaler}
+                        defaultValue={JSON.stringify(drugState.inhaler, null, 2).replaceAll('"', '')}
                         onChangeText={handleSetInhaler}
                     />
 
@@ -60,7 +64,7 @@ const DrugsMedications = ({ navigation }) => {
                         style={styles.input}
                         placeholder="Blood thinners (Aspirin, warfarin, etc)?"
                         placeholderTextColor="#888"
-                        value={localBloodThinners}
+                        defaultValue={JSON.stringify(drugState.thinner, null, 2).replaceAll('"', '')}
                         onChangeText={handleSetBloodThinners}
                     />
 
@@ -69,7 +73,7 @@ const DrugsMedications = ({ navigation }) => {
                         style={styles.input}
                         placeholder="Sexual enhancement drugs in the last 24 hours?"
                         placeholderTextColor="#888"
-                        value={localSexualEnhancement}
+                        defaultValue={JSON.stringify(drugState.sexual, null, 2).replaceAll('"', '')}
                         onChangeText={handleSetSexualEnhancement}
                     />
 
@@ -78,7 +82,7 @@ const DrugsMedications = ({ navigation }) => {
                         style={styles.input}
                         placeholder="Narcotics? (opioids, heroin, morphine, oxycontin etc)"
                         placeholderTextColor="#888"
-                        value={localNarcotics}
+                        defaultValue={JSON.stringify(drugState.narcotics, null, 2).replaceAll('"', '')}
                         onChangeText={handleSetNarcotics}
                     />
                 </SafeAreaView>
@@ -100,6 +104,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15,

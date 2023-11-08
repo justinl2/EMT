@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   Text,
   SafeAreaView,
-  Button,
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
@@ -16,8 +15,13 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setHow } from '../../redux/features/text/painBadSlice';
+import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const HowBad = ({ navigation }) => {
+
+  const painBadState = useSelector((state: RootState) => state.painBadSlice);
 
   const dispatch = useDispatch();
   const [localHow, setLocalHow] = useState("");
@@ -28,14 +32,11 @@ const HowBad = ({ navigation }) => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <LinearGradient colors={["white", "#lightgray"]} style={{ flex: 1 }}>
+      <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
         <SafeAreaView style={styles.container}>
+          <KeyboardAvoidingView behavior="padding">
 
-          <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
-            <View style={styles.goBackButton}>
-              <Button title="Go Back" onPress={() => navigation.goBack()} />
-            </View>
-
+            <GoBack navigation={navigation} />
             <Text style={styles.title}>How Bad Does it Hurt?</Text>
 
             <View style={styles.buttonRow}>
@@ -63,10 +64,11 @@ const HowBad = ({ navigation }) => {
               <TextInput
                 style={styles.textInput}
                 placeholder="Enter Description Here"
-                value={localHow}
+                defaultValue={JSON.stringify(painBadState.how, null, 2).replaceAll('"', '')}
                 onChangeText={handleSetHow}
               />
             </View>
+
           </KeyboardAvoidingView>
         </SafeAreaView>
       </LinearGradient>

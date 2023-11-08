@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { LinearGradient } from "expo-linear-gradient";
-import { Text, SafeAreaView, View, TouchableOpacity, StyleSheet, TextInput, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { Text, SafeAreaView, View, TouchableOpacity, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
 import ButtonCard from "../../components/ButtonCard";
 import alert from '../../../src/assets/alert.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setConcern } from '../../redux/features/text/assistSlice';
+import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const Screen6 = ({ navigation }) => {
+
+    const assistState = useSelector((state: RootState) => state.assistSlice);
 
     const dispatch = useDispatch();
     const [localConcern, setLocalConcern] = useState("");
@@ -19,11 +24,9 @@ const Screen6 = ({ navigation }) => {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-
-
                 <SafeAreaView>
 
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <GoBack navigation={navigation} />
 
                     <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
                         <ButtonCard title="Alert & Oriented Assessment" image={alert} />
@@ -36,7 +39,7 @@ const Screen6 = ({ navigation }) => {
                             style={styles.inputField}
                             placeholder="Type your message here..."
                             placeholderTextColor="#888"
-                            value={localConcern}
+                            defaultValue={JSON.stringify(assistState.concern, null, 2).replaceAll('"', '')}
                             onChangeText={handleSetConcern}
                         />
 
@@ -112,6 +115,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: 'black',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     spacing: {
         marginTop: 75

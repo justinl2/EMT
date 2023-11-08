@@ -4,7 +4,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Button,
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
@@ -21,8 +20,13 @@ import blackCheck from "../../../src/assets/black-check.jpg";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen } from '../../redux/features/text/vomitSlice';
+import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const Vomit = ({ navigation }) => {
+
+  const vomitState = useSelector((state: RootState) => state.vomitSlice);
 
   const dispatch = useDispatch();
   const [localWhen, setLocalWhen] = useState("");
@@ -34,10 +38,9 @@ const Vomit = ({ navigation }) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-
-
         <SafeAreaView style={styles.container}>
-          <Button title="Go Back" onPress={() => navigation.goBack()} />
+          <GoBack navigation={navigation} />
+
           <Text style={styles.title}>Have You Vomited?</Text>
           <View style={styles.buttonContainer}>
             <Text style={styles.imageTitle}>Did you vomit blood?</Text>
@@ -50,16 +53,13 @@ const Vomit = ({ navigation }) => {
                 <SmallButton title="No" image={xmark} ></SmallButton>
               </TouchableOpacity>
             </View>
-
           </View>
-
           <Text style={styles.title}>When did you Vomit?</Text>
-
           <TextInput
             style={styles.inputField}
             placeholder="Type your message here..."
             placeholderTextColor="#888"
-            value={localWhen}
+            defaultValue={JSON.stringify(vomitState.when, null, 2).replaceAll('"', '')}
             onChangeText={handleSetWhen}
           />
         </SafeAreaView>
@@ -132,6 +132,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     color: "black",
     marginBottom: 10,
+    width: "80%",
+    alignSelf: 'center'
   },
   imageTitle: {
     fontSize: 16,

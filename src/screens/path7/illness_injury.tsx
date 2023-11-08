@@ -4,7 +4,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Button,
   TextInput,
   Keyboard,
   TouchableWithoutFeedback
@@ -21,8 +20,13 @@ import intakeOutput from "../../../src/assets/intakeOutput.jpg";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhatHappened, setOther } from '../../redux/features/text/illnessSlice';
+import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const IllnessInjury = ({ navigation }) => {
+
+  const illnessState = useSelector((state: RootState) => state.illnessSlice);
 
   const dispatch = useDispatch();
   const [localWhatHappened, setLocalWhatHappened] = useState('');
@@ -45,7 +49,7 @@ const IllnessInjury = ({ navigation }) => {
 
 
         <SafeAreaView style={styles.container}>
-          <Button title="Go Back" onPress={() => navigation.goBack()} />
+          <GoBack navigation={navigation} />
           <Text style={styles.title}>Illness/Injury</Text>
 
           <View style={styles.buttonRow}>
@@ -62,6 +66,13 @@ const IllnessInjury = ({ navigation }) => {
               <ButtonCard title="Signs and symptoms" image={SignsSymptoms} />
             </TouchableOpacity>
           </View>
+          <TextInput
+            style={styles.inputField}
+            placeholder="Type your message here..."
+            placeholderTextColor="#888"
+            defaultValue={JSON.stringify(illnessState.whathappened, null, 2).replaceAll('"', '')}
+            onChangeText={handleSetWhatHappened}
+          />
 
           <Text style={styles.title}>What happened?</Text>
 
@@ -69,17 +80,7 @@ const IllnessInjury = ({ navigation }) => {
             style={styles.inputField}
             placeholder="Type your message here..."
             placeholderTextColor="#888"
-            value={localWhatHappened}
-            onChangeText={handleSetWhatHappened}
-          />
-
-          <Text style={styles.title}>Other:</Text>
-
-          <TextInput
-            style={styles.inputField}
-            placeholder="Type your message here..."
-            placeholderTextColor="#888"
-            value={localOther}
+            defaultValue={JSON.stringify(illnessState.other, null, 2).replaceAll('"', '')}
             onChangeText={handleSetOther}
           />
 
@@ -154,5 +155,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     color: "black",
     marginBottom: 10,
+    width: "80%",
+    alignSelf: 'center'
   },
 });

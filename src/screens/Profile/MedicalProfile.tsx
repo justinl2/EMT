@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import {
     Text, SafeAreaView, TouchableOpacity, StyleSheet, TextInput, Switch, Button, View,
-    Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, ScrollView
+    Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, ScrollView,
 } from "react-native";
 import RNPickerSelect from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
+import StatusBarBackground from "../../components/StatusBar";
 import ButtonCard from "../../components/ButtonCard";
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
     setName, setDOB, setSex, setInsurance, setInsuranceNumber,
     setAllergies, setConditions, setMedication,
-    setResuscitate, setIntubate,
+    setPolst, setResuscitate,
     setHospital, setPhysician
 } from '../../redux/features/text/medicalProfileSlice';
+import { RootState } from '../../redux/store';
 
 
 const MedicalProfileScreen = ({ navigation }) => {
+
+    const profileState = useSelector((state: RootState) => state.medicalProfileSlice);
 
     const dispatch = useDispatch();
 
@@ -32,8 +36,8 @@ const MedicalProfileScreen = ({ navigation }) => {
     const [localConditions, setLocalConditions] = useState('');
     const [localMedication, setLocalMedication] = useState('');
 
+    const [localPolst, setLocalPolst] = useState(false);
     const [localResuscitate, setLocalResuscitate] = useState(false);
-    const [localIntubate, setLocalIntubate] = useState(false);
 
     const [localHospital, setLocalHospital] = useState('')
     const [localPhysician, setLocalPhysician] = useState('')
@@ -46,10 +50,11 @@ const MedicalProfileScreen = ({ navigation }) => {
 
     return (
 
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-                <KeyboardAvoidingView behavior="padding">
-                    <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
+        <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
+            <StatusBarBackground />
+            <KeyboardAvoidingView behavior="padding">
+                <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <SafeAreaView style={styles.container}>
 
                             <Text style={styles.title}> Medical Information Profile </Text>
@@ -62,7 +67,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Name"
                                 placeholderTextColor="#888"
-                                value={localName}
+                                defaultValue={JSON.stringify(profileState.name, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalName(text);
                                     dispatch(setName(text));
@@ -90,6 +95,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     { label: 'December', value: 'December' },
 
                                 ]}
+                                value={JSON.stringify(profileState.DOB.month, null, 2).replaceAll('"', '')}
                                 style={pickerSelectStyles}
                                 placeholder={{ label: 'Month', value: null }}
                             />
@@ -133,6 +139,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     { label: '30', value: '30' },
                                     { label: '31', value: '31' }
                                 ]}
+                                value={JSON.stringify(profileState.DOB.day, null, 2).replaceAll('"', '')}
                                 style={pickerSelectStyles}
                                 placeholder={{ label: 'Day', value: null }}
                             />
@@ -144,6 +151,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     dispatch(setDOB({ month: localMonth, day: localDay, year: value }));
                                 }}
                                 items={yearItems}
+                                value={JSON.stringify(profileState.DOB.year, null, 2).replaceAll('"', '')}
                                 style={pickerSelectStyles}
                                 placeholder={{ label: 'Year', value: null }}
                             />
@@ -159,6 +167,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     { label: 'Female', value: 'Female' },
                                     { label: 'Other', value: 'Other' }
                                 ]}
+                                value={JSON.stringify(profileState.sex, null, 2).replaceAll('"', '')}
                                 style={pickerSelectStyles}
                                 placeholder={{ label: 'Sex', value: null }}
                             />
@@ -169,7 +178,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Insurance Provider"
                                 placeholderTextColor="#888"
-                                value={localInsuranceProvider}
+                                defaultValue={JSON.stringify(profileState.insurance, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalInsuranceProvider(text);
                                     dispatch(setInsurance(text));
@@ -181,7 +190,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Insurance Number"
                                 placeholderTextColor="#888"
-                                value={localInsuranceNumber}
+                                defaultValue={JSON.stringify(profileState.insurancenumber, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalInsuranceNumber(text);
                                     dispatch(setInsuranceNumber(text));
@@ -195,7 +204,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Allergies"
                                 placeholderTextColor="#888"
-                                value={localAllergies}
+                                defaultValue={JSON.stringify(profileState.allergies, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalAllergies(text);
                                     dispatch(setAllergies(text));
@@ -205,9 +214,9 @@ const MedicalProfileScreen = ({ navigation }) => {
                             <Text style={styles.text}> Medical Conditions </Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Allergies"
+                                placeholder="Medical Conditions"
                                 placeholderTextColor="#888"
-                                value={localConditions}
+                                defaultValue={JSON.stringify(profileState.conditions, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalConditions(text);
                                     dispatch(setConditions(text));
@@ -219,7 +228,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Medication"
                                 placeholderTextColor="#888"
-                                value={localMedication}
+                                defaultValue={JSON.stringify(profileState.medication, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalMedication(text);
                                     dispatch(setMedication(text));
@@ -229,7 +238,19 @@ const MedicalProfileScreen = ({ navigation }) => {
                             <Text style={styles.section}> Advanced Medical Directives </Text>
 
                             <View style={styles.switch}>
-                                <Text style={styles.text}> Do Not Resuscitate </Text>
+                                <Text style={styles.text}> POLST? </Text>
+                                <Switch
+                                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                                    thumbColor={localPolst ? "#f5dd4b" : "#f4f3f4"}
+                                    ios_backgroundColor="#3e3e3e"
+                                    onValueChange={(text) => {
+                                        setLocalPolst(text);
+                                        dispatch(setPolst(text));
+                                    }}
+                                    value={JSON.stringify(profileState.polst, null, 2) === 'true'}
+                                />
+
+                                <Text style={styles.text}> Do Not Resuscitate / Intubate </Text>
                                 <Switch
                                     trackColor={{ false: "#767577", true: "#81b0ff" }}
                                     thumbColor={localResuscitate ? "#f5dd4b" : "#f4f3f4"}
@@ -238,20 +259,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                         setLocalResuscitate(text);
                                         dispatch(setResuscitate(text));
                                     }}
-                                    value={localResuscitate}
-                                    style={styles.switch}
-                                />
-
-                                <Text style={styles.text}> Do Not Intubate </Text>
-                                <Switch
-                                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                                    thumbColor={localIntubate ? "#f5dd4b" : "#f4f3f4"}
-                                    ios_backgroundColor="#3e3e3e"
-                                    onValueChange={(text) => {
-                                        setLocalIntubate(text);
-                                        dispatch(setIntubate(text));
-                                    }}
-                                    value={localIntubate}
+                                    value={JSON.stringify(profileState.resuscitate, null, 2) === 'true'}
                                 />
                             </View>
 
@@ -262,7 +270,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Preferred Hospital"
                                 placeholderTextColor="#888"
-                                value={localHospital}
+                                defaultValue={JSON.stringify(profileState.hospital, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalHospital(text);
                                     dispatch(setAllergies(text));
@@ -274,25 +282,19 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Physician's Name"
                                 placeholderTextColor="#888"
-                                value={localPhysician}
+                                defaultValue={JSON.stringify(profileState.physician, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     setLocalPhysician(text);
                                     dispatch(setPhysician(text));
                                 }}
                             />
 
-                            <TouchableOpacity
-                                style={styles.buttonContainer}
-                                onPress={() => navigation.navigate("Medical_Profile_EMT_Screen")}
-                            >
-                                <ButtonCard title="EMT View of Medical Profile" image={alert} />
-                            </TouchableOpacity>
-
                         </SafeAreaView>
-                    </ScrollView>
-                </KeyboardAvoidingView>
-            </LinearGradient>
-        </TouchableWithoutFeedback>
+                    </TouchableWithoutFeedback>
+                </ScrollView>
+            </KeyboardAvoidingView>
+        </LinearGradient>
+
 
     );
 }
@@ -301,9 +303,7 @@ export default MedicalProfileScreen;
 
 const styles = StyleSheet.create({
     container: {
-        padding: 20,
-        marginBottom: 50,
-
+        marginBottom: 100,
     },
     input: {
         height: 40,
@@ -314,12 +314,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15,
         fontWeight: "500",
         color: "white",
         textAlign: 'left',
+        paddingLeft: 35,
     },
     section: {
         fontSize: 20,
@@ -365,6 +368,8 @@ const pickerSelectStyles = StyleSheet.create({
         paddingRight: 30,
         backgroundColor: '#FFFFFF',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     inputAndroid: {
         fontSize: 15,
@@ -377,5 +382,7 @@ const pickerSelectStyles = StyleSheet.create({
         paddingRight: 30,
         backgroundColor: '#FFFFFF',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
 });

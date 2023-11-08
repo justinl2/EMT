@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, TouchableOpacity, StyleSheet, TextInput, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { Text, SafeAreaView, TouchableOpacity, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
 import RNPickerSelect from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
 import ButtonCard from "../../components/ButtonCard";
@@ -7,8 +7,13 @@ import personal from '../../../src/assets/personal.jpg'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setName, setDOB, setInsurance } from '../../redux/features/text/personalSlice';
+import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const PersonalInformation = ({ navigation }) => {
+
+    const personalState = useSelector((state: RootState) => state.personalSlice);
 
     const dispatch = useDispatch();
 
@@ -31,7 +36,7 @@ const PersonalInformation = ({ navigation }) => {
 
                 <SafeAreaView style={styles.container}>
 
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <GoBack navigation={navigation} />
 
                     <Text style={styles.title}> Personal Information </Text>
 
@@ -40,7 +45,7 @@ const PersonalInformation = ({ navigation }) => {
                         style={styles.input}
                         placeholder="Name"
                         placeholderTextColor="#888"
-                        value={localName}
+                        defaultValue={JSON.stringify(personalState.name, null, 2).replaceAll('"', '')}
                         onChangeText={(text) => {
                             setLocalName(text);
                             dispatch(setName(text));
@@ -69,6 +74,7 @@ const PersonalInformation = ({ navigation }) => {
                             { label: 'December', value: 'December' },
 
                         ]}
+                        value={JSON.stringify(personalState.DOB.month, null, 2).replaceAll('"', '')}
                         style={pickerSelectStyles}
                         placeholder={{ label: 'Month', value: null }}
                     />
@@ -111,6 +117,7 @@ const PersonalInformation = ({ navigation }) => {
                             { label: '30', value: '30' },
                             { label: '31', value: '31' }
                         ]}
+                        value={JSON.stringify(personalState.DOB.day, null, 2).replaceAll('"', '')}
                         style={pickerSelectStyles}
                         placeholder={{ label: 'Day', value: null }}
                     />
@@ -121,6 +128,7 @@ const PersonalInformation = ({ navigation }) => {
                             dispatch(setDOB({ month: localMonth, day: localDay, year: value }));
                         }}
                         items={yearItems}
+                        value={JSON.stringify(personalState.DOB.year, null, 2).replaceAll('"', '')}
                         style={pickerSelectStyles}
                         placeholder={{ label: 'Year', value: null }}
                     />
@@ -132,7 +140,7 @@ const PersonalInformation = ({ navigation }) => {
                         style={styles.input}
                         placeholder="Insurance Provider"
                         placeholderTextColor="#888"
-                        value={localInsuranceProvider}
+                        defaultValue={JSON.stringify(personalState.insurance, null, 2).replaceAll('"', '')}
                         onChangeText={(text) => {
                             setLocalInsuranceProvider(text);
                             dispatch(setInsurance(text));
@@ -160,6 +168,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15,
@@ -192,6 +202,8 @@ const pickerSelectStyles = StyleSheet.create({
         paddingRight: 30,
         backgroundColor: '#FFFFFF',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     inputAndroid: {
         fontSize: 16,
@@ -204,5 +216,7 @@ const pickerSelectStyles = StyleSheet.create({
         paddingRight: 30,
         backgroundColor: '#FFFFFF',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
 });

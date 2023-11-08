@@ -17,11 +17,12 @@ import SmallButton from '../../components/SmallButton';
 import pregnant from "../../../src/assets/pregnant.jpg";
 import sex from "../../../src/assets/sex.jpg";
 import diabetes from "../../../src/assets/diabetes.jpg";
-
-
-
+import { RootState } from '../../redux/store';
+import GoBack from "../../components/GoBack";
 
 const MedicalConditions = ({ navigation }) => {
+
+    const conditionState = useSelector((state: RootState) => state.conditionSlice);
 
     const dispatch = useDispatch();
 
@@ -59,12 +60,14 @@ const MedicalConditions = ({ navigation }) => {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+                <SafeAreaView style={styles.container}>
+
+                    <GoBack navigation={navigation} />
 
 
-                <KeyboardAvoidingView behavior="padding">
-                    <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
+                    <KeyboardAvoidingView behavior="padding">
+                        <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
 
-                        <SafeAreaView style={styles.container}>
 
                             <Button title="Go Back" onPress={() => navigation.goBack()} />
 
@@ -123,7 +126,7 @@ const MedicalConditions = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Breathing conditions?"
                                 placeholderTextColor="#888"
-                                value={localBreathing}
+                                defaultValue={JSON.stringify(conditionState.breathing, null, 2).replaceAll('"', '')}
                                 onChangeText={handleSetBreathing}
                             />
 
@@ -132,15 +135,14 @@ const MedicalConditions = ({ navigation }) => {
                                 style={styles.input}
                                 placeholder="Other condition?"
                                 placeholderTextColor="#888"
-                                value={localOther}
+                                defaultValue={JSON.stringify(conditionState.other, null, 2).replaceAll('"', '')}
                                 onChangeText={handleSetOther}
                             />
 
-                        </SafeAreaView>
-                    </ScrollView>
+                        </ScrollView>
 
-                </KeyboardAvoidingView>
-
+                    </KeyboardAvoidingView>
+                </SafeAreaView>
             </LinearGradient>
         </TouchableWithoutFeedback>
 
@@ -160,6 +162,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15,

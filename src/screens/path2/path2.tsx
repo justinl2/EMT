@@ -7,15 +7,15 @@ import allergen from '../../../src/assets/allergen.jpg'
 import pill from '../../../src/assets/pill.jpg'
 import needle from '../../../src/assets/syringe.jpg'
 
+import GoBack from "../../components/GoBack";
+
 const Screen2 = ({ navigation }) => {
 
   return (
     <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-
-
       <SafeAreaView>
 
-        <Button title="Go Back" onPress={() => navigation.goBack()} />
+        <GoBack navigation={navigation} />
 
         <Text style={styles.title}>Medical and Personal Information</Text>
 
@@ -36,8 +36,6 @@ const Screen2 = ({ navigation }) => {
             <ButtonCard title="Medical Conditions" image={needle} ></ButtonCard>
           </TouchableOpacity>
         </View>
-
-
       </SafeAreaView>
     </LinearGradient>
   );

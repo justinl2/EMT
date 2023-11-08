@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, TextInput, StyleSheet, Button, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { Text, SafeAreaView, TextInput, StyleSheet, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import RNPickerSelect from 'react-native-picker-select';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setName, setWhere, setWeekday } from '../../redux/features/text/assessmentSlice';
+import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const Screen5 = ({ navigation }) => {
+
+    const assessmentState = useSelector((state: RootState) => state.assessmentSlice);
 
     const dispatch = useDispatch();
 
@@ -21,7 +26,7 @@ const Screen5 = ({ navigation }) => {
 
                 <SafeAreaView style={styles.container}>
 
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <GoBack navigation={navigation} />
 
                     <Text style={styles.title}>Alert and Oriented Assessment</Text>
 
@@ -33,7 +38,7 @@ const Screen5 = ({ navigation }) => {
                             setLocalName(text);
                             dispatch(setName(text));
                         }}
-                        value={localName}
+                        defaultValue={JSON.stringify(assessmentState.name, null, 2).replaceAll('"', '')}
                         placeholder="What is your name?"
                     />
 
@@ -45,7 +50,7 @@ const Screen5 = ({ navigation }) => {
                             setLocalLocationAwareness(text);
                             dispatch(setWhere(text));
                         }}
-                        value={localLocationAwareness}
+                        defaultValue={JSON.stringify(assessmentState.where, null, 2).replaceAll('"', '')}
                         placeholder="Do you know where you are?"
                     />
                     <Text style={styles.text}>What day of the week is it today?</Text>
@@ -65,6 +70,7 @@ const Screen5 = ({ navigation }) => {
                             { label: 'Sunday', value: 'Sunday' },
                         ]}
                         style={pickerSelectStyles}
+                        value={JSON.stringify(assessmentState.weekday, null, 2).replaceAll('"', '')}
                         placeholder={{ label: 'Day', value: null }}
                     />
                 </SafeAreaView>
@@ -86,6 +92,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15,
@@ -118,6 +126,8 @@ const pickerSelectStyles = StyleSheet.create({
         paddingRight: 30,
         backgroundColor: '#FFFFFF',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     inputAndroid: {
         fontSize: 16,
@@ -130,6 +140,8 @@ const pickerSelectStyles = StyleSheet.create({
         paddingRight: 30,
         backgroundColor: '#FFFFFF',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
 });
 

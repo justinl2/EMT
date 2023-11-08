@@ -15,8 +15,8 @@ const initialState = {
     conditions: "",
     medication: "",
 
+    polst: false,
     resuscitate: false,
-    intubate: false,
 
     hospital: "",
     physician: "",
@@ -63,13 +63,13 @@ const medicalProfileSlice = createSlice({
             state.medication = action.payload;
         },
 
+        setPolst: (state, action) => {
+            console.log('setPolst action called with payload:', action.payload);
+            state.polst = action.payload;
+        },
         setResuscitate: (state, action) => {
             console.log('setResuscitate action called with payload:', action.payload);
             state.resuscitate = action.payload;
-        },
-        setIntubate: (state, action) => {
-            console.log('setIntubate action called with payload:', action.payload);
-            state.intubate = action.payload;
         },
 
         setHospital: (state, action) => {
@@ -87,7 +87,7 @@ const medicalProfileSlice = createSlice({
 export const {
     setName, setDOB, setSex, setInsurance, setInsuranceNumber,
     setAllergies, setConditions, setMedication,
-    setResuscitate, setIntubate,
+    setPolst, setResuscitate,
     setHospital, setPhysician
 } = medicalProfileSlice.actions;
 export default medicalProfileSlice.reducer;

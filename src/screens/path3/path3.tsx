@@ -1,5 +1,5 @@
 import {
-    Text, SafeAreaView, StyleSheet, View, TouchableOpacity, Button, TextInput,
+    Text, SafeAreaView, StyleSheet, View, TouchableOpacity, TextInput,
     Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -9,17 +9,21 @@ import ButtonCard from "../../components/ButtonCard";
 
 
 import pill from '../../../src/assets/pill.jpg';
-import clipboard from '../../../src/assets/clipboard.jpg'
-import pain from '../../../src/assets/pain.jpg'
-import check from '../../../src/assets/check.jpg'
+import clipboard from '../../../src/assets/clipboard.jpg';
+import pain from '../../../src/assets/pain.jpg';
+import check from '../../../src/assets/check.jpg';
 import alert from '../../../src/assets/alert.jpg';
-import assist from '../../../src/assets/assist.jpg'
+import assist from '../../../src/assets/assist.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen, setBetter, setWhere } from '../../redux/features/text/painSlice';
+import { RootState } from '../../redux/store';
 
+import GoBack from "../../components/GoBack";
 
 const Pain = ({ navigation }) => {
+
+    const painState = useSelector((state: RootState) => state.painSlice);
 
     const dispatch = useDispatch();
 
@@ -46,10 +50,8 @@ const Pain = ({ navigation }) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
 
-
-
                 <SafeAreaView >
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <GoBack navigation={navigation} />
 
                     <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
                         <Text style={styles.title}>Pain</Text>
@@ -68,7 +70,7 @@ const Pain = ({ navigation }) => {
                         <TextInput
                             style={styles.input}
                             onChangeText={handleSetWhen}
-                            value={localWhen}
+                            defaultValue={JSON.stringify(painState.when, null, 2).replaceAll('"', '')}
                             placeholder="When did it start?"
                         />
 
@@ -77,7 +79,7 @@ const Pain = ({ navigation }) => {
                         <TextInput
                             style={styles.input}
                             onChangeText={handleSetBetter}
-                            value={localBetter}
+                            defaultValue={JSON.stringify(painState.better, null, 2).replaceAll('"', '')}
                             placeholder="What makes the pain better or worse?"
                         />
 
@@ -86,7 +88,7 @@ const Pain = ({ navigation }) => {
                         <TextInput
                             style={styles.input}
                             onChangeText={handleSetWhere}
-                            value={localWhere}
+                            defaultValue={JSON.stringify(painState.where, null, 2).replaceAll('"', '')}
                             placeholder="Does the pain move to other parts of your body?"
                         />
                     </KeyboardAvoidingView>
@@ -145,6 +147,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15,

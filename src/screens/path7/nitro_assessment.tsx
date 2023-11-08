@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View, Button, Image, } from "react-native";
+import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 import ButtonCard from "../../components/ButtonCard";
@@ -7,15 +7,15 @@ import blackCheck from "../../../src/assets/black-check.jpg";
 import xmark from "../../../src/assets/x-mark.jpg";
 import SmallButton from '../../components/SmallButton';
 
+import GoBack from "../../components/GoBack";
+
 const NitroAssessment = ({ navigation }) => {
-
-
     return (
         <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
 
 
             <SafeAreaView style={styles.container}>
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                <GoBack navigation={navigation} />
                 <Text style={styles.title}>Nitroglycerine Contraindiction Assessmnet</Text>
 
                 <View style={styles.containerRow}>
