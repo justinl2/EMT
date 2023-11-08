@@ -6,11 +6,11 @@
     "\\src\\screens",
     "\\src\\screens\\path2",
     "\\src\\screens\\path3",
+    "\\src\\screens\\path4",
     "\\src\\screens\\path5",
-    "\\src\\screens\\path6",
     "\\src\\screens\\path7",
     "\\src\\screens\\Profile"
   ],
-  "SelectedNode": "\\src\\screens\\Profile\\MedicalProfile.tsx",
+  "SelectedNode": "\\src\\components\\StatusBar.tsx",
   "PreviewInSolutionExplorer": false
 }
