@@ -36,7 +36,9 @@ const SignsSymptoms = ({ navigation }) => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+      <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
         <SafeAreaView style={styles.container}>
           <Button title="Go Back" onPress={() => navigation.goBack()} />
           <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>

@@ -25,7 +25,9 @@ const DisplayStateComponent: React.FC = () => {
     const signsState = useSelector((state: RootState) => state.signsSlice);
 
     return (
-        <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
 
             <SafeAreaView style={styles.container}>
                 <ScrollView>

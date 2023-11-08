@@ -11,7 +11,9 @@ import assist from '../assets/assist.jpg'
 
 const HomeScreen = ({ navigation }) => {
   return (
-    <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
+    <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
       <SafeAreaView style={styles.container}>
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('FirstPath')}>
@@ -37,7 +39,7 @@ const HomeScreen = ({ navigation }) => {
             <ButtonCard title="Do NOT assist or hospitalize me" image={assist} />
           </TouchableOpacity>
         </View>
-        
+
       </SafeAreaView>
     </LinearGradient>
   );
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 5, 
+    marginBottom: 5,
   },
   button: {
     width: 150,
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   buttonContainer: {
-    marginRight: 15, 
+    marginRight: 15,
     marginLeft: 15
   },
   buttonText: {

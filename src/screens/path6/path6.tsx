@@ -18,7 +18,9 @@ const Screen6 = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
                 <SafeAreaView>
 
                     <Button title="Go Back" onPress={() => navigation.goBack()} />
@@ -26,7 +28,7 @@ const Screen6 = ({ navigation }) => {
                     <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
                         <ButtonCard title="Alert & Oriented Assessment" image={alert} />
                     </TouchableOpacity>
-                
+
                     <View style={styles.spacing}>
                         <Text style={styles.title}>For the EMT: communicate your concern to your patient</Text>
 
@@ -39,13 +41,13 @@ const Screen6 = ({ navigation }) => {
                         />
 
                         <View style={styles.buttonRow}>
-                            <TouchableOpacity style={styles.choiceButton} onPress={() => {  }}>
+                            <TouchableOpacity style={styles.choiceButton} onPress={() => { }}>
                                 <Text style={styles.buttonText}>I understand, but do NOT help me or take me to the hospital.</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.choiceButton} onPress={() => {  }}>
+                            <TouchableOpacity style={styles.choiceButton} onPress={() => { }}>
                                 <Text style={styles.buttonText}>Please help me, but do NOT take me to the hospital</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.choiceButton} onPress={() => {  }}>
+                            <TouchableOpacity style={styles.choiceButton} onPress={() => { }}>
                                 <Text style={styles.buttonText}>Please help me and take me to the hospital</Text>
                             </TouchableOpacity>
                         </View>
@@ -96,23 +98,23 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     buttonContainer: {
-        marginRight: 15, 
+        marginRight: 15,
         marginLeft: 15,
-        justifyContent: 'center',  
-        alignItems: 'center', 
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    inputField: { 
+    inputField: {
         height: 40,
-        backgroundColor: '#FFFFFF',  
-        borderColor: '#CCCCCC',     
+        backgroundColor: '#FFFFFF',
+        borderColor: '#CCCCCC',
         borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
-        color: 'black', 
+        color: 'black',
         marginBottom: 10,
     },
     spacing: {
         marginTop: 75
     }
-    
+
 });

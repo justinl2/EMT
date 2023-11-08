@@ -10,7 +10,9 @@ import needle from '../../../src/assets/syringe.jpg'
 const Screen2 = ({ navigation }) => {
 
   return (
-    <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+    <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
       <SafeAreaView>
 
         <Button title="Go Back" onPress={() => navigation.goBack()} />
@@ -79,6 +81,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 15,
     letterSpacing: 1,
+    color: "black",
   },
 
 });

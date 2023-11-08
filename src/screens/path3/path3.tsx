@@ -44,8 +44,10 @@ const Pain = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
-            
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
+
                 <SafeAreaView >
                     <Button title="Go Back" onPress={() => navigation.goBack()} />
 
@@ -53,12 +55,12 @@ const Pain = ({ navigation }) => {
                         <Text style={styles.title}>Pain</Text>
 
                         <View style={styles.buttonRow}>
-                        <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Feel_Screen')}>
-                            <ButtonCard title="What does it feel like?" image={pill} />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('How_Bad_Screen')}>
-                            <ButtonCard title="How Bad?" image={clipboard} />
-                        </TouchableOpacity>
+                            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Feel_Screen')}>
+                                <ButtonCard title="What does it feel like?" image={pill} />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('How_Bad_Screen')}>
+                                <ButtonCard title="How Bad?" image={clipboard} />
+                            </TouchableOpacity>
                         </View>
 
                         <Text style={styles.text}>When did it start?</Text>
@@ -99,33 +101,33 @@ export default Pain;
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: -50,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: -50,
     },
     buttonRow: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginBottom: 5, 
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 5,
     },
     button: {
-      width: 150,
-      height: 150,
-      backgroundColor: 'white',
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 5,
+        width: 150,
+        height: 150,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
     },
     buttonContainer: {
-      marginRight: 15, 
-      marginLeft: 15
+        marginRight: 15,
+        marginLeft: 15
     },
     buttonText: {
-      color: 'black',
-      fontSize: 16,
-      fontWeight: 'bold',
+        color: 'black',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
     title: {
         fontSize: 18,
@@ -136,12 +138,12 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        backgroundColor: '#FFFFFF',  
-        borderColor: '#CCCCCC',     
+        backgroundColor: '#FFFFFF',
+        borderColor: '#CCCCCC',
         borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
-        color: '#333333',          
+        color: '#333333',
         marginBottom: 10,
     },
     text: {
@@ -150,10 +152,9 @@ const styles = StyleSheet.create({
         color: "white",
         marginTop: 15,
         marginBottom: 15,
-        textAlign: 'center', 
-      },
-  });
+        textAlign: 'center',
+    },
+});
 
 
 
-  

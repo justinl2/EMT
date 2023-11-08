@@ -11,7 +11,9 @@ const NitroAssessment = ({ navigation }) => {
 
 
     return (
-        <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
             <SafeAreaView style={styles.container}>
                 <Button title="Go Back" onPress={() => navigation.goBack()} />
                 <Text style={styles.title}>Nitroglycerine Contraindiction Assessmnet</Text>

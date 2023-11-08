@@ -58,7 +58,9 @@ const MedicalConditions = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
                 <KeyboardAvoidingView behavior="padding">
                     <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
 
@@ -162,7 +164,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15,
         fontWeight: "500",
-        color: "white",
+        color: "black",
         marginTop: 15,
         marginBottom: 15,
         textAlign: 'center',
@@ -170,7 +172,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,
@@ -178,7 +180,7 @@ const styles = StyleSheet.create({
     imageTitle: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,

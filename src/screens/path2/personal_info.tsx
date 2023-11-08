@@ -26,7 +26,9 @@ const PersonalInformation = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
                 <SafeAreaView style={styles.container}>
 
                     <Button title="Go Back" onPress={() => navigation.goBack()} />
@@ -41,7 +43,7 @@ const PersonalInformation = ({ navigation }) => {
                         value={localName}
                         onChangeText={(text) => {
                             setLocalName(text);
-                            dispatch(setName(text)); 
+                            dispatch(setName(text));
                         }}
                     />
 
@@ -65,7 +67,7 @@ const PersonalInformation = ({ navigation }) => {
                             { label: 'October', value: 'October' },
                             { label: 'November', value: 'November' },
                             { label: 'December', value: 'December' },
-                        
+
                         ]}
                         style={pickerSelectStyles}
                         placeholder={{ label: 'Month', value: null }}
@@ -108,7 +110,7 @@ const PersonalInformation = ({ navigation }) => {
                             { label: '29', value: '29' },
                             { label: '30', value: '30' },
                             { label: '31', value: '31' }
-                        ]}                    
+                        ]}
                         style={pickerSelectStyles}
                         placeholder={{ label: 'Day', value: null }}
                     />
@@ -122,7 +124,7 @@ const PersonalInformation = ({ navigation }) => {
                         style={pickerSelectStyles}
                         placeholder={{ label: 'Year', value: null }}
                     />
-                
+
 
                     <Text style={styles.text}> Insurance Provider</Text>
 
@@ -133,13 +135,13 @@ const PersonalInformation = ({ navigation }) => {
                         value={localInsuranceProvider}
                         onChangeText={(text) => {
                             setLocalInsuranceProvider(text);
-                            dispatch(setInsurance(text)); 
+                            dispatch(setInsurance(text));
                         }}
                     />
 
                 </SafeAreaView>
-                </LinearGradient>
-            </TouchableWithoutFeedback>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -151,12 +153,12 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        backgroundColor: '#FFFFFF',  
-        borderColor: '#CCCCCC',     
+        backgroundColor: '#FFFFFF',
+        borderColor: '#CCCCCC',
         borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
-        color: '#333333',          
+        color: '#333333',
         marginBottom: 10,
     },
     text: {
@@ -165,15 +167,15 @@ const styles = StyleSheet.create({
         color: "white",
         marginTop: 15,
         marginBottom: 15,
-        textAlign: 'center', 
-      },
+        textAlign: 'center',
+    },
     title: {
-        fontSize: 24,              
-        fontWeight: 'bold',         
-        color: '#FFFFFF',           
-        textAlign: 'center',       
-        marginBottom: 15,           
-        letterSpacing: 1,           
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        textAlign: 'center',
+        marginBottom: 15,
+        letterSpacing: 1,
     },
 
 });

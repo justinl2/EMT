@@ -9,14 +9,16 @@ import { setName, setWhere, setWeekday } from '../../redux/features/text/assessm
 const Screen5 = ({ navigation }) => {
 
     const dispatch = useDispatch();
-    
+
     const [localName, setLocalName] = useState("");
     const [localLocationAwareness, setLocalLocationAwareness] = useState("");
     const [localDayAwareness, setLocalDayAwareness] = useState("");
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
                 <SafeAreaView style={styles.container}>
 
                     <Button title="Go Back" onPress={() => navigation.goBack()} />
@@ -77,12 +79,12 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        backgroundColor: '#FFFFFF',  
-        borderColor: '#CCCCCC',     
+        backgroundColor: '#FFFFFF',
+        borderColor: '#CCCCCC',
         borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
-        color: '#333333',          
+        color: '#333333',
         marginBottom: 10,
     },
     text: {
@@ -91,15 +93,15 @@ const styles = StyleSheet.create({
         color: "white",
         marginTop: 15,
         marginBottom: 15,
-        textAlign: 'center', 
-      },
+        textAlign: 'center',
+    },
     title: {
-        fontSize: 24,              
-        fontWeight: 'bold',         
-        color: '#FFFFFF',           
-        textAlign: 'center',       
-        marginBottom: 15,           
-        letterSpacing: 1,           
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        textAlign: 'center',
+        marginBottom: 15,
+        letterSpacing: 1,
     },
 
 });

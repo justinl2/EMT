@@ -13,7 +13,9 @@ const Screen1 = ({ navigation }) => {
     const [localIntubate, setLocalIntubate] = useState(false);
 
     return (
-        <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
             <SafeAreaView style={styles.container}>
 
                 <Button title="Go Back" onPress={() => navigation.goBack()} />
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15,
         fontWeight: "500",
-        color: "white",
+        color: "black",
         marginTop: 15,
         marginBottom: 15,
         textAlign: 'center',
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,

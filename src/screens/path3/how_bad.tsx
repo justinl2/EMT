@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { 
-  View, 
-  StatusBar, 
-  StyleSheet, 
-  TouchableOpacity, 
-  Text, 
-  SafeAreaView, 
-  Button, 
+import {
+  View,
+  StatusBar,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  SafeAreaView,
+  Button,
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
@@ -19,59 +19,59 @@ import { setHow } from '../../redux/features/text/painBadSlice';
 
 const HowBad = ({ navigation }) => {
 
-    const dispatch = useDispatch();
-    const [localHow, setLocalHow] = useState("");
-    const handleSetHow = (value) => {
-        dispatch(setHow(value));
-        setLocalHow(value);
-    };
+  const dispatch = useDispatch();
+  const [localHow, setLocalHow] = useState("");
+  const handleSetHow = (value) => {
+    dispatch(setHow(value));
+    setLocalHow(value);
+  };
 
-    return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
-                <SafeAreaView style={styles.container}>
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <LinearGradient colors={["white", "#lightgray"]} style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
 
-                    <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
-                    <View style={styles.goBackButton}>
-                        <Button title="Go Back" onPress={() => navigation.goBack()} />
-                    </View>
+          <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
+            <View style={styles.goBackButton}>
+              <Button title="Go Back" onPress={() => navigation.goBack()} />
+            </View>
 
-                    <Text style={styles.title}>How Bad Does it Hurt?</Text>
-        
-                    <View style={styles.buttonRow}>
-                      <TouchableOpacity style={styles.button} onPress={() => {}}>
-                        <Text style={styles.buttonText}>Sharp</Text>
-                      </TouchableOpacity>
+            <Text style={styles.title}>How Bad Does it Hurt?</Text>
 
-                      <TouchableOpacity style={styles.button} onPress={() => {}}>
-                        <Text style={styles.buttonText}>Dull</Text>
-                      </TouchableOpacity>
-                    </View>
+            <View style={styles.buttonRow}>
+              <TouchableOpacity style={styles.button} onPress={() => { }}>
+                <Text style={styles.buttonText}>Sharp</Text>
+              </TouchableOpacity>
 
-                    <View style={styles.buttonRow}>
-                      <TouchableOpacity style={styles.button} onPress={() => {}}>
-                        <Text style={styles.buttonText}>Throbbing</Text>
-                      </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={() => { }}>
+                <Text style={styles.buttonText}>Dull</Text>
+              </TouchableOpacity>
+            </View>
 
-                      <TouchableOpacity style={styles.button} onPress={() => {}}>
-                        <Text style={styles.buttonText}>Hot</Text>
-                      </TouchableOpacity>
-                    </View>
+            <View style={styles.buttonRow}>
+              <TouchableOpacity style={styles.button} onPress={() => { }}>
+                <Text style={styles.buttonText}>Throbbing</Text>
+              </TouchableOpacity>
 
-                    <View style={styles.textInputContainer}>
-                        <Text style={styles.otherLabel}>Other:</Text>
-                            <TextInput
-                                style={styles.textInput}
-                                placeholder="Enter Description Here"
-                                value={localHow}
-                                onChangeText={handleSetHow}
-                            />
-                        </View>
-                    </KeyboardAvoidingView>
-              </SafeAreaView>
-            </LinearGradient>
-        </TouchableWithoutFeedback>
-    );
+              <TouchableOpacity style={styles.button} onPress={() => { }}>
+                <Text style={styles.buttonText}>Hot</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.textInputContainer}>
+              <Text style={styles.otherLabel}>Other:</Text>
+              <TextInput
+                style={styles.textInput}
+                placeholder="Enter Description Here"
+                value={localHow}
+                onChangeText={handleSetHow}
+              />
+            </View>
+          </KeyboardAvoidingView>
+        </SafeAreaView>
+      </LinearGradient>
+    </TouchableWithoutFeedback>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -89,13 +89,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    width: 130, 
+    width: 130,
     height: 50,
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
-    marginHorizontal: 10,  
+    marginHorizontal: 10,
   },
   buttonText: {
     color: 'black',
@@ -120,27 +120,27 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'white',
     color: 'black',
-    },
+  },
   input: {
     height: 40,
-    backgroundColor: '#FFFFFF',  
-    borderColor: '#CCCCCC',     
+    backgroundColor: '#FFFFFF',
+    borderColor: '#CCCCCC',
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
-    color: '#333333',          
+    color: '#333333',
     marginBottom: 10,
   },
   goBackButton: {
-    marginBottom: 100,  
+    marginBottom: 100,
   },
   title: {
-    fontSize: 24,              
-    fontWeight: 'bold',         
-    color: '#FFFFFF',           
-    textAlign: 'center',       
-    marginBottom: 15,           
-    letterSpacing: 1,           
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginBottom: 15,
+    letterSpacing: 1,
   },
 });
 
