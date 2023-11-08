@@ -3365,10 +3365,17 @@ expo-status-bar@~1.6.0:
   resolved "https://registry.npmjs.org/expo-status-bar/-/expo-status-bar-1.6.0.tgz"
   integrity sha512-e//Oi2WPdomMlMDD3skE4+1ZarKCJ/suvcB4Jo/nO427niKug5oppcPNYO+csR6y3ZglGuypS+3pp/hJ+Xp6fQ==
 
+<<<<<<< HEAD
+expo@^49.0.13:
+  version "49.0.13"
+  resolved "https://registry.npmjs.org/expo/-/expo-49.0.13.tgz"
+  integrity sha512-k2QFmT5XN490ksjKJgogfS5SFj6ZKCu1GwWz4VUV4S9gkPjzr8zQAZoVPKaWxUYRb6xDpTJXdhLt7gSnV3bJvw==
+=======
 expo@^49.0.0:
   version "49.0.17"
   resolved "https://registry.yarnpkg.com/expo/-/expo-49.0.17.tgz#10d40e60aed410a2f36e549a641d7c3afe864c69"
   integrity sha512-NZRvA7tqbAM2ZSAaXYVl1tuODLA5GfxY6+IJk23kcWdRclfG2Djc65pgCqJoAchyncKYfqEQDzuAw1q8fOncdQ==
+>>>>>>> main
   dependencies:
     "@babel/runtime" "^7.20.0"
     "@expo/cli" "0.10.14"
@@ -5618,6 +5625,8 @@ react-native-screens@~3.22.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+<<<<<<< HEAD
+=======
 react-native-svg@13.9.0:
   version "13.9.0"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.9.0.tgz#8df8a690dd00362601f074dec5d3a86dd0f99c7f"
@@ -5626,6 +5635,7 @@ react-native-svg@13.9.0:
     css-select "^5.1.0"
     css-tree "^1.1.3"
 
+>>>>>>> main
 react-native@0.72.6:
   version "0.72.6"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.72.6.tgz#9f8d090694907e2f83af22e115cc0e4a3d5fa626"
@@ -6146,7 +6156,11 @@ source-map@^0.5.6:
   resolved "https://registry.npmjs.org/source-map/-/source-map-0.5.7.tgz"
   integrity sha512-LbrmJOMUSdEVxIKvdcJzQC+nQhe8FUZQTXQy6+I75skNgn3OoQ0DZA8YnFa7gp8tqtL3KPf1kmo0R5DoApeSGQ==
 
+<<<<<<< HEAD
+source-map@^0.6.0, source-map@~0.6.1:
+=======
 source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.1:
+>>>>>>> main
   version "0.6.1"
   resolved "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==

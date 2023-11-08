@@ -6,12 +6,17 @@ import {
   View,
   TextInput,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Image,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import ButtonCard from "../../components/ButtonCard";
 import alert from "../../../src/assets/alert.jpg";
+import SmallButton from '../../components/SmallButton';
+import xmark from "../../../src/assets/x-mark.jpg";
+import blackCheck from "../../../src/assets/black-check.jpg";
+
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen } from '../../redux/features/text/vomitSlice';
@@ -21,44 +26,46 @@ import GoBack from "../../components/GoBack";
 
 const Vomit = ({ navigation }) => {
 
-    const vomitState = useSelector((state: RootState) => state.vomitSlice);
+  const vomitState = useSelector((state: RootState) => state.vomitSlice);
 
-    const dispatch = useDispatch();
-    const [localWhen, setLocalWhen] = useState("");
-    const handleSetWhen = (value) => {
-        dispatch(setWhen(value));
-        setLocalWhen(value);
-    };
+  const dispatch = useDispatch();
+  const [localWhen, setLocalWhen] = useState("");
+  const handleSetWhen = (value) => {
+    dispatch(setWhen(value));
+    setLocalWhen(value);
+  };
 
-    return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
-                <SafeAreaView style={styles.container}>
-                    <GoBack navigation={navigation} />
-                <Text style={styles.title}>Have You Vomited?</Text>
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
+          <GoBack navigation={navigation} />
 
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Main")}
-                    >
-                    <ButtonCard title="Did you vomit blood?" image={alert} />
-                    </TouchableOpacity>
-                </View>
-
-                <Text style={styles.title}>When did you Vomit?</Text>
-
-                <TextInput
-                    style={styles.inputField}
-                    placeholder="Type your message here..."
-                    placeholderTextColor="#888"
-                    defaultValue={JSON.stringify(vomitState.when, null, 2).replaceAll('"', '')}
-                    onChangeText={handleSetWhen}
-                />
-                </SafeAreaView>
-            </LinearGradient>
-        </TouchableWithoutFeedback>
-     );
+          <Text style={styles.title}>Have You Vomited?</Text>
+          <View style={styles.buttonContainer}>
+            <Text style={styles.imageTitle}>Did you vomit blood?</Text>
+            <Image style={styles.imageBox} source={(alert)} />
+            <View style={styles.buttonRow}>
+              <TouchableOpacity onPress={() => navigation.navigate('')}>
+                <SmallButton title="Yes" image={blackCheck} ></SmallButton>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('')}>
+                <SmallButton title="No" image={xmark} ></SmallButton>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <Text style={styles.title}>When did you Vomit?</Text>
+          <TextInput
+            style={styles.inputField}
+            placeholder="Type your message here..."
+            placeholderTextColor="#888"
+            defaultValue={JSON.stringify(vomitState.when, null, 2).replaceAll('"', '')}
+            onChangeText={handleSetWhen}
+          />
+        </SafeAreaView>
+      </LinearGradient>
+    </TouchableWithoutFeedback>
+  );
 };
 
 export default Vomit;
@@ -124,8 +131,27 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     color: "black",
-      marginBottom: 10,
-      width: "80%",
-      alignSelf: 'center'
+    marginBottom: 10,
+    width: "80%",
+    alignSelf: 'center'
+  },
+  imageTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginBottom: 15,
+    letterSpacing: 1,
+  },
+  imageBox: {
+    width: 140,
+    height: 140,
+    alignSelf: "center",
+  },
+  buttonRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10,
   },
 });

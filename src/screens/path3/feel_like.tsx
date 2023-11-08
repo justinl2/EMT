@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { 
-  View, 
-  StatusBar, 
-  StyleSheet, 
-  TouchableOpacity, 
-  Text, 
+import {
+  View,
+  StatusBar,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
   SafeAreaView,
-  TextInput, 
+  TextInput,
   Keyboard,
   TouchableWithoutFeedback
 } from 'react-native';
@@ -20,50 +20,49 @@ import GoBack from "../../components/GoBack";
 
 const Feel = ({ navigation }) => {
 
-    const painFeelState = useSelector((state: RootState) => state.painFeelSlice);
+  const painFeelState = useSelector((state: RootState) => state.painFeelSlice);
 
-    const dispatch = useDispatch();
-    const [localFeel, setLocalFeel] = useState("");
-    const handleSetFeel = (value) => {
-        dispatch(setFeel(value));
-        setLocalFeel(value);
-    };
+  const dispatch = useDispatch();
+  const [localFeel, setLocalFeel] = useState("");
+  const handleSetFeel = (value) => {
+    dispatch(setFeel(value));
+    setLocalFeel(value);
+  };
 
-    return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
-                <SafeAreaView style={styles.container}>
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
 
-                <GoBack navigation={navigation} />
+          <GoBack navigation={navigation} />
 
-                <Text style={styles.title}>What Does it Feel Like?</Text>
 
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonText}>Mild</Text>
-                    </TouchableOpacity>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity style={styles.button} onPress={() => { }}>
+              <Text style={styles.buttonText}>Mild</Text>
+            </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonText}>Moderate</Text>
-                    </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => { }}>
+              <Text style={styles.buttonText}>Moderate</Text>
+            </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonText}>Severe</Text>
-                    </TouchableOpacity>
-                </View>
+            <TouchableOpacity style={styles.button} onPress={() => { }}>
+              <Text style={styles.buttonText}>Severe</Text>
+            </TouchableOpacity>
+          </View>
 
-                    <View style={styles.textInputContainer}>
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder="Enter Text Here"
-                            defaultValue={JSON.stringify(painFeelState.feel, null, 2).replaceAll('"', '')}
-                            onChangeText={handleSetFeel}
-                        />
-                </View>
-                </SafeAreaView>
-            </LinearGradient>
-        </TouchableWithoutFeedback>
-    );
+          <View style={styles.textInputContainer}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Enter Text Here"
+              defaultValue={JSON.stringify(painFeelState.feel, null, 2).replaceAll('"', '')}
+              onChangeText={handleSetFeel}
+            />
+          </View>
+        </SafeAreaView>
+      </LinearGradient>
+    </TouchableWithoutFeedback>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -107,15 +106,15 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   goBackButton: {
-    marginBottom: 100,  
+    marginBottom: 100,
   },
   title: {
-    fontSize: 24,              
-    fontWeight: 'bold',         
-    color: '#FFFFFF',           
-    textAlign: 'center',       
-    marginBottom: 15,           
-    letterSpacing: 1,           
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginBottom: 15,
+    letterSpacing: 1,
   },
 });
 

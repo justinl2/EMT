@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import { LinearGradient } from "expo-linear-gradient";
 import {
-    Text, SafeAreaView, TextInput, StyleSheet,
-    Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView
+    Text, SafeAreaView, TextInput, StyleSheet, Button,
+    Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, View, TouchableOpacity,
+    Image, ScrollView,
 } from "react-native";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setDiabetes, setBreathing, setSexual, setPregnant, setOther } from '../../redux/features/text/conditionSlice';
+import ButtonCard from "../../components/ButtonCard";
+import Smallbutton from "../../components/SmallButton";
+import alert from "../../../src/assets/alert.jpg";
+import blackCheck from "../../../src/assets/black-check.jpg";
+import xmark from "../../../src/assets/x-mark.jpg";
+import SmallButton from '../../components/SmallButton';
+import pregnant from "../../../src/assets/pregnant.jpg";
+import sex from "../../../src/assets/sex.jpg";
+import diabetes from "../../../src/assets/diabetes.jpg";
 import { RootState } from '../../redux/store';
-
 import GoBack from "../../components/GoBack";
 
 const MedicalConditions = ({ navigation }) => {
@@ -50,59 +59,88 @@ const MedicalConditions = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
                 <SafeAreaView style={styles.container}>
-      
+
                     <GoBack navigation={navigation} />
 
-                    <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
 
-                        <Text style={styles.title}>Medical Conditions</Text>
+                    <KeyboardAvoidingView behavior="padding">
+                        <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
 
-                        <Text style={styles.text}>Diabetes</Text>
-                        <TextInput 
-                            style={styles.input}
-                            placeholder="Diabetes?"
-                            placeholderTextColor="#888"
-                            defaultValue={JSON.stringify(conditionState.diabetes, null, 2).replaceAll('"', '')}
-                            onChangeText={handleSetDiabetes}
-                        />
 
-                        <Text style={styles.text}>Breathing conditions (asthma, COPD, etc)</Text>
-                        <TextInput 
-                            style={styles.input}
-                            placeholder="Breathing conditions?"
-                            placeholderTextColor="#888"
-                            defaultValue={JSON.stringify(conditionState.breathing, null, 2).replaceAll('"', '')}
-                            onChangeText={handleSetBreathing}
-                        />
+                            <Button title="Go Back" onPress={() => navigation.goBack()} />
 
-                        <Text style={styles.text}>Sexually Active</Text>
-                        <TextInput 
-                            style={styles.input}
-                            placeholder="Sexually Active?"
-                            placeholderTextColor="#888"
-                            defaultValue={JSON.stringify(conditionState.sexual, null, 2).replaceAll('"', '')}
-                            onChangeText={handleSetSexual}
-                        />
+                            <Text style={styles.title}>Medical Conditions</Text>
 
-                        <Text style={styles.text}>Pregnant</Text>
-                        <TextInput 
-                            style={styles.input}
-                            placeholder="Pregnant?"
-                            placeholderTextColor="#888"
-                            defaultValue={JSON.stringify(conditionState.pregnant, null, 2).replaceAll('"', '')}
-                            onChangeText={handleSetPregnant}
-                        />
 
-                        <Text style={styles.text}>Other:</Text>
-                        <TextInput 
-                            style={styles.input}
-                            placeholder="Other condition?"
-                            placeholderTextColor="#888"
-                            defaultValue={JSON.stringify(conditionState.other, null, 2).replaceAll('"', '')}
-                            onChangeText={handleSetOther}
-                        />
+                            <View style={styles.containerRow}>
+                                <View style={styles.buttonContainer}>
+                                    <Text style={styles.imageTitle}>Diabetes</Text>
+                                    <Image style={styles.imageBox} source={(diabetes)} />
+                                    <View style={styles.buttonRow}>
+                                        <TouchableOpacity onPress={() => navigation.navigate('')}>
+                                            <SmallButton title="Yes" image={blackCheck} ></SmallButton>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={() => navigation.navigate('')}>
+                                            <SmallButton title="No" image={xmark} ></SmallButton>
+                                        </TouchableOpacity>
+                                    </View>
+
+                                </View>
+
+                                <View style={styles.buttonContainer}>
+                                    <Text style={styles.imageTitle}>Sexually Active</Text>
+                                    <Image style={styles.imageBox} source={(sex)} />
+                                    <View style={styles.buttonRow}>
+                                        <TouchableOpacity onPress={() => navigation.navigate('')}>
+                                            <SmallButton title="Yes" image={blackCheck} ></SmallButton>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={() => navigation.navigate('')}>
+                                            <SmallButton title="No" image={xmark} ></SmallButton>
+                                        </TouchableOpacity>
+                                    </View>
+
+                                </View>
+
+                            </View>
+
+                            <View style={styles.buttonSingle}>
+                                <View style={styles.buttonContainer}>
+                                    <Text style={styles.imageTitle}>Pregnant</Text>
+                                    <Image style={styles.imageBox} source={(pregnant)} />
+                                    <View style={styles.buttonRow}>
+                                        <TouchableOpacity onPress={() => navigation.navigate('')}>
+                                            <SmallButton title="Yes" image={blackCheck} ></SmallButton>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={() => navigation.navigate('')}>
+                                            <SmallButton title="No" image={xmark} ></SmallButton>
+                                        </TouchableOpacity>
+                                    </View>
+
+                                </View>
+                            </View>
+
+                            <Text style={styles.text}>Breathing conditions (asthma, COPD, etc)</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Breathing conditions?"
+                                placeholderTextColor="#888"
+                                defaultValue={JSON.stringify(conditionState.breathing, null, 2).replaceAll('"', '')}
+                                onChangeText={handleSetBreathing}
+                            />
+
+                            <Text style={styles.text}>Other:</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Other condition?"
+                                placeholderTextColor="#888"
+                                defaultValue={JSON.stringify(conditionState.other, null, 2).replaceAll('"', '')}
+                                onChangeText={handleSetOther}
+                            />
+
+                        </ScrollView>
+
                     </KeyboardAvoidingView>
                 </SafeAreaView>
             </LinearGradient>
@@ -117,12 +155,12 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        backgroundColor: '#FFFFFF',  
-        borderColor: '#CCCCCC',     
+        backgroundColor: '#FFFFFF',
+        borderColor: '#CCCCCC',
         borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
-        color: '#333333',          
+        color: '#333333',
         marginBottom: 10,
         width: "80%",
         alignSelf: 'center'
@@ -130,19 +168,67 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15,
         fontWeight: "500",
-        color: "white",
+        color: "black",
         marginTop: 15,
         marginBottom: 15,
-        textAlign: 'center', 
-      },
-    title: {
-        fontSize: 24,              
-        fontWeight: 'bold',         
-        color: '#FFFFFF',           
-        textAlign: 'center',       
-        marginBottom: 15,           
-        letterSpacing: 1,           
+        textAlign: 'center',
     },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center',
+        marginBottom: 15,
+        letterSpacing: 1,
+    },
+    imageTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center',
+        marginBottom: 15,
+        letterSpacing: 1,
+    },
+    buttonRow: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 10,
+    },
+    buttonSingle: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 10,
+        justifyContent: "center",
+    },
+    button: {
+        width: 150,
+        height: 150,
+        backgroundColor: "white",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 5,
+    },
+    buttonContainer: {
+        marginRight: 15,
+        marginLeft: 15,
+    },
+    buttonText: {
+        color: "black",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
+    imageBox: {
+        width: 140,
+        height: 140,
+        alignSelf: "center",
+    },
+    containerRow: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 10,
+    }
 });
 
 export default MedicalConditions;

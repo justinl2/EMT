@@ -9,7 +9,7 @@ const DisplayStateComponent: React.FC = () => {
     const textEntryState = useSelector((state: RootState) => state.textEntry);
     const directivesState = useSelector((state: RootState) => state.directivesSlice);
     const assistState = useSelector((state: RootState) => state.assistSlice);
-    const painState = useSelector((state: RootState) => state.painSlice); 
+    const painState = useSelector((state: RootState) => state.painSlice);
     const assessmentState = useSelector((state: RootState) => state.assessmentSlice);
     const personalState = useSelector((state: RootState) => state.personalSlice);
     const allergiesState = useSelector((state: RootState) => state.allergiesSlice);
@@ -25,18 +25,20 @@ const DisplayStateComponent: React.FC = () => {
     const signsState = useSelector((state: RootState) => state.signsSlice);
 
     return (
-        <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
+        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
 
             <SafeAreaView style={styles.container}>
                 <ScrollView>
                     <View style={{ padding: 60 }}>
-                        
+
                         <Text style={styles.title}>Summary</Text>
 
                         <Text style={styles.subtitle}>
                             {JSON.stringify(textEntryState, null, 2) !== '""' && "Text Tab:"}
                         </Text>
-                        <Text style={styles.content}>{JSON.stringify(textEntryState, null, 2).replaceAll('"','')}</Text>
+                        <Text style={styles.content}>{JSON.stringify(textEntryState, null, 2).replaceAll('"', '')}</Text>
 
                         <Text style={styles.subtitle}>
                             {(JSON.stringify(directivesState.polst, null, 2) !== 'false' ||
@@ -56,7 +58,7 @@ const DisplayStateComponent: React.FC = () => {
                                 JSON.stringify(personalState.DOB.day, null, 2) !== '""' ||
                                 JSON.stringify(personalState.DOB.year, null, 2) !== '""' ||
                                 JSON.stringify(personalState.insurance, null, 2) !== '""')
-                            && "Personal Information:"}
+                                && "Personal Information:"}
                         </Text>
                         <Text style={styles.content}>
 
@@ -216,11 +218,16 @@ const DisplayStateComponent: React.FC = () => {
                             {JSON.stringify(painFeelState.feel, null, 2).replaceAll('"', '')}
 
                             <Text style={styles.label}>
+                                {JSON.stringify(painFeelState.feelBtn, null, 2) !== '""' && "\nWhat does it feel like (button)?: "}
+                            </Text>
+                            {JSON.stringify(painFeelState.feelBtn, null, 2).replaceAll('"', '')}
+
+                            <Text style={styles.label}>
                                 {JSON.stringify(painBadState.how, null, 2) !== '""' && "\nHow bad does it hurt?: "}
                             </Text>
                             {JSON.stringify(painBadState.how, null, 2).replaceAll('"', '')}
 
-                        </Text> 
+                        </Text>
 
                         <Text style={styles.subtitle}>
                             {(JSON.stringify(illnessState.whathappened, null, 2) !== '""' ||
@@ -294,7 +301,7 @@ const DisplayStateComponent: React.FC = () => {
                             </Text>
                             {JSON.stringify(mentalState.mental, null, 2).replaceAll('"', '')}
 
-                        </Text>                 
+                        </Text>
 
                         <Text style={styles.subtitle}>
                             {(JSON.stringify(assessmentState.name, null, 2) !== '""' ||
@@ -319,7 +326,7 @@ const DisplayStateComponent: React.FC = () => {
                             </Text>
                             {JSON.stringify(assessmentState.weekday, null, 2).replaceAll('"', '')}
 
-                        </Text> 
+                        </Text>
 
                         <Text style={styles.subtitle}>
                             {JSON.stringify(assistState.concern, null, 2) !== '""' && "Do Not Assist:"}

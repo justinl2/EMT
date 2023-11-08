@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import {
     Text, SafeAreaView, TouchableOpacity, StyleSheet, TextInput, Switch, Button, View,
-    Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, ScrollView
+    Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, ScrollView,
 } from "react-native";
 import RNPickerSelect from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
 import StatusBarBackground from "../../components/StatusBar";
+import ButtonCard from "../../components/ButtonCard";
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -19,7 +20,7 @@ import { RootState } from '../../redux/store';
 
 const MedicalProfileScreen = ({ navigation }) => {
 
-    const profileState = useSelector((state: RootState) => state.medicalProfileSlice); 
+    const profileState = useSelector((state: RootState) => state.medicalProfileSlice);
 
     const dispatch = useDispatch();
 
@@ -49,13 +50,13 @@ const MedicalProfileScreen = ({ navigation }) => {
 
     return (
 
-        <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>    
+        <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
             <StatusBarBackground />
             <KeyboardAvoidingView behavior="padding">
                 <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <SafeAreaView style={styles.container}>
-                            
+
                             <Text style={styles.title}> Medical Information Profile </Text>
                             <Text style={styles.subtitle}> Please fill out the following form... </Text>
 
@@ -293,7 +294,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                 </ScrollView>
             </KeyboardAvoidingView>
         </LinearGradient>
-        
+
 
     );
 }
@@ -350,7 +351,7 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
     },
     switch: {
-        alignItems: 'center', 
+        alignItems: 'center',
     }
 
 });
