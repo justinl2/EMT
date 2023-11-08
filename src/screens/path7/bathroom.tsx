@@ -4,7 +4,6 @@ import {
     StyleSheet,
     TouchableOpacity,
     View,
-    Button,
     TextInput,
     Keyboard,
     TouchableWithoutFeedback,
@@ -19,8 +18,13 @@ import alert from "../../../src/assets/alert.jpg";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen } from '../../redux/features/text/bathroomSlice';
+import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const Bathroom = ({ navigation }) => {
+
+    const bathroomState = useSelector((state: RootState) => state.bathroomSlice);
 
     const dispatch = useDispatch();
     const [localWhen, setLocalWhen] = useState("");
@@ -31,9 +35,9 @@ const Bathroom = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
                 <SafeAreaView style={styles.container}>
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <GoBack navigation={navigation} />
 
                     <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
                         <Text style={styles.title}>When Did You Last Use the Bathroom?</Text>
@@ -68,15 +72,13 @@ const Bathroom = ({ navigation }) => {
                             </TouchableOpacity>
                         </View>
 
-
-
                         <Text style={styles.title}>When did you last use the bathroom?</Text>
 
                         <TextInput
                             style={styles.inputField}
                             placeholder="Type your message here..."
                             placeholderTextColor="#888"
-                            value={localWhen}
+                            defaultValue={JSON.stringify(bathroomState.when, null, 2).replaceAll('"', '')}
                             onChangeText={handleSetWhen}
                         />
                     </KeyboardAvoidingView>
@@ -151,5 +153,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: "black",
         marginBottom: 10,
+        width: "80%",
+        alignSelf: 'center'
     },
 });

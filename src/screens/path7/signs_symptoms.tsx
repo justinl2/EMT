@@ -4,7 +4,6 @@ import {
     StyleSheet,
     TouchableOpacity,
     View,
-    Button,
     TextInput,
     Keyboard,
     TouchableWithoutFeedback,
@@ -19,8 +18,13 @@ import alert from "../../../src/assets/alert.jpg";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setOther } from '../../redux/features/text/signsSlice';
+import { RootState } from '../../redux/store';
+
+import GoBack from "../../components/GoBack";
 
 const SignsSymptoms = ({ navigation }) => {
+
+    const signsState = useSelector((state: RootState) => state.signsSlice);
 
     const dispatch = useDispatch();
     const [localOther, setLocalOther] = useState("");
@@ -31,57 +35,57 @@ const SignsSymptoms = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
                 <SafeAreaView style={styles.container}>
-                    <Button title="Go Back" onPress={() => navigation.goBack()} />
+                    <GoBack navigation={navigation} />
                     <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
 
                         <Text style={styles.title}>Signs and Symptoms</Text>
 
                         <View style={styles.buttonRow}>
-                          <TouchableOpacity
+                            <TouchableOpacity
                             style={styles.buttonContainer}
                             onPress={() => navigation.navigate("Pain_Screen")}
-                          >
+                            >
                             <ButtonCard title="Pain" image={alert} />
-                          </TouchableOpacity>
-                          <TouchableOpacity
+                            </TouchableOpacity>
+                            <TouchableOpacity
                             style={styles.buttonContainer}
                             onPress={() => navigation.navigate("Nitro_Assessment_Screen")}
-                          >
+                            >
                             <ButtonCard
-                              title="Trouble breathing, chest tightness"
-                              image={alert}
+                                title="Trouble breathing, chest tightness"
+                                image={alert}
                             />
-                          </TouchableOpacity>
+                            </TouchableOpacity>
                         </View>
 
                         <View style={styles.buttonRow}>
-                          <TouchableOpacity
+                            <TouchableOpacity
                             style={styles.buttonContainer}
                             onPress={() => navigation.navigate("Intake_Output_Screen")}
-                          >
+                            >
                             <ButtonCard title="Stomach/gastrointestinal issues" image={alert} />
-                          </TouchableOpacity>
-                          <TouchableOpacity
+                            </TouchableOpacity>
+                            <TouchableOpacity
                             style={styles.buttonContainer}
                             onPress={() => navigation.navigate("Main")}
-                          >
+                            >
                             <ButtonCard
-                              title="Light-headedness, dizziness, nausea"
-                              image={alert}
+                                title="Light-headedness, dizziness, nausea"
+                                image={alert}
                             />
-                          </TouchableOpacity>
+                            </TouchableOpacity>
                         </View>
 
                         <Text style={styles.title}>Other:</Text>
 
                         <TextInput
-                          style={styles.inputField}
-                          placeholder="Type your message here..."
-                          placeholderTextColor="#888"
-                          value={localOther}
-                          onChangeText={handleSetOther}
+                            style={styles.inputField}
+                            placeholder="Type your message here..."
+                            placeholderTextColor="#888"
+                            defaultValue={JSON.stringify(signsState.other, null, 2).replaceAll('"', '')}
+                            onChangeText={handleSetOther}
                         />
                     </KeyboardAvoidingView>
                  </SafeAreaView>
@@ -154,6 +158,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     color: "black",
-    marginBottom: 10,
+      marginBottom: 10,
+      width: "80%",
+      alignSelf: 'center'
   },
 });

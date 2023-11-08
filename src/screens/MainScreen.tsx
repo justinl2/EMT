@@ -10,37 +10,37 @@ import alert from '../assets/alert.jpg'
 import assist from '../assets/assist.jpg'
 
 const HomeScreen = ({ navigation }) => {
-  return (
-    <LinearGradient colors={["#040306","#131624"]} style={{flex:1}}>
-      <SafeAreaView style={styles.container}>
+    return (
+        <LinearGradient colors={["#131624", "#f0ffff"]} style={{flex:1}}>
+        <SafeAreaView style={styles.container}>
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('FirstPath')}>
-            <ButtonCard title="Advanced Medical Directives" image={pill} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Med_and_Personal')}>
-            <ButtonCard title="Medical and Personal Information" image={clipboard} />
-          </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('FirstPath')}>
+                <ButtonCard title="Advanced Medical Directives" image={pill} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Med_and_Personal')}>
+                <ButtonCard title="Medical and Personal Information" image={clipboard} />
+            </TouchableOpacity>
         </View>
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Pain_Screen')}>
-            <ButtonCard title="Pain" image={pain} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Whats_Wrong_Screen')}>
-            <ButtonCard title="What's Wrong" image={check} />
-          </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Pain_Screen')}>
+                <ButtonCard title="Pain" image={pain} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Whats_Wrong_Screen')}>
+                <ButtonCard title="What's Wrong" image={check} />
+            </TouchableOpacity>
         </View>
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
-            <ButtonCard title="Alert & Oriented Assessment" image={alert} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('SixthPath')}>
-            <ButtonCard title="Do NOT assist or hospitalize me" image={assist} />
-          </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
+                <ButtonCard title="Alert & Oriented Assessment" image={alert} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('SixthPath')}>
+                <ButtonCard title="Do NOT assist or hospitalize me" image={assist} />
+            </TouchableOpacity>
         </View>
         
-      </SafeAreaView>
+        </SafeAreaView>
     </LinearGradient>
-  );
+    );
 };
 
 const styles = StyleSheet.create({

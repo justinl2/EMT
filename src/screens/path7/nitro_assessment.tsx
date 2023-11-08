@@ -1,16 +1,16 @@
-import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View, Button } from "react-native";
+import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 import ButtonCard from "../../components/ButtonCard";
 import alert from '../../../src/assets/alert.jpg';
 
+import GoBack from "../../components/GoBack";
+
 const NitroAssessment = ({ navigation }) => {
-
-
     return (
-        <LinearGradient colors={["#040306", "#131624"]} style={{ flex: 1 }}>
+        <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
-                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                <GoBack navigation={navigation} />
                 <Text style={styles.title}>Nitroglycerine Contraindiction Assessmnet</Text>
 
                 <View style={styles.buttonRow}>
