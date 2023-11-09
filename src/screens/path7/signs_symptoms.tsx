@@ -18,91 +18,104 @@ import mental from "../../../src/assets/mental.png";
 import injury from "../../../src/assets/injury.jpg";
 import alert from "../../../src/assets/alert.jpg";
 import blackCheck from "../../../src/assets/black-check.jpg";
+import pressedBlackCheck from "../../../src/assets/pressed-black-check.jpg";
 import xmark from "../../../src/assets/x-mark.jpg";
+import pressedXmark from "../../../src/assets/pressed-x-mark.jpg";
 import SmallButton from '../../components/SmallButton';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setOther } from '../../redux/features/text/signsSlice';
+import { setLighthead, setOther } from '../../redux/features/text/signsSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
 
 const SignsSymptoms = ({ navigation }) => {
 
-  const signsState = useSelector((state: RootState) => state.signsSlice);
+    const signsState = useSelector((state: RootState) => state.signsSlice);
 
-  const dispatch = useDispatch();
-  const [localOther, setLocalOther] = useState("");
-  const handleSetOther = (value) => {
-    dispatch(setOther(value));
-    setLocalOther(value);
-  };
+    const dispatch = useDispatch();
 
-  return (
+    const [isLightheadYesPressed, setIsLightheadYesPressed] = useState(JSON.stringify(signsState.lighthead, null, 2).replaceAll('"', '') === "y");
+    const [isLightheadNoPressed, setIsLightheadNoPressed] = useState(JSON.stringify(signsState.lighthead, null, 2).replaceAll('"', '') === "n");
+
+    const handleSetLighthead = (value) => {
+        if (value === "y") {
+            setIsLightheadYesPressed((prev) => !prev);
+            isLightheadYesPressed ? (value = "") : null;
+            setIsLightheadNoPressed(false)
+        }
+        else if (value === "n") {
+            setIsLightheadNoPressed((prev) => !prev);
+            isLightheadNoPressed ? (value = "") : null;
+            setIsLightheadYesPressed(false)
+        }
+        dispatch(setLighthead(value));
+    };
+    const handleSetOther = (value) => dispatch(setOther(value));
+
+    return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
         <SafeAreaView style={styles.container}>
-          <GoBack navigation={navigation} />
-          <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
-
-
+            <GoBack navigation={navigation} />
+            <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
 
             <Text style={styles.title}>Signs and Symptoms</Text>
 
             <View style={styles.containerRow}>
-              <TouchableOpacity
+                <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={() => navigation.navigate("Pain_Screen")}
-              >
+                >
                 <ButtonCard title="Pain" image={alert} />
-              </TouchableOpacity>
-              <TouchableOpacity
+                </TouchableOpacity>
+                <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={() => navigation.navigate("Nitro_Assessment_Screen")}
-              >
+                >
                 <ButtonCard
-                  title="Trouble breathing, chest tightness"
-                  image={alert}
+                    title="Trouble breathing, chest tightness"
+                    image={alert}
                 />
-              </TouchableOpacity>
+                </TouchableOpacity>
             </View>
 
             <View style={styles.containerRow}>
-              <TouchableOpacity
-                style={styles.buttonContainer}
-                onPress={() => navigation.navigate("Intake_Output_Screen")}
-              >
+                <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={() => navigation.navigate("Intake_Output_Screen")}
+                >
                 <ButtonCard title="Stomach/gastrointestinal issues" image={alert} />
-              </TouchableOpacity>
-              <View style={styles.buttonContainer}>
+                </TouchableOpacity>
+                <View style={styles.buttonContainer}>
                 <Text style={styles.imageTitle}>Light-headedness, dizziness, nausea?</Text>
                 <Image style={styles.imageBox} source={(alert)} />
                 <View style={styles.buttonRow}>
-                  <TouchableOpacity onPress={() => navigation.navigate('')}>
-                    <SmallButton title="Yes" image={blackCheck} ></SmallButton>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => navigation.navigate('')}>
-                    <SmallButton title="No" image={xmark} ></SmallButton>
-                  </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleSetLighthead("y")}>
+                    <SmallButton title="Yes" image={isLightheadYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleSetLighthead("n")}>
+                    <SmallButton title="No" image={isLightheadNoPressed ? pressedXmark : xmark} ></SmallButton>
+                    </TouchableOpacity>
                 </View>
 
-              </View>
+                </View>
             </View>
 
             <Text style={styles.title}>Other:</Text>
 
             <TextInput
-              style={styles.inputField}
-              placeholder="Type your message here..."
-              placeholderTextColor="#888"
-              defaultValue={JSON.stringify(signsState.other, null, 2).replaceAll('"', '')}
-              onChangeText={handleSetOther}
+                style={styles.inputField}
+                placeholder="Type your message here..."
+                placeholderTextColor="#888"
+                defaultValue={JSON.stringify(signsState.other, null, 2).replaceAll('"', '')}
+                onChangeText={handleSetOther}
             />
-          </KeyboardAvoidingView>
+            </KeyboardAvoidingView>
         </SafeAreaView>
-      </LinearGradient>
+        </LinearGradient>
     </TouchableWithoutFeedback>
-  );
+    );
 };
 
 export default SignsSymptoms;

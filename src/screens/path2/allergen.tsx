@@ -14,35 +14,14 @@ const Allergen = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
-    const [food, setLocalFood] = useState("");
-    const [medication, setLocalMedication] = useState("");
-    const [environmental, setLocalEnvironmental] = useState("");
-    const [other, setLocalOther] = useState("");
-
-    const handleSetFood = (value) => {
-        dispatch(setFood(value));
-        setLocalFood(value);
-    };
-
-    const handleSetMedication = (value) => {
-        dispatch(setMedication(value));
-        setLocalMedication(value);
-    };
-
-    const handleSetEnvironmental = (value) => {
-        dispatch(setEnvironment(value));
-        setLocalEnvironmental(value);
-    };
-
-    const handleSetOther = (value) => {
-        dispatch(setOther(value));
-        setLocalOther(value);
-    };
+    const handleSetFood = (value) => dispatch(setFood(value));
+    const handleSetMedication = (value) => dispatch(setMedication(value));
+    const handleSetEnvironmental = (value) => dispatch(setEnvironment(value));
+    const handleSetOther = (value) => dispatch(setOther(value));
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-
 
                 <SafeAreaView style={styles.container}>
 

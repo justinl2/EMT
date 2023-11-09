@@ -26,68 +26,57 @@ import GoBack from "../../components/GoBack";
 
 const IllnessInjury = ({ navigation }) => {
 
-  const illnessState = useSelector((state: RootState) => state.illnessSlice);
+    const illnessState = useSelector((state: RootState) => state.illnessSlice);
 
-  const dispatch = useDispatch();
-  const [localWhatHappened, setLocalWhatHappened] = useState('');
-  const [localOther, setLocalOther] = useState('');
+    const dispatch = useDispatch();
 
-  const handleSetWhatHappened = (value) => {
-    dispatch(setWhatHappened(value));
-    setLocalWhatHappened(value);
-  };
+    const handleSetWhatHappened = (value) => dispatch(setWhatHappened(value));
+    const handleSetOther = (value) => dispatch(setOther(value));
 
-  const handleSetOther = (value) => {
-    dispatch(setOther(value));
-    setLocalOther(value);
-  };
-
-
-  return (
+    return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
 
+            <SafeAreaView style={styles.container}>
+                <GoBack navigation={navigation} />
+                <Text style={styles.title}>Illness/Injury</Text>
 
-        <SafeAreaView style={styles.container}>
-          <GoBack navigation={navigation} />
-          <Text style={styles.title}>Illness/Injury</Text>
+                <View style={styles.buttonRow}>
+                    <TouchableOpacity
+                        style={styles.buttonContainer}
+                        onPress={() => navigation.navigate("Intake_Output_Screen")}
+                    >
+                        <ButtonCard title="Last intake / output" image={intakeOutput} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.buttonContainer}
+                        onPress={() => navigation.navigate("Signs_Symptoms_Screen")}
+                    >
+                        <ButtonCard title="Signs and symptoms" image={SignsSymptoms} />
+                    </TouchableOpacity>
+                </View>
 
-          <View style={styles.buttonRow}>
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={() => navigation.navigate("Intake_Output_Screen")}
-            >
-              <ButtonCard title="Last intake / output" image={intakeOutput} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={() => navigation.navigate("Signs_Symptoms_Screen")}
-            >
-              <ButtonCard title="Signs and symptoms" image={SignsSymptoms} />
-            </TouchableOpacity>
-          </View>
-          <TextInput
-            style={styles.inputField}
-            placeholder="Type your message here..."
-            placeholderTextColor="#888"
-            defaultValue={JSON.stringify(illnessState.whathappened, null, 2).replaceAll('"', '')}
-            onChangeText={handleSetWhatHappened}
-          />
+                <Text style={styles.title}>What happened?</Text>
+                <TextInput
+                    style={styles.inputField}
+                    placeholder="Type your message here..."
+                    placeholderTextColor="#888"
+                    defaultValue={JSON.stringify(illnessState.whathappened, null, 2).replaceAll('"', '')}
+                    onChangeText={handleSetWhatHappened}
+                />
+                <Text style={styles.title}>Other:</Text>
+                <TextInput
+                style={styles.inputField}
+                placeholder="Type your message here..."
+                placeholderTextColor="#888"
+                defaultValue={JSON.stringify(illnessState.other, null, 2).replaceAll('"', '')}
+                onChangeText={handleSetOther}
+                />
 
-          <Text style={styles.title}>What happened?</Text>
-
-          <TextInput
-            style={styles.inputField}
-            placeholder="Type your message here..."
-            placeholderTextColor="#888"
-            defaultValue={JSON.stringify(illnessState.other, null, 2).replaceAll('"', '')}
-            onChangeText={handleSetOther}
-          />
-
-        </SafeAreaView>
-      </LinearGradient>
+            </SafeAreaView>
+        </LinearGradient>
     </TouchableWithoutFeedback>
-  );
+    );
 };
 
 export default IllnessInjury;

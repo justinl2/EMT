@@ -15,11 +15,8 @@ const MentalHealth = ({ navigation }) => {
     const mentalState = useSelector((state: RootState) => state.mentalSlice);
 
     const dispatch = useDispatch();
-    const [localMental, setLocalMental] = useState('');
-    const handleInputChange = (value) => {
-        setLocalMental(value);
-        dispatch(setMental(value));
-    };
+
+    const handleInputChange = (value) => dispatch(setMental(value));
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

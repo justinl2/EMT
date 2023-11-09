@@ -17,8 +17,6 @@ const PersonalInformation = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
-    const [localName, setLocalName] = useState('');
-    const [localInsuranceProvider, setLocalInsuranceProvider] = useState('');
     const [localMonth, setLocalMonth] = useState('');
     const [localDay, setLocalDay] = useState('');
     const [localYear, setLocalYear] = useState('');
@@ -47,7 +45,6 @@ const PersonalInformation = ({ navigation }) => {
                         placeholderTextColor="#888"
                         defaultValue={JSON.stringify(personalState.name, null, 2).replaceAll('"', '')}
                         onChangeText={(text) => {
-                            setLocalName(text);
                             dispatch(setName(text));
                         }}
                     />
@@ -142,7 +139,6 @@ const PersonalInformation = ({ navigation }) => {
                         placeholderTextColor="#888"
                         defaultValue={JSON.stringify(personalState.insurance, null, 2).replaceAll('"', '')}
                         onChangeText={(text) => {
-                            setLocalInsuranceProvider(text);
                             dispatch(setInsurance(text));
                         }}
                     />

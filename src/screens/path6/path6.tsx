@@ -15,11 +15,7 @@ const Screen6 = ({ navigation }) => {
     const assistState = useSelector((state: RootState) => state.assistSlice);
 
     const dispatch = useDispatch();
-    const [localConcern, setLocalConcern] = useState("");
-    const handleSetConcern = (value) => {
-        dispatch(setConcern(value));
-        setLocalConcern(value);
-    };
+    const handleSetConcern = (value) => dispatch(setConcern(value));
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

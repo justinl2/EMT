@@ -27,24 +27,9 @@ const Pain = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
-    const [localWhen, setLocalWhen] = useState("");
-    const [localBetter, setLocalBetter] = useState("");
-    const [localWhere, setLocalWhere] = useState("");
-
-    const handleSetWhen = (value) => {
-        dispatch(setWhen(value));
-        setLocalWhen(value);
-    };
-
-    const handleSetBetter = (value) => {
-        dispatch(setBetter(value));
-        setLocalBetter(value);
-    };
-
-    const handleSetWhere = (value) => {
-        dispatch(setWhere(value));
-        setLocalWhere(value);
-    };
+    const handleSetWhen = (value) => dispatch(setWhen(value));
+    const handleSetBetter = (value) => dispatch(setBetter(value));
+    const handleSetWhere = (value) => dispatch(setWhere(value));
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

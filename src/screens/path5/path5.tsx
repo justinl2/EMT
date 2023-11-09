@@ -15,10 +15,6 @@ const Screen5 = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
-    const [localName, setLocalName] = useState("");
-    const [localLocationAwareness, setLocalLocationAwareness] = useState("");
-    const [localDayAwareness, setLocalDayAwareness] = useState("");
-
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
@@ -35,7 +31,6 @@ const Screen5 = ({ navigation }) => {
                     <TextInput
                         style={styles.input}
                         onChangeText={(text) => {
-                            setLocalName(text);
                             dispatch(setName(text));
                         }}
                         defaultValue={JSON.stringify(assessmentState.name, null, 2).replaceAll('"', '')}
@@ -47,7 +42,6 @@ const Screen5 = ({ navigation }) => {
                     <TextInput
                         style={styles.input}
                         onChangeText={(text) => {
-                            setLocalLocationAwareness(text);
                             dispatch(setWhere(text));
                         }}
                         defaultValue={JSON.stringify(assessmentState.where, null, 2).replaceAll('"', '')}
@@ -57,7 +51,6 @@ const Screen5 = ({ navigation }) => {
 
                     <RNPickerSelect
                         onValueChange={(value) => {
-                            setLocalDayAwareness(value)
                             dispatch(setWeekday(value))
                         }}
                         items={[

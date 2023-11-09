@@ -50,7 +50,7 @@ const MedicalProfileScreen = ({ navigation }) => {
 
     return (
 
-        <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
+        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
             <StatusBarBackground />
             <KeyboardAvoidingView behavior="padding">
                 <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">

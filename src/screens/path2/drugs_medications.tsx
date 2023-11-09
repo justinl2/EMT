@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { LinearGradient } from "expo-linear-gradient";
 import { Text, SafeAreaView, TextInput, StyleSheet, Keyboard, TouchableWithoutFeedback } from "react-native";
 
@@ -13,30 +13,10 @@ const DrugsMedications = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
-    const [localInhaler, setLocalInhaler] = useState('');
-    const [localBloodThinners, setLocalBloodThinners] = useState('');
-    const [localSexualEnhancement, setLocalSexualEnhancement] = useState('');
-    const [localNarcotics, setLocalNarcotics] = useState('');
-
-    const handleSetInhaler = (value) => {
-        dispatch(setInhaler(value));
-        setLocalInhaler(value);
-    };
-
-    const handleSetBloodThinners = (value) => {
-        dispatch(setThinner(value));
-        setLocalBloodThinners(value);
-    };
-
-    const handleSetSexualEnhancement = (value) => {
-        dispatch(setSexual(value));
-        setLocalSexualEnhancement(value);
-    };
-
-    const handleSetNarcotics = (value) => {
-        dispatch(setNarcotics(value));
-        setLocalNarcotics(value);
-    };
+    const handleSetInhaler = (value) => dispatch(setInhaler(value));
+    const handleSetBloodThinners = (value) => dispatch(setThinner(value));
+    const handleSetSexualEnhancement = (value) => dispatch(setSexual(value));
+    const handleSetNarcotics = (value) => dispatch(setNarcotics(value));
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

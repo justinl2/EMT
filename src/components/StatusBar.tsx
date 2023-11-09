@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, SafeAreaView, StatusBar, Platform } from 'react
 class StatusBarBackground extends Component {
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: "#040306" }}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: "lightgray" }}>
                 <View style={styles.container}>
                     <Text>Hello World</Text>
                 </View>
@@ -16,7 +16,7 @@ class StatusBarBackground extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#040306",
+        backgroundColor: "lightgray",
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
     }
 
