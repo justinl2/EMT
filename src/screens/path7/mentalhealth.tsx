@@ -15,28 +15,25 @@ const MentalHealth = ({ navigation }) => {
     const mentalState = useSelector((state: RootState) => state.mentalSlice);
 
     const dispatch = useDispatch();
-    const [localMental, setLocalMental] = useState('');
-    const handleInputChange = (value) => {
-        setLocalMental(value);
-        dispatch(setMental(value));
-    };
+
+    const handleInputChange = (value) => dispatch(setMental(value));
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
                 <SafeAreaView style={styles.container}>
-                <GoBack navigation={navigation} />
-                <Text style={styles.title}>Mental Health</Text>
+                    <GoBack navigation={navigation} />
+                    <Text style={styles.title}>Mental Health</Text>
 
                     <View style={styles.buttonRow}>
                         <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
-                            <ButtonCard title="Alert & Oriented Assessment" image={alert}/>
+                            <ButtonCard title="Alert & Oriented Assessment" image={alert} />
                         </TouchableOpacity>
                     </View>
 
                     <Text style={styles.title}>What's Wrong?</Text>
 
-                    <TextInput 
+                    <TextInput
                         style={styles.inputField}
                         placeholder="Type your message here..."
                         placeholderTextColor="#888"
@@ -58,12 +55,12 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        backgroundColor: '#FFFFFF',  
-        borderColor: '#CCCCCC',     
+        backgroundColor: '#FFFFFF',
+        borderColor: '#CCCCCC',
         borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
-        color: '#333333',          
+        color: '#333333',
         marginBottom: 10,
     },
     text: {
@@ -72,46 +69,46 @@ const styles = StyleSheet.create({
         color: "white",
         marginTop: 15,
         marginBottom: 15,
-        textAlign: 'center', 
+        textAlign: 'center',
     },
     title: {
-        fontSize: 24,              
-        fontWeight: 'bold',         
-        color: '#FFFFFF',           
-        textAlign: 'center',       
-        marginBottom: 15,           
-        letterSpacing: 1,           
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        textAlign: 'center',
+        marginBottom: 15,
+        letterSpacing: 1,
     },
     buttonRow: {
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 10, 
-      },
-      button: {
+        marginBottom: 10,
+    },
+    button: {
         width: 150,
         height: 150,
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
-      },
-      buttonContainer: {
-        marginRight: 15, 
+    },
+    buttonContainer: {
+        marginRight: 15,
         marginLeft: 15
-      },
-      buttonText: {
+    },
+    buttonText: {
         color: 'black',
         fontSize: 16,
         fontWeight: 'bold',
     },
-    inputField: { 
+    inputField: {
         height: 40,
-        backgroundColor: '#FFFFFF',  
-        borderColor: '#CCCCCC',     
+        backgroundColor: '#FFFFFF',
+        borderColor: '#CCCCCC',
         borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
-        color: 'black', 
+        color: 'black',
         marginBottom: 10,
         width: "80%",
         alignSelf: 'center'

@@ -17,8 +17,6 @@ const PersonalInformation = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
-    const [localName, setLocalName] = useState('');
-    const [localInsuranceProvider, setLocalInsuranceProvider] = useState('');
     const [localMonth, setLocalMonth] = useState('');
     const [localDay, setLocalDay] = useState('');
     const [localYear, setLocalYear] = useState('');
@@ -31,7 +29,9 @@ const PersonalInformation = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
                 <SafeAreaView style={styles.container}>
 
                     <GoBack navigation={navigation} />
@@ -45,7 +45,6 @@ const PersonalInformation = ({ navigation }) => {
                         placeholderTextColor="#888"
                         defaultValue={JSON.stringify(personalState.name, null, 2).replaceAll('"', '')}
                         onChangeText={(text) => {
-                            setLocalName(text);
                             dispatch(setName(text));
                         }}
                     />
@@ -70,7 +69,7 @@ const PersonalInformation = ({ navigation }) => {
                             { label: 'October', value: 'October' },
                             { label: 'November', value: 'November' },
                             { label: 'December', value: 'December' },
-                        
+
                         ]}
                         value={JSON.stringify(personalState.DOB.month, null, 2).replaceAll('"', '')}
                         style={pickerSelectStyles}
@@ -130,7 +129,7 @@ const PersonalInformation = ({ navigation }) => {
                         style={pickerSelectStyles}
                         placeholder={{ label: 'Year', value: null }}
                     />
-                
+
 
                     <Text style={styles.text}> Insurance Provider</Text>
 
@@ -140,14 +139,13 @@ const PersonalInformation = ({ navigation }) => {
                         placeholderTextColor="#888"
                         defaultValue={JSON.stringify(personalState.insurance, null, 2).replaceAll('"', '')}
                         onChangeText={(text) => {
-                            setLocalInsuranceProvider(text);
-                            dispatch(setInsurance(text)); 
+                            dispatch(setInsurance(text));
                         }}
                     />
 
                 </SafeAreaView>
-                </LinearGradient>
-            </TouchableWithoutFeedback>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -159,12 +157,12 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        backgroundColor: '#FFFFFF',  
-        borderColor: '#CCCCCC',     
+        backgroundColor: '#FFFFFF',
+        borderColor: '#CCCCCC',
         borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
-        color: '#333333',          
+        color: '#333333',
         marginBottom: 10,
         width: "80%",
         alignSelf: 'center'
@@ -175,15 +173,15 @@ const styles = StyleSheet.create({
         color: "white",
         marginTop: 15,
         marginBottom: 15,
-        textAlign: 'center', 
-      },
+        textAlign: 'center',
+    },
     title: {
-        fontSize: 24,              
-        fontWeight: 'bold',         
-        color: '#FFFFFF',           
-        textAlign: 'center',       
-        marginBottom: 15,           
-        letterSpacing: 1,           
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        textAlign: 'center',
+        marginBottom: 15,
+        letterSpacing: 1,
     },
 
 });

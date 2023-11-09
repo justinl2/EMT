@@ -26,63 +26,55 @@ const IntakeOutput = ({ navigation }) => {
     const intakeState = useSelector((state: RootState) => state.intakeSlice);
 
     const dispatch = useDispatch();
-    const [localWhen, setLocalWhen] = useState('');
-    const [localWhat, setLocalWhat] = useState('');
 
-    const handleSetWhen = (value) => {
-        dispatch(setWhen(value));
-        setLocalWhen(value);
-    };
-
-    const handleSetWhat = (value) => {
-        dispatch(setWhat(value));
-        setLocalWhat(value);
-    };
+    const handleSetWhen = (value) => dispatch(setWhen(value));
+    const handleSetWhat = (value) => dispatch(setWhat(value));
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
-                <SafeAreaView style={styles.container}>
-                    <GoBack navigation={navigation} />
-                <Text style={styles.title}>Last Intake/Output</Text>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
 
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Vomit_Screen")}
-                    >
-                    <ButtonCard title="Have you vomited?" image={alert} />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Bathroom_Screen")}
-                    >
-                    <ButtonCard title="When did you last use the bathroom?" image={alert} />
-                    </TouchableOpacity>
-                </View>
+        <SafeAreaView style={styles.container}>
+            <GoBack navigation={navigation} />
+            <Text style={styles.title}>Last Intake/Output</Text>
 
-                <Text style={styles.title}>When did you last eat/drink?</Text>
+            <View style={styles.buttonRow}>
+            <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={() => navigation.navigate("Vomit_Screen")}
+            >
+                <ButtonCard title="Have you vomited?" image={alert} />
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={() => navigation.navigate("Bathroom_Screen")}
+            >
+                <ButtonCard title="When did you last use the bathroom?" image={alert} />
+            </TouchableOpacity>
+            </View>
 
-                <TextInput
-                    style={styles.inputField}
-                    placeholder="Type your message here..."
-                    placeholderTextColor="#888"
-                    defaultValue={JSON.stringify(intakeState.when, null, 2).replaceAll('"', '')}
-                    onChangeText={handleSetWhen}
-                />
+            <Text style={styles.title}>When did you last eat/drink?</Text>
 
-                <Text style={styles.title}>What did you last eat/drink?</Text>
+            <TextInput
+            style={styles.inputField}
+            placeholder="Type your message here..."
+            placeholderTextColor="#888"
+            defaultValue={JSON.stringify(intakeState.when, null, 2).replaceAll('"', '')}
+            onChangeText={handleSetWhen}
+            />
 
-                <TextInput
-                    style={styles.inputField}
-                    placeholder="Type your message here..."
-                    placeholderTextColor="#888"
-                    defaultValue={JSON.stringify(intakeState.what, null, 2).replaceAll('"', '')}
-                    onChangeText={handleSetWhat}
-                />
-                </SafeAreaView>
-            </LinearGradient>
-        </TouchableWithoutFeedback>
+            <Text style={styles.title}>What did you last eat/drink?</Text>
+
+            <TextInput
+            style={styles.inputField}
+            placeholder="Type your message here..."
+            placeholderTextColor="#888"
+            defaultValue={JSON.stringify(intakeState.what, null, 2).replaceAll('"', '')}
+            onChangeText={handleSetWhat}
+            />
+        </SafeAreaView>
+        </LinearGradient>
+    </TouchableWithoutFeedback>
     );
 };
 
@@ -150,8 +142,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     color: "black",
-      marginBottom: 10,
-      width: "80%",
-      alignSelf: 'center'
+    marginBottom: 10,
+    width: "80%",
+    alignSelf: 'center'
   },
 });

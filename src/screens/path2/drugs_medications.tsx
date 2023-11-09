@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { LinearGradient } from "expo-linear-gradient";
 import { Text, SafeAreaView, TextInput, StyleSheet, Keyboard, TouchableWithoutFeedback } from "react-native";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setInhaler, setThinner, setSexual, setNarcotics } from '../../redux/features/text/drugSlice';
 import { RootState } from '../../redux/store';
-
 import GoBack from "../../components/GoBack";
 
 const DrugsMedications = ({ navigation }) => {
@@ -14,41 +13,23 @@ const DrugsMedications = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
-    const [localInhaler, setLocalInhaler] = useState('');
-    const [localBloodThinners, setLocalBloodThinners] = useState('');
-    const [localSexualEnhancement, setLocalSexualEnhancement] = useState('');
-    const [localNarcotics, setLocalNarcotics] = useState('');
-
-    const handleSetInhaler = (value) => {
-        dispatch(setInhaler(value));
-        setLocalInhaler(value);
-    };
-
-    const handleSetBloodThinners = (value) => {
-        dispatch(setThinner(value));
-        setLocalBloodThinners(value);
-    };
-
-    const handleSetSexualEnhancement = (value) => {
-        dispatch(setSexual(value));
-        setLocalSexualEnhancement(value);
-    };
-
-    const handleSetNarcotics = (value) => {
-        dispatch(setNarcotics(value));
-        setLocalNarcotics(value);
-    };
+    const handleSetInhaler = (value) => dispatch(setInhaler(value));
+    const handleSetBloodThinners = (value) => dispatch(setThinner(value));
+    const handleSetSexualEnhancement = (value) => dispatch(setSexual(value));
+    const handleSetNarcotics = (value) => dispatch(setNarcotics(value));
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["#131624", "#f0ffff"]} style={{ flex: 1 }}>
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
+
                 <SafeAreaView style={styles.container}>
 
 
-                <GoBack navigation={navigation} />
+                    <GoBack navigation={navigation} />
 
-                <Text style={styles.title}> Drugs & Medications </Text>
-                
+                    <Text style={styles.title}> Drugs & Medications </Text>
+
                     <Text style={styles.text}>Inhaler</Text>
                     <TextInput
                         style={styles.input}
@@ -96,12 +77,12 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        backgroundColor: '#FFFFFF',  
-        borderColor: '#CCCCCC',     
+        backgroundColor: '#FFFFFF',
+        borderColor: '#CCCCCC',
         borderWidth: 1,
         borderRadius: 5,
         paddingHorizontal: 10,
-        color: '#333333',          
+        color: '#333333',
         marginBottom: 10,
         width: "80%",
         alignSelf: 'center'
@@ -112,15 +93,15 @@ const styles = StyleSheet.create({
         color: "white",
         marginTop: 15,
         marginBottom: 15,
-        textAlign: 'center', 
-      },
+        textAlign: 'center',
+    },
     title: {
-        fontSize: 24,              
-        fontWeight: 'bold',         
-        color: '#FFFFFF',           
-        textAlign: 'center',       
-        marginBottom: 15,           
-        letterSpacing: 1,           
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        textAlign: 'center',
+        marginBottom: 15,
+        letterSpacing: 1,
     },
 
 });
