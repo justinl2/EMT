@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\redux",
-    "\\src\\redux\\features",
-    "\\src\\redux\\features\\text",
+    "\\src\\components",
     "\\src\\screens",
-    "\\src\\screens\\path1",
-    "\\src\\screens\\path5",
+    "\\src\\screens\\path2",
+    "\\src\\screens\\path3",
+    "\\src\\screens\\path4",
+    "\\src\\screens\\path6",
     "\\src\\screens\\path7",
     "\\src\\screens\\Profile"
   ],
-  "SelectedNode": "\\src\\screens\\path2\\medical_conditions.tsx",
+  "SelectedNode": "\\src\\screens\\path4\\path4.tsx",
   "PreviewInSolutionExplorer": false
 }

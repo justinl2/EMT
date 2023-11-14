@@ -38,7 +38,7 @@ const MedicalConditions = ({ navigation }) => {
             setIsPregnantNoPressed(false);
         };
         return (
-            <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
+            <TouchableOpacity onPress={() => handleClearAll(clearAllFunc())}>
                 <Ionicons name="trash-outline" style={styles.clear} size={40} />
             </TouchableOpacity>
         );
@@ -106,8 +106,11 @@ const MedicalConditions = ({ navigation }) => {
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <SafeAreaView style={styles.container}>
 
-                            <GoBack navigation={navigation} />
-                            <ClearButton clearAllFunc={clearAll} />
+                            <View style={styles.header}>
+                                <GoBack navigation={navigation} />
+                                <ClearButton clearAllFunc={clearAll} />
+                            </View>
+
 
                             <Text style={styles.title}>Medical Conditions</Text>
 
@@ -267,12 +270,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: 'black',
     },
-    clearAllButton: {
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        position: 'absolute',
-        top: 50,
-        right: 15
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 20,
     },
 });
 
