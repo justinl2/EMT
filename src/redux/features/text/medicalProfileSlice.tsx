@@ -80,7 +80,23 @@ const medicalProfileSlice = createSlice({
             console.log('setPhysician action called with payload:', action.payload);
             state.physician = action.payload;
         },
-
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.name = '';
+            state.DOB.month = '';
+            state.DOB.day = '';
+            state.DOB.year = '';
+            state.sex = '';
+            state.insurance = '';
+            state.insurancenumber = '';
+            state.allergies = '';
+            state.conditions = '';
+            state.medication = '';
+            state.polst = false;
+            state.resuscitate = false;
+            state.hospital = '';
+            state.physician = '';
+        }
     }
 });
 
@@ -88,6 +104,7 @@ export const {
     setName, setDOB, setSex, setInsurance, setInsuranceNumber,
     setAllergies, setConditions, setMedication,
     setPolst, setResuscitate,
-    setHospital, setPhysician
+    setHospital, setPhysician,
+    clearAll
 } = medicalProfileSlice.actions;
 export default medicalProfileSlice.reducer;

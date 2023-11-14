@@ -16,9 +16,14 @@ const signsSlice = createSlice({
         setOther: (state, action) => {
             console.log('setOther action called with payload:', action.payload);
             state.other = action.payload;
+        },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.lighthead = '';
+            state.other = '';
         }
     }
 });
 
-export const { setLighthead, setOther } = signsSlice.actions;
+export const { setLighthead, setOther, clearAll } = signsSlice.actions;
 export default signsSlice.reducer;

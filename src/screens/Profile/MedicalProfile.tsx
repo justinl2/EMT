@@ -13,10 +13,12 @@ import {
     setName, setDOB, setSex, setInsurance, setInsuranceNumber,
     setAllergies, setConditions, setMedication,
     setPolst, setResuscitate,
-    setHospital, setPhysician
+    setHospital, setPhysician,
+    clearAll
 } from '../../redux/features/text/medicalProfileSlice';
 import { RootState } from '../../redux/store';
 
+import ClearButton from "../../components/ClearButton";
 
 const MedicalProfileScreen = ({ navigation }) => {
 
@@ -24,23 +26,13 @@ const MedicalProfileScreen = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
-    const [localName, setLocalName] = useState('');
     const [localMonth, setLocalMonth] = useState('');
     const [localDay, setLocalDay] = useState('');
     const [localYear, setLocalYear] = useState('');
     const [localSex, setLocalSex] = useState('');
-    const [localInsuranceProvider, setLocalInsuranceProvider] = useState('');
-    const [localInsuranceNumber, setLocalInsuranceNumber] = useState('');
-
-    const [localAllergies, setLocalAllergies] = useState('');
-    const [localConditions, setLocalConditions] = useState('');
-    const [localMedication, setLocalMedication] = useState('');
 
     const [localPolst, setLocalPolst] = useState(false);
     const [localResuscitate, setLocalResuscitate] = useState(false);
-
-    const [localHospital, setLocalHospital] = useState('')
-    const [localPhysician, setLocalPhysician] = useState('')
 
     const yearArray = Array.from({ length: 124 }, (_, i) => 2023 - i);
     const yearItems = yearArray.map(year => ({
@@ -57,6 +49,8 @@ const MedicalProfileScreen = ({ navigation }) => {
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <SafeAreaView style={styles.container}>
 
+                            <ClearButton clearAllFunc={clearAll} />
+
                             <Text style={styles.title}> Medical Information Profile </Text>
                             <Text style={styles.subtitle}> Please fill out the following form... </Text>
 
@@ -69,7 +63,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.name, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalName(text);
                                     dispatch(setName(text));
                                 }}
                             />
@@ -180,7 +173,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.insurance, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalInsuranceProvider(text);
                                     dispatch(setInsurance(text));
                                 }}
                             />
@@ -192,7 +184,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.insurancenumber, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalInsuranceNumber(text);
                                     dispatch(setInsuranceNumber(text));
                                 }}
                             />
@@ -206,7 +197,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.allergies, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalAllergies(text);
                                     dispatch(setAllergies(text));
                                 }}
                             />
@@ -218,7 +208,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.conditions, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalConditions(text);
                                     dispatch(setConditions(text));
                                 }}
                             />
@@ -230,7 +219,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.medication, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalMedication(text);
                                     dispatch(setMedication(text));
                                 }}
                             />
@@ -272,7 +260,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.hospital, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalHospital(text);
                                     dispatch(setAllergies(text));
                                 }}
                             />
@@ -284,7 +271,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.physician, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalPhysician(text);
                                     dispatch(setPhysician(text));
                                 }}
                             />
@@ -320,14 +306,14 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15,
         fontWeight: "500",
-        color: "white",
+        color: "black",
         textAlign: 'left',
         paddingLeft: 35,
     },
     section: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginTop: 15,
         marginBottom: 5,
@@ -336,7 +322,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginTop: 15,
         marginBottom: 5,
@@ -345,7 +331,7 @@ const styles = StyleSheet.create({
     subtitle: {
         fontSize: 15,
         fontStyle: 'italic',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,

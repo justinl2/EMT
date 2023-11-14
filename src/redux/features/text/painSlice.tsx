@@ -21,9 +21,15 @@ const painSlice = createSlice({
         setWhere: (state, action) => {
             console.log('setWhere action called with payload:', action.payload);
             state.where = action.payload;
-        }
+        },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.when = '';
+            state.better = '';
+            state.where = '';
+        },
     }
 });
 
-export const { setWhen, setBetter, setWhere } = painSlice.actions;
+export const { setWhen, setBetter, setWhere, clearAll } = painSlice.actions;
 export default painSlice.reducer;

@@ -8,15 +8,32 @@ import pressedBlackCheck from "../../../src/assets/pressed-black-check.jpg";
 import xmark from "../../../src/assets/x-mark.jpg";
 import pressedXmark from "../../../src/assets/pressed-x-mark.jpg";
 import SmallButton from '../../components/SmallButton';
+import { Ionicons } from '@expo/vector-icons';
 
 import { RootState } from '../../redux/store';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setThinner, setSexual} from '../../redux/features/text/nitroSlice';
+import { setThinner, setSexual, clearAll} from '../../redux/features/text/nitroSlice';
 
 import GoBack from "../../components/GoBack";
 
 const NitroAssessment = ({ navigation }) => {
+
+    const ClearButton = ({ clearAllFunc }) => {
+        const dispatch = useDispatch();
+        const handleClearAll = (value) => {
+            dispatch(value);
+            setIsThinnerYesPressed(false);
+            setIsThinnerNoPressed(false);
+            setIsSexualYesPressed(false);
+            setIsSexualNoPressed(false);
+        };
+        return (
+            <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
+                <Ionicons name="trash-outline" style={styles.clear} size={40} />
+            </TouchableOpacity>
+        );
+    };
 
     const nitroState = useSelector((state: RootState) => state.nitroSlice);
 
@@ -60,6 +77,7 @@ const NitroAssessment = ({ navigation }) => {
 
             <SafeAreaView style={styles.container}>
                 <GoBack navigation={navigation} />
+                <ClearButton clearAllFunc={clearAll} />
                 <Text style={styles.title}>Nitroglycerine Contraindiction Assessment</Text>
 
                 <View style={styles.containerRow}>
@@ -124,15 +142,16 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
+        marginTop: 10,
         letterSpacing: 1,
     },
     imageTitle: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         alignSelf: 'center',
         marginBottom: 15,
@@ -178,6 +197,17 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         marginBottom: 10,
+    },
+    clear: {
+        alignSelf: 'center',
+        color: 'black',
+    },
+    clearAllButton: {
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        position: 'absolute',
+        top: 50,
+        right: 15
     },
 });
 

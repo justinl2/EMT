@@ -14,10 +14,11 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setHow } from '../../redux/features/text/painBadSlice';
+import { setHow, clearAll } from '../../redux/features/text/painBadSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 
 const HowBad = ({ navigation }) => {
 
@@ -32,7 +33,8 @@ const HowBad = ({ navigation }) => {
         <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
 
-                <GoBack navigation={navigation} />
+                    <GoBack navigation={navigation} />
+                    <ClearButton clearAllFunc={clearAll} />
                 <Text style={styles.title}>How Bad Does It Hurt?</Text>
 
                 <View style={styles.buttonRow}>
@@ -106,18 +108,15 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     otherLabel: {
-        color: 'white',
+        color: 'black',
         fontSize: 18,
         marginBottom: 10,
         textAlign: 'center'
     },
-    goBackButton: {
-        marginBottom: 100,
-    },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,

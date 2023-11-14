@@ -4,10 +4,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import RNPickerSelect from 'react-native-picker-select';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setName, setWhere, setWeekday } from '../../redux/features/text/assessmentSlice';
+import { setName, setWhere, setWeekday, clearAll } from '../../redux/features/text/assessmentSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 
 const Screen5 = ({ navigation }) => {
 
@@ -23,6 +24,8 @@ const Screen5 = ({ navigation }) => {
                 <SafeAreaView style={styles.container}>
 
                     <GoBack navigation={navigation} />
+
+                    <ClearButton clearAllFunc={clearAll} />
 
                     <Text style={styles.title}>Alert and Oriented Assessment</Text>
 
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15,
         fontWeight: "500",
-        color: "white",
+        color: "black",
         marginTop: 15,
         marginBottom: 15,
         textAlign: 'center',
@@ -99,9 +102,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
+        marginTop: 10,
         letterSpacing: 1,
     },
 

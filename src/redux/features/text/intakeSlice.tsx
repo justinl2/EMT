@@ -17,8 +17,13 @@ const intakeSlice = createSlice({
             console.log('setWhat action called with payload:', action.payload);
             state.what = action.payload;
         },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.when = '';
+            state.what = '';
+        }
     }
 });
 
-export const { setWhen, setWhat } = intakeSlice.actions;
+export const { setWhen, setWhat, clearAll } = intakeSlice.actions;
 export default intakeSlice.reducer;

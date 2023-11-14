@@ -209,11 +209,6 @@ const DisplayStateComponent: React.FC = () => {
                             {JSON.stringify(painFeelState.feel, null, 2).replaceAll('"', '')}
 
                             <Text style={styles.label}>
-                                {JSON.stringify(painFeelState.feelBtn, null, 2) !== '""' && "\nWhat does it feel like (button)?: "}
-                            </Text>
-                            {JSON.stringify(painFeelState.feelBtn, null, 2).replaceAll('"', '')}
-
-                            <Text style={styles.label}>
                                 {JSON.stringify(painBadState.how, null, 2) !== '""' && "\nHow bad does it hurt?: "}
                             </Text>
                             {JSON.stringify(painBadState.how, null, 2).replaceAll('"', '')}

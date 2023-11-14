@@ -22,14 +22,29 @@ import pressedBlackCheck from "../../../src/assets/pressed-black-check.jpg";
 import xmark from "../../../src/assets/x-mark.jpg";
 import pressedXmark from "../../../src/assets/pressed-x-mark.jpg";
 import SmallButton from '../../components/SmallButton';
+import { Ionicons } from '@expo/vector-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setLighthead, setOther } from '../../redux/features/text/signsSlice';
+import { setLighthead, setOther, clearAll } from '../../redux/features/text/signsSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
 
 const SignsSymptoms = ({ navigation }) => {
+
+    const ClearButton = ({ clearAllFunc }) => {
+        const dispatch = useDispatch();
+        const handleClearAll = (value) => {
+            dispatch(value);
+            setIsLightheadYesPressed(false);
+            setIsLightheadNoPressed(false);
+        };
+        return (
+            <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
+                <Ionicons name="trash-outline" style={styles.clear} size={40} />
+            </TouchableOpacity>
+        );
+    };
 
     const signsState = useSelector((state: RootState) => state.signsSlice);
 
@@ -54,67 +69,68 @@ const SignsSymptoms = ({ navigation }) => {
     const handleSetOther = (value) => dispatch(setOther(value));
 
     return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-        <SafeAreaView style={styles.container}>
-            <GoBack navigation={navigation} />
-            <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+            <SafeAreaView style={styles.container}>
+                <GoBack navigation={navigation} />
+                <ClearButton clearAllFunc={clearAll} />
+                <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
 
-            <Text style={styles.title}>Signs and Symptoms</Text>
+                <Text style={styles.title}>Signs and Symptoms</Text>
 
-            <View style={styles.containerRow}>
-                <TouchableOpacity
-                style={styles.buttonContainer}
-                onPress={() => navigation.navigate("Pain_Screen")}
-                >
-                <ButtonCard title="Pain" image={alert} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                style={styles.buttonContainer}
-                onPress={() => navigation.navigate("Nitro_Assessment_Screen")}
-                >
-                <ButtonCard
-                    title="Trouble breathing, chest tightness"
-                    image={alert}
-                />
-                </TouchableOpacity>
-            </View>
-
-            <View style={styles.containerRow}>
-                <TouchableOpacity
+                <View style={styles.containerRow}>
+                    <TouchableOpacity
                     style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Intake_Output_Screen")}
-                >
-                <ButtonCard title="Stomach/gastrointestinal issues" image={alert} />
-                </TouchableOpacity>
-                <View style={styles.buttonContainer}>
-                <Text style={styles.imageTitle}>Light-headedness, dizziness, nausea?</Text>
-                <Image style={styles.imageBox} source={(alert)} />
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity onPress={() => handleSetLighthead("y")}>
-                    <SmallButton title="Yes" image={isLightheadYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                    onPress={() => navigation.navigate("Pain_Screen")}
+                    >
+                    <ButtonCard title="Pain" image={alert} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSetLighthead("n")}>
-                    <SmallButton title="No" image={isLightheadNoPressed ? pressedXmark : xmark} ></SmallButton>
+                    <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={() => navigation.navigate("Nitro_Assessment_Screen")}
+                    >
+                    <ButtonCard
+                        title="Trouble breathing, chest tightness"
+                        image={alert}
+                    />
                     </TouchableOpacity>
                 </View>
 
+                <View style={styles.containerRow}>
+                    <TouchableOpacity
+                        style={styles.buttonContainer}
+                        onPress={() => navigation.navigate("Intake_Output_Screen")}
+                    >
+                    <ButtonCard title="Stomach/gastrointestinal issues" image={alert} />
+                    </TouchableOpacity>
+                    <View style={styles.buttonContainer}>
+                    <Text style={styles.imageTitle}>Light-headedness, dizziness, nausea?</Text>
+                    <Image style={styles.imageBox} source={(alert)} />
+                    <View style={styles.buttonRow}>
+                        <TouchableOpacity onPress={() => handleSetLighthead("y")}>
+                        <SmallButton title="Yes" image={isLightheadYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => handleSetLighthead("n")}>
+                        <SmallButton title="No" image={isLightheadNoPressed ? pressedXmark : xmark} ></SmallButton>
+                        </TouchableOpacity>
+                    </View>
+
+                    </View>
                 </View>
-            </View>
 
-            <Text style={styles.title}>Other:</Text>
+                <Text style={styles.title}>Other:</Text>
 
-            <TextInput
-                style={styles.inputField}
-                placeholder="Type your message here..."
-                placeholderTextColor="#888"
-                defaultValue={JSON.stringify(signsState.other, null, 2).replaceAll('"', '')}
-                onChangeText={handleSetOther}
-            />
-            </KeyboardAvoidingView>
-        </SafeAreaView>
-        </LinearGradient>
-    </TouchableWithoutFeedback>
+                <TextInput
+                    style={styles.inputField}
+                    placeholder="Type your message here..."
+                    placeholderTextColor="#888"
+                    defaultValue={JSON.stringify(signsState.other, null, 2).replaceAll('"', '')}
+                    onChangeText={handleSetOther}
+                />
+                </KeyboardAvoidingView>
+            </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 };
 
@@ -146,15 +162,16 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: 'black',
     textAlign: 'center',
-    marginBottom: 15,
+      marginBottom: 15,
+    marginTop: 10,
     letterSpacing: 1,
   },
   imageTitle: {
     fontSize: 15,
     fontWeight: "500",
-    color: "white",
+    color: "black",
     marginTop: 15,
     marginBottom: 15,
     textAlign: 'center',
@@ -212,5 +229,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: "80%",
     alignSelf: 'center'
-  },
+    },
+    clear: {
+        alignSelf: 'center',
+        color: 'black',
+    },
+    clearAllButton: {
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        position: 'absolute',
+        top: 50,
+        right: 15
+    },
 });

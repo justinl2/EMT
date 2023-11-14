@@ -26,9 +26,16 @@ const bathroomSlice = createSlice({
         setWhen: (state, action) => {
             console.log('setWhen action called with payload:', action.payload);
             state.when = action.payload;
+        },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.blood = '';
+            state.constipation = '';
+            state.diarrhea = '';
+            state.when = '';
         }
     }
 });
 
-export const { setBlood, setConstipation, setDiarrhea, setWhen } = bathroomSlice.actions;
+export const { setBlood, setConstipation, setDiarrhea, setWhen, clearAll } = bathroomSlice.actions;
 export default bathroomSlice.reducer;

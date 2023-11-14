@@ -18,15 +18,29 @@ import xmark from "../../../src/assets/x-mark.jpg";
 import pressedXmark from "../../../src/assets/pressed-x-mark.jpg";
 import blackCheck from "../../../src/assets/black-check.jpg";
 import pressedBlackCheck from "../../../src/assets/pressed-black-check.jpg";
-
+import { Ionicons } from '@expo/vector-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setBlood, setWhen } from '../../redux/features/text/vomitSlice';
+import { setBlood, setWhen, clearAll } from '../../redux/features/text/vomitSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
 
 const Vomit = ({ navigation }) => {
+
+    const ClearButton = ({ clearAllFunc }) => {
+        const dispatch = useDispatch();
+        const handleClearAll = (value) => {
+            dispatch(value);
+            setIsBloodYesPressed(false);
+            setIsBloodNoPressed(false);
+        };
+        return (
+            <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
+                <Ionicons name="trash-outline" style={styles.clear} size={40} />
+            </TouchableOpacity>
+        );
+    };
 
     const vomitState = useSelector((state: RootState) => state.vomitSlice);
 
@@ -59,39 +73,40 @@ const Vomit = ({ navigation }) => {
     };
 
     return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-                <SafeAreaView style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+                    <SafeAreaView style={styles.container}>
 
-                <GoBack navigation={navigation} />
+                    <GoBack navigation={navigation} />
+                    <ClearButton clearAllFunc={clearAll} />
 
-                <Text style={styles.title}>Have You Vomited?</Text>
-                <View style={styles.buttonContainer}>
-                    <Text style={styles.imageTitle}>Did you vomit blood?</Text>
-                    <Image style={styles.imageBox} source={(alert)} />
+                    <Text style={styles.title}>Have You Vomited?</Text>
+                    <View style={styles.buttonContainer}>
+                        <Text style={styles.imageTitle}>Did you vomit blood?</Text>
+                        <Image style={styles.imageBox} source={(alert)} />
 
-                    <View style={styles.buttonRow}>
-                        <TouchableOpacity onPress={() => handleSetBlood("y")}>
-                            <SmallButton title="Yes" image={isBloodYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => handleSetBlood("n")}>
-                            <SmallButton title="No" image={isBloodNoPressed ? pressedXmark : xmark} ></SmallButton>
-                        </TouchableOpacity>
+                        <View style={styles.buttonRow}>
+                            <TouchableOpacity onPress={() => handleSetBlood("y")}>
+                                <SmallButton title="Yes" image={isBloodYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => handleSetBlood("n")}>
+                                <SmallButton title="No" image={isBloodNoPressed ? pressedXmark : xmark} ></SmallButton>
+                            </TouchableOpacity>
+                        </View>
+
                     </View>
+                    <Text style={styles.title}>When did you Vomit?</Text>
+                    <TextInput
+                        style={styles.inputField}
+                        placeholder="Type your message here..."
+                        placeholderTextColor="#888"
+                        defaultValue={JSON.stringify(vomitState.when, null, 2).replaceAll('"', '')}
+                        onChangeText={handleSetWhen}
+                    />
 
-                </View>
-                <Text style={styles.title}>When did you Vomit?</Text>
-                <TextInput
-                    style={styles.inputField}
-                    placeholder="Type your message here..."
-                    placeholderTextColor="#888"
-                    defaultValue={JSON.stringify(vomitState.when, null, 2).replaceAll('"', '')}
-                    onChangeText={handleSetWhen}
-                />
-
-            </SafeAreaView>
-        </LinearGradient>
-    </TouchableWithoutFeedback>
+                </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 };
 
@@ -123,15 +138,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#FFFFFF",
+    color: "black",
     textAlign: "center",
     marginBottom: 15,
+    marginTop: 10,
     letterSpacing: 1,
-  },
-  buttonRow: {
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 10,
   },
   button: {
     width: 150,
@@ -165,7 +176,7 @@ const styles = StyleSheet.create({
   imageTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: 'black',
     textAlign: 'center',
     marginBottom: 15,
     letterSpacing: 1,
@@ -180,5 +191,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 10,
-  },
+    },
+    clear: {
+        alignSelf: 'center',
+        color: 'black',
+    },
+    clearAllButton: {
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        position: 'absolute',
+        top: 50,
+        right: 15
+    },
 });

@@ -19,10 +19,11 @@ import intakeOutput from "../../../src/assets/intakeOutput.jpg";
 
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setWhatHappened, setOther } from '../../redux/features/text/illnessSlice';
+import { setWhatHappened, setOther, clearAll } from '../../redux/features/text/illnessSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 
 const IllnessInjury = ({ navigation }) => {
 
@@ -34,48 +35,52 @@ const IllnessInjury = ({ navigation }) => {
     const handleSetOther = (value) => dispatch(setOther(value));
 
     return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
 
-            <SafeAreaView style={styles.container}>
-                <GoBack navigation={navigation} />
-                <Text style={styles.title}>Illness/Injury</Text>
+                <SafeAreaView style={styles.container}>
 
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => navigation.navigate("Intake_Output_Screen")}
-                    >
-                        <ButtonCard title="Last intake / output" image={intakeOutput} />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => navigation.navigate("Signs_Symptoms_Screen")}
-                    >
-                        <ButtonCard title="Signs and symptoms" image={SignsSymptoms} />
-                    </TouchableOpacity>
-                </View>
+                    <GoBack navigation={navigation} />
 
-                <Text style={styles.title}>What happened?</Text>
-                <TextInput
+                    <ClearButton clearAllFunc={clearAll} />
+
+                    <Text style={styles.title}>Illness/Injury</Text>
+
+                    <View style={styles.buttonRow}>
+                        <TouchableOpacity
+                            style={styles.buttonContainer}
+                            onPress={() => navigation.navigate("Intake_Output_Screen")}
+                        >
+                            <ButtonCard title="Last intake / output" image={intakeOutput} />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.buttonContainer}
+                            onPress={() => navigation.navigate("Signs_Symptoms_Screen")}
+                        >
+                            <ButtonCard title="Signs and symptoms" image={SignsSymptoms} />
+                        </TouchableOpacity>
+                    </View>
+
+                    <Text style={styles.title}>What happened?</Text>
+                    <TextInput
+                        style={styles.inputField}
+                        placeholder="Type your message here..."
+                        placeholderTextColor="#888"
+                        defaultValue={JSON.stringify(illnessState.whathappened, null, 2).replaceAll('"', '')}
+                        onChangeText={handleSetWhatHappened}
+                    />
+                    <Text style={styles.title}>Other:</Text>
+                    <TextInput
                     style={styles.inputField}
                     placeholder="Type your message here..."
                     placeholderTextColor="#888"
-                    defaultValue={JSON.stringify(illnessState.whathappened, null, 2).replaceAll('"', '')}
-                    onChangeText={handleSetWhatHappened}
-                />
-                <Text style={styles.title}>Other:</Text>
-                <TextInput
-                style={styles.inputField}
-                placeholder="Type your message here..."
-                placeholderTextColor="#888"
-                defaultValue={JSON.stringify(illnessState.other, null, 2).replaceAll('"', '')}
-                onChangeText={handleSetOther}
-                />
+                    defaultValue={JSON.stringify(illnessState.other, null, 2).replaceAll('"', '')}
+                    onChangeText={handleSetOther}
+                    />
 
-            </SafeAreaView>
-        </LinearGradient>
-    </TouchableWithoutFeedback>
+                </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 };
 
@@ -107,9 +112,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#FFFFFF",
+    color: "black",
     textAlign: "center",
-    marginBottom: 15,
+      marginBottom: 15,
+    marginTop: 10,
     letterSpacing: 1,
   },
   buttonRow: {

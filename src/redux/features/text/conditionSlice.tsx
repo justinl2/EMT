@@ -32,8 +32,16 @@ const conditionSlice = createSlice({
             console.log('setNarcotics action called with payload:', action.payload);
             state.other = action.payload;
         },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.diabetes = '';
+            state.breathing = '';
+            state.sexual = '';
+            state.pregnant = '';
+            state.other = '';
+        }
     }
 });
 
-export const { setDiabetes, setBreathing, setSexual, setPregnant, setOther } = conditionSlice.actions;
+export const { setDiabetes, setBreathing, setSexual, setPregnant, setOther, clearAll } = conditionSlice.actions;
 export default conditionSlice.reducer;

@@ -14,14 +14,33 @@ import pressedBlackCheck from "../../../src/assets/pressed-black-check.jpg";
 import xmark from "../../../src/assets/x-mark.jpg";
 import pressedXmark from "../../../src/assets/pressed-x-mark.jpg";
 import SmallButton from '../../components/SmallButton';
+import { Ionicons } from '@expo/vector-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setBlood, setConstipation, setDiarrhea, setWhen } from '../../redux/features/text/bathroomSlice';
+import { setBlood, setConstipation, setDiarrhea, setWhen, clearAll } from '../../redux/features/text/bathroomSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
 
 const Bathroom = ({ navigation }) => {
+
+    const ClearButton = ({ clearAllFunc }) => {
+        const dispatch = useDispatch();
+        const handleClearAll = (value) => {
+            dispatch(value);
+            setIsBloodYesPressed(false);
+            setIsBloodNoPressed(false);
+            setIsConstipationYesPressed(false);
+            setIsConstipationNoPressed(false);
+            setIsDiarrheaYesPressed(false);
+            setIsDiarrheaNoPressed(false);
+        };
+        return (
+            <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
+                <Ionicons name="trash-outline" style={styles.clear} size={40} />
+            </TouchableOpacity>
+        );
+    };
 
     const bathroomState = useSelector((state: RootState) => state.bathroomSlice);
 
@@ -83,7 +102,9 @@ const Bathroom = ({ navigation }) => {
                 <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <SafeAreaView style={styles.container}>
+
                             <GoBack navigation={navigation} />
+                            <ClearButton clearAllFunc={clearAll} />
 
                             <Text style={styles.title}>When Did You Last Use the Bathroom?</Text>
 
@@ -186,15 +207,16 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
+        marginTop: 10,
         letterSpacing: 1,
     },
     imageTitle: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,
@@ -250,5 +272,16 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         width: "80%",
         alignSelf: 'center'
+    },
+    clear: {
+        alignSelf: 'center',
+        color: 'black',
+    },
+    clearAllButton: {
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        position: 'absolute',
+        top: 50,
+        right: 15
     },
 });

@@ -3,9 +3,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Text, SafeAreaView, TextInput, StyleSheet, Keyboard, TouchableWithoutFeedback } from "react-native";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setInhaler, setThinner, setSexual, setNarcotics } from '../../redux/features/text/drugSlice';
+import { setInhaler, setThinner, setSexual, setNarcotics, clearAll } from '../../redux/features/text/drugSlice';
 import { RootState } from '../../redux/store';
+
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 
 const DrugsMedications = ({ navigation }) => {
 
@@ -22,11 +24,11 @@ const DrugsMedications = ({ navigation }) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
 
-
                 <SafeAreaView style={styles.container}>
 
-
                     <GoBack navigation={navigation} />
+
+                    <ClearButton clearAllFunc={clearAll} />
 
                     <Text style={styles.title}> Drugs & Medications </Text>
 
@@ -84,13 +86,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',
         marginBottom: 10,
+        marginTop: 10,
         width: "80%",
         alignSelf: 'center'
     },
     text: {
         fontSize: 15,
         fontWeight: "500",
-        color: "white",
+        color: "black",
         marginTop: 15,
         marginBottom: 15,
         textAlign: 'center',
@@ -98,7 +101,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,

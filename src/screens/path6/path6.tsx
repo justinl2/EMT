@@ -5,10 +5,11 @@ import ButtonCard from "../../components/ButtonCard";
 import alert from '../../../src/assets/alert.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setConcern } from '../../redux/features/text/assistSlice';
+import { setConcern, clearAll } from '../../redux/features/text/assistSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 
 const Screen6 = ({ navigation }) => {
 
@@ -23,6 +24,8 @@ const Screen6 = ({ navigation }) => {
                 <SafeAreaView>
 
                     <GoBack navigation={navigation} />
+
+                    <ClearButton clearAllFunc={clearAll} />
 
                     <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
                         <ButtonCard title="Alert & Oriented Assessment" image={alert} />
@@ -69,15 +72,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: 'white',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 10,
-    },
-    subText: {
-        fontSize: 15,
-        color: 'white',
-        textAlign: 'center',
-        marginBottom: 20,
+        marginTop: 10,
     },
     buttonRow: {
         flexDirection: 'row',

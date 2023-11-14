@@ -11,9 +11,13 @@ const painBadSlice = createSlice({
         setHow: (state, action) => {
             console.log('setHow action called with payload:', action.payload);
             state.how = action.payload;
-        }
+        },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.how = '';
+        },
     }
 });
 
-export const { setHow } = painBadSlice.actions;
+export const { setHow, clearAll } = painBadSlice.actions;
 export default painBadSlice.reducer;

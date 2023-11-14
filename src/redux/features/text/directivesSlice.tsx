@@ -17,8 +17,13 @@ const directivesSlice = createSlice({
             console.log('setResuscitate action called with payload:', action.payload);
             state.resuscitate = action.payload;
         },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.polst = false;
+            state.resuscitate = false;
+        }
     }
 });
 
-export const { setPolst, setResuscitate } = directivesSlice.actions;
+export const { setPolst, setResuscitate, clearAll } = directivesSlice.actions;
 export default directivesSlice.reducer;

@@ -7,7 +7,6 @@ import React, { useState } from 'react';
 
 import ButtonCard from "../../components/ButtonCard";
 
-
 import pill from '../../../src/assets/pill.jpg';
 import clipboard from '../../../src/assets/clipboard.jpg';
 import pain from '../../../src/assets/pain.jpg';
@@ -16,10 +15,11 @@ import alert from '../../../src/assets/alert.jpg';
 import assist from '../../../src/assets/assist.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setWhen, setBetter, setWhere } from '../../redux/features/text/painSlice';
+import { setWhen, setBetter, setWhere, clearAll } from '../../redux/features/text/painSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 
 const Pain = ({ navigation }) => {
 
@@ -34,11 +34,11 @@ const Pain = ({ navigation }) => {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+                <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
+                    <SafeAreaView >
+                        <GoBack navigation={navigation} />
+                        <ClearButton clearAllFunc={clearAll} />
 
-                <SafeAreaView >
-                    <GoBack navigation={navigation} />
-
-                    <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
                         <Text style={styles.title}>Pain</Text>
 
                         <View style={styles.buttonRow}>
@@ -76,9 +76,10 @@ const Pain = ({ navigation }) => {
                             defaultValue={JSON.stringify(painState.where, null, 2).replaceAll('"', '')}
                             placeholder="Does the pain move to other parts of your body?"
                         />
+                    </SafeAreaView>
                     </KeyboardAvoidingView>
 
-                </SafeAreaView>
+               
             </LinearGradient>
         </TouchableWithoutFeedback>
     );
@@ -119,9 +120,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: 'white',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 10,
+        marginTop: 10,
     },
     input: {
         height: 40,
@@ -138,7 +140,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15,
         fontWeight: "500",
-        color: "white",
+        color: "black",
         marginTop: 15,
         marginBottom: 15,
         textAlign: 'center',

@@ -3,10 +3,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setPolst, setResuscitate } from '../../redux/features/text/directivesSlice';
+import { setPolst, setResuscitate, clearAll } from '../../redux/features/text/directivesSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 
 const Screen1 = ({ navigation }) => {
 
@@ -24,6 +25,8 @@ const Screen1 = ({ navigation }) => {
             <SafeAreaView style={styles.container}>
 
                 <GoBack navigation={navigation} />
+
+                <ClearButton clearAllFunc={clearAll} />
 
                 <Text style={styles.title}>Advanced Medical Directives</Text>
 
@@ -94,6 +97,7 @@ const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
         marginBottom: 15,
+        marginTop: 10,
         letterSpacing: 1,
     },
 });
