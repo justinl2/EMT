@@ -21,9 +21,15 @@ const assessmentSlice = createSlice({
         setWeekday: (state, action) => {
             console.log('setWeekday action called with payload:', action.payload);
             state.weekday = action.payload;
+        },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.name = '';
+            state.where = '';
+            state.weekday = '';
         }
     }
 });
 
-export const { setName, setWhere, setWeekday } = assessmentSlice.actions;
+export const { setName, setWhere, setWeekday, clearAll } = assessmentSlice.actions;
 export default assessmentSlice.reducer;

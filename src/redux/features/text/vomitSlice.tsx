@@ -16,9 +16,14 @@ const vomitSlice = createSlice({
         setWhen: (state, action) => {
             console.log('setWhen action called with payload:', action.payload);
             state.when = action.payload;
+        },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.blood = '';
+            state.when = '';
         }
     }
 });
 
-export const { setBlood, setWhen } = vomitSlice.actions;
+export const { setBlood, setWhen, clearAll } = vomitSlice.actions;
 export default vomitSlice.reducer;

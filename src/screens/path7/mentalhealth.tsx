@@ -5,10 +5,11 @@ import ButtonCard from "../../components/ButtonCard";
 import alert from '../../../src/assets/alert.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setMental } from "../../redux/features/text/mentalSlice";
+import { setMental, clearAll } from "../../redux/features/text/mentalSlice";
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 
@@ -27,7 +28,10 @@ const MentalHealth = ({ navigation }) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
                 <SafeAreaView style={styles.container}>
+
                     <GoBack navigation={navigation} />
+
+                    <ClearButton clearAllFunc={clearAll} />
                     <Text style={styles.title}>{t('mentalhealth.title')}</Text>
 
                     <View style={styles.buttonRow}>
@@ -83,6 +87,7 @@ const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
         marginBottom: 15,
+        marginTop: 10,
         letterSpacing: 1,
     },
     buttonRow: {

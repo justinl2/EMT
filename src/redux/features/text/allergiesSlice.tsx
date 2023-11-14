@@ -26,9 +26,16 @@ const allergySlice = createSlice({
         setOther: (state, action) => {
             console.log('setOther action called with payload:', action.payload);
             state.other = action.payload;
+        },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.foods = '';
+            state.medications = '';
+            state.environmental = '';
+            state.other = '';
         }
     }
 });
 
-export const { setFood, setMedication, setEnvironment, setOther } = allergySlice.actions;
+export const { setFood, setMedication, setEnvironment, setOther, clearAll } = allergySlice.actions;
 export default allergySlice.reducer;

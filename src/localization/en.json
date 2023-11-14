@@ -10,7 +10,8 @@
         "pain": "Pain",
         "whatsWrong": "Whats Wrong",
         "alert": "Alert & Oriented Assessment",
-        "doNot": "Do NOT Assist or Hospitalize Me"
+        "doNot": "Do NOT Assist or Hospitalize Me",
+        "newSession": "Start New Session"
     },
     "path1": {
         "title": "Advanced Medical Directives",

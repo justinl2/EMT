@@ -5,9 +5,10 @@ import {
     Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, View, TouchableOpacity,
     Image, ScrollView,
 } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setDiabetes, setBreathing, setSexual, setPregnant, setOther } from '../../redux/features/text/conditionSlice';
+import { setDiabetes, setBreathing, setSexual, setPregnant, setOther, clearAll } from '../../redux/features/text/conditionSlice';
 import ButtonCard from "../../components/ButtonCard";
 import Smallbutton from "../../components/SmallButton";
 import alert from "../../../src/assets/alert.jpg";
@@ -20,11 +21,30 @@ import pregnant from "../../../src/assets/pregnant.jpg";
 import sex from "../../../src/assets/sex.jpg";
 import diabetes from "../../../src/assets/diabetes.jpg";
 import { RootState } from '../../redux/store';
+
 import GoBack from "../../components/GoBack";
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 
 const MedicalConditions = ({ navigation }) => {
+
+    const ClearButton = ({ clearAllFunc }) => {
+        const dispatch = useDispatch();
+        const handleClearAll = (value) => {
+            dispatch(value);
+            setIsDiabetesYesPressed(false);
+            setIsDiabetesNoPressed(false);
+            setIsSexualYesPressed(false);
+            setIsSexualNoPressed(false);
+            setIsPregnantYesPressed(false);
+            setIsPregnantNoPressed(false);
+        };
+        return (
+            <TouchableOpacity onPress={() => handleClearAll(clearAllFunc())}>
+                <Ionicons name="trash-outline" style={styles.clear} size={40} />
+            </TouchableOpacity>
+        );
+    };
 
     const conditionState = useSelector((state: RootState) => state.conditionSlice);
 
@@ -90,7 +110,11 @@ const MedicalConditions = ({ navigation }) => {
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <SafeAreaView style={styles.container}>
 
-                            <GoBack navigation={navigation} />
+                            <View style={styles.header}>
+                                <GoBack navigation={navigation} />
+                                <ClearButton clearAllFunc={clearAll} />
+                            </View>
+
 
                             <Text style={styles.title}>{t('medical_conditions.title')}</Text>
 
@@ -245,7 +269,17 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         marginBottom: 10,
-    }
+    },
+    clear: {
+        alignSelf: 'center',
+        color: 'black',
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
 });
 
 export default MedicalConditions;

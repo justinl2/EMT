@@ -2,9 +2,10 @@ import { Text, SafeAreaView, StyleSheet, Switch, } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPolst, setResuscitate } from '../../redux/features/text/directivesSlice';
+import { setPolst, setResuscitate, clearAll } from '../../redux/features/text/directivesSlice';
 import { RootState } from '../../redux/store';
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 
@@ -26,6 +27,7 @@ const Screen1 = ({ navigation }) => {
 
                 <GoBack navigation={navigation} />
 
+                <ClearButton clearAllFunc={clearAll} />
                 <Text style={styles.title}>{t('path1.title')}</Text>
 
                 <Text style={styles.text}>{t('path1.switch1')}</Text>
@@ -95,6 +97,7 @@ const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
         marginBottom: 15,
+        marginTop: 10,
         letterSpacing: 1,
     },
 });

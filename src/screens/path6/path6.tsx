@@ -5,10 +5,11 @@ import ButtonCard from "../../components/ButtonCard";
 import alert from '../../../src/assets/alert.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setConcern } from '../../redux/features/text/assistSlice';
+import { setConcern, clearAll } from '../../redux/features/text/assistSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
@@ -29,6 +30,8 @@ const Screen6 = ({ navigation }) => {
                 <SafeAreaView>
 
                     <GoBack navigation={navigation} />
+
+                    <ClearButton clearAllFunc={clearAll} />
 
                     <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
                         <ButtonCard title={t('path6.alert')} image={alert} />
@@ -78,6 +81,7 @@ const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
         marginBottom: 10,
+        marginTop: 10,
     },
     subText: {
         fontSize: 15,

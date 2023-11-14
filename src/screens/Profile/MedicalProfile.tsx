@@ -13,7 +13,8 @@ import {
     setName, setDOB, setSex, setInsurance, setInsuranceNumber,
     setAllergies, setConditions, setMedication,
     setPolst, setResuscitate,
-    setHospital, setPhysician
+    setHospital, setPhysician,
+    clearAll
 } from '../../redux/features/text/medicalProfileSlice';
 import { RootState } from '../../redux/store';
 import { useTranslation } from 'react-i18next'
@@ -21,6 +22,7 @@ import '../../services/i18next';
 import languagesList from '../../localization/languagesList.json';
 import i18next, { languageResources } from '../../services/i18next';
 
+import ClearButton from "../../components/ClearButton";
 
 const MedicalProfileScreen = ({ navigation }) => {
 
@@ -28,23 +30,13 @@ const MedicalProfileScreen = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
-    const [localName, setLocalName] = useState('');
     const [localMonth, setLocalMonth] = useState('');
     const [localDay, setLocalDay] = useState('');
     const [localYear, setLocalYear] = useState('');
     const [localSex, setLocalSex] = useState('');
-    const [localInsuranceProvider, setLocalInsuranceProvider] = useState('');
-    const [localInsuranceNumber, setLocalInsuranceNumber] = useState('');
-
-    const [localAllergies, setLocalAllergies] = useState('');
-    const [localConditions, setLocalConditions] = useState('');
-    const [localMedication, setLocalMedication] = useState('');
 
     const [localPolst, setLocalPolst] = useState(false);
     const [localResuscitate, setLocalResuscitate] = useState(false);
-
-    const [localHospital, setLocalHospital] = useState('')
-    const [localPhysician, setLocalPhysician] = useState('')
 
     const yearArray = Array.from({ length: 124 }, (_, i) => 2023 - i);
     const yearItems = yearArray.map(year => ({
@@ -72,6 +64,8 @@ const MedicalProfileScreen = ({ navigation }) => {
                             <Text style={styles.title}> {t('MedicalProfile.title')} </Text>
                             <Text style={styles.subtitle}> {t('MedicalProfile.please')} </Text>
 
+                            <ClearButton clearAllFunc={clearAll} />
+
 
                             <Modal visible={visible} onRequestClose={() => setVisible(false)}>
                                 <View style={styles.languageList}>
@@ -98,7 +92,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.name, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalName(text);
                                     dispatch(setName(text));
                                 }}
                             />
@@ -209,7 +202,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.insurance, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalInsuranceProvider(text);
                                     dispatch(setInsurance(text));
                                 }}
                             />
@@ -221,7 +213,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.insurancenumber, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalInsuranceNumber(text);
                                     dispatch(setInsuranceNumber(text));
                                 }}
                             />
@@ -235,7 +226,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.allergies, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalAllergies(text);
                                     dispatch(setAllergies(text));
                                 }}
                             />
@@ -247,7 +237,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.conditions, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalConditions(text);
                                     dispatch(setConditions(text));
                                 }}
                             />
@@ -259,7 +248,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.medication, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalMedication(text);
                                     dispatch(setMedication(text));
                                 }}
                             />
@@ -301,7 +289,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.hospital, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalHospital(text);
                                     dispatch(setAllergies(text));
                                 }}
                             />
@@ -313,7 +300,6 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.physician, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
-                                    setLocalPhysician(text);
                                     dispatch(setPhysician(text));
                                 }}
                             />

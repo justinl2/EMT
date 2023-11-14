@@ -18,10 +18,10 @@ import xmark from "../../../src/assets/x-mark.jpg";
 import pressedXmark from "../../../src/assets/pressed-x-mark.jpg";
 import blackCheck from "../../../src/assets/black-check.jpg";
 import pressedBlackCheck from "../../../src/assets/pressed-black-check.jpg";
-
+import { Ionicons } from '@expo/vector-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setBlood, setWhen } from '../../redux/features/text/vomitSlice';
+import { setBlood, setWhen, clearAll } from '../../redux/features/text/vomitSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
@@ -29,6 +29,20 @@ import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 
 const Vomit = ({ navigation }) => {
+
+  const ClearButton = ({ clearAllFunc }) => {
+    const dispatch = useDispatch();
+    const handleClearAll = (value) => {
+      dispatch(value);
+      setIsBloodYesPressed(false);
+      setIsBloodNoPressed(false);
+    };
+    return (
+      <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
+        <Ionicons name="trash-outline" style={styles.clear} size={40} />
+      </TouchableOpacity>
+    );
+  };
 
   const vomitState = useSelector((state: RootState) => state.vomitSlice);
 
@@ -69,6 +83,8 @@ const Vomit = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
 
           <GoBack navigation={navigation} />
+          <ClearButton clearAllFunc={clearAll} />
+
 
           <Text style={styles.title}>{t('vomit.title')}</Text>
           <View style={styles.buttonContainer}>
@@ -131,12 +147,8 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     marginBottom: 15,
+    marginTop: 10,
     letterSpacing: 1,
-  },
-  buttonRow: {
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 10,
   },
   button: {
     width: 150,
@@ -185,5 +197,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 10,
+  },
+  clear: {
+    alignSelf: 'center',
+    color: 'black',
+  },
+  clearAllButton: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    position: 'absolute',
+    top: 50,
+    right: 15
   },
 });

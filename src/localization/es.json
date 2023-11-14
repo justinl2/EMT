@@ -10,7 +10,8 @@
         "pain": "Dolor",
         "whatsWrong": "¿Qué está mal?",
         "alert": "Evaluación orientada y alerta",
-        "doNot": "NO me ayudes ni me hospitalices"
+        "doNot": "NO me ayudes ni me hospitalices",
+        "newSession": "iniciar nueva sesión"
     },
     "path1": {
         "title": "Directivas médicas avanzadas",

@@ -14,10 +14,11 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setFeel } from '../../redux/features/text/painFeelSlice';
+import { setFeel, clearAll } from '../../redux/features/text/painFeelSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 
@@ -39,6 +40,7 @@ const Feel = ({ navigation }) => {
 
           <KeyboardAvoidingView behavior="padding">
             <GoBack navigation={navigation} />
+            <ClearButton clearAllFunc={clearAll} />
             <Text style={styles.title}>{t('feel_like.title')}</Text>
 
             <View style={styles.buttonRow}>
@@ -83,7 +85,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: -50,
-    paddingTop: 30,
   },
   buttonRow: {
     flexDirection: 'row',
@@ -133,9 +134,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     color: '#333333',
     marginBottom: 10,
-  },
-  goBackButton: {
-    marginBottom: 100,
   },
   title: {
     fontSize: 24,

@@ -19,10 +19,11 @@ import intakeOutput from "../../../src/assets/intakeOutput.jpg";
 
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setWhatHappened, setOther } from '../../redux/features/text/illnessSlice';
+import { setWhatHappened, setOther, clearAll } from '../../redux/features/text/illnessSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
@@ -45,6 +46,7 @@ const IllnessInjury = ({ navigation }) => {
 
         <SafeAreaView style={styles.container}>
           <GoBack navigation={navigation} />
+          <ClearButton clearAllFunc={clearAll} />
           <Text style={styles.title}>{t('illness_injury.title')}</Text>
 
           <View style={styles.buttonRow}>
@@ -116,6 +118,7 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     marginBottom: 15,
+    marginTop: 10,
     letterSpacing: 1,
   },
   buttonRow: {

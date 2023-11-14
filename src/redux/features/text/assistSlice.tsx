@@ -11,9 +11,13 @@ const assistSlice = createSlice({
         setConcern: (state, action) => {
             console.log('setConcern action called with payload:', action.payload);
             state.concern = action.payload;
+        },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.concern = '';
         }
     }
 });
 
-export const { setConcern } = assistSlice.actions;
+export const { setConcern, clearAll } = assistSlice.actions;
 export default assistSlice.reducer;

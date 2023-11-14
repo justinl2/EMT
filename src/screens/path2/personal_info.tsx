@@ -6,10 +6,11 @@ import ButtonCard from "../../components/ButtonCard";
 import personal from '../../../src/assets/personal.jpg'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setName, setDOB, setInsurance } from '../../redux/features/text/personalSlice';
+import { setName, setDOB, setInsurance, clearAll } from '../../redux/features/text/personalSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 
@@ -35,10 +36,11 @@ const PersonalInformation = ({ navigation }) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
 
-
                 <SafeAreaView style={styles.container}>
 
                     <GoBack navigation={navigation} />
+
+                    <ClearButton clearAllFunc={clearAll} />
 
                     <Text style={styles.title}> {t('personalInfo.title')} </Text>
 
@@ -185,6 +187,7 @@ const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
         marginBottom: 15,
+        marginTop: 10,
         letterSpacing: 1,
     },
 

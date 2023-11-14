@@ -26,9 +26,16 @@ const drugSlice = createSlice({
         setNarcotics: (state, action) => {
             console.log('setNarcotics action called with payload:', action.payload);
             state.narcotics = action.payload;
+        },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.inhaler = '';
+            state.thinner = '';
+            state.sexual = '';
+            state.narcotics = '';
         }
     }
 });
 
-export const { setInhaler, setThinner, setSexual, setNarcotics } = drugSlice.actions;
+export const { setInhaler, setThinner, setSexual, setNarcotics, clearAll } = drugSlice.actions;
 export default drugSlice.reducer;

@@ -3,10 +3,11 @@ import { Text, SafeAreaView, TextInput, StyleSheet, Keyboard, TouchableWithoutFe
 import { LinearGradient } from "expo-linear-gradient";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setFood, setMedication, setEnvironment, setOther } from '../../redux/features/text/allergiesSlice';
+import { setFood, setMedication, setEnvironment, setOther, clearAll } from '../../redux/features/text/allergiesSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 
@@ -31,6 +32,8 @@ const Allergen = ({ navigation }) => {
                 <SafeAreaView style={styles.container}>
 
                     <GoBack navigation={navigation} />
+
+                    <ClearButton clearAllFunc={clearAll} />
 
                     <Text style={styles.title}>{t('allergen.title')}</Text>
 
@@ -90,6 +93,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: '#333333',
         marginBottom: 10,
+        marginTop: 10,
         width: "80%",
         alignSelf: 'center'
     },
@@ -107,7 +111,7 @@ const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
         marginBottom: 15,
+        marginTop: 10,
         letterSpacing: 1,
     },
-
 });

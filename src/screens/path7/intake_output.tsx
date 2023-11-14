@@ -16,10 +16,11 @@ import injury from "../../../src/assets/injury.jpg";
 import alert from "../../../src/assets/alert.jpg";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setWhen, setWhat } from '../../redux/features/text/intakeSlice';
+import { setWhen, setWhat, clearAll } from '../../redux/features/text/intakeSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
@@ -42,6 +43,8 @@ const IntakeOutput = ({ navigation }) => {
 
         <SafeAreaView style={styles.container}>
           <GoBack navigation={navigation} />
+          <ClearButton clearAllFunc={clearAll} />
+
           <Text style={styles.title}>{t('intake_output.title')}</Text>
 
           <View style={styles.buttonRow}>
@@ -115,6 +118,7 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     marginBottom: 15,
+    marginTop: 10,
     letterSpacing: 1,
   },
   buttonRow: {

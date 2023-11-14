@@ -22,9 +22,10 @@ import pressedBlackCheck from "../../../src/assets/pressed-black-check.jpg";
 import xmark from "../../../src/assets/x-mark.jpg";
 import pressedXmark from "../../../src/assets/pressed-x-mark.jpg";
 import SmallButton from '../../components/SmallButton';
+import { Ionicons } from '@expo/vector-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setLighthead, setOther } from '../../redux/features/text/signsSlice';
+import { setLighthead, setOther, clearAll } from '../../redux/features/text/signsSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
@@ -33,6 +34,20 @@ import '../../services/i18next';
 
 
 const SignsSymptoms = ({ navigation }) => {
+
+  const ClearButton = ({ clearAllFunc }) => {
+    const dispatch = useDispatch();
+    const handleClearAll = (value) => {
+      dispatch(value);
+      setIsLightheadYesPressed(false);
+      setIsLightheadNoPressed(false);
+    };
+    return (
+      <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
+        <Ionicons name="trash-outline" style={styles.clear} size={40} />
+      </TouchableOpacity>
+    );
+  };
 
   const signsState = useSelector((state: RootState) => state.signsSlice);
 
@@ -63,6 +78,8 @@ const SignsSymptoms = ({ navigation }) => {
       <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
         <SafeAreaView style={styles.container}>
           <GoBack navigation={navigation} />
+          <ClearButton clearAllFunc={clearAll} />
+
           <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
 
             <Text style={styles.title}>{t('signs_symptoms.title')}</Text>
@@ -154,6 +171,7 @@ const styles = StyleSheet.create({
     color: 'black',
     textAlign: 'center',
     marginBottom: 15,
+    marginTop: 10,
     letterSpacing: 1,
   },
   imageTitle: {
@@ -217,5 +235,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: "80%",
     alignSelf: 'center'
+  },
+  clear: {
+    alignSelf: 'center',
+    color: 'black',
+  },
+  clearAllButton: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    position: 'absolute',
+    top: 50,
+    right: 15
   },
 });

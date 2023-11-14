@@ -11,9 +11,13 @@ const mentalSlice = createSlice({
         setMental: (state, action) => {
             console.log('setMental action called with payload:', action.payload);
             state.mental = action.payload;
+        },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.mental = '';
         }
     }
 });
 
-export const { setMental } = mentalSlice.actions;
+export const { setMental, clearAll } = mentalSlice.actions;
 export default mentalSlice.reducer;

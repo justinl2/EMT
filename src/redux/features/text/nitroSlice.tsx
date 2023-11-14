@@ -17,8 +17,13 @@ const nitroSlice = createSlice({
             console.log('setSexual action called with payload:', action.payload);
             state.sexual = action.payload;
         },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.thinner = '';
+            state.sexual = '';
+        }
     }
 });
 
-export const { setThinner, setSexual } = nitroSlice.actions;
+export const { setThinner, setSexual, clearAll } = nitroSlice.actions;
 export default nitroSlice.reducer;

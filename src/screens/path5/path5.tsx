@@ -4,10 +4,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import RNPickerSelect from 'react-native-picker-select';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setName, setWhere, setWeekday } from '../../redux/features/text/assessmentSlice';
+import { setName, setWhere, setWeekday, clearAll } from '../../redux/features/text/assessmentSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import ClearButton from "../../components/ClearButton";
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 
@@ -27,6 +28,8 @@ const Screen5 = ({ navigation }) => {
                 <SafeAreaView style={styles.container}>
 
                     <GoBack navigation={navigation} />
+
+                    <ClearButton clearAllFunc={clearAll} />
 
                     <Text style={styles.title}>{t('path5.title')}</Text>
 
@@ -106,6 +109,7 @@ const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
         marginBottom: 15,
+        marginTop: 10,
         letterSpacing: 1,
     },
 

@@ -17,8 +17,13 @@ const illnessSlice = createSlice({
             console.log('setOther action called with payload:', action.payload);
             state.other = action.payload;
         },
+        clearAll: (state) => {
+            console.log('clearAll action called');
+            state.whathappened = '';
+            state.other = '';
+        }
     }
 });
 
-export const { setWhatHappened, setOther } = illnessSlice.actions;
+export const { setWhatHappened, setOther, clearAll } = illnessSlice.actions;
 export default illnessSlice.reducer;

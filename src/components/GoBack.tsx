@@ -13,7 +13,7 @@ const GoBack = ({navigation}) => {
 const styles = StyleSheet.create({
     back: {
         alignSelf: 'center',
-        color: 'white',
+        color: 'black',
     },
     button: {
         width: 80,
