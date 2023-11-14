@@ -12,6 +12,7 @@ import {
     KeyboardAvoidingView
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setHow, clearAll } from '../../redux/features/text/painBadSlice';
@@ -23,6 +24,15 @@ import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 
 const HowBad = ({ navigation }) => {
+
+    const ClearButton = ({ clearAllFunc }) => {
+        const dispatch = useDispatch();
+        return (
+            <TouchableOpacity style={styles.clearAllButton} onPress={() => dispatch(clearAllFunc())}>
+                <Ionicons name="trash-outline" style={styles.clear} size={40} />
+            </TouchableOpacity>
+        );
+    };
 
     const painBadState = useSelector((state: RootState) => state.painBadSlice);
 
@@ -38,8 +48,12 @@ const HowBad = ({ navigation }) => {
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
                 <SafeAreaView style={styles.container}>
 
-                    <GoBack navigation={navigation} />
-                    <ClearButton clearAllFunc={clearAll} />
+
+                    <View style={styles.header}>
+                        <GoBack navigation={navigation} />
+                        <ClearButton clearAllFunc={clearAll} />
+                    </View>
+
                     <Text style={styles.title}>{t('how_bad.title')}</Text>
 
                     <View style={styles.buttonRow}>
@@ -125,6 +139,19 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    clear: {
+        alignSelf: 'center',
+        color: 'black',
+    },
+    clearAllButton: {
+        marginRight: 20,
     },
 });
 
