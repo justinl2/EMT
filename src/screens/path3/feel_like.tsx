@@ -8,7 +8,7 @@ import {
   SafeAreaView,
   TextInput,
   Keyboard,
-    TouchableWithoutFeedback,
+  TouchableWithoutFeedback,
   KeyboardAvoidingView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -18,58 +18,63 @@ import { setFeel } from '../../redux/features/text/painFeelSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const Feel = ({ navigation }) => {
 
-    const painFeelState = useSelector((state: RootState) => state.painFeelSlice);
+  const painFeelState = useSelector((state: RootState) => state.painFeelSlice);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const handleSetFeel = (value) => dispatch(setFeel(value));
+  const handleSetFeel = (value) => dispatch(setFeel(value));
 
-    return (
+  const { t } = useTranslation()
+
+
+  return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-            <SafeAreaView style={styles.container}>
+      <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
 
-                <KeyboardAvoidingView behavior="padding">
-                    <GoBack navigation={navigation} />
-                        <Text style={styles.title}>How Does It Feel?</Text>
+          <KeyboardAvoidingView behavior="padding">
+            <GoBack navigation={navigation} />
+            <Text style={styles.title}>{t('feel_like.title')}</Text>
 
-                        <View style={styles.buttonRow}>
-                            <TouchableOpacity style={styles.button} onPress={() => { }}>
-                                <Text style={styles.buttonText}>Sharp</Text>
-                            </TouchableOpacity>
-                                
-                            <TouchableOpacity style={styles.button} onPress={() => { }}>
-                                <Text style={styles.buttonText}>Dull</Text>
-                            </TouchableOpacity>
-                        </View>
+            <View style={styles.buttonRow}>
+              <TouchableOpacity style={styles.button} onPress={() => { }}>
+                <Text style={styles.buttonText}>{t('feel_like.sharp')}</Text>
+              </TouchableOpacity>
 
-                        <View style={styles.buttonRow}>
-                            <TouchableOpacity style={styles.button} onPress={() => { }}>
-                                <Text style={styles.buttonText}>Throbbing</Text>
-                            </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={() => { }}>
+                <Text style={styles.buttonText}>{t('feel_like.dull')}</Text>
+              </TouchableOpacity>
+            </View>
 
-                            <TouchableOpacity style={styles.button} onPress={() => { }}>
-                                <Text style={styles.buttonText}>Hot</Text>
-                            </TouchableOpacity>
-                        </View>
+            <View style={styles.buttonRow}>
+              <TouchableOpacity style={styles.button} onPress={() => { }}>
+                <Text style={styles.buttonText}>{t('feel_like.throbbing')}</Text>
+              </TouchableOpacity>
 
-                        <View style={styles.textInputContainer}>
-                            <Text style={styles.otherLabel}>Other:</Text>
-                            <TextInput
-                                style={styles.textInput}
-                                placeholder="Enter Description Here"
-                                defaultValue={JSON.stringify(painFeelState.feel, null, 2).replaceAll('"', '')}
-                                onChangeText={handleSetFeel}
-                            />
-                        </View>
-                </KeyboardAvoidingView>
-            </SafeAreaView>
-        </LinearGradient>
+              <TouchableOpacity style={styles.button} onPress={() => { }}>
+                <Text style={styles.buttonText}>{t('feel_like.hot')}</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.textInputContainer}>
+              <Text style={styles.otherLabel}>{t('feel_like.other')}</Text>
+              <TextInput
+                style={styles.textInput}
+                placeholder={t('feel_like.other')}
+                defaultValue={JSON.stringify(painFeelState.feel, null, 2).replaceAll('"', '')}
+                onChangeText={handleSetFeel}
+              />
+            </View>
+          </KeyboardAvoidingView>
+        </SafeAreaView>
+      </LinearGradient>
     </TouchableWithoutFeedback>
-    );
+  );
 };
 
 const styles = StyleSheet.create({
@@ -104,7 +109,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   otherLabel: {
-    color: 'white',
+    color: 'black',
     fontSize: 18,
     marginBottom: 10,
     textAlign: 'center'
@@ -135,7 +140,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: 'black',
     textAlign: 'center',
     marginBottom: 15,
     letterSpacing: 1,

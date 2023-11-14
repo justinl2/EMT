@@ -12,9 +12,11 @@ import SmallButton from '../../components/SmallButton';
 import { RootState } from '../../redux/store';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setThinner, setSexual} from '../../redux/features/text/nitroSlice';
+import { setThinner, setSexual } from '../../redux/features/text/nitroSlice';
 
 import GoBack from "../../components/GoBack";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const NitroAssessment = ({ navigation }) => {
 
@@ -54,38 +56,40 @@ const NitroAssessment = ({ navigation }) => {
         }
         dispatch(setSexual(value));
     };
+    const { t } = useTranslation();
+
 
     return (
         <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
 
             <SafeAreaView style={styles.container}>
                 <GoBack navigation={navigation} />
-                <Text style={styles.title}>Nitroglycerine Contraindiction Assessment</Text>
+                <Text style={styles.title}>{t('nitro_assessment.title')}</Text>
 
                 <View style={styles.containerRow}>
                     <View style={styles.buttonContainer}>
-                        <Text style={styles.imageTitle}>Blood thinners (Aspirin, Warfarin, etc?)</Text>
+                        <Text style={styles.imageTitle}>{t('nitro_assessment.blood')}</Text>
                         <Image style={styles.imageBox} source={(alert)} />
                         <View style={styles.buttonRow}>
                             <TouchableOpacity onPress={() => handleSetThinner("y")}>
-                                <SmallButton title="Yes" image={isThinnerYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                                <SmallButton title={t('nitro_assessment.yes')} image={isThinnerYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => handleSetThinner("n")}>
-                                <SmallButton title="No" image={isThinnerNoPressed ? pressedXmark : xmark} ></SmallButton>
+                                <SmallButton title={t('nitro_assessment.no')} image={isThinnerNoPressed ? pressedXmark : xmark} ></SmallButton>
                             </TouchableOpacity>
                         </View>
 
                     </View>
 
                     <View style={styles.buttonContainer}>
-                        <Text style={styles.imageTitle}>Sexual drugs in the last 24 hours?</Text>
+                        <Text style={styles.imageTitle}>{t('nitro_assessment.sexual')}</Text>
                         <Image style={styles.imageBox} source={(alert)} />
                         <View style={styles.buttonRow}>
                             <TouchableOpacity onPress={() => handleSetSexual("y")}>
-                                <SmallButton title="Yes" image={isSexualYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                                <SmallButton title={t('nitro_assessment.yes')} image={isSexualYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => handleSetSexual("n")}>
-                                <SmallButton title="No" image={isSexualNoPressed ? pressedXmark: xmark} ></SmallButton>
+                                <SmallButton title={t('nitro_assessment.no')} image={isSexualNoPressed ? pressedXmark : xmark} ></SmallButton>
                             </TouchableOpacity>
                         </View>
 
@@ -124,7 +128,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,
@@ -132,7 +136,7 @@ const styles = StyleSheet.create({
     imageTitle: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         alignSelf: 'center',
         marginBottom: 15,

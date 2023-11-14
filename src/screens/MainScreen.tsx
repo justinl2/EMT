@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, StatusBar, StyleSheet, TouchableOpacity, Text, SafeAreaView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import ButtonCard from '../components/ButtonCard';
@@ -8,35 +8,43 @@ import pain from '../assets/pain.jpg'
 import check from '../assets/check.jpg'
 import alert from '../assets/alert.jpg'
 import assist from '../assets/assist.jpg'
+import { useTranslation } from 'react-i18next'
+import '../services/i18next';
+
+
+
+
 
 const HomeScreen = ({ navigation }) => {
+
+  const { t } = useTranslation()
+
   return (
     <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-
-
       <SafeAreaView style={styles.container}>
+
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('FirstPath')}>
-            <ButtonCard title="Advanced Medical Directives" image={pill} />
+            <ButtonCard title={t('mainScreen.advanced')} image={pill} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Med_and_Personal')}>
-            <ButtonCard title="Medical and Personal Information" image={clipboard} />
+            <ButtonCard title={t('mainScreen.medicalInfo')} image={clipboard} />
           </TouchableOpacity>
         </View>
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Pain_Screen')}>
-            <ButtonCard title="Pain" image={pain} />
+            <ButtonCard title={t('mainScreen.pain')} image={pain} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Whats_Wrong_Screen')}>
-            <ButtonCard title="What's Wrong" image={check} />
+            <ButtonCard title={t('mainScreen.whatsWrong')} image={check} />
           </TouchableOpacity>
         </View>
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
-            <ButtonCard title="Alert & Oriented Assessment" image={alert} />
+            <ButtonCard title={t('mainScreen.alert')} image={alert} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('SixthPath')}>
-            <ButtonCard title="Do NOT assist or hospitalize me" image={assist} />
+            <ButtonCard title={t('mainScreen.doNot')} image={assist} />
           </TouchableOpacity>
         </View>
 

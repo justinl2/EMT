@@ -9,6 +9,8 @@ import { setMental } from "../../redux/features/text/mentalSlice";
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const MentalHealth = ({ navigation }) => {
 
@@ -18,24 +20,28 @@ const MentalHealth = ({ navigation }) => {
 
     const handleInputChange = (value) => dispatch(setMental(value));
 
+    const { t } = useTranslation()
+
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
                 <SafeAreaView style={styles.container}>
                     <GoBack navigation={navigation} />
-                    <Text style={styles.title}>Mental Health</Text>
+                    <Text style={styles.title}>{t('mentalhealth.title')}</Text>
 
                     <View style={styles.buttonRow}>
                         <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
-                            <ButtonCard title="Alert & Oriented Assessment" image={alert} />
+                            <ButtonCard title={t('mentalhealth.alert')} image={alert} />
                         </TouchableOpacity>
                     </View>
 
-                    <Text style={styles.title}>What's Wrong?</Text>
+                    <Text style={styles.text}>{t('mentalhealth.whats_wrong')} </Text>
+
 
                     <TextInput
                         style={styles.inputField}
-                        placeholder="Type your message here..."
+                        placeholder={t('mentalhealth.whats_wrong')}
                         placeholderTextColor="#888"
                         defaultValue={JSON.stringify(mentalState.mental, null, 2).replaceAll('"', '')}
                         onChangeText={handleInputChange}
@@ -66,7 +72,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15,
         fontWeight: "500",
-        color: "white",
+        color: "black",
         marginTop: 15,
         marginBottom: 15,
         textAlign: 'center',
@@ -74,7 +80,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,

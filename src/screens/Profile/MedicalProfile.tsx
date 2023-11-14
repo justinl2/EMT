@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
     Text, SafeAreaView, TouchableOpacity, StyleSheet, TextInput, Switch, Button, View,
-    Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, ScrollView,
+    Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, ScrollView, Modal, FlatList,
 } from "react-native";
 import RNPickerSelect from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -16,6 +16,10 @@ import {
     setHospital, setPhysician
 } from '../../redux/features/text/medicalProfileSlice';
 import { RootState } from '../../redux/store';
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
+import languagesList from '../../localization/languagesList.json';
+import i18next, { languageResources } from '../../services/i18next';
 
 
 const MedicalProfileScreen = ({ navigation }) => {
@@ -48,6 +52,14 @@ const MedicalProfileScreen = ({ navigation }) => {
         value: `${year}`
     }));
 
+    const { t } = useTranslation()
+    const [visible, setVisible] = useState(false);
+    const changeLng = lng => {
+        i18next.changeLanguage(lng);
+        setVisible(false);
+    };
+
+
     return (
 
         <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
@@ -57,15 +69,32 @@ const MedicalProfileScreen = ({ navigation }) => {
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <SafeAreaView style={styles.container}>
 
-                            <Text style={styles.title}> Medical Information Profile </Text>
-                            <Text style={styles.subtitle}> Please fill out the following form... </Text>
+                            <Text style={styles.title}> {t('MedicalProfile.title')} </Text>
+                            <Text style={styles.subtitle}> {t('MedicalProfile.please')} </Text>
 
-                            <Text style={styles.section}> Personal Information </Text>
 
-                            <Text style={styles.text}> Name </Text>
+                            <Modal visible={visible} onRequestClose={() => setVisible(false)}>
+                                <View style={styles.languageList}>
+                                    <FlatList
+                                        style={styles.containerList}
+                                        data={Object.keys(languageResources)}
+                                        renderItem={({ item }) => (
+                                            <TouchableOpacity style={styles.languageBtn} onPress={() => changeLng(item)}>
+                                                <Text style={styles.lngText}>{languagesList[item].nativeName}</Text>
+                                            </TouchableOpacity>
+                                        )} />
+                                </View>
+                            </Modal>
+                            <TouchableOpacity style={styles.translateBtn} onPress={() => { setVisible(true) }}>
+                                <Text style={styles.translateLabel}> {t('MedicalProfile.changeLanguage')} </Text>
+                            </TouchableOpacity>
+
+                            <Text style={styles.section}> {t('MedicalProfile.personal')} </Text>
+
+                            <Text style={styles.text}> {t('MedicalProfile.name')} </Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Name"
+                                placeholder={t('MedicalProfile.name')}
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.name, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
@@ -74,7 +103,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 }}
                             />
 
-                            <Text style={styles.text}> Month of Birth</Text>
+                            <Text style={styles.text}> {t('MedicalProfile.month')} </Text>
                             <RNPickerSelect
                                 onValueChange={(value) => {
                                     setLocalMonth(value)
@@ -100,7 +129,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholder={{ label: 'Month', value: null }}
                             />
 
-                            <Text style={styles.text}> Day of Birth</Text>
+                            <Text style={styles.text}> {t('MedicalProfile.day')} </Text>
                             <RNPickerSelect
                                 onValueChange={(value) => {
                                     setLocalDay(value)
@@ -144,7 +173,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholder={{ label: 'Day', value: null }}
                             />
 
-                            <Text style={styles.text}> Year of Birth</Text>
+                            <Text style={styles.text}> {t('MedicalProfile.year')} </Text>
                             <RNPickerSelect
                                 onValueChange={(value) => {
                                     setLocalYear(value)
@@ -156,7 +185,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 placeholder={{ label: 'Year', value: null }}
                             />
 
-                            <Text style={styles.text}> Sex</Text>
+                            <Text style={styles.text}> {t('MedicalProfile.sex')}</Text>
                             <RNPickerSelect
                                 onValueChange={(value) => {
                                     setLocalSex(value)
@@ -173,10 +202,10 @@ const MedicalProfileScreen = ({ navigation }) => {
                             />
 
 
-                            <Text style={styles.text}> Insurance Provider</Text>
+                            <Text style={styles.text}> {t('MedicalProfile.insuranceProvider')}</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Insurance Provider"
+                                placeholder={t('MedicalProfile.insuranceProvider')}
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.insurance, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
@@ -185,10 +214,10 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 }}
                             />
 
-                            <Text style={styles.text}> Insurance Number</Text>
+                            <Text style={styles.text}> {t('MedicalProfile.insuranceNumber')}</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Insurance Number"
+                                placeholder={t('MedicalProfile.insuranceNumber')}
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.insurancenumber, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
@@ -197,12 +226,12 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 }}
                             />
 
-                            <Text style={styles.section}> Medical Record </Text>
+                            <Text style={styles.section}> {t('MedicalProfile.medicalRecord')} </Text>
 
-                            <Text style={styles.text}> Allergies </Text>
+                            <Text style={styles.text}> {t('MedicalProfile.allergies')} </Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Allergies"
+                                placeholder={t('MedicalProfile.allergies')}
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.allergies, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
@@ -211,10 +240,10 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 }}
                             />
 
-                            <Text style={styles.text}> Medical Conditions </Text>
+                            <Text style={styles.text}> {t('MedicalProfile.medicalConditions')} </Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Medical Conditions"
+                                placeholder={t('MedicalProfile.medicalConditions')}
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.conditions, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
@@ -223,10 +252,10 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 }}
                             />
 
-                            <Text style={styles.text}> Medication </Text>
+                            <Text style={styles.text}> {t('MedicalProfile.medication')} </Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Medication"
+                                placeholder={t('MedicalProfile.medication')}
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.medication, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
@@ -235,10 +264,10 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 }}
                             />
 
-                            <Text style={styles.section}> Advanced Medical Directives </Text>
+                            <Text style={styles.section}> {t('MedicalProfile.advancedMedical')} </Text>
 
                             <View style={styles.switch}>
-                                <Text style={styles.text}> POLST? </Text>
+                                <Text style={styles.text}> {t('MedicalProfile.polst')} </Text>
                                 <Switch
                                     trackColor={{ false: "#767577", true: "#81b0ff" }}
                                     thumbColor={localPolst ? "#f5dd4b" : "#f4f3f4"}
@@ -250,7 +279,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     value={JSON.stringify(profileState.polst, null, 2) === 'true'}
                                 />
 
-                                <Text style={styles.text}> Do Not Resuscitate / Intubate </Text>
+                                <Text style={styles.text}> {t('MedicalProfile.resuscitate')} </Text>
                                 <Switch
                                     trackColor={{ false: "#767577", true: "#81b0ff" }}
                                     thumbColor={localResuscitate ? "#f5dd4b" : "#f4f3f4"}
@@ -263,12 +292,12 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 />
                             </View>
 
-                            <Text style={styles.section}> Other </Text>
+                            <Text style={styles.section}> {t('MedicalProfile.other')} </Text>
 
-                            <Text style={styles.text}> Preferred Hospital </Text>
+                            <Text style={styles.text}> {t('MedicalProfile.hospital')} </Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Preferred Hospital"
+                                placeholder={t('MedicalProfile.hospital')}
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.hospital, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
@@ -277,10 +306,10 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 }}
                             />
 
-                            <Text style={styles.text}> Physician's Name </Text>
+                            <Text style={styles.text}> {t('MedicalProfile.physician')} </Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Physician's Name"
+                                placeholder={t('MedicalProfile.physician')}
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(profileState.physician, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
@@ -320,14 +349,14 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15,
         fontWeight: "500",
-        color: "white",
+        color: "black",
         textAlign: 'left',
         paddingLeft: 35,
     },
     section: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginTop: 15,
         marginBottom: 5,
@@ -336,7 +365,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginTop: 15,
         marginBottom: 5,
@@ -345,13 +374,50 @@ const styles = StyleSheet.create({
     subtitle: {
         fontSize: 15,
         fontStyle: 'italic',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,
     },
     switch: {
         alignItems: 'center',
+    },
+    translateLabel: {
+        alignSelf: 'center',
+    },
+    translateBtn: {
+        alignSelf: 'center',
+        width: 150,
+        height: 50,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
+    },
+    languageList: {
+        flex: 1,
+        justifyContent: 'center',
+        padding: 10,
+        backgroundColor: 'white',
+    },
+    languageBtn: {
+        alignSelf: 'center',
+        width: 250,
+        height: 50,
+        backgroundColor: 'paleturquoise',
+        borderRadius: 5,
+        marginTop: 50,
+        padding: 10,
+
+    },
+    containerList: {
+        backgroundColor: "white",
+    },
+    lngText: {
+        fontSize: 20,
+        color: 'black',
+        alignSelf: 'center',
+        textAlign: 'center',
     }
 
 });
@@ -385,4 +451,5 @@ const pickerSelectStyles = StyleSheet.create({
         width: "80%",
         alignSelf: 'center'
     },
+
 });

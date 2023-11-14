@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import {
-  View,
-  StatusBar,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  SafeAreaView,
-  TextInput,
-  Keyboard,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView
+    View,
+    StatusBar,
+    StyleSheet,
+    TouchableOpacity,
+    Text,
+    SafeAreaView,
+    TextInput,
+    Keyboard,
+    TouchableWithoutFeedback,
+    KeyboardAvoidingView
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -18,6 +18,8 @@ import { setHow } from '../../redux/features/text/painBadSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const HowBad = ({ navigation }) => {
 
@@ -27,41 +29,44 @@ const HowBad = ({ navigation }) => {
 
     const handleSetHow = (value) => dispatch(setHow(value));
 
+    const { t } = useTranslation()
+
+
     return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-            <SafeAreaView style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+                <SafeAreaView style={styles.container}>
 
-                <GoBack navigation={navigation} />
-                <Text style={styles.title}>How Bad Does It Hurt?</Text>
+                    <GoBack navigation={navigation} />
+                    <Text style={styles.title}>{t('how_bad.title')}</Text>
 
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity style={styles.button} onPress={() => { }}>
-                        <Text style={styles.buttonText}>Mild</Text>
-                    </TouchableOpacity>
+                    <View style={styles.buttonRow}>
+                        <TouchableOpacity style={styles.button} onPress={() => { }}>
+                            <Text style={styles.buttonText}>{t('how_bad.mild')}</Text>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button} onPress={() => { }}>
-                        <Text style={styles.buttonText}>Moderate</Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => { }}>
+                            <Text style={styles.buttonText}>{t('how_bad.moderate')}</Text>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button} onPress={() => { }}>
-                        <Text style={styles.buttonText}>Severe</Text>
-                    </TouchableOpacity>
-                </View>
+                        <TouchableOpacity style={styles.button} onPress={() => { }}>
+                            <Text style={styles.buttonText}>{t('how_bad.severe')}</Text>
+                        </TouchableOpacity>
+                    </View>
 
-                <View style={styles.textInputContainer}>
-                    <Text style={styles.otherLabel}>Other:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Enter Text Here"
-                        defaultValue={JSON.stringify(painBadState.how, null, 2).replaceAll('"', '')}
-                        onChangeText={handleSetHow}
-                    />
-                </View>
+                    <View style={styles.textInputContainer}>
+                        <Text style={styles.otherLabel}>{t('how_bad.other')}</Text>
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder={t('how_bad.other')}
+                            defaultValue={JSON.stringify(painBadState.how, null, 2).replaceAll('"', '')}
+                            onChangeText={handleSetHow}
+                        />
+                    </View>
 
-            </SafeAreaView>
-        </LinearGradient>
-    </TouchableWithoutFeedback>
+                </SafeAreaView>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 };
 
@@ -106,7 +111,7 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     otherLabel: {
-        color: 'white',
+        color: 'black',
         fontSize: 18,
         marginBottom: 10,
         textAlign: 'center'
@@ -117,7 +122,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,

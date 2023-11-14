@@ -6,22 +6,26 @@ import mental from '../../../src/assets/mental.png';
 import injury from '../../../src/assets/injury.jpg';
 
 import GoBack from "../../components/GoBack";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const WhatsWrong = ({ navigation }) => {
+    const { t } = useTranslation()
+
     return (
         <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
                 <GoBack navigation={navigation} />
-                <Text style={styles.title}>What's Wrong?</Text>
+                <Text style={styles.title}>{t('whats_wrong.title')}</Text>
 
                 <View style={styles.buttonRow}>
                     <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Illness_Injury_Screen')}>
-                        <ButtonCard title="Illness/Injury" image={injury} />
+                        <ButtonCard title={t('whats_wrong.illness')} image={injury} />
                     </TouchableOpacity>
                 </View>
                 <View style={styles.buttonRow}>
                     <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Mental_Health_Screen')}>
-                        <ButtonCard title="Mental Health" image={mental} />
+                        <ButtonCard title={t('whats_wrong.mental')} image={mental} />
                     </TouchableOpacity>
                 </View>
             </SafeAreaView>
@@ -58,7 +62,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,

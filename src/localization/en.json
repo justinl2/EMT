@@ -1,0 +1,191 @@
+{
+    "_comment": "src/localization/en/translation.json",
+    "demoScope": {
+        "title": "i18next is Great!",
+        "description": "Everyone understands me!",
+    },
+    "mainScreen": {
+        "advanced": "Advanced Medical Directives",
+        "medicalInfo": "Medical and Personal Information",
+        "pain": "Pain",
+        "whatsWrong": "Whats Wrong",
+        "alert": "Alert & Oriented Assessment",
+        "doNot": "Do NOT Assist or Hospitalize Me"
+    },
+    "path1": {
+        "title": "Advanced Medical Directives",
+        "switch1": "Do you have a POLST: Physician's Orders for Life-Sustaining Treatment",
+        "switch2": "Do Not Resuscitate / Intubate"
+    },
+    "path2": {
+        "title": "Medical and Personal Information",
+        "personalInfo": "Personal Information",
+        "allergies": "Allergies",
+        "drugs": "Drugs & Medications",
+        "medical": "Medical Conditions"
+    },
+    "personalInfo": {
+        "title": "Personal Information",
+        "name": "Name",
+        "dob": "Date of Birth",
+        "month": "Month",
+        "day": "Day",
+        "year": "Year",
+        "insurance": "Insurance Provider"
+    },
+    "allergen": {
+        "title": "Allergies",
+        "foods": "Foods",
+        "medications": "Medications",
+        "environment": "Environmental",
+        "other": "Other"
+    },
+    "drugs_medications": {
+        "title": "Drugs & Medications",
+        "inhaler": "Inhaler",
+        "blood": "Blood Thinners (Aspirin, Warfarin, etc.)?",
+        "sexual": "Sexual Enhancement Drugs in the last 24 hours?",
+        "narcotics": "Narcotics (opioids, heroin, morhpine, oxytocin, etc.)?"
+    },
+    "medical_conditions": {
+        "title": "Medical Conditions",
+        "diabetes": "Diabetes",
+        "sexually": "Sexually Active",
+        "pregnant": "Pregnant",
+        "breathing": "Breathing Conditions (asthma, COPD, etc.)?",
+        "other": "Other Conditions?",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "path3": {
+        "title": "Pain",
+        "feelsLike": "What does it feel like?",
+        "howBad": "How Bad?",
+        "when": "When did it start?",
+        "better": "What makes the pain better or worse?",
+        "move": "Does the pain move to other parts of your body?"
+    },
+    "feel_like": {
+        "title": "How Does it Feel?",
+        "sharp": "Sharp",
+        "dull": "Dull",
+        "throbbing": "Throbbing",
+        "hot": "Hot",
+        "other": "Other"
+    },
+    "how_bad": {
+        "title": "How Bad Does it Hurt?",
+        "mild": "Mild",
+        "moderate": "moderate",
+        "severe": "severe",
+        "other": "Other"
+    },
+    "path4": {
+        "textInput": "Type here..."
+    },
+    "path5": {
+        "title": "Alert and Oriented Assessment",
+        "name": "What is your name?",
+        "where": "Do you know where you are?",
+        "day": "What day of the week is it today?",
+    },
+    "path6": {
+        "alert": "Alert & Oriented Assessment",
+        "title": "For the EMT: communicate your concern to the patient",
+        "message": "Type your message here...",
+        "noHelp": "I understand, but do NOT help me or take me to the hospital",
+        "noHospital": "Please help me, but do NOT take me to the hospital",
+        "hospital": "Please help me and take me to the hospital"
+    },
+    "whats_wrong": {
+        "title": "What's Wrong?",
+        "illness": "Illness/Injury",
+        "mental": "Mental Health"
+    },
+    "mentalhealth": {
+        "title": "Mental Health",
+        "alert": "Alert & Oriented Assessment",
+        "whats_wrong": "What's Wrong?"
+    },
+    "illness_injury": {
+        "title": "Illness/Injury",
+        "intake": "Last intake / output",
+        "signs": "Signs and Symptoms",
+        "happened": "What Happened?",
+        "other": "Other"
+    },
+    "intake_output": {
+        "title": "Last Intake/Output",
+        "vomit": "Have you vomited?",
+        "bathroom": "When did you last use the bathroom?",
+        "when": "When did you last eat/drink?",
+        "what": "What did you last eat/drink?"
+    },
+    "vomit": {
+        "title": "Have You Vomited?",
+        "blood": "Did you vomit blood?",
+        "when": "When did you vomit?",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "bathroom": {
+        "title": "Bathroom",
+        "blood": "Was there blood?",
+        "constipation": "Constipation?",
+        "diarrhea": "Diarrhea?",
+        "pain": "Was it painful?",
+        "when": "When did you last use the bathroom?",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "signs_symptoms": {
+        "title": "Signs and Symptoms",
+        "pain": "Pain",
+        "breathing": "Trouble breathing, chest tightness",
+        "stomach": "Stomach/gastrointestinal issues",
+        "dizzy": "Light-headedness, dizziness, nausea?",
+        "other": "Other",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "nitro_assessment": {
+        "title": "Nitroglycerine Contraindiction Assessment",
+        "blood": "Blood thinners (Aspirin, Warfarin, etc.)?",
+        "sexual": "Sexual enhancement drugs in the last 24 hours?",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "MedicalProfile": {
+        "title": "Medical Information Profile",
+        "please": "Please fill out the following form...",
+        "personal": "Personal Information",
+        "name": "Name",
+        "month": "Month of Birth",
+        "day": "Day of Birth",
+        "year": "Year of Birth",
+        "sex": "Sex",
+        "insuranceProvider": "Insurance Provider",
+        "insuranceNumber": "Insurance Number",
+        "medicalRecord": "Medical Record",
+        "allergies": "Allergies",
+        "medicalConditions": "Medical Conditions",
+        "medication": "Medication",
+        "advancedMedical": "Advanced Medical Directives",
+        "polst": "POLST?",
+        "resuscitate": "Do not Resuscitate/Intubate",
+        "other": "Other",
+        "hospital": "Preferred Hospital",
+        "physician": "Physician's Name",
+        "changeLanguage": "Change Language"
+    },
+    "SignInScreen": {
+        "username": "Username",
+        "usernameReq": "Username is required",
+        "password": "Password",
+        "passwordReq": "Password is required",
+        "passwordMin": "Password should be at least 3 characters long",
+        "signIn": "Sign In",
+        "forgotPassword": "Forgot Password",
+        "createAccount": "Don't have an account? Create one"
+    }
+}

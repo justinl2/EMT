@@ -1,0 +1,191 @@
+{
+    "_comment": "src/localization/es/translation.json",
+    "demoScope": {
+        "title": "i18next is Great!",
+        "description": "Everyone understands me!"
+    },
+    "mainScreen": {
+        "advanced": "Directivas médicas avanzadas",
+        "medicalInfo": "Información médica y personal",
+        "pain": "Dolor",
+        "whatsWrong": "¿Qué está mal?",
+        "alert": "Evaluación orientada y alerta",
+        "doNot": "NO me ayudes ni me hospitalices"
+    },
+    "path1": {
+        "title": "Directivas médicas avanzadas",
+        "switch1": "¿Tiene un POLST: Órdenes del médico para tratamientos de soporte vital?",
+        "switch2": "No reanimar/intubar"
+    },
+    "path2": {
+        "title": "Información médica y personal",
+        "personalInfo": "Información personal",
+        "allergies": "Alergias",
+        "drugs": "Drogas y Medicamentos",
+        "medical": "Condiciones médicas"
+    },
+    "personalInfo": {
+        "title": " Información personal",
+        "name": "nombre",
+        "dob": "Fecha de nacimiento",
+        "month": "Mes",
+        "day": "día",
+        "year": "Año",
+        "insurance": "Proveedor de seguros"
+    },
+    "allergen": {
+        "title": "Alergias",
+        "foods": "Alimentos",
+        "medications": "Medicamentos",
+        "environment": "Medio ambiente",
+        "other": "otro"
+    },
+    "drugs_medications": {
+        "title": "Drogas y medicamentos",
+        "inhaler": "Inhalador",
+        "blood": "¿Anticoagulantes (aspirina, warfarina, etc.)?",
+        "sexual": "¿Medicamentos para mejorar la sexualidad en las últimas 24 horas?",
+        "narcotics": "¿Estupefacientes (opioides, heroína, morpina, oxitocina, etc.)?"
+    },
+    "medical_conditions": {
+        "title": "Condiciones médicas",
+        "diabetes": "Diabetes",
+        "sexually": "Sexualmente activo",
+        "pregnant": "Embarazada",
+        "breathing": "¿Afecciones respiratorias (asma, EPOC, etc.)?",
+        "other": "¿Otras condiciones?",
+        "yes": "Sí",
+        "no": "No"
+    },
+    "path3": {
+        "title": "Dolor",
+        "feelsLike": "¿Qué se siente?",
+        "howBad": "¿Qué tan malo?",
+        "when": "¿Cuándo empezó?",
+        "better": "¿Qué hace que el dolor mejor o peor?",
+        "move": "¿El dolor se traslada a otras partes de tu cuerpo?"
+    },
+    "feel_like": {
+        "title": "¿Cómo se siente?",
+        "sharp": "Nítido",
+        "dull": "Aburrido",
+        "throbbing": "palpitante",
+        "hot": "Caliente",
+        "other": "otro"
+    },
+    "how_bad": {
+        "title": "¿Qué tanto duele?",
+        "mild": "Leve",
+        "moderate": "moderado",
+        "severe": "severo",
+        "other": "otro"
+    },
+    "path4": {
+        "textInput": "escriba aquí..."
+    },
+    "path5": {
+        "title": "Evaluación de Alerta y Orientada",
+        "name": "¿Cuál es tu nombre?",
+        "where": "¿Sabes dónde estás?",
+        "day": "¿Qué día de la semana es hoy?",
+    },
+    "path6": {
+        "alert": "Evaluación orientada y alerta",
+        "title": "Para el EMT: comunique su inquietud al paciente",
+        "message": "Escribe tu mensaje aquí...",
+        "noHelp": "Entiendo, pero NO me ayuden ni me lleven al hospital",
+        "noHospital": "Por favor ayúdame, pero NO me lleves al hospital",
+        "hospital": "Por favor ayúdame y llévame al hospital"
+    },
+    "whats_wrong": {
+        "title": "¿Qué pasa?",
+        "illness": "Enfermedad/Lesión",
+        "mental": "Salud mental"
+    },
+    "mentalhealth": {
+        "title": "Salud mental",
+        "alert": "Evaluación orientada y alerta",
+        "whats_wrong": "¿Qué pasa?"
+    },
+    "illness_injury": {
+        "title": "Enfermedad/Lesión",
+        "intake": "Última entrada/salida",
+        "signs": "Signos y síntomas",
+        "happened": "¿Qué pasó?",
+        "other": "otro"
+    },
+    "intake_output": {
+        "title": "Última entrada/salida",
+        "vomit": "¿Has vomitado?",
+        "bathroom": "¿Cuándo usaste el baño por última vez?",
+        "when": "¿Cuándo comiste/bebiste por última vez?",
+        "what": "¿Qué comiste/bebiste por última vez?"
+    },
+    "vomit": {
+        "title": "¿Has vomitado?",
+        "blood": "¿Vomitaste sangre?",
+        "when": "¿Cuándo vomitaste?",
+        "yes": "Sí",
+        "no": "No"
+    },
+    "bathroom": {
+        "title": "Baño",
+        "blood": "¿Había sangre?",
+        "constipation": "¿Estreñimiento??",
+        "diarrhea": "¿Diarrea?",
+        "pain": "¿Fue doloroso?",
+        "when": "¿Cuándo usaste el baño por última vez?",
+        "yes": "Sí",
+        "no": "No"
+    },
+    "signs_symptoms": {
+        "title": "Signos y síntomas",
+        "pain": "dolor",
+        "breathing": "Problemas para respirar, opresión en el pecho",
+        "stomach": "Problemas estomacales/gastrointestinales",
+        "dizzy": "¿Aturdimiento, mareos, náuseas?",
+        "other": "otro",
+        "yes": "Sí",
+        "no": "No"
+    },
+    "nitro_assessment": {
+        "title": "Evaluación de contraindicaciones de nitroglicerina",
+        "blood": "¿Anticoagulantes (aspirina, warfarina, etc.)?",
+        "sexual": "¿Medicamentos para mejorar la sexualidad en las últimas 24 horas?",
+        "yes": "Sí",
+        "no": "No"
+    },
+    "MedicalProfile": {
+        "title": "Perfil de información médica",
+        "please": "Por favor complete el siguiente formulario...",
+        "personal": "Información personal",
+        "name": "nombre",
+        "month": "Mes de nacimiento",
+        "day": "Día de nacimiento",
+        "year": "Año de nacimiento",
+        "sex": "Sexo",
+        "insuranceProvider": "Proveedor de seguros",
+        "insuranceNumber": "Número de seguro",
+        "medicalRecord": "Registro Médico",
+        "allergies": "Alergias",
+        "medicalConditions": "Condiciones Médicas",
+        "medication": "Medicamento",
+        "advancedMedical": "Directivas médicas avanzadas",
+        "polst": "¿POLST?",
+        "resuscitate": "No reanimar/intubar",
+        "other": "otro",
+        "hospital": "Hospital preferido",
+        "physician": "Nombre del médico",
+        "changeLanguage": "cambiar idioma"
+    },
+    "SignInScreen": {
+        "username": "Nombre de usuario",
+        "usernameReq": "El nombre de usuario es obligatorio",
+        "password": "Contraseña",
+        "passwordReq": "Se requiere contraseña",
+        "passwordMin": "La contraseña debe tener al menos 3 caracteres",
+        "signIn": "Iniciar sesión",
+        "forgotPassword": "Olvidé mi contraseña",
+        "createAccount": "¿No tienes una cuenta? Crea una"
+    }
+}

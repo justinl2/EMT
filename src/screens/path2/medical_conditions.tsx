@@ -21,6 +21,8 @@ import sex from "../../../src/assets/sex.jpg";
 import diabetes from "../../../src/assets/diabetes.jpg";
 import { RootState } from '../../redux/store';
 import GoBack from "../../components/GoBack";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const MedicalConditions = ({ navigation }) => {
 
@@ -79,6 +81,8 @@ const MedicalConditions = ({ navigation }) => {
     const handleSetBreathing = (value) => dispatch(setBreathing(value));
     const handleSetOther = (value) => dispatch(setOther(value));
 
+    const { t } = useTranslation()
+
     return (
         <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
             <KeyboardAvoidingView behavior="padding">
@@ -88,31 +92,31 @@ const MedicalConditions = ({ navigation }) => {
 
                             <GoBack navigation={navigation} />
 
-                            <Text style={styles.title}>Medical Conditions</Text>
+                            <Text style={styles.title}>{t('medical_conditions.title')}</Text>
 
                             <View style={styles.containerRow}>
                                 <View style={styles.buttonContainer}>
-                                    <Text style={styles.imageTitle}>Diabetes</Text>
+                                    <Text style={styles.imageTitle}>{t('medical_conditions.diabetes')}</Text>
                                     <Image style={styles.imageBox} source={(diabetes)} />
                                     <View style={styles.buttonRow}>
                                         <TouchableOpacity onPress={() => handleSetDiabetes("y")}>
-                                            <SmallButton title="Yes" image={isDiabetesYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                                            <SmallButton title={t('medical_conditions.yes')} image={isDiabetesYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={() => handleSetDiabetes("n")}>
-                                            <SmallButton title="No" image={isDiabetesNoPressed ? pressedXmark : xmark} ></SmallButton>
+                                            <SmallButton title={t('medical_conditions.no')} image={isDiabetesNoPressed ? pressedXmark : xmark} ></SmallButton>
                                         </TouchableOpacity>
                                     </View>
                                 </View>
 
                                 <View style={styles.buttonContainer}>
-                                    <Text style={styles.imageTitle}>Sexually Active</Text>
+                                    <Text style={styles.imageTitle}>{t('medical_conditions.sexually')}</Text>
                                     <Image style={styles.imageBox} source={(sex)} />
                                     <View style={styles.buttonRow}>
                                         <TouchableOpacity onPress={() => handleSetSexual("y")}>
-                                            <SmallButton title="Yes" image={isSexualYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                                            <SmallButton title={t('medical_conditions.yes')} image={isSexualYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={() => handleSetSexual("n")}>
-                                            <SmallButton title="No" image={isSexualNoPressed ? pressedXmark : xmark} ></SmallButton>
+                                            <SmallButton title={t('medical_conditions.no')} image={isSexualNoPressed ? pressedXmark : xmark} ></SmallButton>
                                         </TouchableOpacity>
                                     </View>
                                 </View>
@@ -120,33 +124,33 @@ const MedicalConditions = ({ navigation }) => {
 
                             <View style={styles.buttonSingle}>
                                 <View style={styles.buttonContainer}>
-                                    <Text style={styles.imageTitle}>Pregnant</Text>
+                                    <Text style={styles.imageTitle}>{t('medical_conditions.pregnant')}</Text>
                                     <Image style={styles.imageBox} source={(pregnant)} />
                                     <View style={styles.buttonRow}>
                                         <TouchableOpacity onPress={() => handleSetPregnant("y")}>
-                                            <SmallButton title="Yes" image={isPregnantYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                                            <SmallButton title={t('medical_conditions.yes')} image={isPregnantYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={() => handleSetPregnant("n")}>
-                                            <SmallButton title="No" image={isPregnantNoPressed ? pressedXmark : xmark} ></SmallButton>
+                                            <SmallButton title={t('medical_conditions.no')} image={isPregnantNoPressed ? pressedXmark : xmark} ></SmallButton>
                                         </TouchableOpacity>
                                     </View>
 
                                 </View>
                             </View>
 
-                            <Text style={styles.text}>Breathing conditions (asthma, COPD, etc)</Text>
+                            <Text style={styles.text}>{t('medical_conditions.breathing')}</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Breathing conditions?"
+                                placeholder={t('medical_conditions.breathing')}
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(conditionState.breathing, null, 2).replaceAll('"', '')}
                                 onChangeText={handleSetBreathing}
                             />
 
-                            <Text style={styles.text}>Other:</Text>
+                            <Text style={styles.text}>{t('medical_conditions.other')}</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Other condition?"
+                                placeholder={t('medical_conditions.other')}
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(conditionState.other, null, 2).replaceAll('"', '')}
                                 onChangeText={handleSetOther}

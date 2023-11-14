@@ -20,6 +20,8 @@ import { setBlood, setConstipation, setDiarrhea, setWhen } from '../../redux/fea
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const Bathroom = ({ navigation }) => {
 
@@ -77,6 +79,9 @@ const Bathroom = ({ navigation }) => {
     };
     const handleSetWhen = (value) => dispatch(setWhen(value));
 
+    const { t } = useTranslation();
+
+
     return (
         <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
             <KeyboardAvoidingView behavior="padding">
@@ -85,32 +90,32 @@ const Bathroom = ({ navigation }) => {
                         <SafeAreaView style={styles.container}>
                             <GoBack navigation={navigation} />
 
-                            <Text style={styles.title}>When Did You Last Use the Bathroom?</Text>
+                            <Text style={styles.title}>{t('bathroom.title')}</Text>
 
                             <View style={styles.containerRow}>
                                 <View style={styles.buttonContainer}>
-                                    <Text style={styles.imageTitle}>Was there blood?</Text>
+                                    <Text style={styles.imageTitle}>{t('bathroom.blood')}</Text>
                                     <Image style={styles.imageBox} source={(alert)} />
                                     <View style={styles.buttonRow}>
                                         <TouchableOpacity onPress={() => handleSetBlood("y")}>
-                                            <SmallButton title="Yes" image={isBloodYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                                            <SmallButton title={t('bathroom.yes')} image={isBloodYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={() => handleSetBlood("n")}>
-                                            <SmallButton title="No" image={isBloodNoPressed ? pressedXmark : xmark} ></SmallButton>
+                                            <SmallButton title={t('bathroom.no')} image={isBloodNoPressed ? pressedXmark : xmark} ></SmallButton>
                                         </TouchableOpacity>
                                     </View>
 
                                 </View>
 
                                 <View style={styles.buttonContainer}>
-                                    <Text style={styles.imageTitle}>Constipation</Text>
+                                    <Text style={styles.imageTitle}>{t('bathroom.constipation')}</Text>
                                     <Image style={styles.imageBox} source={(alert)} />
                                     <View style={styles.buttonRow}>
                                         <TouchableOpacity onPress={() => handleSetConstipation("y")}>
-                                            <SmallButton title="Yes" image={isConstipationYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                                            <SmallButton title={t('bathroom.yes')} image={isConstipationYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={() => handleSetConstipation("n")}>
-                                            <SmallButton title="No" image={isConstipationNoPressed? pressedXmark : xmark} ></SmallButton>
+                                            <SmallButton title={t('bathroom.no')} image={isConstipationNoPressed ? pressedXmark : xmark} ></SmallButton>
                                         </TouchableOpacity>
                                     </View>
 
@@ -120,14 +125,14 @@ const Bathroom = ({ navigation }) => {
 
                             <View style={styles.containerRow}>
                                 <View style={styles.buttonContainer}>
-                                    <Text style={styles.imageTitle}>Diarrhea?</Text>
+                                    <Text style={styles.imageTitle}>{t('bathroom.diarrhea')}</Text>
                                     <Image style={styles.imageBox} source={(alert)} />
                                     <View style={styles.buttonRow}>
                                         <TouchableOpacity onPress={() => handleSetDiarrhea("y")}>
-                                            <SmallButton title="Yes" image={isDiarrheaYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                                            <SmallButton title={t('bathroom.yes')} image={isDiarrheaYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={() => handleSetDiarrhea("n")}>
-                                            <SmallButton title="No" image={isDiarrheaNoPressed ? pressedXmark : xmark} ></SmallButton>
+                                            <SmallButton title={t('bathroom.no')} image={isDiarrheaNoPressed ? pressedXmark : xmark} ></SmallButton>
                                         </TouchableOpacity>
                                     </View>
 
@@ -136,15 +141,15 @@ const Bathroom = ({ navigation }) => {
                                     style={styles.buttonContainer}
                                     onPress={() => navigation.navigate("Pain_Screen")}
                                 >
-                                    <ButtonCard title="Was it painful?" image={alert} />
+                                    <ButtonCard title={t('bathroom.pain')} image={alert} />
                                 </TouchableOpacity>
                             </View>
 
-                            <Text style={styles.title}>When did you last use the bathroom?</Text>
+                            <Text style={styles.text}>{t('bathroom.when')}</Text>
 
                             <TextInput
                                 style={styles.inputField}
-                                placeholder="Type your message here..."
+                                placeholder={t('bathroom.when')}
                                 placeholderTextColor="#888"
                                 defaultValue={JSON.stringify(bathroomState.when, null, 2).replaceAll('"', '')}
                                 onChangeText={handleSetWhen}
@@ -178,7 +183,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15,
         fontWeight: "500",
-        color: "white",
+        color: "black",
         marginTop: 15,
         marginBottom: 15,
         textAlign: 'center',
@@ -186,7 +191,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,
@@ -194,7 +199,7 @@ const styles = StyleSheet.create({
     imageTitle: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,

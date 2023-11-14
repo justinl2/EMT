@@ -28,94 +28,99 @@ import { setLighthead, setOther } from '../../redux/features/text/signsSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
+
 
 const SignsSymptoms = ({ navigation }) => {
 
-    const signsState = useSelector((state: RootState) => state.signsSlice);
+  const signsState = useSelector((state: RootState) => state.signsSlice);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const [isLightheadYesPressed, setIsLightheadYesPressed] = useState(JSON.stringify(signsState.lighthead, null, 2).replaceAll('"', '') === "y");
-    const [isLightheadNoPressed, setIsLightheadNoPressed] = useState(JSON.stringify(signsState.lighthead, null, 2).replaceAll('"', '') === "n");
+  const [isLightheadYesPressed, setIsLightheadYesPressed] = useState(JSON.stringify(signsState.lighthead, null, 2).replaceAll('"', '') === "y");
+  const [isLightheadNoPressed, setIsLightheadNoPressed] = useState(JSON.stringify(signsState.lighthead, null, 2).replaceAll('"', '') === "n");
 
-    const handleSetLighthead = (value) => {
-        if (value === "y") {
-            setIsLightheadYesPressed((prev) => !prev);
-            isLightheadYesPressed ? (value = "") : null;
-            setIsLightheadNoPressed(false)
-        }
-        else if (value === "n") {
-            setIsLightheadNoPressed((prev) => !prev);
-            isLightheadNoPressed ? (value = "") : null;
-            setIsLightheadYesPressed(false)
-        }
-        dispatch(setLighthead(value));
-    };
-    const handleSetOther = (value) => dispatch(setOther(value));
+  const handleSetLighthead = (value) => {
+    if (value === "y") {
+      setIsLightheadYesPressed((prev) => !prev);
+      isLightheadYesPressed ? (value = "") : null;
+      setIsLightheadNoPressed(false)
+    }
+    else if (value === "n") {
+      setIsLightheadNoPressed((prev) => !prev);
+      isLightheadNoPressed ? (value = "") : null;
+      setIsLightheadYesPressed(false)
+    }
+    dispatch(setLighthead(value));
+  };
+  const handleSetOther = (value) => dispatch(setOther(value));
+  const { t } = useTranslation();
 
-    return (
+
+  return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+      <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
         <SafeAreaView style={styles.container}>
-            <GoBack navigation={navigation} />
-            <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
+          <GoBack navigation={navigation} />
+          <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
 
-            <Text style={styles.title}>Signs and Symptoms</Text>
+            <Text style={styles.title}>{t('signs_symptoms.title')}</Text>
 
             <View style={styles.containerRow}>
-                <TouchableOpacity
+              <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={() => navigation.navigate("Pain_Screen")}
-                >
-                <ButtonCard title="Pain" image={alert} />
-                </TouchableOpacity>
-                <TouchableOpacity
+              >
+                <ButtonCard title={t('signs_symptoms.pain')} image={alert} />
+              </TouchableOpacity>
+              <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={() => navigation.navigate("Nitro_Assessment_Screen")}
-                >
+              >
                 <ButtonCard
-                    title="Trouble breathing, chest tightness"
-                    image={alert}
+                  title={t('signs_symptoms.breathing')}
+                  image={alert}
                 />
-                </TouchableOpacity>
+              </TouchableOpacity>
             </View>
 
             <View style={styles.containerRow}>
-                <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Intake_Output_Screen")}
-                >
-                <ButtonCard title="Stomach/gastrointestinal issues" image={alert} />
-                </TouchableOpacity>
-                <View style={styles.buttonContainer}>
-                <Text style={styles.imageTitle}>Light-headedness, dizziness, nausea?</Text>
+              <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={() => navigation.navigate("Intake_Output_Screen")}
+              >
+                <ButtonCard title={t('signs_symptoms.stomach')} image={alert} />
+              </TouchableOpacity>
+              <View style={styles.buttonContainer}>
+                <Text style={styles.imageTitle}>{t('signs_symptoms.dizzy')}</Text>
                 <Image style={styles.imageBox} source={(alert)} />
                 <View style={styles.buttonRow}>
-                    <TouchableOpacity onPress={() => handleSetLighthead("y")}>
-                    <SmallButton title="Yes" image={isLightheadYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleSetLighthead("n")}>
-                    <SmallButton title="No" image={isLightheadNoPressed ? pressedXmark : xmark} ></SmallButton>
-                    </TouchableOpacity>
+                  <TouchableOpacity onPress={() => handleSetLighthead("y")}>
+                    <SmallButton title={t('signs_symptoms.yes')} image={isLightheadYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => handleSetLighthead("n")}>
+                    <SmallButton title={t('signs_symptoms.no')} image={isLightheadNoPressed ? pressedXmark : xmark} ></SmallButton>
+                  </TouchableOpacity>
                 </View>
 
-                </View>
+              </View>
             </View>
 
-            <Text style={styles.title}>Other:</Text>
+            <Text style={styles.text}>{t('signs_symptoms.other')}</Text>
 
             <TextInput
-                style={styles.inputField}
-                placeholder="Type your message here..."
-                placeholderTextColor="#888"
-                defaultValue={JSON.stringify(signsState.other, null, 2).replaceAll('"', '')}
-                onChangeText={handleSetOther}
+              style={styles.inputField}
+              placeholder={t('signs_symptoms.other')}
+              placeholderTextColor="#888"
+              defaultValue={JSON.stringify(signsState.other, null, 2).replaceAll('"', '')}
+              onChangeText={handleSetOther}
             />
-            </KeyboardAvoidingView>
+          </KeyboardAvoidingView>
         </SafeAreaView>
-        </LinearGradient>
+      </LinearGradient>
     </TouchableWithoutFeedback>
-    );
+  );
 };
 
 export default SignsSymptoms;
@@ -138,7 +143,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     fontWeight: "500",
-    color: "white",
+    color: "black",
     marginTop: 15,
     marginBottom: 15,
     textAlign: 'center',
@@ -146,7 +151,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: 'black',
     textAlign: 'center',
     marginBottom: 15,
     letterSpacing: 1,
@@ -154,7 +159,7 @@ const styles = StyleSheet.create({
   imageTitle: {
     fontSize: 15,
     fontWeight: "500",
-    color: "white",
+    color: "black",
     marginTop: 15,
     marginBottom: 15,
     textAlign: 'center',

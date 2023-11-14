@@ -21,61 +21,67 @@ import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
 
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
+
 const IntakeOutput = ({ navigation }) => {
 
-    const intakeState = useSelector((state: RootState) => state.intakeSlice);
+  const intakeState = useSelector((state: RootState) => state.intakeSlice);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const handleSetWhen = (value) => dispatch(setWhen(value));
-    const handleSetWhat = (value) => dispatch(setWhat(value));
+  const handleSetWhen = (value) => dispatch(setWhen(value));
+  const handleSetWhat = (value) => dispatch(setWhat(value));
 
-    return (
+  const { t } = useTranslation()
+
+
+  return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+      <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
 
         <SafeAreaView style={styles.container}>
-            <GoBack navigation={navigation} />
-            <Text style={styles.title}>Last Intake/Output</Text>
+          <GoBack navigation={navigation} />
+          <Text style={styles.title}>{t('intake_output.title')}</Text>
 
-            <View style={styles.buttonRow}>
+          <View style={styles.buttonRow}>
             <TouchableOpacity
-                style={styles.buttonContainer}
-                onPress={() => navigation.navigate("Vomit_Screen")}
+              style={styles.buttonContainer}
+              onPress={() => navigation.navigate("Vomit_Screen")}
             >
-                <ButtonCard title="Have you vomited?" image={alert} />
+              <ButtonCard title={t('intake_output.vomit')} image={alert} />
             </TouchableOpacity>
             <TouchableOpacity
-                style={styles.buttonContainer}
-                onPress={() => navigation.navigate("Bathroom_Screen")}
+              style={styles.buttonContainer}
+              onPress={() => navigation.navigate("Bathroom_Screen")}
             >
-                <ButtonCard title="When did you last use the bathroom?" image={alert} />
+              <ButtonCard title={t('intake_output.bathroom')} image={alert} />
             </TouchableOpacity>
-            </View>
+          </View>
 
-            <Text style={styles.title}>When did you last eat/drink?</Text>
+          <Text style={styles.text}>{t('intake_output.when')}</Text>
 
-            <TextInput
+          <TextInput
             style={styles.inputField}
             placeholder="Type your message here..."
             placeholderTextColor="#888"
             defaultValue={JSON.stringify(intakeState.when, null, 2).replaceAll('"', '')}
             onChangeText={handleSetWhen}
-            />
+          />
 
-            <Text style={styles.title}>What did you last eat/drink?</Text>
+          <Text style={styles.text}>{t('intake_output.what')}</Text>
 
-            <TextInput
+          <TextInput
             style={styles.inputField}
             placeholder="Type your message here..."
             placeholderTextColor="#888"
             defaultValue={JSON.stringify(intakeState.what, null, 2).replaceAll('"', '')}
             onChangeText={handleSetWhat}
-            />
+          />
         </SafeAreaView>
-        </LinearGradient>
+      </LinearGradient>
     </TouchableWithoutFeedback>
-    );
+  );
 };
 
 export default IntakeOutput;
@@ -98,7 +104,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     fontWeight: "500",
-    color: "white",
+    color: "black",
     marginTop: 15,
     marginBottom: 15,
     textAlign: "center",
@@ -106,7 +112,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#FFFFFF",
+    color: "black",
     textAlign: "center",
     marginBottom: 15,
     letterSpacing: 1,

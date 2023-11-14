@@ -10,6 +10,8 @@ import { setName, setDOB, setInsurance } from '../../redux/features/text/persona
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const PersonalInformation = ({ navigation }) => {
 
@@ -27,6 +29,8 @@ const PersonalInformation = ({ navigation }) => {
         value: `${year}`
     }));
 
+    const { t } = useTranslation()
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
@@ -36,12 +40,12 @@ const PersonalInformation = ({ navigation }) => {
 
                     <GoBack navigation={navigation} />
 
-                    <Text style={styles.title}> Personal Information </Text>
+                    <Text style={styles.title}> {t('personalInfo.title')} </Text>
 
-                    <Text style={styles.text}> Name </Text>
+                    <Text style={styles.text}> {t('personalInfo.name')} </Text>
                     <TextInput
                         style={styles.input}
-                        placeholder="Name"
+                        placeholder={t('personalInfo.name')}
                         placeholderTextColor="#888"
                         defaultValue={JSON.stringify(personalState.name, null, 2).replaceAll('"', '')}
                         onChangeText={(text) => {
@@ -49,7 +53,7 @@ const PersonalInformation = ({ navigation }) => {
                         }}
                     />
 
-                    <Text style={styles.text}> Date of Birth</Text>
+                    <Text style={styles.text}> {t('personalInfo.dob')} </Text>
 
                     <RNPickerSelect
                         onValueChange={(value) => {
@@ -131,11 +135,11 @@ const PersonalInformation = ({ navigation }) => {
                     />
 
 
-                    <Text style={styles.text}> Insurance Provider</Text>
+                    <Text style={styles.text}> {t('personalInfo.insurance')} </Text>
 
                     <TextInput
                         style={styles.input}
-                        placeholder="Insurance Provider"
+                        placeholder={t('personalInfo.insurance')}
                         placeholderTextColor="#888"
                         defaultValue={JSON.stringify(personalState.insurance, null, 2).replaceAll('"', '')}
                         onChangeText={(text) => {
@@ -170,7 +174,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15,
         fontWeight: "500",
-        color: "white",
+        color: "black",
         marginTop: 15,
         marginBottom: 15,
         textAlign: 'center',
@@ -178,7 +182,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
         marginBottom: 15,
         letterSpacing: 1,
