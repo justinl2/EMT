@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { setText, clearText } from '../../redux/features/text/textSlice';
 import type { RootState } from '../../redux/store';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import '../../services/i18next';
 
 const TypeAnything = ({ navigation }) => {

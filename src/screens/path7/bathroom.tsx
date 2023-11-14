@@ -108,8 +108,10 @@ const Bathroom = ({ navigation }) => {
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <SafeAreaView style={styles.container}>
 
-                            <GoBack navigation={navigation} />
-                            <ClearButton clearAllFunc={clearAll} />
+                            <View style={styles.header}>
+                                <GoBack navigation={navigation} />
+                                <ClearButton clearAllFunc={clearAll} />
+                            </View>
 
                             <Text style={styles.title}>{t('bathroom.title')}</Text>
 
@@ -282,11 +284,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: 'black',
     },
-    clearAllButton: {
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        position: 'absolute',
-        top: 50,
-        right: 15
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 20,
     },
 });

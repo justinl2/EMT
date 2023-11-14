@@ -12,6 +12,8 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
+
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setFeel, clearAll } from '../../redux/features/text/painFeelSlice';
@@ -23,6 +25,15 @@ import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 
 const Feel = ({ navigation }) => {
+
+    const ClearButton = ({ clearAllFunc }) => {
+        const dispatch = useDispatch();
+        return (
+            <TouchableOpacity style={styles.clearAllButton} onPress={() => dispatch(clearAllFunc())}>
+                <Ionicons name="trash-outline" style={styles.clear} size={40} />
+            </TouchableOpacity>
+        );
+    };
 
   const painFeelState = useSelector((state: RootState) => state.painFeelSlice);
 
@@ -39,8 +50,10 @@ const Feel = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
 
           <KeyboardAvoidingView behavior="padding">
-            <GoBack navigation={navigation} />
-            <ClearButton clearAllFunc={clearAll} />
+            <View style={styles.header}>
+                <GoBack navigation={navigation} />
+                <ClearButton clearAllFunc={clearAll} />
+            </View>
             <Text style={styles.title}>{t('feel_like.title')}</Text>
 
             <View style={styles.buttonRow}>
@@ -107,7 +120,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   textInputContainer: {
-    marginTop: 20
+      marginTop: 20,
+
   },
   otherLabel: {
     color: 'black',
@@ -142,7 +156,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 15,
     letterSpacing: 1,
-  },
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    clear: {
+        alignSelf: 'center',
+        color: 'black',
+    },
+    clearAllButton: {
+        marginRight: 20,
+    },
 });
 
 export default Feel;
