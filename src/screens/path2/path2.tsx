@@ -8,8 +8,12 @@ import pill from '../../../src/assets/pill.jpg'
 import needle from '../../../src/assets/syringe.jpg'
 
 import GoBack from "../../components/GoBack";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const Screen2 = ({ navigation }) => {
+
+  const { t } = useTranslation()
 
   return (
     <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
@@ -17,23 +21,23 @@ const Screen2 = ({ navigation }) => {
 
         <GoBack navigation={navigation} />
 
-        <Text style={styles.title}>Medical and Personal Information</Text>
+        <Text style={styles.title}>{t('path2.title')}</Text>
 
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Personal_Information_Screen')}>
-            <ButtonCard title="Personal Information" image={personal} ></ButtonCard>
+            <ButtonCard title={t('path2.personalInfo')} image={personal} ></ButtonCard>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('AllergenScreen')}>
-            <ButtonCard title="Allergies" image={allergen} ></ButtonCard>
+            <ButtonCard title={t('path2.allergies')} image={allergen} ></ButtonCard>
           </TouchableOpacity>
         </View>
 
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Drugs_Medications_Screen')}>
-            <ButtonCard title="Drugs & Medications" image={pill} ></ButtonCard>
+            <ButtonCard title={t('path2.drugs')} image={pill} ></ButtonCard>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Medical_Conditions_Screen')}>
-            <ButtonCard title="Medical Conditions" image={needle} ></ButtonCard>
+            <ButtonCard title={t('path2.medical')} image={needle} ></ButtonCard>
           </TouchableOpacity>
         </View>
       </SafeAreaView>

@@ -29,109 +29,115 @@ import { setLighthead, setOther, clearAll } from '../../redux/features/text/sign
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
+
 
 const SignsSymptoms = ({ navigation }) => {
 
-    const ClearButton = ({ clearAllFunc }) => {
-        const dispatch = useDispatch();
-        const handleClearAll = (value) => {
-            dispatch(value);
-            setIsLightheadYesPressed(false);
-            setIsLightheadNoPressed(false);
-        };
-        return (
-            <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
-                <Ionicons name="trash-outline" style={styles.clear} size={40} />
-            </TouchableOpacity>
-        );
-    };
-
-    const signsState = useSelector((state: RootState) => state.signsSlice);
-
+  const ClearButton = ({ clearAllFunc }) => {
     const dispatch = useDispatch();
-
-    const [isLightheadYesPressed, setIsLightheadYesPressed] = useState(JSON.stringify(signsState.lighthead, null, 2).replaceAll('"', '') === "y");
-    const [isLightheadNoPressed, setIsLightheadNoPressed] = useState(JSON.stringify(signsState.lighthead, null, 2).replaceAll('"', '') === "n");
-
-    const handleSetLighthead = (value) => {
-        if (value === "y") {
-            setIsLightheadYesPressed((prev) => !prev);
-            isLightheadYesPressed ? (value = "") : null;
-            setIsLightheadNoPressed(false)
-        }
-        else if (value === "n") {
-            setIsLightheadNoPressed((prev) => !prev);
-            isLightheadNoPressed ? (value = "") : null;
-            setIsLightheadYesPressed(false)
-        }
-        dispatch(setLighthead(value));
+    const handleClearAll = (value) => {
+      dispatch(value);
+      setIsLightheadYesPressed(false);
+      setIsLightheadNoPressed(false);
     };
-    const handleSetOther = (value) => dispatch(setOther(value));
-
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-            <SafeAreaView style={styles.container}>
-                <GoBack navigation={navigation} />
-                <ClearButton clearAllFunc={clearAll} />
-                <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
-
-                <Text style={styles.title}>Signs and Symptoms</Text>
-
-                <View style={styles.containerRow}>
-                    <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Pain_Screen")}
-                    >
-                    <ButtonCard title="Pain" image={alert} />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => navigation.navigate("Nitro_Assessment_Screen")}
-                    >
-                    <ButtonCard
-                        title="Trouble breathing, chest tightness"
-                        image={alert}
-                    />
-                    </TouchableOpacity>
-                </View>
-
-                <View style={styles.containerRow}>
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => navigation.navigate("Intake_Output_Screen")}
-                    >
-                    <ButtonCard title="Stomach/gastrointestinal issues" image={alert} />
-                    </TouchableOpacity>
-                    <View style={styles.buttonContainer}>
-                    <Text style={styles.imageTitle}>Light-headedness, dizziness, nausea?</Text>
-                    <Image style={styles.imageBox} source={(alert)} />
-                    <View style={styles.buttonRow}>
-                        <TouchableOpacity onPress={() => handleSetLighthead("y")}>
-                        <SmallButton title="Yes" image={isLightheadYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => handleSetLighthead("n")}>
-                        <SmallButton title="No" image={isLightheadNoPressed ? pressedXmark : xmark} ></SmallButton>
-                        </TouchableOpacity>
-                    </View>
-
-                    </View>
-                </View>
-
-                <Text style={styles.title}>Other:</Text>
-
-                <TextInput
-                    style={styles.inputField}
-                    placeholder="Type your message here..."
-                    placeholderTextColor="#888"
-                    defaultValue={JSON.stringify(signsState.other, null, 2).replaceAll('"', '')}
-                    onChangeText={handleSetOther}
-                />
-                </KeyboardAvoidingView>
-            </SafeAreaView>
-            </LinearGradient>
-        </TouchableWithoutFeedback>
+      <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
+        <Ionicons name="trash-outline" style={styles.clear} size={40} />
+      </TouchableOpacity>
     );
+  };
+
+  const signsState = useSelector((state: RootState) => state.signsSlice);
+
+  const dispatch = useDispatch();
+
+  const [isLightheadYesPressed, setIsLightheadYesPressed] = useState(JSON.stringify(signsState.lighthead, null, 2).replaceAll('"', '') === "y");
+  const [isLightheadNoPressed, setIsLightheadNoPressed] = useState(JSON.stringify(signsState.lighthead, null, 2).replaceAll('"', '') === "n");
+
+  const handleSetLighthead = (value) => {
+    if (value === "y") {
+      setIsLightheadYesPressed((prev) => !prev);
+      isLightheadYesPressed ? (value = "") : null;
+      setIsLightheadNoPressed(false)
+    }
+    else if (value === "n") {
+      setIsLightheadNoPressed((prev) => !prev);
+      isLightheadNoPressed ? (value = "") : null;
+      setIsLightheadYesPressed(false)
+    }
+    dispatch(setLighthead(value));
+  };
+  const handleSetOther = (value) => dispatch(setOther(value));
+  const { t } = useTranslation();
+
+
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
+          <GoBack navigation={navigation} />
+          <ClearButton clearAllFunc={clearAll} />
+
+          <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
+
+            <Text style={styles.title}>{t('signs_symptoms.title')}</Text>
+
+            <View style={styles.containerRow}>
+              <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={() => navigation.navigate("Pain_Screen")}
+              >
+                <ButtonCard title={t('signs_symptoms.pain')} image={alert} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={() => navigation.navigate("Nitro_Assessment_Screen")}
+              >
+                <ButtonCard
+                  title={t('signs_symptoms.breathing')}
+                  image={alert}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.containerRow}>
+              <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={() => navigation.navigate("Intake_Output_Screen")}
+              >
+                <ButtonCard title={t('signs_symptoms.stomach')} image={alert} />
+              </TouchableOpacity>
+              <View style={styles.buttonContainer}>
+                <Text style={styles.imageTitle}>{t('signs_symptoms.dizzy')}</Text>
+                <Image style={styles.imageBox} source={(alert)} />
+                <View style={styles.buttonRow}>
+                  <TouchableOpacity onPress={() => handleSetLighthead("y")}>
+                    <SmallButton title={t('signs_symptoms.yes')} image={isLightheadYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => handleSetLighthead("n")}>
+                    <SmallButton title={t('signs_symptoms.no')} image={isLightheadNoPressed ? pressedXmark : xmark} ></SmallButton>
+                  </TouchableOpacity>
+                </View>
+
+              </View>
+            </View>
+
+            <Text style={styles.text}>{t('signs_symptoms.other')}</Text>
+
+            <TextInput
+              style={styles.inputField}
+              placeholder={t('signs_symptoms.other')}
+              placeholderTextColor="#888"
+              defaultValue={JSON.stringify(signsState.other, null, 2).replaceAll('"', '')}
+              onChangeText={handleSetOther}
+            />
+          </KeyboardAvoidingView>
+        </SafeAreaView>
+      </LinearGradient>
+    </TouchableWithoutFeedback>
+  );
 };
 
 export default SignsSymptoms;
@@ -154,7 +160,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     fontWeight: "500",
-    color: "white",
+    color: "black",
     marginTop: 15,
     marginBottom: 15,
     textAlign: 'center',
@@ -164,7 +170,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     textAlign: 'center',
-      marginBottom: 15,
+    marginBottom: 15,
     marginTop: 10,
     letterSpacing: 1,
   },
@@ -229,16 +235,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: "80%",
     alignSelf: 'center'
-    },
-    clear: {
-        alignSelf: 'center',
-        color: 'black',
-    },
-    clearAllButton: {
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        position: 'absolute',
-        top: 50,
-        right: 15
-    },
+  },
+  clear: {
+    alignSelf: 'center',
+    color: 'black',
+  },
+  clearAllButton: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    position: 'absolute',
+    top: 50,
+    right: 15
+  },
 });

@@ -9,12 +9,16 @@ import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
 import ClearButton from "../../components/ClearButton";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const Screen5 = ({ navigation }) => {
 
     const assessmentState = useSelector((state: RootState) => state.assessmentSlice);
 
     const dispatch = useDispatch();
+    const { t } = useTranslation()
+
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -27,9 +31,9 @@ const Screen5 = ({ navigation }) => {
 
                     <ClearButton clearAllFunc={clearAll} />
 
-                    <Text style={styles.title}>Alert and Oriented Assessment</Text>
+                    <Text style={styles.title}>{t('path5.title')}</Text>
 
-                    <Text style={styles.text}>What is your name?</Text>
+                    <Text style={styles.text}>{t('path5.name')}</Text>
 
                     <TextInput
                         style={styles.input}
@@ -37,10 +41,10 @@ const Screen5 = ({ navigation }) => {
                             dispatch(setName(text));
                         }}
                         defaultValue={JSON.stringify(assessmentState.name, null, 2).replaceAll('"', '')}
-                        placeholder="What is your name?"
+                        placeholder={t('path5.name')}
                     />
 
-                    <Text style={styles.text}>Do you know where you are?</Text>
+                    <Text style={styles.text}>{t('path5.where')}</Text>
 
                     <TextInput
                         style={styles.input}
@@ -48,9 +52,9 @@ const Screen5 = ({ navigation }) => {
                             dispatch(setWhere(text));
                         }}
                         defaultValue={JSON.stringify(assessmentState.where, null, 2).replaceAll('"', '')}
-                        placeholder="Do you know where you are?"
+                        placeholder={t('path5.where')}
                     />
-                    <Text style={styles.text}>What day of the week is it today?</Text>
+                    <Text style={styles.text}>{t('path5.day')}</Text>
 
                     <RNPickerSelect
                         onValueChange={(value) => {

@@ -4,17 +4,19 @@ import {
     Keyboard, KeyboardAvoidingView, Button, TouchableOpacity
 } from "react-native";
 
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setText, clearText } from '../../redux/features/text/textSlice';
 import type { RootState } from '../../redux/store';
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const TypeAnything = ({ navigation }) => {
     const dispatch = useDispatch();
-    
+
     const textFromRedux = useSelector((state: RootState) => state.textEntry);
-    const textInputRef = useRef(null); 
+    const textInputRef = useRef(null);
 
     const handleChangeText = (txt: string) => {
         dispatch(setText(txt));
@@ -41,6 +43,9 @@ const TypeAnything = ({ navigation }) => {
         );
     };
 
+    const { t } = useTranslation()
+
+
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -52,15 +57,15 @@ const TypeAnything = ({ navigation }) => {
                             editable
                             style={{ padding: 15, fontSize: 30 }}
                             ref={textInputRef}
-                            placeholder="Type here..."
+                            placeholder={t('path4.textInput')}
                             defaultValue={textFromRedux}
-                            onChangeText={handleChangeText} 
+                            onChangeText={handleChangeText}
                         />
                     </View>
 
                     <GoBack navigation={navigation} />
 
-                    <ClearAll/>
+                    <ClearAll />
 
                 </View>
             </TouchableWithoutFeedback>

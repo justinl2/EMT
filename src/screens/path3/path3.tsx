@@ -20,6 +20,8 @@ import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
 import ClearButton from "../../components/ClearButton";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const Pain = ({ navigation }) => {
 
@@ -31,6 +33,8 @@ const Pain = ({ navigation }) => {
     const handleSetBetter = (value) => dispatch(setBetter(value));
     const handleSetWhere = (value) => dispatch(setWhere(value));
 
+    const { t } = useTranslation()
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
@@ -39,47 +43,48 @@ const Pain = ({ navigation }) => {
                         <GoBack navigation={navigation} />
                         <ClearButton clearAllFunc={clearAll} />
 
-                        <Text style={styles.title}>Pain</Text>
+
+                        <Text style={styles.title}>{t('path3.title')}</Text>
 
                         <View style={styles.buttonRow}>
                             <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Feel_Screen')}>
-                                <ButtonCard title="What does it feel like?" image={pill} />
+                                <ButtonCard title={t('path3.feelsLike')} image={pill} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('How_Bad_Screen')}>
-                                <ButtonCard title="How Bad?" image={clipboard} />
+                                <ButtonCard title={t('path3.howBad')} image={clipboard} />
                             </TouchableOpacity>
                         </View>
 
-                        <Text style={styles.text}>When did it start?</Text>
+                        <Text style={styles.text}>{t('path3.when')}</Text>
 
                         <TextInput
                             style={styles.input}
                             onChangeText={handleSetWhen}
                             defaultValue={JSON.stringify(painState.when, null, 2).replaceAll('"', '')}
-                            placeholder="When did it start?"
+                            placeholder={t('path3.when')}
                         />
 
-                        <Text style={styles.text}>What makes the pain better or worse?</Text>
+                        <Text style={styles.text}>{t('path3.better')}</Text>
 
                         <TextInput
                             style={styles.input}
                             onChangeText={handleSetBetter}
                             defaultValue={JSON.stringify(painState.better, null, 2).replaceAll('"', '')}
-                            placeholder="What makes the pain better or worse?"
+                            placeholder={t('path3.better')}
                         />
 
-                        <Text style={styles.text}>Does the pain move to other parts of your body?</Text>
+                        <Text style={styles.text}>{t('path3.move')}</Text>
 
                         <TextInput
                             style={styles.input}
                             onChangeText={handleSetWhere}
                             defaultValue={JSON.stringify(painState.where, null, 2).replaceAll('"', '')}
-                            placeholder="Does the pain move to other parts of your body?"
+                            placeholder={t('path3.move')}
                         />
                     </SafeAreaView>
-                    </KeyboardAvoidingView>
+                </KeyboardAvoidingView>
 
-               
+
             </LinearGradient>
         </TouchableWithoutFeedback>
     );

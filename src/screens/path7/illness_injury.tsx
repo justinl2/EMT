@@ -25,63 +25,66 @@ import { RootState } from '../../redux/store';
 import GoBack from "../../components/GoBack";
 import ClearButton from "../../components/ClearButton";
 
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
+
 const IllnessInjury = ({ navigation }) => {
 
-    const illnessState = useSelector((state: RootState) => state.illnessSlice);
+  const illnessState = useSelector((state: RootState) => state.illnessSlice);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const handleSetWhatHappened = (value) => dispatch(setWhatHappened(value));
-    const handleSetOther = (value) => dispatch(setOther(value));
+  const handleSetWhatHappened = (value) => dispatch(setWhatHappened(value));
+  const handleSetOther = (value) => dispatch(setOther(value));
 
-    return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+  const { t } = useTranslation()
 
-                <SafeAreaView style={styles.container}>
 
-                    <GoBack navigation={navigation} />
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
 
-                    <ClearButton clearAllFunc={clearAll} />
+        <SafeAreaView style={styles.container}>
+          <GoBack navigation={navigation} />
+          <ClearButton clearAllFunc={clearAll} />
+          <Text style={styles.title}>{t('illness_injury.title')}</Text>
 
-                    <Text style={styles.title}>Illness/Injury</Text>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => navigation.navigate("Intake_Output_Screen")}
+            >
+              <ButtonCard title={t('illness_injury.intake')} image={intakeOutput} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => navigation.navigate("Signs_Symptoms_Screen")}
+            >
+              <ButtonCard title={t('illness_injury.signs')} image={SignsSymptoms} />
+            </TouchableOpacity>
+          </View>
 
-                    <View style={styles.buttonRow}>
-                        <TouchableOpacity
-                            style={styles.buttonContainer}
-                            onPress={() => navigation.navigate("Intake_Output_Screen")}
-                        >
-                            <ButtonCard title="Last intake / output" image={intakeOutput} />
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.buttonContainer}
-                            onPress={() => navigation.navigate("Signs_Symptoms_Screen")}
-                        >
-                            <ButtonCard title="Signs and symptoms" image={SignsSymptoms} />
-                        </TouchableOpacity>
-                    </View>
+          <Text style={styles.text}>{t('illness_injury.happened')}</Text>
+          <TextInput
+            style={styles.inputField}
+            placeholder={t('illness_injury.happened')}
+            placeholderTextColor="#888"
+            defaultValue={JSON.stringify(illnessState.whathappened, null, 2).replaceAll('"', '')}
+            onChangeText={handleSetWhatHappened}
+          />
+          <Text style={styles.text}>{t('illness_injury.other')}</Text>
+          <TextInput
+            style={styles.inputField}
+            placeholder={t('illness_injury.other')}
+            placeholderTextColor="#888"
+            defaultValue={JSON.stringify(illnessState.other, null, 2).replaceAll('"', '')}
+            onChangeText={handleSetOther}
+          />
 
-                    <Text style={styles.title}>What happened?</Text>
-                    <TextInput
-                        style={styles.inputField}
-                        placeholder="Type your message here..."
-                        placeholderTextColor="#888"
-                        defaultValue={JSON.stringify(illnessState.whathappened, null, 2).replaceAll('"', '')}
-                        onChangeText={handleSetWhatHappened}
-                    />
-                    <Text style={styles.title}>Other:</Text>
-                    <TextInput
-                    style={styles.inputField}
-                    placeholder="Type your message here..."
-                    placeholderTextColor="#888"
-                    defaultValue={JSON.stringify(illnessState.other, null, 2).replaceAll('"', '')}
-                    onChangeText={handleSetOther}
-                    />
-
-                </SafeAreaView>
-            </LinearGradient>
-        </TouchableWithoutFeedback>
-    );
+        </SafeAreaView>
+      </LinearGradient>
+    </TouchableWithoutFeedback>
+  );
 };
 
 export default IllnessInjury;
@@ -104,7 +107,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     fontWeight: "500",
-    color: "white",
+    color: "black",
     marginTop: 15,
     marginBottom: 15,
     textAlign: "center",
@@ -114,7 +117,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "black",
     textAlign: "center",
-      marginBottom: 15,
+    marginBottom: 15,
     marginTop: 10,
     letterSpacing: 1,
   },

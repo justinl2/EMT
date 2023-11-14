@@ -1,13 +1,13 @@
 import { Text, SafeAreaView, StyleSheet, Switch, } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { setPolst, setResuscitate, clearAll } from '../../redux/features/text/directivesSlice';
 import { RootState } from '../../redux/store';
-
 import GoBack from "../../components/GoBack";
 import ClearButton from "../../components/ClearButton";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const Screen1 = ({ navigation }) => {
 
@@ -18,19 +18,19 @@ const Screen1 = ({ navigation }) => {
     const [localPolst, setLocalPolst] = useState(false);
     const [localResuscitate, setLocalResuscitate] = useState(false);
 
+    const { t } = useTranslation()
+
+
     return (
         <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-
-
             <SafeAreaView style={styles.container}>
 
                 <GoBack navigation={navigation} />
 
                 <ClearButton clearAllFunc={clearAll} />
+                <Text style={styles.title}>{t('path1.title')}</Text>
 
-                <Text style={styles.title}>Advanced Medical Directives</Text>
-
-                <Text style={styles.text}>Do you have a POLST: Physician's Orders for Life-Sustaining Treatment</Text>
+                <Text style={styles.text}>{t('path1.switch1')}</Text>
                 <Switch
                     trackColor={{ false: "#767577", true: "#81b0ff" }}
                     thumbColor={localPolst ? "#f5dd4b" : "#f4f3f4"}
@@ -42,7 +42,7 @@ const Screen1 = ({ navigation }) => {
                     value={JSON.stringify(directivesState.polst, null, 2) === 'true'}
                 />
 
-                <Text style={styles.text}>Do Not Resuscitate / Intubate</Text>
+                <Text style={styles.text}>{t('path1.switch2')}</Text>
                 <Switch
                     trackColor={{ false: "#767577", true: "#81b0ff" }}
                     thumbColor={localResuscitate ? "#f5dd4b" : "#f4f3f4"}

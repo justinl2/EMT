@@ -11,12 +11,18 @@ import { RootState } from '../../redux/store';
 import GoBack from "../../components/GoBack";
 import ClearButton from "../../components/ClearButton";
 
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
+
 const Screen6 = ({ navigation }) => {
 
     const assistState = useSelector((state: RootState) => state.assistSlice);
 
     const dispatch = useDispatch();
     const handleSetConcern = (value) => dispatch(setConcern(value));
+
+    const { t } = useTranslation()
+
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -28,15 +34,15 @@ const Screen6 = ({ navigation }) => {
                     <ClearButton clearAllFunc={clearAll} />
 
                     <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
-                        <ButtonCard title="Alert & Oriented Assessment" image={alert} />
+                        <ButtonCard title={t('path6.alert')} image={alert} />
                     </TouchableOpacity>
 
                     <View style={styles.spacing}>
-                        <Text style={styles.title}>For the EMT: communicate your concern to your patient</Text>
+                        <Text style={styles.title}>{t('path6.title')}</Text>
 
                         <TextInput
                             style={styles.inputField}
-                            placeholder="Type your message here..."
+                            placeholder={t('path6.message')}
                             placeholderTextColor="#888"
                             defaultValue={JSON.stringify(assistState.concern, null, 2).replaceAll('"', '')}
                             onChangeText={handleSetConcern}
@@ -44,13 +50,13 @@ const Screen6 = ({ navigation }) => {
 
                         <View style={styles.buttonRow}>
                             <TouchableOpacity style={styles.choiceButton} onPress={() => { }}>
-                                <Text style={styles.buttonText}>I understand, but do NOT help me or take me to the hospital.</Text>
+                                <Text style={styles.buttonText}>{t('path6.noHelp')}</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.choiceButton} onPress={() => { }}>
-                                <Text style={styles.buttonText}>Please help me, but do NOT take me to the hospital</Text>
+                                <Text style={styles.buttonText}>{t('path6.noHospital')}</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.choiceButton} onPress={() => { }}>
-                                <Text style={styles.buttonText}>Please help me and take me to the hospital</Text>
+                                <Text style={styles.buttonText}>{t('path6.hospital')}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -76,6 +82,12 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 10,
         marginTop: 10,
+    },
+    subText: {
+        fontSize: 15,
+        color: 'black',
+        textAlign: 'center',
+        marginBottom: 20,
     },
     buttonRow: {
         flexDirection: 'row',

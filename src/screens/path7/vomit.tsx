@@ -25,89 +25,95 @@ import { setBlood, setWhen, clearAll } from '../../redux/features/text/vomitSlic
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
+import { useTranslation } from 'react-i18next'
+import '../../services/i18next';
 
 const Vomit = ({ navigation }) => {
 
-    const ClearButton = ({ clearAllFunc }) => {
-        const dispatch = useDispatch();
-        const handleClearAll = (value) => {
-            dispatch(value);
-            setIsBloodYesPressed(false);
-            setIsBloodNoPressed(false);
-        };
-        return (
-            <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
-                <Ionicons name="trash-outline" style={styles.clear} size={40} />
-            </TouchableOpacity>
-        );
-    };
-
-    const vomitState = useSelector((state: RootState) => state.vomitSlice);
-
+  const ClearButton = ({ clearAllFunc }) => {
     const dispatch = useDispatch();
-
-    const [localBlood, setLocalBlood] = useState('');
-    const [isBloodYesPressed, setIsBloodYesPressed] = useState(JSON.stringify(vomitState.blood, null, 2).replaceAll('"', '') === "y");
-    const [isBloodNoPressed, setIsBloodNoPressed] = useState(JSON.stringify(vomitState.blood, null, 2).replaceAll('"', '') === "n");
-
-    const [localWhen, setLocalWhen] = useState("");
-
-    const handleSetBlood = (value) => {
-        if (value === "y") {
-            setIsBloodYesPressed((prev) => !prev);
-            isBloodYesPressed ? (value = "") : null;
-            setIsBloodNoPressed(false)
-        }
-        else if (value === "n") {
-            setIsBloodNoPressed((prev) => !prev);
-            isBloodNoPressed ? (value = "") : null;
-            setIsBloodYesPressed(false)
-        }
-        dispatch(setBlood(value));
-        setLocalBlood(value);
+    const handleClearAll = (value) => {
+      dispatch(value);
+      setIsBloodYesPressed(false);
+      setIsBloodNoPressed(false);
     };
-
-    const handleSetWhen = (value) => {
-        dispatch(setWhen(value));
-        setLocalWhen(value);
-    };
-
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-                    <SafeAreaView style={styles.container}>
-
-                    <GoBack navigation={navigation} />
-                    <ClearButton clearAllFunc={clearAll} />
-
-                    <Text style={styles.title}>Have You Vomited?</Text>
-                    <View style={styles.buttonContainer}>
-                        <Text style={styles.imageTitle}>Did you vomit blood?</Text>
-                        <Image style={styles.imageBox} source={(alert)} />
-
-                        <View style={styles.buttonRow}>
-                            <TouchableOpacity onPress={() => handleSetBlood("y")}>
-                                <SmallButton title="Yes" image={isBloodYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => handleSetBlood("n")}>
-                                <SmallButton title="No" image={isBloodNoPressed ? pressedXmark : xmark} ></SmallButton>
-                            </TouchableOpacity>
-                        </View>
-
-                    </View>
-                    <Text style={styles.title}>When did you Vomit?</Text>
-                    <TextInput
-                        style={styles.inputField}
-                        placeholder="Type your message here..."
-                        placeholderTextColor="#888"
-                        defaultValue={JSON.stringify(vomitState.when, null, 2).replaceAll('"', '')}
-                        onChangeText={handleSetWhen}
-                    />
-
-                </SafeAreaView>
-            </LinearGradient>
-        </TouchableWithoutFeedback>
+      <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
+        <Ionicons name="trash-outline" style={styles.clear} size={40} />
+      </TouchableOpacity>
     );
+  };
+
+  const vomitState = useSelector((state: RootState) => state.vomitSlice);
+
+  const dispatch = useDispatch();
+
+  const [localBlood, setLocalBlood] = useState('');
+  const [isBloodYesPressed, setIsBloodYesPressed] = useState(JSON.stringify(vomitState.blood, null, 2).replaceAll('"', '') === "y");
+  const [isBloodNoPressed, setIsBloodNoPressed] = useState(JSON.stringify(vomitState.blood, null, 2).replaceAll('"', '') === "n");
+
+  const [localWhen, setLocalWhen] = useState("");
+
+  const handleSetBlood = (value) => {
+    if (value === "y") {
+      setIsBloodYesPressed((prev) => !prev);
+      isBloodYesPressed ? (value = "") : null;
+      setIsBloodNoPressed(false)
+    }
+    else if (value === "n") {
+      setIsBloodNoPressed((prev) => !prev);
+      isBloodNoPressed ? (value = "") : null;
+      setIsBloodYesPressed(false)
+    }
+    dispatch(setBlood(value));
+    setLocalBlood(value);
+  };
+
+  const handleSetWhen = (value) => {
+    dispatch(setWhen(value));
+    setLocalWhen(value);
+  };
+
+  const { t } = useTranslation();
+
+
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
+
+          <GoBack navigation={navigation} />
+          <ClearButton clearAllFunc={clearAll} />
+
+
+          <Text style={styles.title}>{t('vomit.title')}</Text>
+          <View style={styles.buttonContainer}>
+            <Text style={styles.imageTitle}>{t('vomit.blood')}</Text>
+            <Image style={styles.imageBox} source={(alert)} />
+
+            <View style={styles.buttonRow}>
+              <TouchableOpacity onPress={() => handleSetBlood("y")}>
+                <SmallButton title={t('vomit.yes')} image={isBloodYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => handleSetBlood("n")}>
+                <SmallButton title={t('vomit.no')} image={isBloodNoPressed ? pressedXmark : xmark} ></SmallButton>
+              </TouchableOpacity>
+            </View>
+
+          </View>
+          <Text style={styles.text}>{t('vomit.when')}</Text>
+          <TextInput
+            style={styles.inputField}
+            placeholder="Type your message here..."
+            placeholderTextColor="#888"
+            defaultValue={JSON.stringify(vomitState.when, null, 2).replaceAll('"', '')}
+            onChangeText={handleSetWhen}
+          />
+
+        </SafeAreaView>
+      </LinearGradient>
+    </TouchableWithoutFeedback>
+  );
 };
 
 export default Vomit;
@@ -130,7 +136,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     fontWeight: "500",
-    color: "white",
+    color: "black",
     marginTop: 15,
     marginBottom: 15,
     textAlign: "center",
@@ -191,16 +197,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 10,
-    },
-    clear: {
-        alignSelf: 'center',
-        color: 'black',
-    },
-    clearAllButton: {
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        position: 'absolute',
-        top: 50,
-        right: 15
-    },
+  },
+  clear: {
+    alignSelf: 'center',
+    color: 'black',
+  },
+  clearAllButton: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    position: 'absolute',
+    top: 50,
+    right: 15
+  },
 });
