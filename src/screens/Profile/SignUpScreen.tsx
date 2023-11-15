@@ -12,9 +12,31 @@ const SignUpScreen = ({navigation}) => {
   const {control, handleSubmit, watch} =  useForm()
   const passwd = watch('password')
 
-  const onRegisterPressed = () => {
-    navigation.navigate("Confirm_Email_Screen")
-  }
+  const onRegisterPressed = async (data) => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: data.email,
+          username: data.username,
+          password: data.password,
+        }),
+      });
+
+      if (response.ok) {
+        const json = await response.json();
+        console.log('Registration successful:', json);
+        navigation.navigate('Sign_In_Screen');
+      } else {
+        console.error('Registration failed');
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+    }
+  };
   
   const onSignInPressed = () => {
     navigation.navigate("Sign_In_Screen")

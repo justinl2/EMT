@@ -36,6 +36,7 @@ import ForgotPasswordScreen from '../screens/Profile/ForgotPassword';
 import ResetPasswordScreen from '../screens/Profile/ResetPassword';
 import MedicalProfileScreen from '../screens/Profile/MedicalProfile';
 import MedicalProfileEMTScreen from '../screens/Profile/MedicalProfile_emt';
+import ProfileScreen from '../screens/Profile/ProfilePage';
 
 const MainStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -72,7 +73,7 @@ const MainStackNavigator = () => {
             <MainStack.Screen name="Reset_Password_Screen" component={ResetPasswordScreen} />
             <MainStack.Screen name="Medical_Profile_Screen" component={MedicalProfileScreen} />
             <MainStack.Screen name="Medical_Profile_EMT_Screen" component={MedicalProfileEMTScreen} />
-
+            <MainStack.Screen name="Profile_Screen" component={ProfileScreen} />
         </MainStack.Navigator>
     );
 };

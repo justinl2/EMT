@@ -23,12 +23,72 @@ import languagesList from '../../localization/languagesList.json';
 import i18next, { languageResources } from '../../services/i18next';
 
 import ClearButton from "../../components/ClearButton";
+import getToken from '../../TokenService';
+import { set } from 'react-hook-form';
+
 
 const MedicalProfileScreen = ({ navigation }) => {
 
     const profileState = useSelector((state: RootState) => state.medicalProfileSlice);
 
     const dispatch = useDispatch();
+
+    const [name, setAPIName] = useState('');
+    const [month, setAPIMonth] = useState('');
+    const [day, setAPIDay] = useState('');
+    const [year, setAPIYear] = useState('');
+    const [sex, setAPISex] = useState('');
+    const [provider, setAPIProvider] = useState('');
+    const [number, setAPINumber] = useState('');
+    const [allergy, setAPIAllergy] = useState('');
+    const [condition, setAPICondition] = useState('');
+    const [medication, setAPIMedication] = useState('');
+    const [hospital, setAPIHospital] = useState('');
+    const [physician, setAPIPhysician] = useState('');
+
+    const sendMedicalProfile = async () => {
+        try {
+          const token = await getToken(); 
+          const profileData = {
+            name,
+            month_of_birth: `${month}`,
+            day_of_birth: `${day}`,
+            year_of_birth: `${year}`,
+            sex: `${sex}`,
+            insurance_provider: provider,
+            insurance_number: number,
+            allergies: allergy,
+            medical_conditions: condition,
+            medication,
+            preferred_hospital: hospital,
+            physician_name: physician
+          };
+      
+          fetch('http://127.0.0.1:8000/send_medical_profile', { 
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': "Token ${token}" 
+            },
+            body: JSON.stringify(profileData)
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      
+        } catch (error) {
+          console.error('Error fetching token:', error);
+        }
+      };
+      
+
+
+
+
 
     const [localMonth, setLocalMonth] = useState('');
     const [localDay, setLocalDay] = useState('');
@@ -60,7 +120,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                 <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <SafeAreaView style={styles.container}>
-
+                            
                             <Text style={styles.title}> {t('MedicalProfile.title')} </Text>
                             <Text style={styles.subtitle}> {t('MedicalProfile.please')} </Text>
 
@@ -93,6 +153,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 defaultValue={JSON.stringify(profileState.name, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     dispatch(setName(text));
+                                    setAPIName(text);
                                 }}
                             />
 
@@ -101,6 +162,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 onValueChange={(value) => {
                                     setLocalMonth(value)
                                     dispatch(setDOB({ month: value, day: localDay, year: localYear }));
+                                    setAPIMonth(value);
                                 }}
                                 items={[
                                     { label: 'January', value: 'January' },
@@ -127,6 +189,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 onValueChange={(value) => {
                                     setLocalDay(value)
                                     dispatch(setDOB({ month: localMonth, day: value, year: localYear }));
+                                    setAPIDay(value);
                                 }}
                                 items={[
                                     { label: '1', value: '01' },
@@ -171,6 +234,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 onValueChange={(value) => {
                                     setLocalYear(value)
                                     dispatch(setDOB({ month: localMonth, day: localDay, year: value }));
+                                    setAPIYear(value);
                                 }}
                                 items={yearItems}
                                 value={JSON.stringify(profileState.DOB.year, null, 2).replaceAll('"', '')}
@@ -183,6 +247,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 onValueChange={(value) => {
                                     setLocalSex(value)
                                     dispatch(setSex(localSex));
+                                    setAPISex(value);
                                 }}
                                 items={[
                                     { label: 'Male', value: 'Male' },
@@ -203,6 +268,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 defaultValue={JSON.stringify(profileState.insurance, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     dispatch(setInsurance(text));
+                                    setAPIProvider(text);
                                 }}
                             />
 
@@ -214,6 +280,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 defaultValue={JSON.stringify(profileState.insurancenumber, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     dispatch(setInsuranceNumber(text));
+                                    setAPINumber(text);
                                 }}
                             />
 
@@ -227,6 +294,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 defaultValue={JSON.stringify(profileState.allergies, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     dispatch(setAllergies(text));
+                                    setAPIAllergy(text);
                                 }}
                             />
 
@@ -238,6 +306,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 defaultValue={JSON.stringify(profileState.conditions, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     dispatch(setConditions(text));
+                                    setAPICondition(text);
                                 }}
                             />
 
@@ -249,6 +318,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 defaultValue={JSON.stringify(profileState.medication, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     dispatch(setMedication(text));
+                                    setAPIMedication(text);
                                 }}
                             />
 
@@ -275,6 +345,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     onValueChange={(text) => {
                                         setLocalResuscitate(text);
                                         dispatch(setResuscitate(text));
+
                                     }}
                                     value={JSON.stringify(profileState.resuscitate, null, 2) === 'true'}
                                 />
@@ -290,6 +361,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 defaultValue={JSON.stringify(profileState.hospital, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     dispatch(setAllergies(text));
+                                    setAPIHospital(text);
                                 }}
                             />
 
@@ -301,8 +373,12 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 defaultValue={JSON.stringify(profileState.physician, null, 2).replaceAll('"', '')}
                                 onChangeText={(text) => {
                                     dispatch(setPhysician(text));
+                                    setAPIPhysician(text);
                                 }}
                             />
+
+                            <Button title="Save and Send Data" onPress={sendMedicalProfile} />
+
 
                         </SafeAreaView>
                     </TouchableWithoutFeedback>
