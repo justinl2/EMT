@@ -1,6 +1,10 @@
 # EMT
 Welcome to the EMT APP (Caretalk)
 
+SYSTEM REQUIREMENTS
+
+Any machine is capable of running our code, but we only have support right now for iOS, meaning that you would need an device that can run some version of iOS, whether that be a emulator, simulator or a regular iPhone.
+
 to run the app
 
 need to install npm and expo
