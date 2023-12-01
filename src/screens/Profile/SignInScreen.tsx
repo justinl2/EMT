@@ -5,6 +5,7 @@ import CustomInput from '../../components/CustomInput';
 import SignInButton from '../../components/SignInButton';
 import SocialButtons from '../../components/SocialSignIn';
 import { useForm, Controller } from 'react-hook-form';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const SignInScreen = ({ navigation }) => {
@@ -15,10 +16,41 @@ const SignInScreen = ({ navigation }) => {
     formState: { errors }
   } = useForm()
 
+  const [userData, setUserData] = useState(null);
+  const [token, setToken] = useState(null);
+
   const onSignInPressed = data => {
-    console.log(data)
-    console.warn("signed in")
+    fetch('http://127.0.0.1:8000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: data.username,
+        password: data.password,
+      }),
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+      if(json.token) {
+        console.warn("Signed in successfully");
+
+        setToken(json.token);
+        setUserData(json.user);
+
+        console.log(json.user);
+        AsyncStorage.setItem('userToken', json.token);
+        navigation.navigate("Profile_Screen", { userData: json.user });
+      } else {
+        console.warn("Login failed");
+      }
+    })
+    .catch(error => {
+      console.error("Error during login:", error);
+    });
   }
+  
 
   const onForgotPasswordPressed = () => {
     navigation.navigate("Forgot_Password_Screen")
