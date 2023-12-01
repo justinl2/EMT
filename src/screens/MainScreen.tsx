@@ -28,7 +28,7 @@ import { clearAll as clearAllPainFeel } from '../redux/features/text/painFeelSli
 import { clearAll as clearAllPain } from '../redux/features/text/painSlice';
 import { clearAll as clearAllPersonal } from '../redux/features/text/personalSlice';
 import { clearAll as clearAllSigns } from '../redux/features/text/signsSlice';
-import { clearText as clearAllText } from '../redux/features/text/textSlice';
+import { clearAll as clearAllText } from '../redux/features/text/textSlice';
 import { clearAll as clearAllVomit } from '../redux/features/text/vomitSlice';
 
 

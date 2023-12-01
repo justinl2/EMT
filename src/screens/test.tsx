@@ -34,9 +34,21 @@ const DisplayStateComponent: React.FC = () => {
                         <Text style={styles.title}>Summary</Text>
 
                         <Text style={styles.subtitle}>
-                            {JSON.stringify(textEntryState, null, 2) !== '""' && "Text Tab:"}
+                            {(JSON.stringify(textEntryState.text, null, 2) !== '""' ||
+                                JSON.stringify(textEntryState.savedtext, null, 2) != '""')
+                                && "Text Tab:"}
                         </Text>
-                        <Text style={styles.content}>{JSON.stringify(textEntryState, null, 2).replaceAll('"', '')}</Text>
+                        <Text style={styles.content}>
+                            <Text style={styles.label}>
+                                {JSON.stringify(textEntryState.text, null, 2) !== '""' && "Current Text: "}
+                            </Text>
+                            {JSON.stringify(textEntryState.text, null, 2).replaceAll('"', '')}
+
+                            <Text style={styles.label}>
+                                {JSON.stringify(textEntryState.savedtext, null, 2) !== '""' && "\nSaved Text: "}
+                            </Text>
+                            {JSON.stringify(textEntryState.savedtext, null, 2).replaceAll('"', '')}
+                        </Text>
 
                         <Text style={styles.subtitle}>
                             {(JSON.stringify(directivesState.polst, null, 2) !== 'false' ||

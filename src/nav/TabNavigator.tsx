@@ -80,6 +80,7 @@ const MainStackNavigator = () => {
 function BottomTabs() {
     return (
         <Tab.Navigator
+            initialRouteName="HomeStack"
             screenOptions={{
                 tabBarStyle: {
                     backgroundColor: "rgba(0,0,0,0.5)",
@@ -98,6 +99,34 @@ function BottomTabs() {
                 }
             }}
         >
+            <Tab.Screen name="Type"
+                component={TypeAnything}
+                options={{
+                    headerShown: false,
+                    tabBarLabel: "Text",
+                    tabBarLabelStyle: { color: "white" },
+                    tabBarIcon: ({ focused }) =>
+                        focused ? (
+                            <Entypo name="text-document-inverted" size={24} color="white" />
+                        ) : (
+                            <Entypo name="text-document" size={24} color="white" />
+                        )
+                }}
+            />
+            <Tab.Screen name="MedicalProfile"
+                component={MedicalProfileScreen}
+                options={{
+                    headerShown: false,
+                    tabBarLabel: "Medical Profile",
+                    tabBarLabelStyle: { color: "white" },
+                    tabBarIcon: ({ focused }) =>
+                        focused ? (
+                            <Ionicons name="finger-print" size={24} color="white" />
+                        ) : (
+                            <Ionicons name="finger-print-outline" size={24} color="white" />
+                        )
+                }}
+            />
             <Tab.Screen name="HomeStack"
                 component={MainStackNavigator}
                 options={{
@@ -108,35 +137,7 @@ function BottomTabs() {
                         focused ? (
                             <Entypo name="home" size={24} color="white" />
                         ) : (
-                            <Entypo name="home" size={24} color="white" />
-                        )
-                }}
-            />
-            <Tab.Screen name="Type"
-                component={TypeAnything}
-                options={{
-                    headerShown: false,
-                    tabBarLabel: "Text",
-                    tabBarLabelStyle: { color: "white" },
-                    tabBarIcon: ({ focused }) =>
-                        focused ? (
-                            <Entypo name="text" size={24} color="white" />
-                        ) : (
-                            <Entypo name="text" size={24} color="white" />
-                        )
-                }}
-            />
-            <Tab.Screen name="Generate"
-                component={GenerateScreen}
-                options={{
-                    headerShown: false,
-                    tabBarLabel: "Generate",
-                    tabBarLabelStyle: { color: "white" },
-                    tabBarIcon: ({ focused }) =>
-                        focused ? (
-                            <AntDesign name="dribbble" size={24} color="white" />
-                        ) : (
-                            <AntDesign name="dribbble" size={24} color="white" />
+                            <Ionicons name="home-outline" size={24} color="white" />
                         )
                 }}
             />
@@ -154,17 +155,17 @@ function BottomTabs() {
                         )
                 }}
             />
-            <Tab.Screen name="MedicalProfile"
-                component={MedicalProfileScreen}
+            <Tab.Screen name="Generate"
+                component={GenerateScreen}
                 options={{
                     headerShown: false,
-                    tabBarLabel: "Medical Profile",
+                    tabBarLabel: "Generate",
                     tabBarLabelStyle: { color: "white" },
                     tabBarIcon: ({ focused }) =>
                         focused ? (
-                            <Ionicons name="finger-print" size={24} color="white" />
+                            <AntDesign name="dribbble-square" size={24} color="white" />
                         ) : (
-                            <Ionicons name="finger-print" size={24} color="white" />
+                            <AntDesign name="dribbble" size={24} color="white" />
                         )
                 }}
             />

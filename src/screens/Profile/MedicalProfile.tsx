@@ -33,7 +33,6 @@ const MedicalProfileScreen = ({ navigation }) => {
     const [localMonth, setLocalMonth] = useState('');
     const [localDay, setLocalDay] = useState('');
     const [localYear, setLocalYear] = useState('');
-    const [localSex, setLocalSex] = useState('');
 
     const [localPolst, setLocalPolst] = useState(false);
     const [localResuscitate, setLocalResuscitate] = useState(false);
@@ -181,8 +180,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                             <Text style={styles.text}> {t('MedicalProfile.sex')}</Text>
                             <RNPickerSelect
                                 onValueChange={(value) => {
-                                    setLocalSex(value)
-                                    dispatch(setSex(localSex));
+                                    dispatch(setSex(value));
                                 }}
                                 items={[
                                     { label: 'Male', value: 'Male' },
