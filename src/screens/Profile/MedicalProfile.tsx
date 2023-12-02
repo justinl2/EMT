@@ -318,7 +318,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                             <Text style={styles.section}> {t('MedicalProfile.advancedMedical')} </Text>
 
                             <View style={styles.switch}>
-                                <Text style={styles.text}> {t('MedicalProfile.polst')} </Text>
+                                <Text style={styles.switchtext}> {t('MedicalProfile.polst')} </Text>
                                 <Switch
                                     trackColor={{ false: "#767577", true: "#81b0ff" }}
                                     thumbColor={localPolst ? "#f5dd4b" : "#f4f3f4"}
@@ -330,7 +330,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                     value={JSON.stringify(profileState.polst, null, 2) === 'true'}
                                 />
 
-                                <Text style={styles.text}> {t('MedicalProfile.resuscitate')} </Text>
+                                <Text style={styles.switchtext}> {t('MedicalProfile.resuscitate')} </Text>
                                 <Switch
                                     trackColor={{ false: "#767577", true: "#81b0ff" }}
                                     thumbColor={localResuscitate ? "#f5dd4b" : "#f4f3f4"}
@@ -407,6 +407,11 @@ const styles = StyleSheet.create({
         color: "black",
         textAlign: 'left',
         paddingLeft: 35,
+    },
+    switchtext: {
+        fontSize: 15,
+        fontWeight: "500",
+        color: "black",
     },
     section: {
         fontSize: 20,
