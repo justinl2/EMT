@@ -199,6 +199,7 @@ const DisplayStateComponent: React.FC = () => {
                                 JSON.stringify(painState.better, null, 2) !== '""' ||
                                 JSON.stringify(painState.where, null, 2) !== '""' ||
                                 JSON.stringify(painFeelState.feel, null, 2) !== '""' ||
+                                JSON.stringify(painFeelState.describe, null, 2) !== '""' ||
                                 JSON.stringify(painBadState.how, null, 2) !== '""')
                                 && "Pain:"}
                         </Text>
@@ -220,7 +221,15 @@ const DisplayStateComponent: React.FC = () => {
                             {JSON.stringify(painState.where, null, 2).replaceAll('"', '')}
 
                             <Text style={styles.label}>
-                                {JSON.stringify(painFeelState.feel, null, 2) !== '""' && "\nWhat does it feel like?: "}
+                                {JSON.stringify(painFeelState.describe, null, 2) !== '""' && "\nWhat does it feel like?: "}
+                            </Text>
+                            {JSON.stringify(painFeelState.describe, null, 2).replaceAll('"', '') === "sharp" && "Pain feels sharp."}
+                            {JSON.stringify(painFeelState.describe, null, 2).replaceAll('"', '') === "dull" && "Pain feels dull."}
+                            {JSON.stringify(painFeelState.describe, null, 2).replaceAll('"', '') === "throbbing" && "Pain feels throbbing."}
+                            {JSON.stringify(painFeelState.describe, null, 2).replaceAll('"', '') === "hot" && "Pain feels hot."}
+
+                            <Text style={styles.label}>
+                                {JSON.stringify(painFeelState.feel, null, 2) !== '""' && "\nWhat else?: "}
                             </Text>
                             {JSON.stringify(painFeelState.feel, null, 2).replaceAll('"', '')}
 

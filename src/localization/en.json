@@ -77,8 +77,8 @@
     "how_bad": {
         "title": "How Bad Does it Hurt?",
         "mild": "Mild",
-        "moderate": "moderate",
-        "severe": "severe",
+        "moderate": "Moderate",
+        "severe": "Severe",
         "other": "Other"
     },
     "path4": {

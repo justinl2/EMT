@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     feel: "",
+    describe: "",
 };
 
 const painFeelSlice = createSlice({
@@ -12,12 +13,17 @@ const painFeelSlice = createSlice({
             console.log('setFeel action called with payload:', action.payload);
             state.feel = action.payload;
         },
+        setDescribe: (state, action) => {
+            console.log('setDescribe action called with payload:', action.payload);
+            state.describe = action.payload;
+        },
         clearAll: (state) => {
             console.log('clearAll action called');
             state.feel = '';
+            state.describe = '';
         },
     }
 });
 
-export const { setFeel, clearAll } = painFeelSlice.actions;
+export const { setFeel, setDescribe, clearAll } = painFeelSlice.actions;
 export default painFeelSlice.reducer;
