@@ -3,18 +3,33 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Text, SafeAreaView, View, TouchableOpacity, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
 import ButtonCard from "../../components/ButtonCard";
 import alert from '../../../src/assets/alert.jpg';
+import { Ionicons } from '@expo/vector-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setConcern, clearAll } from '../../redux/features/text/assistSlice';
+import { setConcern, setAssist, clearAll } from '../../redux/features/text/assistSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
-import ClearButton from "../../components/ClearButton";
 
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 
 const Screen6 = ({ navigation }) => {
+
+    const ClearButton = ({ clearAllFunc }) => {
+        const dispatch = useDispatch();
+        const handleClearAll = (value) => {
+            dispatch(value);
+            setIsNoHelpYesPressed(false);
+            setIsNoHospitalYesPressed(false);
+            setIsHospitalYesPressed(false);
+        };
+        return (
+            <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
+                <Ionicons name="trash-outline" style={styles.clear} size={40} />
+            </TouchableOpacity>
+        );
+    };
 
     const assistState = useSelector((state: RootState) => state.assistSlice);
 
@@ -22,6 +37,32 @@ const Screen6 = ({ navigation }) => {
     const handleSetConcern = (value) => dispatch(setConcern(value));
 
     const { t } = useTranslation()
+
+    const [isNoHelpYesPressed, setIsNoHelpYesPressed] = useState(JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "noHelp");
+    const [isNoHospitalYesPressed, setIsNoHospitalYesPressed] = useState(JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "noHospital");
+    const [isHospitalYesPressed, setIsHospitalYesPressed] = useState(JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "hospital");
+
+    const handleSetAssist = (value) => {
+        if (value === "noHelp") {
+            setIsNoHelpYesPressed((prev) => !prev);
+            isNoHelpYesPressed ? (value = "") : null;
+            setIsNoHospitalYesPressed(false);
+            setIsHospitalYesPressed(false);
+        }
+        else if (value === "noHospital") {
+            setIsNoHospitalYesPressed((prev) => !prev);
+            isNoHospitalYesPressed ? (value = "") : null;
+            setIsNoHelpYesPressed(false);
+            setIsHospitalYesPressed(false);
+        }
+        else if (value === "hospital") {
+            setIsHospitalYesPressed((prev) => !prev);
+            isHospitalYesPressed ? (value = "") : null;
+            setIsNoHelpYesPressed(false);
+            setIsNoHospitalYesPressed(false);
+        }
+        dispatch(setAssist(value));
+    };
 
 
     return (
@@ -49,13 +90,13 @@ const Screen6 = ({ navigation }) => {
                         />
 
                         <View style={styles.buttonRow}>
-                            <TouchableOpacity style={styles.choiceButton} onPress={() => { }}>
+                            <TouchableOpacity style={isNoHelpYesPressed ? styles.pressedChoiceButton : styles.choiceButton} onPress={() => handleSetAssist("noHelp")}>
                                 <Text style={styles.buttonText}>{t('path6.noHelp')}</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.choiceButton} onPress={() => { }}>
+                            <TouchableOpacity style={isNoHospitalYesPressed ? styles.pressedChoiceButton : styles.choiceButton} onPress={() => handleSetAssist("noHospital")}>
                                 <Text style={styles.buttonText}>{t('path6.noHospital')}</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.choiceButton} onPress={() => { }}>
+                            <TouchableOpacity style={isHospitalYesPressed ? styles.pressedChoiceButton : styles.choiceButton} onPress={() => handleSetAssist("hospital")}>
                                 <Text style={styles.buttonText}>{t('path6.hospital')}</Text>
                             </TouchableOpacity>
                         </View>
@@ -94,6 +135,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginTop: 10
     },
+    pressedChoiceButton: {
+        flex: 1,
+        margin: 5,
+        padding: 5,
+        backgroundColor: 'lightgray',
+        borderRadius: 5,
+    },
     choiceButton: {
         flex: 1,
         margin: 5,
@@ -126,6 +174,17 @@ const styles = StyleSheet.create({
     },
     spacing: {
         marginTop: 75
-    }
+    },
+    clearAllButton: {
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        position: 'absolute',
+        top: 50,
+        right: 15
+    },
+    clear: {
+        alignSelf: 'center',
+        color: 'black',
+    },
 
 });

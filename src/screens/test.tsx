@@ -52,13 +52,17 @@ const DisplayStateComponent: React.FC = () => {
 
                         <Text style={styles.subtitle}>
                             {(JSON.stringify(directivesState.polst, null, 2) !== 'false' ||
-                                JSON.stringify(directivesState.resuscitate, null, 2) !== 'false')
-                                && "Advanced Medical Directives:"}
+                                JSON.stringify(directivesState.resuscitate, null, 2) !== 'false' ||
+                                JSON.stringify(assistState.assist, null, 2) !== '""')
+                                && "Medical Directives:"}
                         </Text>
                         <Text style={styles.content}>
                             <Text style={styles.redlabel}>
                                 {JSON.stringify(directivesState.polst, null, 2) !== 'false' && "PATIENT HAS A POLST\n"}
-                                {JSON.stringify(directivesState.resuscitate, null, 2) !== 'false' && "DO NOT RESUSCITATE / INTUBATE"}
+                                {JSON.stringify(directivesState.resuscitate, null, 2) !== 'false' && "DO NOT RESUSCITATE / INTUBATE\n"}
+                                {JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "noHelp" && "Do not help the patient nor take them to the hospital."}
+                                {JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "noHospital" && "Help the patient but do not take them to the hospital."}
+                                {JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "hospital" && "Help the patient and take them to the hospital."}
                             </Text>
                         </Text>
 
@@ -363,15 +367,10 @@ const DisplayStateComponent: React.FC = () => {
                         </Text>
 
                         <Text style={styles.subtitle}>
-                            {JSON.stringify(assistState.concern, null, 2) !== '""' && "Do Not Assist:"}
+                            {JSON.stringify(assistState.concern, null, 2) !== '""' && "EMT's Concern to Patient:"}
                         </Text>
                         <Text style={styles.content}>
-
-                            <Text style={styles.label}>
-                                {JSON.stringify(assistState.concern, null, 2) !== '""' && "EMT's Concern to Patient: "}
-                            </Text>
                             {JSON.stringify(assistState.concern, null, 2).replaceAll('"', '')}
-
                         </Text>
 
                     </View>
