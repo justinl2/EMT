@@ -19,7 +19,6 @@ import { setFeel, setDescribe, clearAll } from '../../redux/features/text/painFe
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
-import ClearButton from "../../components/ClearButton";
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 

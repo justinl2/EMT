@@ -15,11 +15,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setHow, clearAll } from '../../redux/features/text/painBadSlice';
+import { setHow, setDescribe, clearAll } from '../../redux/features/text/painBadSlice';
 import { RootState } from '../../redux/store';
 
 import GoBack from "../../components/GoBack";
-import ClearButton from "../../components/ClearButton";
 import { useTranslation } from 'react-i18next'
 import '../../services/i18next';
 
@@ -27,8 +26,14 @@ const HowBad = ({ navigation }) => {
 
     const ClearButton = ({ clearAllFunc }) => {
         const dispatch = useDispatch();
+        const handleClearAll = (value) => {
+            dispatch(value);
+            setIsMildYesPressed(false);
+            setIsModerateYesPressed(false);
+            setIsSevereYesPressed(false);
+        };
         return (
-            <TouchableOpacity style={styles.clearAllButton} onPress={() => dispatch(clearAllFunc())}>
+            <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClearAll(clearAllFunc())}>
                 <Ionicons name="trash-outline" style={styles.clear} size={40} />
             </TouchableOpacity>
         );
@@ -42,6 +47,31 @@ const HowBad = ({ navigation }) => {
 
     const { t } = useTranslation()
 
+    const [isMildYesPressed, setIsMildYesPressed] = useState(JSON.stringify(painBadState.describe, null, 2).replaceAll('"', '') === "mild");
+    const [isModerateYesPressed, setIsModerateYesPressed] = useState(JSON.stringify(painBadState.describe, null, 2).replaceAll('"', '') === "moderate");
+    const [isSevereYesPressed, setIsSevereYesPressed] = useState(JSON.stringify(painBadState.describe, null, 2).replaceAll('"', '') === "severe");
+
+    const handleSetDescribe = (value) => {
+        if (value === "mild") {
+            setIsMildYesPressed((prev) => !prev);
+            isMildYesPressed ? (value = "") : null;
+            setIsModerateYesPressed(false);
+            setIsSevereYesPressed(false);
+        }
+        else if (value === "moderate") {
+            setIsModerateYesPressed((prev) => !prev);
+            isModerateYesPressed ? (value = "") : null;
+            setIsMildYesPressed(false);
+            setIsSevereYesPressed(false);
+        }
+        else if (value === "severe") {
+            setIsSevereYesPressed((prev) => !prev);
+            isSevereYesPressed ? (value = "") : null;
+            setIsMildYesPressed(false);
+            setIsModerateYesPressed(false);
+        }
+        dispatch(setDescribe(value));
+    };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -57,15 +87,15 @@ const HowBad = ({ navigation }) => {
                     <Text style={styles.title}>{t('how_bad.title')}</Text>
 
                     <View style={styles.buttonRow}>
-                        <TouchableOpacity style={styles.button} onPress={() => { }}>
+                        <TouchableOpacity style={isMildYesPressed ? styles.pressedButton : styles.button} onPress={() => handleSetDescribe("mild")}>
                             <Text style={styles.buttonText}>{t('how_bad.mild')}</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.button} onPress={() => { }}>
+                        <TouchableOpacity style={isModerateYesPressed ? styles.pressedButton : styles.button} onPress={() => handleSetDescribe("moderate")}>
                             <Text style={styles.buttonText}>{t('how_bad.moderate')}</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.button} onPress={() => { }}>
+                        <TouchableOpacity style={isSevereYesPressed ? styles.pressedButton : styles.button} onPress={() => handleSetDescribe("severe")}>
                             <Text style={styles.buttonText}>{t('how_bad.severe')}</Text>
                         </TouchableOpacity>
                     </View>
@@ -98,6 +128,15 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 5,
+    },
+    pressedButton: {
+        width: 100,
+        height: 50,
+        backgroundColor: 'lightgray',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
+        marginHorizontal: 10,
     },
     button: {
         width: 100, // Adjusted width to accommodate all three buttons in one row
