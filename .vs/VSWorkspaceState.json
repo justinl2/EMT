@@ -2,14 +2,16 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\nav",
+    "\\src\\@types",
+    "\\src\\components",
+    "\\src\\localization",
+    "\\src\\redux",
+    "\\src\\redux\\features",
+    "\\src\\redux\\features\\text",
     "\\src\\screens",
-    "\\src\\screens\\path3",
-    "\\src\\screens\\path4",
-    "\\src\\screens\\path5",
-    "\\src\\screens\\path6",
-    "\\src\\screens\\path7",
-    "\\src\\screens\\Profile"
+    "\\src\\screens\\path2",
+    "\\src\\services"
   ],
+  "SelectedNode": "\\src\\redux\\features\\text\\painFeelSlice.tsx",
   "PreviewInSolutionExplorer": false
 }

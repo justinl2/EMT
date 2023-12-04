@@ -28,8 +28,10 @@ const TypeAnything = ({ navigation }) => {
     const handleClear = () => dispatch(clearText());
 
     const handleStore = () => {
-        dispatch(storeText(localText));
-        storeAlert();
+        if (localText !== "") {
+            dispatch(storeText(localText));
+            storeAlert();
+        }
     };
 
     const GoBack = ({ navigation }) => {

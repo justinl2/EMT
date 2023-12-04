@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StatusBar, StyleSheet, TouchableOpacity, Text, SafeAreaView } from 'react-native';
+import { View, StatusBar, StyleSheet, TouchableOpacity, Text, SafeAreaView, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import ButtonCard from '../components/ButtonCard';
 import pill from '../assets/pill.jpg';
@@ -35,74 +35,84 @@ import { clearAll as clearAllVomit } from '../redux/features/text/vomitSlice';
 
 const HomeScreen = ({ navigation }) => {
 
-  const { t } = useTranslation()
-  const NewSession = () => {
-    const dispatch = useDispatch();
-    const handleNewSession = () => {
-      dispatch(clearAllAllergies());
-      dispatch(clearAllAssessment());
-      dispatch(clearAllAssist());
-      dispatch(clearAllBathroom());
-      dispatch(clearAllCondition());
-      dispatch(clearAllDirectives());
-      dispatch(clearAllDrug());
-      dispatch(clearAllIllness());
-      dispatch(clearAllIntake());
-      dispatch(clearAllMental());
-      dispatch(clearAllNitro());
-      dispatch(clearAllPainBad());
-      dispatch(clearAllPainFeel());
-      dispatch(clearAllPain());
-      dispatch(clearAllPersonal());
-      dispatch(clearAllSigns());
-      dispatch(clearAllText());
-      dispatch(clearAllVomit());
-      ;
-    };
-    return (
-      <TouchableOpacity style={styles.newSessionButton} onPress={() => handleNewSession()}>
-        <Text style={styles.buttonText}>{t('mainScreen.newSession')}</Text>
-      </TouchableOpacity>
-    );
-  };
+    const { t } = useTranslation()
+    const NewSession = () => {
+        const dispatch = useDispatch();
 
-  return (
+        const newSessionAlert = () => 
+            Alert.alert('Start a new session?', '', [
+                {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                {text: 'Yes', onPress: () => {
+                    console.log('Yes Pressed');
+                    handleNewSession();
+                }},
+            ]);
+
+        const handleNewSession = () => {
+            dispatch(clearAllAllergies());
+            dispatch(clearAllAssessment());
+            dispatch(clearAllAssist());
+            dispatch(clearAllBathroom());
+            dispatch(clearAllCondition());
+            dispatch(clearAllDirectives());
+            dispatch(clearAllDrug());
+            dispatch(clearAllIllness());
+            dispatch(clearAllIntake());
+            dispatch(clearAllMental());
+            dispatch(clearAllNitro());
+            dispatch(clearAllPainBad());
+            dispatch(clearAllPainFeel());
+            dispatch(clearAllPain());
+            dispatch(clearAllPersonal());
+            dispatch(clearAllSigns());
+            dispatch(clearAllText());
+            dispatch(clearAllVomit());
+            ;
+        };
+    return (
+            <TouchableOpacity style={styles.newSessionButton} onPress={() => newSessionAlert()}>
+            <Text style={styles.buttonText}>{t('mainScreen.newSession')}</Text>
+            </TouchableOpacity>
+        );
+    };
+
+    return (
 
 
     <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-      <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container}>
 
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('FirstPath')}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('FirstPath')}>
             <ButtonCard title={t('mainScreen.advanced')} image={pill} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Med_and_Personal')}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Med_and_Personal')}>
             <ButtonCard title={t('mainScreen.medicalInfo')} image={clipboard} />
-          </TouchableOpacity>
+            </TouchableOpacity>
         </View>
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Pain_Screen')}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Pain_Screen')}>
             <ButtonCard title={t('mainScreen.pain')} image={pain} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Whats_Wrong_Screen')}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Whats_Wrong_Screen')}>
             <ButtonCard title={t('mainScreen.whatsWrong')} image={check} />
-          </TouchableOpacity>
+            </TouchableOpacity>
         </View>
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Alert_Screen')}>
             <ButtonCard title={t('mainScreen.alert')} image={alert} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('SixthPath')}>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('SixthPath')}>
             <ButtonCard title={t('mainScreen.doNot')} image={assist} />
-          </TouchableOpacity>
+            </TouchableOpacity>
         </View>
 
 
         <NewSession />
 
-      </SafeAreaView>
+        </SafeAreaView>
     </LinearGradient>
-  );
+    );
 };
 
 const styles = StyleSheet.create({
