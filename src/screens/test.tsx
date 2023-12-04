@@ -325,7 +325,7 @@ const DisplayStateComponent: React.FC = () => {
                             {JSON.stringify(signsState.lighthead, null, 2).replaceAll('"', '') === "n" && "\nPatient is not feeling light-headedness, dizziness, or nausea."}
 
                             <Text style={styles.label}>
-                                {JSON.stringify(signsState.other, null, 2) !== '""' && "Other: "}
+                                {JSON.stringify(signsState.other, null, 2) !== '""' && "\nOther: "}
                             </Text>
                             {JSON.stringify(signsState.other, null, 2).replaceAll('"', '')}
 

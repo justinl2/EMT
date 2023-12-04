@@ -6,9 +6,10 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import ButtonCard from "../../components/ButtonCard";
-import mental from "../../../src/assets/mental.png";
-import injury from "../../../src/assets/injury.jpg";
-import alert from "../../../src/assets/alert.jpg";
+import blood from "../../../src/assets/blood.jpg";
+import constipation from "../../../src/assets/constipation.jpg";
+import diarrhea from "../../../src/assets/diarrhea.jpg";
+import pain from "../../../src/assets/pain.jpg";
 import blackCheck from "../../../src/assets/black-check.jpg";
 import pressedBlackCheck from "../../../src/assets/pressed-black-check.jpg";
 import xmark from "../../../src/assets/x-mark.jpg";
@@ -118,7 +119,7 @@ const Bathroom = ({ navigation }) => {
                             <View style={styles.containerRow}>
                                 <View style={styles.buttonContainer}>
                                     <Text style={styles.imageTitle}>{t('bathroom.blood')}</Text>
-                                    <Image style={styles.imageBox} source={(alert)} />
+                                    <Image style={styles.imageBox} source={(blood)} />
                                     <View style={styles.buttonRow}>
                                         <TouchableOpacity onPress={() => handleSetBlood("y")}>
                                             <SmallButton title={t('bathroom.yes')} image={isBloodYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
@@ -132,7 +133,7 @@ const Bathroom = ({ navigation }) => {
 
                                 <View style={styles.buttonContainer}>
                                     <Text style={styles.imageTitle}>{t('bathroom.constipation')}</Text>
-                                    <Image style={styles.imageBox} source={(alert)} />
+                                    <Image style={styles.imageBox} source={(constipation)} />
                                     <View style={styles.buttonRow}>
                                         <TouchableOpacity onPress={() => handleSetConstipation("y")}>
                                             <SmallButton title={t('bathroom.yes')} image={isConstipationYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
@@ -149,7 +150,7 @@ const Bathroom = ({ navigation }) => {
                             <View style={styles.containerRow}>
                                 <View style={styles.buttonContainer}>
                                     <Text style={styles.imageTitle}>{t('bathroom.diarrhea')}</Text>
-                                    <Image style={styles.imageBox} source={(alert)} />
+                                    <Image style={styles.imageBox} source={(diarrhea)} />
                                     <View style={styles.buttonRow}>
                                         <TouchableOpacity onPress={() => handleSetDiarrhea("y")}>
                                             <SmallButton title={t('bathroom.yes')} image={isDiarrheaYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
@@ -164,7 +165,7 @@ const Bathroom = ({ navigation }) => {
                                     style={styles.buttonContainer}
                                     onPress={() => navigation.navigate("Pain_Screen")}
                                 >
-                                    <ButtonCard title={t('bathroom.pain')} image={alert} />
+                                    <ButtonCard title={t('bathroom.pain')} image={pain} />
                                 </TouchableOpacity>
                             </View>
 

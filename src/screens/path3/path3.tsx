@@ -7,12 +7,8 @@ import React, { useState } from 'react';
 
 import ButtonCard from "../../components/ButtonCard";
 
-import pill from '../../../src/assets/pill.jpg';
+import kneepain from '../../../src/assets/kneepain.jpg';
 import clipboard from '../../../src/assets/clipboard.jpg';
-import pain from '../../../src/assets/pain.jpg';
-import check from '../../../src/assets/check.jpg';
-import alert from '../../../src/assets/alert.jpg';
-import assist from '../../../src/assets/assist.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen, setBetter, setWhere, clearAll } from '../../redux/features/text/painSlice';
@@ -48,7 +44,7 @@ const Pain = ({ navigation }) => {
 
                         <View style={styles.buttonRow}>
                             <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Feel_Screen')}>
-                                <ButtonCard title={t('path3.feelsLike')} image={pill} />
+                                <ButtonCard title={t('path3.feelsLike')} image={kneepain} />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('How_Bad_Screen')}>
                                 <ButtonCard title={t('path3.howBad')} image={clipboard} />

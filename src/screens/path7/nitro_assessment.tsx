@@ -2,7 +2,8 @@ import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View, Image } from "r
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 import ButtonCard from "../../components/ButtonCard";
-import alert from '../../../src/assets/alert.jpg';
+import bloodthinner from "../../../src/assets/bloodthinner.jpg";
+import pill from '../../../src/assets/pill.jpg';
 import blackCheck from "../../../src/assets/black-check.jpg";
 import pressedBlackCheck from "../../../src/assets/pressed-black-check.jpg";
 import xmark from "../../../src/assets/x-mark.jpg";
@@ -87,7 +88,7 @@ const NitroAssessment = ({ navigation }) => {
                 <View style={styles.containerRow}>
                     <View style={styles.buttonContainer}>
                         <Text style={styles.imageTitle}>{t('nitro_assessment.blood')}</Text>
-                        <Image style={styles.imageBox} source={(alert)} />
+                        <Image style={styles.imageBox} source={(bloodthinner)} />
                         <View style={styles.buttonRow}>
                             <TouchableOpacity onPress={() => handleSetThinner("y")}>
                                 <SmallButton title={t('nitro_assessment.yes')} image={isThinnerYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>
@@ -101,7 +102,7 @@ const NitroAssessment = ({ navigation }) => {
 
                     <View style={styles.buttonContainer}>
                         <Text style={styles.imageTitle}>{t('nitro_assessment.sexual')}</Text>
-                        <Image style={styles.imageBox} source={(alert)} />
+                        <Image style={styles.imageBox} source={(pill)} />
                         <View style={styles.buttonRow}>
                             <TouchableOpacity onPress={() => handleSetSexual("y")}>
                                 <SmallButton title={t('nitro_assessment.yes')} image={isSexualYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>

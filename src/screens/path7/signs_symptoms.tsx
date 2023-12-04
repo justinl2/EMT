@@ -14,9 +14,10 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import ButtonCard from "../../components/ButtonCard";
-import mental from "../../../src/assets/mental.png";
-import injury from "../../../src/assets/injury.jpg";
-import alert from "../../../src/assets/alert.jpg";
+import pain from "../../../src/assets/pain.jpg";
+import breathing from "../../../src/assets/breathing.jpg";
+import stomach from "../../../src/assets/stomach.jpg";
+import lighthead from "../../../src/assets/lighthead.jpg";
 import blackCheck from "../../../src/assets/black-check.jpg";
 import pressedBlackCheck from "../../../src/assets/pressed-black-check.jpg";
 import xmark from "../../../src/assets/x-mark.jpg";
@@ -89,7 +90,7 @@ const SignsSymptoms = ({ navigation }) => {
                 style={styles.buttonContainer}
                 onPress={() => navigation.navigate("Pain_Screen")}
               >
-                <ButtonCard title={t('signs_symptoms.pain')} image={alert} />
+                <ButtonCard title={t('signs_symptoms.pain')} image={pain} />
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.buttonContainer}
@@ -97,7 +98,7 @@ const SignsSymptoms = ({ navigation }) => {
               >
                 <ButtonCard
                   title={t('signs_symptoms.breathing')}
-                  image={alert}
+                  image={breathing}
                 />
               </TouchableOpacity>
             </View>
@@ -107,11 +108,12 @@ const SignsSymptoms = ({ navigation }) => {
                 style={styles.buttonContainer}
                 onPress={() => navigation.navigate("Intake_Output_Screen")}
               >
-                <ButtonCard title={t('signs_symptoms.stomach')} image={alert} />
+                <ButtonCard title={t('signs_symptoms.stomach')} image={stomach} />
               </TouchableOpacity>
+
               <View style={styles.buttonContainer}>
                 <Text style={styles.imageTitle}>{t('signs_symptoms.dizzy')}</Text>
-                <Image style={styles.imageBox} source={(alert)} />
+                <Image style={styles.imageBox} source={(lighthead)} />
                 <View style={styles.buttonRow}>
                   <TouchableOpacity onPress={() => handleSetLighthead("y")}>
                     <SmallButton title={t('signs_symptoms.yes')} image={isLightheadYesPressed ? pressedBlackCheck : blackCheck} ></SmallButton>

@@ -13,7 +13,8 @@ import React, { useState } from "react";
 import ButtonCard from "../../components/ButtonCard";
 import mental from "../../../src/assets/mental.png";
 import injury from "../../../src/assets/injury.jpg";
-import alert from "../../../src/assets/alert.jpg";
+import vomit from "../../../src/assets/vomit.jpg";
+import toilet from "../../../src/assets/toilet.jpg";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setWhen, setWhat, clearAll } from '../../redux/features/text/intakeSlice';
@@ -52,13 +53,13 @@ const IntakeOutput = ({ navigation }) => {
               style={styles.buttonContainer}
               onPress={() => navigation.navigate("Vomit_Screen")}
             >
-              <ButtonCard title={t('intake_output.vomit')} image={alert} />
+              <ButtonCard title={t('intake_output.vomit')} image={vomit} />
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonContainer}
               onPress={() => navigation.navigate("Bathroom_Screen")}
             >
-              <ButtonCard title={t('intake_output.bathroom')} image={alert} />
+              <ButtonCard title={t('intake_output.bathroom')} image={toilet} />
             </TouchableOpacity>
           </View>
 

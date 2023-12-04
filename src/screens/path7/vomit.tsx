@@ -12,7 +12,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import ButtonCard from "../../components/ButtonCard";
-import alert from "../../../src/assets/alert.jpg";
+import blood from "../../../src/assets/blood.jpg";
 import SmallButton from '../../components/SmallButton';
 import xmark from "../../../src/assets/x-mark.jpg";
 import pressedXmark from "../../../src/assets/pressed-x-mark.jpg";
@@ -89,7 +89,7 @@ const Vomit = ({ navigation }) => {
           <Text style={styles.title}>{t('vomit.title')}</Text>
           <View style={styles.buttonContainer}>
             <Text style={styles.imageTitle}>{t('vomit.blood')}</Text>
-            <Image style={styles.imageBox} source={(alert)} />
+            <Image style={styles.imageBox} source={(blood)} />
 
             <View style={styles.buttonRow}>
               <TouchableOpacity onPress={() => handleSetBlood("y")}>
