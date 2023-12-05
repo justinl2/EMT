@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, TextInput, StyleSheet, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { Text, SafeAreaView, TextInput, StyleSheet, Keyboard, TouchableWithoutFeedback, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -27,9 +27,14 @@ const Screen5 = ({ navigation }) => {
 
                 <SafeAreaView style={styles.container}>
 
-                    <GoBack navigation={navigation} />
-
-                    <ClearButton clearAllFunc={clearAll} />
+                    <View style={styles.inlineContainer}>
+                        <GoBack navigation={navigation} />
+                        <Text style={styles.returnHomeText}>Home</Text>
+                    </View>
+                    
+                    <View style={styles.work}>
+                        <ClearButton clearAllFunc={clearAll} />
+                    </View>
 
                     <Text style={styles.title}>{t('path5.title')}</Text>
 
@@ -81,7 +86,9 @@ const Screen5 = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         padding: 20,
+        alignItems: 'center',
     },
     input: {
         height: 40,
@@ -112,6 +119,26 @@ const styles = StyleSheet.create({
         marginTop: 10,
         letterSpacing: 1,
     },
+    inlineContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: '#f0f0f0',
+        padding: 10,
+        borderRadius: 8,
+        paddingRight: 200,
+      },
+    returnHomeText: {
+        marginLeft: 10,
+        fontSize: 16,
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 7,
+      },
+    work: {
+    top: -100,
+    right: -175,
+    }
 
 });
 

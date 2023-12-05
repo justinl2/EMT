@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinearGradient } from "expo-linear-gradient";
-import { Text, SafeAreaView, TextInput, StyleSheet, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { Text, SafeAreaView, TextInput, StyleSheet, Keyboard, TouchableWithoutFeedback, View } from "react-native";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setInhaler, setThinner, setSexual, setNarcotics, clearAll } from '../../redux/features/text/drugSlice';
@@ -31,9 +31,18 @@ const DrugsMedications = ({ navigation }) => {
 
                 <SafeAreaView style={styles.container}>
 
-                    <GoBack navigation={navigation} />
+                    <View style={styles.inlineContainer}>
+                        <View style={styles.work2}>
+                            <GoBack navigation={navigation} />
+                        </View>
+                        <Text style={styles.returnHomeText}>Medical & Personal</Text>
+                        
+                    </View>
 
-                    <ClearButton clearAllFunc={clearAll} />
+                    <View style={styles.work}>
+                        <ClearButton clearAllFunc={clearAll} />
+                    </View>
+                    
 
                     <Text style={styles.title}> {t('drugs_medications.title')} </Text>
 
@@ -112,6 +121,29 @@ const styles = StyleSheet.create({
         marginTop: 10,
         letterSpacing: 1,
     },
+    inlineContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: '#f0f0f0',
+        padding: 10,
+        borderRadius: 8,
+        paddingRight: 200,
+      },
+    returnHomeText: {
+        marginLeft: 10,
+        fontSize: 16,
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 7,
+      },
+      work: {
+        top: -100,
+      },
+      work2: {
+        top: 0,
+        right: 0
+      }
 
 });
 

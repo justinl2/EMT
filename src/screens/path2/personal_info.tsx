@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, TouchableOpacity, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { Text, SafeAreaView, View, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback } from "react-native";
 import RNPickerSelect from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
 import ButtonCard from "../../components/ButtonCard";
@@ -38,9 +38,16 @@ const PersonalInformation = ({ navigation }) => {
 
                 <SafeAreaView style={styles.container}>
 
-                    <GoBack navigation={navigation} />
+                    <View style={styles.inlineContainer}>
+                        <View style={styles.work2}>
+                            <GoBack navigation={navigation} />
+                        </View>
+                        <Text style={styles.returnHomeText}>Medical & Personal</Text>
+                    </View>
 
-                    <ClearButton clearAllFunc={clearAll} />
+                    <View style={styles.work}>
+                        <ClearButton clearAllFunc={clearAll} />
+                    </View>
 
                     <Text style={styles.title}> {t('personalInfo.title')} </Text>
 
@@ -190,6 +197,29 @@ const styles = StyleSheet.create({
         marginTop: 10,
         letterSpacing: 1,
     },
+    inlineContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: '#f0f0f0',
+        padding: 10,
+        borderRadius: 8,
+        paddingRight: 200,
+      },
+    returnHomeText: {
+        marginLeft: 10,
+        fontSize: 16,
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 7,
+      },
+    work: {
+        top: -100,
+    },
+    work2: {
+        top: 0,
+        right: 0
+    }
 
 });
 

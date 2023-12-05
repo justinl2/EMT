@@ -30,10 +30,6 @@ import SignsSymptoms from '../screens/path7/signs_symptoms';
 import NitroAssessment from '../screens/path7/nitro_assessment';
 import Bathroom from '../screens/path7/bathroom';
 import SignInScreen from '../screens/Profile/SignInScreen';
-import SignUpScreen from '../screens/Profile/SignUpScreen';
-import ConfirmEmailScreen from '../screens/Profile/ConfirmEmail';
-import ForgotPasswordScreen from '../screens/Profile/ForgotPassword';
-import ResetPasswordScreen from '../screens/Profile/ResetPassword';
 import MedicalProfileScreen from '../screens/Profile/MedicalProfile';
 import MedicalProfileEMTScreen from '../screens/Profile/MedicalProfile_emt';
 import ProfileScreen from '../screens/Profile/ProfilePage';
@@ -66,11 +62,7 @@ const MainStackNavigator = () => {
             <MainStack.Screen name="Signs_Symptoms_Screen" component={SignsSymptoms} />
             <MainStack.Screen name="Nitro_Assessment_Screen" component={NitroAssessment} />
             <MainStack.Screen name="Bathroom_Screen" component={Bathroom} />
-            <MainStack.Screen name="Sign_Up_Screen" component={SignUpScreen} />
             <MainStack.Screen name="Sign_In_Screen" component={SignInScreen} />
-            <MainStack.Screen name="Confirm_Email_Screen" component={ConfirmEmailScreen} />
-            <MainStack.Screen name="Forgot_Password_Screen" component={ForgotPasswordScreen} />
-            <MainStack.Screen name="Reset_Password_Screen" component={ResetPasswordScreen} />
             <MainStack.Screen name="Medical_Profile_Screen" component={MedicalProfileScreen} />
             <MainStack.Screen name="Medical_Profile_EMT_Screen" component={MedicalProfileEMTScreen} />
             <MainStack.Screen name="Profile_Screen" component={ProfileScreen} />
@@ -142,25 +134,25 @@ function BottomTabs() {
                         )
                 }}
             />
-            <Tab.Screen name="Profile"
+            <Tab.Screen name="Settings"
                 component={SignInScreen}
                 options={{
                     headerShown: false,
-                    tabBarLabel: "Profile",
+                    tabBarLabel: "Settings",
                     tabBarLabelStyle: { color: "white" },
                     tabBarIcon: ({ focused }) =>
                         focused ? (
-                            <Ionicons name="person" size={24} color="white" />
+                            <Ionicons name="settings" size={24} color="white" />
                         ) : (
-                            <Ionicons name="person-outline" size={24} color="white" />
+                            <Ionicons name="settings-outline" size={24} color="white" />
                         )
                 }}
             />
-            <Tab.Screen name="Generate"
+            <Tab.Screen name="Summary"
                 component={GenerateScreen}
                 options={{
                     headerShown: false,
-                    tabBarLabel: "Generate",
+                    tabBarLabel: "Summary",
                     tabBarLabelStyle: { color: "white" },
                     tabBarIcon: ({ focused }) =>
                         focused ? (

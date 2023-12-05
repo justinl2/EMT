@@ -81,8 +81,15 @@ const NitroAssessment = ({ navigation }) => {
         <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
 
             <SafeAreaView style={styles.container}>
-                <GoBack navigation={navigation} />
-                <ClearButton clearAllFunc={clearAll} />
+
+                <View style={styles.inlineContainer}>
+                    <GoBack navigation={navigation} />
+                    <Text style={styles.returnHomeText}>Signs & Symptoms</Text>
+                </View>
+
+                <View style={styles.work}>
+                    <ClearButton clearAllFunc={clearAll} />
+                </View>
                 <Text style={styles.title}>{t('nitro_assessment.title')}</Text>
 
                 <View style={styles.containerRow}>
@@ -214,6 +221,25 @@ const styles = StyleSheet.create({
         top: 50,
         right: 15
     },
+    inlineContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: '#f0f0f0',
+        padding: 10,
+        borderRadius: 8,
+        paddingRight: 200,
+      },
+    returnHomeText: {
+        marginLeft: 10,
+        fontSize: 16,
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 7,
+      },
+    work: {
+        top: -100,
+    }
 });
 
 

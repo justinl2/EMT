@@ -15,7 +15,10 @@ const WhatsWrong = ({ navigation }) => {
     return (
         <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
-                <GoBack navigation={navigation} />
+                <View style={styles.inlineContainer}>
+                    <GoBack navigation={navigation} />
+                    <Text style={styles.returnHomeText}>Home</Text>
+                </View>
                 <Text style={styles.title}>{t('whats_wrong.title')}</Text>
 
                 <View style={styles.buttonRow}>
@@ -90,6 +93,22 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    inlineContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: '#f0f0f0',
+        padding: 10,
+        borderRadius: 8,
+        paddingRight: 200,
+      },
+    returnHomeText: {
+        marginLeft: 10,
+        fontSize: 16,
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 7,
+      },
 });
 
 

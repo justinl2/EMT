@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StatusBar, StyleSheet, TouchableOpacity, Text, SafeAreaView, Alert } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, SafeAreaView, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import ButtonCard from '../components/ButtonCard';
 import pill from '../assets/pill.jpg';
@@ -10,7 +10,6 @@ import alert from '../assets/alert.jpg'
 import assist from '../assets/assist.jpg'
 import { useTranslation } from 'react-i18next'
 import '../services/i18next';
-import { Ionicons } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import { clearAll as clearAllAllergies } from '../redux/features/text/allergiesSlice';
 import { clearAll as clearAllAssessment } from '../redux/features/text/assessmentSlice';

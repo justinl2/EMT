@@ -110,11 +110,18 @@ const MedicalConditions = ({ navigation }) => {
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <SafeAreaView style={styles.container}>
 
-                            <View style={styles.header}>
-                                <GoBack navigation={navigation} />
+                            <View style={styles.inlineContainer}>
+                                <View style={styles.work2}>
+                                    <GoBack navigation={navigation} />
+                                </View>
+                                <Text style={styles.returnHomeText}>Medical & Personal</Text>
+                            </View>
+
+                            <View style={styles.work}>
                                 <ClearButton clearAllFunc={clearAll} />
                             </View>
 
+                            
 
                             <Text style={styles.title}>{t('medical_conditions.title')}</Text>
 
@@ -280,6 +287,30 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 20,
     },
+    inlineContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: '#f0f0f0',
+        padding: 10,
+        borderRadius: 8,
+        paddingRight: 200,
+      },
+    returnHomeText: {
+        marginLeft: 10,
+        fontSize: 16,
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 7,
+      },
+      work: {
+        top: -50,
+        right: -135,
+      },
+      work2: {
+        top: 0,
+        right: 0
+      }
 });
 
 export default MedicalConditions;

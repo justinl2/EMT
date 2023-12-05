@@ -60,9 +60,10 @@ const DisplayStateComponent: React.FC = () => {
                             <Text style={styles.redlabel}>
                                 {JSON.stringify(directivesState.polst, null, 2) !== 'false' && "PATIENT HAS A POLST\n"}
                                 {JSON.stringify(directivesState.resuscitate, null, 2) !== 'false' && "DO NOT RESUSCITATE / INTUBATE\n"}
-                                {JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "noHelp" && "Do not help the patient nor take them to the hospital."}
-                                {JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "noHospital" && "Help the patient but do not take them to the hospital."}
-                                {JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "hospital" && "Help the patient and take them to the hospital."}
+                                {JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "noHelp" && "Do not help the patient."}
+                                {JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "noHospital" && "Help the patient."}
+                                {JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "hospital" && "Hospitalize the patient."}
+                                {JSON.stringify(assistState.assist, null, 2).replaceAll('"', '') === "noAssist" && "Do not hospitalize the patient."}
                             </Text>
                         </Text>
 

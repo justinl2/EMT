@@ -17,9 +17,12 @@ const Screen2 = ({ navigation }) => {
 
   return (
     <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
 
-        <GoBack navigation={navigation} />
+        <View style={styles.inlineContainer}>
+            <GoBack navigation={navigation} />
+            <Text style={styles.returnHomeText}>Home</Text>
+        </View>
 
         <Text style={styles.title}>{t('path2.title')}</Text>
 
@@ -50,7 +53,6 @@ export default Screen2;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
   },
   buttonRow: {
@@ -84,6 +86,22 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     letterSpacing: 1,
     color: "black",
+  },
+  inlineContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start', // Align items to the left
+    backgroundColor: '#f0f0f0', // Example background color
+    padding: 10, // Example padding
+    borderRadius: 8,
+    paddingRight: 200,
+  },
+returnHomeText: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: 'black',
+    fontWeight: 'bold',
+    paddingTop: 7,
   },
 
 });

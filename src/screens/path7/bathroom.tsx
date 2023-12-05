@@ -109,8 +109,12 @@ const Bathroom = ({ navigation }) => {
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <SafeAreaView style={styles.container}>
 
-                            <View style={styles.header}>
+                            <View style={styles.inlineContainer}>
                                 <GoBack navigation={navigation} />
+                                <Text style={styles.returnHomeText}>Last Intake/Output</Text>
+                            </View>
+
+                            <View style={styles.work}>
                                 <ClearButton clearAllFunc={clearAll} />
                             </View>
 
@@ -161,12 +165,6 @@ const Bathroom = ({ navigation }) => {
                                     </View>
 
                                 </View>
-                                <TouchableOpacity
-                                    style={styles.buttonContainer}
-                                    onPress={() => navigation.navigate("Pain_Screen")}
-                                >
-                                    <ButtonCard title={t('bathroom.pain')} image={pain} />
-                                </TouchableOpacity>
                             </View>
 
                             <Text style={styles.text}>{t('bathroom.when')}</Text>
@@ -291,5 +289,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 20,
     },
+    inlineContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: '#f0f0f0',
+        padding: 10,
+        borderRadius: 8,
+        paddingRight: 200,
+      },
+    returnHomeText: {
+        marginLeft: 10,
+        fontSize: 16,
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 7,
+      },
+      work: {
+        top: -50,
+        right: -150,
+      }
 });
 

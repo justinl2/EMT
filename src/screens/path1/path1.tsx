@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet, Switch, } from "react-native";
+import { Text, SafeAreaView, StyleSheet, Switch, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,13 +23,16 @@ const Screen1 = ({ navigation }) => {
 
     return (
         <LinearGradient colors={["lightgray", "paleturquoise"]} style={{ flex: 1 }}>
+
             <SafeAreaView style={styles.container}>
 
+            <View style={styles.inlineContainer}>
                 <GoBack navigation={navigation} />
+                <Text style={styles.returnHomeText}>Home</Text>
+            </View>
 
-                <ClearButton clearAllFunc={clearAll} />
                 <Text style={styles.title}>{t('path1.title')}</Text>
-
+                
                 <Text style={styles.text}>{t('path1.switch1')}</Text>
                 <Switch
                     trackColor={{ false: "#767577", true: "#81b0ff" }}
@@ -100,4 +103,20 @@ const styles = StyleSheet.create({
         marginTop: 10,
         letterSpacing: 1,
     },
+    inlineContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: '#f0f0f0',
+        padding: 10,
+        borderRadius: 8,
+        paddingRight: 200,
+      },
+    returnHomeText: {
+        marginLeft: 10,
+        fontSize: 16,
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 7,
+      },
 });

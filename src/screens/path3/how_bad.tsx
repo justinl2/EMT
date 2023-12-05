@@ -81,6 +81,7 @@ const HowBad = ({ navigation }) => {
 
                     <View style={styles.header}>
                         <GoBack navigation={navigation} />
+                        <Text style={styles.returnHomeText}>Pain</Text>
                         <ClearButton clearAllFunc={clearAll} />
                     </View>
 
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: -50,
+        marginTop: -335,
     },
     buttonRow: {
         flexDirection: 'row',
@@ -184,6 +185,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 20,
+        backgroundColor: 'white',
+        borderRadius: 8,
+        paddingTop: 10,
+        paddingBottom: 10,
+        width   : '85%',
     },
     clear: {
         alignSelf: 'center',
@@ -192,6 +198,13 @@ const styles = StyleSheet.create({
     clearAllButton: {
         marginRight: 20,
     },
+    returnHomeText: {
+        marginLeft: 10,
+        fontSize: 16,
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 7,
+      },
 });
 
 export default HowBad;

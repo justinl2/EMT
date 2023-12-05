@@ -88,15 +88,16 @@
         "title": "Alert and Oriented Assessment",
         "name": "What is your name?",
         "where": "Do you know where you are?",
-        "day": "What day of the week is it today?",
+        "day": "What day of the week is it today?"
     },
     "path6": {
         "alert": "Alert & Oriented Assessment",
-        "title": "For the EMT: communicate your concern to the patient",
+        "title": "For EMT:                                                  Communicate your concern to the patient",
         "message": "Type your message here...",
-        "noHelp": "I understand, but do NOT help me or take me to the hospital",
-        "noHospital": "Please help me, but do NOT take me to the hospital",
-        "hospital": "Please help me and take me to the hospital"
+        "noHelp": "DON'T                    help me",
+        "noHospital": "HELP                     me",
+        "hospital": "HOSPITILIZE                  me",
+        "noAssist": "DON'T                       HOSPITILIZE              me"
     },
     "whats_wrong": {
         "title": "What's Wrong?",
