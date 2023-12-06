@@ -134,20 +134,6 @@ function BottomTabs() {
                         )
                 }}
             />
-            <Tab.Screen name="Settings"
-                component={SignInScreen}
-                options={{
-                    headerShown: false,
-                    tabBarLabel: "Settings",
-                    tabBarLabelStyle: { color: "white" },
-                    tabBarIcon: ({ focused }) =>
-                        focused ? (
-                            <Ionicons name="settings" size={24} color="white" />
-                        ) : (
-                            <Ionicons name="settings-outline" size={24} color="white" />
-                        )
-                }}
-            />
             <Tab.Screen name="Summary"
                 component={GenerateScreen}
                 options={{

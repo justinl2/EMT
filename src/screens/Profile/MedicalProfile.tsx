@@ -370,7 +370,7 @@ const MedicalProfileScreen = ({ navigation }) => {
                                 }}
                             />
 
-                            <Button title="Save and Send Data" onPress={sendMedicalProfile} />
+                            
 
 
                         </SafeAreaView>

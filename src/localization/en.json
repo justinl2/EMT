@@ -92,12 +92,12 @@
     },
     "path6": {
         "alert": "Alert & Oriented Assessment",
-        "title": "For EMT:                                                  Communicate your concern to the patient",
+        "title": "For EMT: Communicate your concern to the patient",
         "message": "Type your message here...",
-        "noHelp": "DON'T                    help me",
-        "noHospital": "HELP                     me",
-        "hospital": "HOSPITILIZE                  me",
-        "noAssist": "DON'T                       HOSPITILIZE              me"
+        "noHelp": "DON'T help me",
+        "noHospital": "HELP me",
+        "hospital": "HOSPITALIZE me",
+        "noAssist": "DON'T HOSPITALIZE me"
     },
     "whats_wrong": {
         "title": "What's Wrong?",

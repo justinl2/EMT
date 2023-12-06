@@ -34,14 +34,6 @@ const TypeAnything = ({ navigation }) => {
         }
     };
 
-    const GoBack = ({ navigation }) => {
-        return (
-            <TouchableOpacity style={styles.goBackButton} onPress={() => navigation.goBack()}>
-                <Ionicons name="arrow-back-sharp" style={styles.button} size={40} />
-            </TouchableOpacity>
-        );
-    };
-
     const ClearAll = () => {
         return (
             <TouchableOpacity style={styles.clearAllButton} onPress={() => handleClear()}>
@@ -81,8 +73,6 @@ const TypeAnything = ({ navigation }) => {
                         />
                     </View>
 
-                    <GoBack navigation={navigation} />
-
                     <ClearAll />
 
                     <Save />
@@ -107,13 +97,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: 'black',
     },
-    goBackButton: {
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        position: 'absolute',
-        top: 50,
-        left: 15
-    },
     clearAllButton: {
         flexDirection: 'column',
         justifyContent: 'flex-start',
@@ -125,8 +108,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         position: 'absolute',
-        alignSelf: 'center',
         top: 50,
+        left: 15
     }
 });
 

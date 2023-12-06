@@ -81,7 +81,7 @@ const SignsSymptoms = ({ navigation }) => {
 
           <View style={styles.inlineContainer}>
             <GoBack navigation={navigation} />
-            <Text style={styles.returnHomeText}>Home</Text>
+            <Text style={styles.returnHomeText}>Illness/Injury</Text>
           </View>
 
           <View style={styles.work}>
